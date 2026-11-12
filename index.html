@@ -153,12 +153,13 @@
   .field textarea { min-height: 96px; resize: vertical; }
   .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent); }
   .slots { display: flex; flex-wrap: wrap; gap: 8px; }
-  .slots label { cursor: pointer; }
-  .slots input { position: absolute; opacity: 0; pointer-events: none; }
+  .slots label { cursor: pointer; position: relative; }
+  .slots input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
   .slots span { display: inline-block; padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); font-weight: 600; font-size: 14px; }
   .slots input:checked + span { background: var(--brand); border-color: var(--brand); color: #fff; }
   .slots input:focus-visible + span { box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 30%, transparent); }
-  .hp { position: absolute; left: -9999px; }
+  .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; }
+  .book form { position: relative; }
   .submit { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
   .submit .btn { border: 0; cursor: pointer; font-family: inherit; }
   .submit .btn[disabled] { opacity: .6; cursor: wait; }
