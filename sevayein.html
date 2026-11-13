@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-cOz8jpxl02I8gIFYinKKFwf3KplpIjDpozIY5tHJhHE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-WnGjZnJoDEDe5quxrBYFEXpz/qHIhntFgOo43toEBt4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Hamari Sevayein: Har seva ke zaroori documents. Seva par dabaiye, list khul jayegi. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -622,7 +622,9 @@
   function talkOwner(firstText) {
     if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
     if (!P.canSend || !P.relayOrigin) { askOwner(firstText); return; }
-    if (who.name && who.phone) { bot('Theek hai ' + who.name + ' ji, ' + D.owner + ' se jod raha hoon…'); startLive(firstText); return; }
+    // Har baar pehle naam, phir number (purana yaad nahi rakhte), uske baad hi owner ko suchna aur ulti ginti
+    who = { name: '', phone: '' };
+    bar.hidden = true;
     flow = { step: 'lvName', q: firstText || '' };
     bot('*' + D.owner + '* se jodne se pehle 🙏\nAapka *naam* likhiye:');
     input.focus();
