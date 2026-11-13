@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-57NAnCE+ye9yMSxpz6D0gvEOGDeT0MkkN4vdrmTbxME='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-KWbHmvh7iB/A/0bJgsjBeWM8vCFmgwk1Xu8N4UVdicI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -646,6 +646,82 @@
     return new Promise(function (res) { cv.toBlob(function (b) { b.arrayBuffer().then(function (x) { res(new Uint8Array(x)); }); }, 'image/jpeg', q); });
   }
 
+  // ---------- Drawing (vector) wali PDF: lakeer/golai ke number chhote (dikhne me farak nahi) ----------
+  // Sirf path ke number (m l c v y re) round hote hain; scale (cm), rang, text, font waise hi.
+  var PATH_OPS = { m: 1, l: 1, c: 1, v: 1, y: 1, re: 1 };
+  var DELIM = '()<>[]{}/%';
+  function fmtNum(t, d) {
+    var v = (+t).toFixed(d);
+    if (v.indexOf('.') >= 0) v = v.replace(/0+$/, '').replace(/\.$/, '');
+    if (v === '-0') v = '0';
+    return v.replace(/^(-?)0\./, '$1.');
+  }
+  function roundContent(s, d) {
+    var out = [], ops = [], i = 0, n = s.length;
+    function ws(c) { return c === ' ' || c === '\n' || c === '\r' || c === '\t' || c === '\f' || c === '\0'; }
+    function grabBalanced(open, close) { // ( ) aur [ ] ke andar (string ke escape samajh kar)
+      var start = i, depth = 0;
+      for (; i < n; i++) {
+        var c = s[i];
+        if (open === '(' && c === '\\') { i++; continue; }
+        if (open === '[' && c === '(') { i++; var dd = 1; for (; i < n && dd; i++) { if (s[i] === '\\') { i++; continue; } if (s[i] === '(') dd++; else if (s[i] === ')') dd--; } i--; continue; }
+        if (c === open) depth++; else if (c === close) { depth--; if (!depth) { i++; break; } }
+      }
+      return s.slice(start, i);
+    }
+    while (i < n) {
+      var c = s[i];
+      if (ws(c)) { i++; continue; }
+      if (c === '%') { while (i < n && s[i] !== '\n' && s[i] !== '\r') i++; continue; }
+      if (c === '(') { ops.push(grabBalanced('(', ')')); continue; }
+      if (c === '[') { ops.push(grabBalanced('[', ']')); continue; }
+      if (c === '<' && s[i + 1] === '<') { var st = i, dp = 0; for (; i < n; i++) { if (s[i] === '<' && s[i + 1] === '<') { dp++; i++; } else if (s[i] === '>' && s[i + 1] === '>') { dp--; i++; if (!dp) { i++; break; } } } ops.push(s.slice(st, i)); continue; }
+      if (c === '<') { var e = s.indexOf('>', i); ops.push(s.slice(i, e + 1)); i = e + 1; continue; }
+      if (c === '/') { var a = i++; while (i < n && !ws(s[i]) && DELIM.indexOf(s[i]) < 0) i++; ops.push(s.slice(a, i)); continue; }
+      if (/[0-9+\-.]/.test(c)) { var b = i++; while (i < n && /[0-9.]/.test(s[i])) i++; ops.push({ num: s.slice(b, i) }); continue; }
+      var w = i; while (i < n && !ws(s[i]) && DELIM.indexOf(s[i]) < 0) i++;
+      var op = s.slice(w, i);
+      if (!op) { i++; continue; }
+      if (op === 'BI') { // inline photo: jaisi hai waisi
+        var idAt = s.indexOf('ID', i), ei = idAt;
+        do { ei = s.indexOf('EI', ei + 2); } while (ei > 0 && !(ws(s[ei - 1]) && (ei + 2 >= n || ws(s[ei + 2]))));
+        if (idAt < 0 || ei < 0) { out.push(s.slice(w)); i = n; break; }
+        flushOps(); out.push(s.slice(w, ei + 2)); i = ei + 2; continue;
+      }
+      var round = PATH_OPS[op];
+      out.push(ops.map(function (t) { return typeof t === 'object' ? (round ? fmtNum(t.num, d) : t.num) : t; }).concat(op).join(' '));
+      ops = [];
+    }
+    function flushOps() { if (ops.length) { out.push(ops.map(function (t) { return typeof t === 'object' ? t.num : t; }).join(' ')); ops = []; } }
+    flushOps();
+    return out.join('\n');
+  }
+  /** Drawing wale (content) streams pehchanna: photo/font/ICC nahi, aur andar drawing ke operator */
+  async function contentStreams(p, u8) {
+    var list = [];
+    for (var i = 0; i < p.keep.length; i++) {
+      var o = p.keep[i], d = o.dict;
+      if (o.dataStart == null || o.dataEnd - o.dataStart < 4096) continue;
+      if (/\/Subtype\s*\/(Image|Type1C|CIDFontType0C|OpenType|XML)\b|\/Length[123]\b|\/N\s+\d|\/Type\s*\/(Metadata|ObjStm|XRef|EmbeddedFile)\b|\/DecodeParms/.test(d)) continue;
+      var f = (dictGet(d, 'Filter') || '').replace(/[\[\]\s]/g, '');
+      if (f && f !== '/FlateDecode') continue;
+      var raw = u8.subarray(o.dataStart, o.dataEnd);
+      try { if (f) raw = await inflate(raw); } catch (e) { continue; }
+      var head = latin1(raw.subarray(0, 4000));
+      if (!/\s(re|m|l|c|cm|q|BT|Tj|TJ|Do|f|S)\s/.test(' ' + head + ' ') || /[\x00-\x08\x0e-\x1f]/.test(head.replace(/BI[\s\S]*?EI/g, ''))) continue;
+      list.push({ obj: o, text: latin1(raw) });
+    }
+    return list;
+  }
+  async function vectorRepl(list, d) {
+    var r = {};
+    for (var i = 0; i < list.length; i++) {
+      var it = list[i], z = await deflate(bytes(roundContent(it.text, d)));
+      if (z.length < it.obj.dataEnd - it.obj.dataStart) r[it.obj.num] = { dict: dictSet(it.obj.dict, { Filter: '/FlateDecode', Length: z.length }, ['DecodeParms']), data: z };
+    }
+    return r;
+  }
+
   /** objects + badle hue hisse -> nayi PDF (naksha / xref naye sire se) */
   async function rebuild(p, u8, trailer, repl, objStmMap) {
     var parts = [], len = 0, offs = {}, gens = {};
@@ -728,38 +804,49 @@
       }
     }
     var base = await rebuild(p, u8, trailer, repl, objStmMap);
-    var before = u8.length;
-    if (!imgs.length) return { bytes: base.length < before ? base : u8, before: before, after: Math.min(base.length, before), images: 0, pages: pages, reached: !opts.targetBytes || Math.min(base.length, before) <= opts.targetBytes };
+    var before = u8.length, target = opts.targetBytes || 0;
+    var repl2 = Object.assign({}, repl), best = { q: null, scale: 1 };
 
     // 2) Photo halki: pehle quality, phir zaroorat ho to pixel (sab photo ek saath)
-    var imgOrig = imgs.reduce(function (a, x) { return a + (x.obj.dataEnd - x.obj.dataStart); }, 0);
-    var fixed = base.length - imgOrig;
-    var target = opts.targetBytes || 0;
-    var maxSide = Math.max.apply(null, imgs.map(function (x) { return Math.max(x.w, x.h); }));
-    var tries = [];
-    [0.82, 0.72, 0.62, 0.52, 0.44].forEach(function (q) { tries.push({ q: q, s: 1 }); });
-    [0.85, 0.7, 0.58, 0.48, 0.4, 0.33, 0.27, 0.22, 0.18].forEach(function (s) { tries.push({ q: 0.5, s: s }); });
-    var cap = maxSide > 2400 ? 2400 / maxSide : 1;
-    var best = null;
-    for (var t = 0; t < tries.length; t++) {
-      var tr = tries[t], scale = t < 5 ? cap : tr.s * cap, total = fixed, out = {};
-      step('Photo halki kar rahe hain… (koshish ' + (t + 1) + ')');
-      for (var ii = 0; ii < imgs.length; ii++) {
-        var x = imgs[ii], w = Math.max(1, Math.round(x.w * scale)), h = Math.max(1, Math.round(x.h * scale));
-        var jb = await jpeg(x.bmp, w, h, tr.q), old = x.obj.dataEnd - x.obj.dataStart;
-        if (jb.length < old) { out[x.obj.num] = { jb: jb, w: w, h: h }; total += jb.length + 120; } else total += old;
+    if (imgs.length) {
+      var imgOrig = imgs.reduce(function (a, x) { return a + (x.obj.dataEnd - x.obj.dataStart); }, 0);
+      var fixed = base.length - imgOrig;
+      var maxSide = Math.max.apply(null, imgs.map(function (x) { return Math.max(x.w, x.h); }));
+      var tries = [];
+      [0.82, 0.72, 0.62, 0.52, 0.44].forEach(function (q) { tries.push({ q: q, s: 1 }); });
+      [0.85, 0.7, 0.58, 0.48, 0.4, 0.33, 0.27, 0.22, 0.18].forEach(function (s) { tries.push({ q: 0.5, s: s }); });
+      var cap = maxSide > 2400 ? 2400 / maxSide : 1;
+      for (var t = 0; t < tries.length; t++) {
+        var tr = tries[t], scale = t < 5 ? cap : tr.s * cap, total = fixed, out = {};
+        step('Photo halki kar rahe hain… (koshish ' + (t + 1) + ')');
+        for (var ii = 0; ii < imgs.length; ii++) {
+          var x = imgs[ii], w = Math.max(1, Math.round(x.w * scale)), h = Math.max(1, Math.round(x.h * scale));
+          var jb = await jpeg(x.bmp, w, h, tr.q), old = x.obj.dataEnd - x.obj.dataStart;
+          if (jb.length < old) { out[x.obj.num] = { jb: jb, w: w, h: h }; total += jb.length + 120; } else total += old;
+        }
+        best = { out: out, total: total, q: tr.q, scale: scale };
+        if (!target || total <= target) break;
       }
-      best = { out: out, total: total, q: tr.q, scale: scale };
-      if (!target || total <= target) break;
+      imgs.forEach(function (x) {
+        var r = best.out[x.obj.num]; if (!r) return;
+        repl2[x.obj.num] = { dict: dictSet(x.obj.dict, { Width: r.w, Height: r.h, Filter: '/DCTDecode', ColorSpace: '/DeviceRGB', BitsPerComponent: 8, Length: r.jb.length }, ['DecodeParms', 'Decode']), data: r.jb };
+      });
     }
-    var repl2 = Object.assign({}, repl);
-    imgs.forEach(function (x) {
-      var r = best.out[x.obj.num]; if (!r) return;
-      repl2[x.obj.num] = { dict: dictSet(x.obj.dict, { Width: r.w, Height: r.h, Filter: '/DCTDecode', ColorSpace: '/DeviceRGB', BitsPerComponent: 8, Length: r.jb.length }, ['DecodeParms', 'Decode']), data: r.jb };
-    });
     var res = await rebuild(p, u8, trailer, repl2, objStmMap);
+
+    // 3) Ab bhi badi ho: drawing (vector) ke number chhote — 3, 2, 1 dashamlav (dikhne me farak nahi)
+    var vec = 0;
+    if (target && res.length > target) {
+      step('Drawing halki kar rahe hain…');
+      var vlist = await contentStreams(p, u8);
+      for (var dd = 3; vlist.length && dd >= 1; dd--) {
+        var r3 = await rebuild(p, u8, trailer, Object.assign({}, repl2, await vectorRepl(vlist, dd)), objStmMap);
+        if (r3.length < res.length) { res = r3; vec = dd; }
+        if (res.length <= target) break;
+      }
+    }
     if (res.length >= before) res = u8;
-    return { bytes: res, before: before, after: res.length, images: imgs.length, pages: pages, q: best.q, scale: best.scale, reached: !target || res.length <= target };
+    return { bytes: res, before: before, after: res.length, images: imgs.length, pages: pages, q: best.q, scale: best.scale, vector: vec, reached: !target || res.length <= target };
   }
 
   /** Jaanch: naksha (xref) ki har jagah sahi object par? (tests ke liye) */
@@ -990,8 +1077,10 @@
       var a = await window.PCCPdf.analyze(D.u8);
       D.an = a;
       an.innerHTML = a.images
-        ? '✅ ' + a.pages + ' page, ' + a.images + ' photo. Achhi quality me lagbhag <b>' + kb(a.good) + '</b> · photo dhundhli karke sabse chhoti <b>' + kb(a.smallest) + '</b> (text waisa hi).'
-        : 'ℹ️ Is PDF me badi photo nahi hai (sirf text). Ye lagbhag <b>' + kb(Math.min(a.good, a.before)) + '</b> tak hi ho sakti hai.';
+        ? '✅ ' + a.pages + ' page, ' + a.images + ' photo. Achhi quality me lagbhag <b>' + kb(a.good) + '</b> · sabse chhoti <b>' + kb(a.smallest) + '</b> (text waisa hi).'
+        : a.smallest < a.before - 5120
+          ? '✅ ' + a.pages + ' page. Isme badi photo nahi, <b>drawing / likhawat</b> bhari hai. Ise lagbhag <b>' + kb(a.smallest) + '</b> tak chhota kar sakte hain (dikhne me farak nahi).'
+          : 'ℹ️ Ye PDF pehle se chhoti hai (sirf text). Lagbhag <b>' + kb(Math.min(a.good, a.before)) + '</b> tak hi ho sakti hai.';
       // Chhoti se chhoti tak hi target maan lein
       if (Number(df.size.value) * (df.unit.value === 'MB' ? 1024 : 1) * 1024 < a.smallest) { /* user khud dekhe */ }
     } catch (e) { an.className = 't-an t-err'; an.textContent = '❌ ' + e.message; return; }
@@ -1012,7 +1101,7 @@
       var pct = Math.max(0, Math.round((1 - r.after / r.before) * 100));
       $('#d-ba').innerHTML = '<s>' + kb(r.before) + '</s> → <b>' + kb(r.after) + '</b>' + (pct ? ' <span class="t-tag">' + pct + '% chhoti</span>' : '');
       $('#d-note').innerHTML = r.reached
-        ? '✅ ' + r.pages + ' page, text aur layout waisa hi. ' + (r.images ? r.images + ' photo halki ki.' : '')
+        ? '✅ ' + r.pages + ' page, text aur layout waisa hi. ' + (r.images ? r.images + ' photo halki ki. ' : '') + (r.vector ? 'Drawing ke number chhote kiye (dikhne me farak nahi).' : '')
         : '<span class="t-err">' + kb(target) + ' tak nahi ho payi (sabse chhoti ' + kb(r.after) + '). Thoda bada size chuniye.</span>';
       df.fname.value = D.name + '-' + Math.round(r.after / 1024) + 'kb';
       $('#d-res').hidden = false;
