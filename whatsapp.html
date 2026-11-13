@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-JvI6YoGvx/5I8FD3opa2dcpLEhCoMSNEOFOBeVlkYi8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-JvI6YoGvx/5I8FD3opa2dcpLEhCoMSNEOFOBeVlkYi8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>WhatsApp Seva | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="WhatsApp Seva: WhatsApp par ek shabd likhiye, bot turant jawab deta hai. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -250,6 +250,30 @@
   .cb-live.cb-off { background: var(--accent-soft); color: var(--accent); }
   .cb-owner { align-self: flex-start; background: color-mix(in srgb, #1faa53 12%, var(--surface)); border: 1px solid color-mix(in srgb, #1faa53 40%, var(--line)); border-top-left-radius: 4px; }
   .cb-owner small { font-weight: 800; color: #148a43; }
+
+  /* Photo / PDF tools */
+  .tools { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 40px; }
+  .t-safe { margin: 0; padding: 12px 18px; background: color-mix(in srgb, #1faa53 12%, var(--surface)); font-size: 14px; font-weight: 600; }
+  .tools .tabs button { font: inherit; font-weight: 700; font-size: 16px; padding: 14px 10px; border: 0; background: transparent; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; }
+  .tools .tabs button[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+  .t-form { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .t-form[hidden] { display: none; }
+  @media (max-width: 640px) { .t-form { grid-template-columns: 1fr; padding: 16px; } }
+  .t-form .full { grid-column: 1 / -1; }
+  .t-form .note { margin: 0; color: var(--muted); font-size: 14px; }
+  .t-lbl { display: block; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .t-file input[type=file] { padding: 14px; border: 2px dashed var(--brand); background: color-mix(in srgb, var(--brand) 5%, var(--bg)); cursor: pointer; }
+  .t-check { flex-direction: row; align-items: center; gap: 8px; }
+  .t-check input { width: auto; }
+  .t-form input[type=color] { height: 44px; padding: 4px; }
+  .t-form input[type=range] { padding: 0; }
+  #p-presets button { font: inherit; font-size: 14px; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  #p-presets button.on, #p-presets button:hover { border-color: var(--brand); color: var(--brand); }
+  .t-result { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .t-result img { max-width: 180px; max-height: 180px; border: 1px solid var(--line); border-radius: 8px; background: repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 50% / 16px 16px; }
+  .t-result .result { flex: 1; min-width: 220px; margin: 0; line-height: 1.6; }
+  .t-err { color: #c0392b; font-weight: 700; }
+  .t-form .submit .btn[disabled] { opacity: .5; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -262,13 +286,14 @@
       <a href="./">Home</a>
       <a href="sevayein.html">Sevayein</a>
       <a href="appointment.html">Appointment</a>
+      <a href="tools.html">Photo/PDF Tools</a>
       <a href="pata.html">Pata &amp; Samay</a>
       <a href="whatsapp.html" class="active" aria-current="page">WhatsApp</a>
       <a href="sampark.html">Sampark</a>
     </nav>
     <a class="btn btn-call btn-sm call" href="tel:+918770882942"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg> Call</a>
   </div>
-  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html"><span>🗂️</span>Sevayein</a><a href="appointment.html"><span>🗓️</span>Appointment</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html" class="active" aria-current="page"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
+  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html"><span>🗂️</span>Sevayein</a><a href="appointment.html"><span>🗓️</span>Appointment</a><a href="tools.html"><span>🛠️</span>Photo/PDF Tools</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html" class="active" aria-current="page"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
 </header>
 
 <main class="page-whatsapp">
