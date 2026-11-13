@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-8E/fg0nuRuZB8dseKIp44TVef+SUGMbDexRmHzmsGno='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-Exx8EEJKcMwvYVg92Z7JUhEM7JSPxxIPpRPJHu2lxco='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -408,7 +408,18 @@
               </div>
               <div data-show="pct" hidden>
                 <label class="field">Kitna % size<input name="pct" type="range" min="5" max="200" value="50"></label>
-                <label class="field"><input name="pctNum" type="number" min="5" max="200" value="50" inputmode="numeric"> <small>% (100 = jaisa hai, 50 = aadha)</small></label>
+                <label class="field"><input name="pctNum" type="number" min="1" max="400" step="any" value="50" inputmode="decimal"> <small>% (100 = jaisa hai, 50 = aadha)</small></label>
+                <div class="t-row">
+                  <label class="field">Oonchai (H)<input name="pctH" type="number" min="0" step="any" inputmode="decimal"></label>
+                  <label class="field">Ikai<select name="pctUnit"><option value="px">px</option><option value="cm">cm</option><option value="mm">mm</option><option value="in">inch</option></select></label>
+                  <label class="field">DPI<input name="pctDpi" type="number" min="30" max="1200" value="300" list="dpis"></label>
+                </div>
+                <p class="t-note" id="p-pct-wh"></p>
+                <p class="t-note">Oonchai likhenge to % khud ban jayega (chaudai anupat se). cm/mm/inch me DPI badlenge to print size waisa rahega, pixel badlenge (DPI convert).</p>
+                <div class="t-row">
+                  <label class="field">Quality %<input name="pq" type="range" min="10" max="100" value="92"></label>
+                  <label class="field"><input name="pqNum" type="number" min="10" max="100" value="92" inputmode="numeric"> <small>% (100 = sabse achhi, kam = chhoti file)</small></label>
+                </div>
               </div>
               <div data-show="kb" hidden>
                 <label class="field">Photo kitni KB ki chahiye<input name="kb" type="number" min="5" max="20000" value="50" inputmode="numeric"></label>
@@ -971,7 +982,31 @@
     stamp: { unit: 'cm', w: 2, h: 2.5, dpi: 300, fit: 'crop', kb: '' },
     a4: { unit: 'mm', w: 210, h: 297, dpi: 150, fit: 'fit', kb: '' }
   };
-  function dpiNow() { return Math.max(1, Number(pf.dpi.value) || 300); }
+  function dpiNow() { return Math.max(1, Number((P.mode === 'pct' ? pf.pctDpi : pf.dpi).value) || 300); }
+  // Percent tab: % <-> oonchai (px/cm/mm/inch) aur DPI convert
+  function pctNow() { return Math.max(0.1, Number(pf.pctNum.value) || 100); }
+  function pctTarget() {
+    var p = pctNow() / 100;
+    return { w: Math.max(1, Math.round(P.bmp.width * p)), h: Math.max(1, Math.round(P.bmp.height * p)) };
+  }
+  function pctShowH() {
+    if (!P.bmp) return;
+    var u = pf.pctUnit.value, hpx = P.bmp.height * pctNow() / 100;
+    pf.pctH.value = round(fromPx(hpx, u, dpiNow()), u === 'px' ? 0 : 2);
+  }
+  function pctFromH() {
+    if (!P.bmp) return;
+    var hpx = toPx(Number(pf.pctH.value) || 0, pf.pctUnit.value, dpiNow());
+    if (hpx < 1) return;
+    var p = round(hpx / P.bmp.height * 100, 2);
+    pf.pctNum.value = p; pf.pct.value = Math.min(200, Math.max(5, p));
+  }
+  function pctWH() {
+    var el = $('#p-pct-wh'); if (!P.bmp || !el) return;
+    var t = pctTarget(), d = dpiNow();
+    el.innerHTML = 'Nayi size: <b>' + t.w + ' × ' + t.h + ' px</b> = ' + round(fromPx(t.w, 'cm', d), 2) + ' × ' + round(fromPx(t.h, 'cm', d), 2) + ' cm = ' +
+      round(fromPx(t.w, 'mm', d), 1) + ' × ' + round(fromPx(t.h, 'mm', d), 1) + ' mm = ' + round(fromPx(t.w, 'in', d), 2) + ' × ' + round(fromPx(t.h, 'in', d), 2) + ' inch @ ' + d + ' DPI';
+  }
   function setWH(wpx, hpx) {
     var u = pf.unit.value, d = u === 'px' ? 0 : 2;
     pf.w.value = round(fromPx(wpx, u, dpiNow()), d); pf.h.value = round(fromPx(hpx, u, dpiNow()), d);
@@ -984,6 +1019,7 @@
     P.mode = m;
     $$('[data-pmode]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.pmode === m)); });
     $$('[data-show]', pf).forEach(function (el) { el.hidden = el.dataset.show !== m; });
+    if (m === 'pct') pctShowH();
     schedule();
   }
   $$('[data-pmode]').forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.pmode); }); });
@@ -994,8 +1030,14 @@
   });
   pf.w.addEventListener('input', function () { if (pf.lock.checked && P.ratio) pf.h.value = round((Number(pf.w.value) || 0) / P.ratio, pf.unit.value === 'px' ? 0 : 2); schedule(); });
   pf.h.addEventListener('input', function () { if (pf.lock.checked && P.ratio) pf.w.value = round((Number(pf.h.value) || 0) * P.ratio, pf.unit.value === 'px' ? 0 : 2); schedule(); });
-  pf.pct.addEventListener('input', function () { pf.pctNum.value = pf.pct.value; schedule(); });
-  pf.pctNum.addEventListener('input', function () { pf.pct.value = pf.pctNum.value; schedule(); });
+  pf.pct.addEventListener('input', function () { pf.pctNum.value = pf.pct.value; pctShowH(); schedule(); });
+  pf.pctNum.addEventListener('input', function () { pf.pct.value = pf.pctNum.value; pctShowH(); schedule(); });
+  pf.pctH.addEventListener('input', function () { pctFromH(); schedule(); });
+  pf.pctUnit.addEventListener('change', function () { pctShowH(); schedule(); });
+  // DPI badla: cm/mm/inch waisa rakho, pixel (%) badlo; px me sirf DPI likha jayega
+  pf.pctDpi.addEventListener('input', function () { if (pf.pctUnit.value === 'px') pctShowH(); else pctFromH(); schedule(); });
+  pf.pq.addEventListener('input', function () { pf.pqNum.value = pf.pq.value; schedule(); });
+  pf.pqNum.addEventListener('input', function () { pf.pq.value = pf.pqNum.value; schedule(); });
   ['dpi', 'fit', 'fmt', 'quality', 'kb', 'bg'].forEach(function (n) { pf[n].addEventListener('input', schedule); pf[n].addEventListener('change', schedule); });
   pf.lock.addEventListener('change', function () { if (pf.lock.checked && P.bmp) { var t = sizePx(); P.ratio = P.bmp.width / P.bmp.height; setWH(t.w, t.w / P.ratio); } schedule(); });
   $$('[data-preset]').forEach(function (b) {
@@ -1023,7 +1065,7 @@
     $('#p-drop').hidden = true; $('#p-work').hidden = false;
     $('#p-before').innerHTML = P.bmp.width + ' × ' + P.bmp.height + ' px<br>' + kb(f.size);
     pf.unit.value = 'px'; lastUnit = 'px'; pf.w.value = P.bmp.width; pf.h.value = P.bmp.height; pf.lock.checked = true;
-    schedule();
+    pctShowH(); schedule();
   }
   dropZone($('#p-drop'), $('#p-file'), takePhoto);
   $('#p-new').addEventListener('click', function () { $('#p-file').value = ''; $('#p-work').hidden = true; $('#p-drop').hidden = false; P.bmp = null; P.out = null; });
@@ -1034,7 +1076,7 @@
     if (!P.bmp) return;
     var my = ++busy, type = pf.fmt.value, dpi = dpiNow(), t, maxKB = 0;
     if (P.mode === 'size') { t = sizePx(); maxKB = Number(pf.kbMax.value) || 0; }
-    else if (P.mode === 'pct') { var p = Math.max(1, Number(pf.pct.value) || 100) / 100; t = { w: Math.max(1, Math.round(P.bmp.width * p)), h: Math.max(1, Math.round(P.bmp.height * p)) }; }
+    else if (P.mode === 'pct') { t = pctTarget(); pctWH(); }
     else { t = { w: P.bmp.width, h: P.bmp.height }; maxKB = Number(pf.kb.value) || 0; }
     var after = $('#p-after'), info = $('#p-info'), btn = $('#p-dl');
     if (t.w > 12000 || t.h > 12000) { info.innerHTML = '<span class="t-err">Size bahut bada hai (12000 px tak).</span>'; btn.disabled = true; return; }
@@ -1044,7 +1086,7 @@
     var make = function (s) { return draw(P.bmp, Math.max(1, Math.round(t.w * s)), Math.max(1, Math.round(t.h * s)), fit, bg); };
     var res;
     if (maxKB > 0 && type !== 'image/png') res = await fitKB(make, type, maxKB * 1024);
-    else { var cv = make(1), q = (Number(pf.quality.value) || 92) / 100; res = { blob: await canvasBlob(cv, type, q), q: q, scale: 1, cv: cv }; }
+    else { var cv = make(1), q = (Number((P.mode === 'pct' ? pf.pqNum : pf.quality).value) || 92) / 100; res = { blob: await canvasBlob(cv, type, q), q: q, scale: 1, cv: cv }; }
     if (my !== busy) return;
     var u8 = await bytesOf(res.blob);
     if (type === 'image/jpeg') u8 = jpegDpi(u8, dpi); else if (type === 'image/png') u8 = pngDpi(u8, dpi);
