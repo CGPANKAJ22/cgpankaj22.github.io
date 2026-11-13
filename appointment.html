@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-Uw5I5DiZ3gLB6e/V4jv3wqfLfxG+6Lcg2PeaAm+RnDE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
-<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-OkOR8Vqt34ua65Qg6KI4pV6aQPvoWA+U4Oi/v3Fy53c='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Appointment &amp; Sawal: Ghar baithe appointment book kijiye ya sawal bhejiye. Jawab aapke WhatsApp par aayega. PANKAJ CHOICE CENTER, 📞 8770882942">
 <meta property="og:type" content="website">
@@ -325,7 +326,79 @@
   .t-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .t-thumb span { position: absolute; left: 6px; bottom: 6px; background: #1e4fd8; color: #fff; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 0 7px; }
   .t-thumb button { position: absolute; right: 4px; top: 4px; width: 24px; height: 24px; border-radius: 50%; border: 0; background: rgba(0,0,0,.6); color: #fff; cursor: pointer; line-height: 1; }
-  .t-err { color: #c0392b; font-weight: 700; }</style>
+  .t-err { color: #c0392b; font-weight: 700; }
+  /* ===== Professional polish ===== */
+  :focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 60%, transparent); outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: color-mix(in srgb, var(--brand) 25%, transparent); }
+  .top { transition: box-shadow .2s ease; }
+  .top.scrolled { box-shadow: 0 6px 24px rgba(15, 29, 61, .10); }
+  .btn { box-shadow: 0 2px 6px rgba(15, 29, 61, .10); }
+  .btn:hover { box-shadow: 0 8px 18px rgba(15, 29, 61, .16); }
+  .btn-ghost { box-shadow: none; }
+  .group, .place, .qcard { transition: transform .2s ease, box-shadow .2s ease; }
+  .group:hover, .place:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(15, 29, 61, .12); }
+  .head.center { text-align: center; }
+  .head h2::after { content: ''; display: block; width: 56px; height: 4px; border-radius: 4px; margin-top: 12px; background: linear-gradient(90deg, var(--accent), #ffb36b); }
+  .head.center h2::after { margin-left: auto; margin-right: auto; }
+
+  /* Bharose ki patti */
+  .trust { padding: 34px 0 0; }
+  .trust .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .tr-item { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 12px; text-align: center; box-shadow: var(--shadow); }
+  .tr-item b { display: block; font-size: 28px; line-height: 1.1; color: var(--brand-deep); font-weight: 800; }
+  .tr-item span { color: var(--muted); font-size: 14px; font-weight: 600; }
+  @media (max-width: 640px) { .trust .wrap { grid-template-columns: repeat(2, 1fr); } .tr-item b { font-size: 24px; } }
+
+  /* Teen kadam */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; counter-reset: s; }
+  .steps li { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px 20px 20px; box-shadow: var(--shadow); }
+  .steps b { display: block; font-size: 19px; color: var(--brand-deep); margin: 10px 0 4px; }
+  .steps p { margin: 0; color: var(--muted); font-size: 15px; }
+  .st-n { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-weight: 800; font-size: 20px; color: #fff; background: linear-gradient(135deg, #1e4fd8, #0b2a86); box-shadow: 0 6px 14px rgba(30, 79, 216, .35); }
+
+  /* Footer */
+  footer { text-align: left; background: var(--surface); padding-top: 40px; }
+  .f-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 28px; padding-bottom: 26px; }
+  .f-col { display: flex; flex-direction: column; gap: 8px; }
+  .f-col h4 { margin: 0 0 4px; color: var(--ink); font-size: 15px; letter-spacing: .5px; text-transform: uppercase; }
+  .f-col a { text-decoration: none; color: var(--muted); }
+  .f-col a:hover { color: var(--brand); }
+  .f-col b { color: var(--ink); }
+  .f-logo { display: flex; align-items: center; gap: 10px; }
+  .f-logo b { font-size: 17px; line-height: 1.15; color: var(--brand-deep); }
+  .f-logo small { display: block; color: var(--muted); font-weight: 600; font-size: 13px; }
+  .f-brand p { margin: 4px 0 0; }
+  .f-bottom { border-top: 1px solid var(--line); padding-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; font-size: 13px; }
+  .f-bottom .credit { flex-basis: 100%; margin: 0; }
+  @media (max-width: 760px) { .f-grid { grid-template-columns: 1fr 1fr; } .f-brand { grid-column: 1 / -1; } }
+
+  /* Dheere se dikhna */
+  .rv { opacity: 0; transform: translateY(18px); }
+  .rv.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+
+  /* Taaza suchna */
+  .upds { display: grid; gap: 14px; }
+  .upd { display: flex; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; box-shadow: var(--shadow); position: relative; }
+  .upd.pin { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); background: linear-gradient(0deg, var(--surface), var(--surface)) padding-box; box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), var(--shadow); }
+  .upd-date { flex: none; width: 66px; border-radius: 14px; overflow: hidden; text-align: center; background: var(--bg); border: 1px solid var(--line); align-self: flex-start; }
+  .upd-date span { display: block; background: linear-gradient(135deg, #1e4fd8, #0b2a86); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; padding: 3px 0; order: -1; }
+  .upd-date { display: flex; flex-direction: column; }
+  .upd-date b { font-size: 28px; line-height: 1.05; color: var(--brand-deep); padding-top: 4px; }
+  .upd-date small { font-size: 12px; color: var(--muted); font-weight: 700; padding-bottom: 5px; }
+  .upd-body { min-width: 0; flex: 1; }
+  .upd-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .upd-tag { background: var(--accent-soft); color: var(--accent); padding: 1px 9px; border-radius: 999px; font-weight: 800; }
+  .upd-new { background: #e11d48; color: #fff; padding: 1px 8px; border-radius: 999px; font-weight: 800; font-size: 12px; letter-spacing: .5px; animation: updPulse 1.8s ease-in-out infinite; }
+  .upd-ago:not(:empty)::before { content: '· '; }
+  @keyframes updPulse { 50% { opacity: .55; } }
+  @media (prefers-reduced-motion: reduce) { .upd-new { animation: none; } }
+  .upd h3 { margin: 4px 0 4px; font-size: 19px; line-height: 1.25; color: var(--ink); }
+  .upd p { margin: 0; color: var(--muted); font-size: 15.5px; overflow-wrap: anywhere; }
+  .upd-link { display: inline-block; margin-top: 8px; font-weight: 800; color: var(--brand); text-decoration: none; }
+  .upd-all { margin-top: 16px; }
+  .upd-empty { color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; padding: 18px; text-align: center; }
+  @media (max-width: 520px) { .upd { padding: 14px; gap: 12px; } .upd-date { width: 56px; } .upd-date b { font-size: 24px; } }
+</style>
 </head>
 <body>
 
@@ -338,13 +411,14 @@
       <a href="sevayein.html">Sevayein</a>
       <a href="appointment.html" class="active" aria-current="page">Appointment</a>
       <a href="tools.html">Photo/PDF Tools</a>
+      <a href="suchna.html">Suchna</a>
       <a href="pata.html">Pata &amp; Samay</a>
       <a href="whatsapp.html">WhatsApp</a>
       <a href="sampark.html">Sampark</a>
     </nav>
     <a class="btn btn-call btn-sm call" href="tel:+918770882942"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg> Call</a>
   </div>
-  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html"><span>🗂️</span>Sevayein</a><a href="appointment.html" class="active" aria-current="page"><span>🗓️</span>Appointment</a><a href="tools.html"><span>🛠️</span>Photo/PDF Tools</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
+  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html"><span>🗂️</span>Sevayein</a><a href="appointment.html" class="active" aria-current="page"><span>🗓️</span>Appointment</a><a href="tools.html"><span>🛠️</span>Photo/PDF Tools</a><a href="suchna.html"><span>📰</span>Suchna</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
 </header>
 
 <main class="page-appointment">
@@ -391,13 +465,44 @@
 </main>
 
 <footer>
-  <div class="wrap">© <span id="yr">2026</span> PANKAJ CHOICE CENTER · Prop. Pankaj Kumar Jaiswal · Khadgawan, MCB / Jilda, Koriya
-    <div class="credit">Developed by Pankaj Jaiswal · <a href="tel:+918770882942">8770882942</a> · Using AI 🤖</div></div>
+  <div class="wrap f-grid">
+    <div class="f-col f-brand">
+      <div class="f-logo"><span class="logo">PC</span><b>PANKAJ CHOICE CENTER<small>पंकज चॉइस सेंटर</small></b></div>
+      <p>Aadhaar update, PAN card / banking aur Driving License / RC ke kaam ek hi jagah, sahi jaankari aur bharose ke saath.</p>
+    </div>
+    <div class="f-col">
+      <h4>Pages</h4>
+      <a href="./">Home</a>
+      <a href="sevayein.html">Sevayein</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="tools.html">Photo/PDF Tools</a>
+      <a href="suchna.html">Suchna</a>
+      <a href="pata.html">Pata &amp; Samay</a>
+      <a href="whatsapp.html">WhatsApp</a>
+      <a href="sampark.html">Sampark</a>
+    </div>
+    <div class="f-col">
+      <h4>Sampark</h4>
+      <a href="tel:+918770882942">📞 8770882942</a>
+      <a href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20jaankari%20chahiye" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+      <span>Prop. Pankaj Kumar Jaiswal</span>
+    </div>
+    <div class="f-col">
+      <h4>Samay</h4>
+      <span><b>Aadhaar Center</b><br>11 AM - 4 PM (sirf working days)</span>
+      <span><b>CSC &amp; Banking</b><br>8 AM - 8 PM (roz, sabhi din)</span>
+    </div>
+  </div>
+  <div class="wrap f-bottom">
+    <span>© <span id="yr">2026</span> PANKAJ CHOICE CENTER · Khadgawan, MCB / Jilda, Koriya</span>
+    <span>🔒 Koi cookie ya ad-tracking nahi ·form ke sandesh taala-band (encrypted)</span>
+    <div class="credit">Developed by Pankaj Jaiswal · <a href="tel:+918770882942">8770882942</a> · Using AI 🤖</div>
+  </div>
 </footer>
 
 <div class="dock">
   <a class="btn btn-call" href="tel:+918770882942">📞 Call</a>
-  <a class="btn btn-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20jaankari%20chahiye" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn btn-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20jaankari%20chahiye" target="_blank" rel="noopener noreferrer">WhatsApp</a>
 </div>
 
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
@@ -406,6 +511,42 @@
 // Website ka saajha hissa: dukaan ki jaankari (site-config) aur sandesh bhejne ka taala-band raasta.
 // Do raaste: (1) ntfy relay (turant, 12 ghante tak), (2) Google Form (hamesha ke liye; PC band ho to bhi).
 // Bot dono ko padhta hai, ek hi sandesh do baar nahi ginta (rid se). Form aur chat bot dono yahi use karte hain.
+// Suraksha: koi doosri site hamari website ko chhupe frame me khol kar click na karwa sake (clickjacking)
+(function () {
+  var sameSite = false; // apne hi admin page ka preview frame theek hai
+  try { sameSite = window.top.location.origin === window.self.location.origin; } catch (e) { sameSite = false; }
+  if (window.top !== window.self && !sameSite) {
+    document.documentElement.style.display = 'none';
+    try { window.top.location.replace(window.self.location.href); } catch (e) { /* chhupi hi rahegi */ }
+  }
+  try {
+    console.log('%c⚠️ Ruko!', 'color:#c0392b;font-size:28px;font-weight:800');
+    console.log('%cYahan koi bhi code paste na karein. Koi aisa karne ko kahe to wo dhokha hai.', 'font-size:15px');
+  } catch (e) { /* chhodo */ }
+})();
+// Suchna ki date: "Aaj / Kal / 3 din pehle" aur 7 din tak NEW (dekhne wale ke din ke hisaab se)
+(function () {
+  var now = new Date(), today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  document.querySelectorAll('.upd[data-date]').forEach(function (el) {
+    var p = el.getAttribute('data-date').split('-').map(Number);
+    var days = Math.round((today - Date.UTC(p[0], p[1] - 1, p[2])) / 86400000);
+    var ago = el.querySelector('.upd-ago'), nw = el.querySelector('.upd-new');
+    if (ago) ago.textContent = days === 0 ? 'Aaj' : days === 1 ? 'Kal' : days > 1 && days < 31 ? days + ' din pehle' : days === -1 ? 'Kal se' : days < -1 ? days * -1 + ' din baad' : '';
+    if (nw && days >= 0 && days <= 7) nw.hidden = false;
+  });
+})();
+// Design: scroll par upar ki patti par chhaya, sections dheere se dikhein
+(function () {
+  var top = document.querySelector('.top');
+  function onScroll() { if (top) top.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('.group, .place, .bot, .contact, .steps li, .tr-item, .book, .tools');
+  var io = new IntersectionObserver(function (list) {
+    list.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function (e) { if (e.getBoundingClientRect().top > window.innerHeight) { e.classList.add('rv'); io.observe(e); } });
+})();
 (function () {
   var el = document.getElementById('site-config');
   var C = el ? JSON.parse(el.textContent) : {};
@@ -544,7 +685,7 @@
           : '✅ Aapka sawal bhej diya! Jawab aapke WhatsApp (' + f.phone + ') par aayega.');
         form.reset(); if (type === 'appointment') slots();
       } catch (err) {
-        show('err', 'Abhi nahi bhej paye. <a href="' + P.waLink(waText) + '" target="_blank" rel="noopener">WhatsApp se bhejiye</a> ya call kijiye: <a href="tel:+' + C.wa + '">' + C.wa.slice(-10) + '</a>');
+        show('err', 'Abhi nahi bhej paye. <a href="' + P.waLink(waText) + '" target="_blank" rel="noopener noreferrer">WhatsApp se bhejiye</a> ya call kijiye: <a href="tel:+' + C.wa + '">' + C.wa.slice(-10) + '</a>');
       } finally { btn.disabled = false; btn.textContent = label; }
     });
   }
