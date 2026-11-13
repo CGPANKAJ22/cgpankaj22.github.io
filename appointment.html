@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DM4+zO133nCJ2xS+tHKQtLuHwMckIUwBm4xHZVNgzbA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-I+WYek7iLakV4Umd+Fc2qUBPQte3wGknlyuzNfrRCCc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Appointment &amp; Sawal: Ghar baithe appointment book kijiye ya sawal bhejiye. Jawab aapke WhatsApp par aayega. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -240,6 +240,16 @@
   .cb-in input { flex: 1; font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; }
   .cb-in input:focus { outline: none; border-color: var(--brand); }
   .cb-in button { width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: #1e4fd8; color: #fff; font-size: 18px; cursor: pointer; }
+  /* Live chat: owner se baat */
+  .cb-live { position: relative; overflow: hidden; padding: 9px 14px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .cb-live[hidden] { display: none; }
+  .cb-live i { position: absolute; left: 0; bottom: 0; height: 3px; background: #1e4fd8; transition: width 1s linear; }
+  .cb-live .cb-count { float: right; font-variant-numeric: tabular-nums; font-weight: 800; color: var(--brand); }
+  .cb-live.cb-wait { background: color-mix(in srgb, var(--brand) 8%, var(--surface)); }
+  .cb-live.cb-on { background: color-mix(in srgb, #1faa53 14%, var(--surface)); }
+  .cb-live.cb-off { background: var(--accent-soft); color: var(--accent); }
+  .cb-owner { align-self: flex-start; background: color-mix(in srgb, #1faa53 12%, var(--surface)); border: 1px solid color-mix(in srgb, #1faa53 40%, var(--line)); border-top-left-radius: 4px; }
+  .cb-owner small { font-weight: 800; color: #148a43; }
 </style>
 </head>
 <body>
@@ -345,19 +355,23 @@
     return fetch(C.relay, { method: 'POST', body: body }).then(function (r) { return r.ok; }, function () { return false; });
   }
   var loadedAt = Date.now();
-  /** Robot / baar-baar bhejna rokna: page khulte hi (3 second me) nahi, ek browser se ghante me 4 tak */
-  function allowed() {
+  /**
+   * Robot / baar-baar bhejna rokna: page khulte hi (3 second me) nahi;
+   * ek browser se ghante me form/sawal 4 tak, live chat ke sandesh 40 tak.
+   */
+  function allowed(kind) {
     if (Date.now() - loadedAt < 3000) return false;
+    var key = kind === 'chat' ? 'pccChat' : 'pccSent', max = kind === 'chat' ? 40 : 4;
     var list = [];
-    try { list = JSON.parse(localStorage.getItem('pccSent') || '[]').filter(function (t) { return Date.now() - t < 3600000; }); } catch (e) { list = []; }
-    if (list.length >= 4) return false;
+    try { list = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return Date.now() - t < 3600000; }); } catch (e) { list = []; }
+    if (list.length >= max) return false;
     list.push(Date.now());
-    try { localStorage.setItem('pccSent', JSON.stringify(list)); } catch (e) { /* chhodo */ }
+    try { localStorage.setItem(key, JSON.stringify(list)); } catch (e) { /* chhodo */ }
     return true;
   }
   /** Sandesh bhejo (rid, ts apne aap). true = kam se kam ek raasta chala */
   async function send(f) {
-    if (!C.publicKey || !allowed()) return false;
+    if (!C.publicKey || !allowed(f.type === 'chat' ? 'chat' : 'form')) return false;
     f.rid = f.rid || rid(); f.ts = Date.now();
     var body = await seal(f);
     var res = await Promise.all([toRelay(body), toGoogle(body)]);
@@ -366,7 +380,13 @@
   function phoneOk(p) { var d = String(p).replace(/\D/g, ''); if (d.length === 12 && d.indexOf('91') === 0) d = d.slice(2); if (d.length === 11 && d[0] === '0') d = d.slice(1); return /^[6-9]\d{9}$/.test(d) ? d : ''; }
   function niceDate(d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' }); }
   function waLink(text) { return 'https://wa.me/' + C.wa + (text ? '?text=' + encodeURIComponent(text) : ''); }
-  window.PCC = { C: C, send: send, phoneOk: phoneOk, niceDate: niceDate, waLink: waLink, canSend: Boolean(C.publicKey && (C.relay || C.googleForm)) };
+  /** Live chat sirf relay se (Google Form dheema hai) */
+  async function sendChat(f) {
+    if (!C.publicKey || !C.relay || !allowed('chat')) return false;
+    f.rid = rid(); f.ts = Date.now(); f.type = 'chat';
+    return toRelay(await seal(f));
+  }
+  window.PCC = { C: C, send: send, sendChat: sendChat, b64: b64, unb64: unb64, relayOrigin: C.relay ? new URL(C.relay).origin : '', phoneOk: phoneOk, niceDate: niceDate, waLink: waLink, canSend: Boolean(C.publicKey && (C.relay || C.googleForm)) };
 })();
 
 // Appointment / enquiry form (bhejna common.js ke taala-band raaste se)
@@ -507,7 +527,7 @@
   root.className = 'cb';
   root.innerHTML = '<button class="cb-fab" type="button" aria-label="Chat kholiye"><span class="cb-ico">💬</span><span class="cb-tip">Sawal poochhiye</span></button>' +
     '<section class="cb-panel" role="dialog" aria-label="Chat" hidden><header class="cb-head"><div class="cb-av">🤖</div><div><b></b><small>Turant jawab · Online</small></div><button class="cb-x" type="button" aria-label="Band karein">×</button></header>' +
-    '<div class="cb-log" aria-live="polite"></div><form class="cb-in"><input type="text" maxlength="300" placeholder="Apna sawal likhiye…" aria-label="Sawal" autocomplete="off"><button type="submit" aria-label="Bhejein">➤</button></form></section>';
+    '<div class="cb-live" role="status" hidden></div><div class="cb-log" aria-live="polite"></div><form class="cb-in"><input type="text" maxlength="300" placeholder="Apna sawal likhiye…" aria-label="Sawal" autocomplete="off"><button type="submit" aria-label="Bhejein">➤</button></form></section>';
   document.body.appendChild(root);
   var fab = root.querySelector('.cb-fab'), panel = root.querySelector('.cb-panel'), log = root.querySelector('.cb-log');
   var form = root.querySelector('.cb-in'), input = form.querySelector('input');
@@ -548,7 +568,7 @@
       { label: '🕐 Samay', say: 'Samay', go: showTiming },
       { label: '📍 Pata / Map', say: 'Pata', go: showAddress },
       D.formOn ? { label: '🗓️ Appointment', say: 'Appointment', go: function () { showAppt(); } } : null,
-      { label: '💬 Owner se baat', say: 'Owner se baat', go: askOwner }
+      { label: '💬 Owner se baat', say: 'Owner se baat', go: function () { talkOwner(); } }
     ].filter(Boolean);
   }
   function hello() {
@@ -608,10 +628,90 @@
     else bot('Abhi nahi bhej paya. WhatsApp se seedhe bhejiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, ' + q + '\nNaam: ' + f.name) }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
   }
 
+  // ---------- live: owner se seedhi baat (60 second ki ulti ginti) ----------
+  var LIVE_SECS = window.__cbLiveSecs || 60; // owner ke jawab ka intezaar
+  var live = null; // { sid, rt, key, raw, left, timer, joined, ended, es, name, phone, offlineSent }
+  var bar = root.querySelector('.cb-live');
+  function hex(n) { var a = crypto.getRandomValues(new Uint8Array(n)); return Array.prototype.map.call(a, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
+  function code() { var A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = crypto.getRandomValues(new Uint8Array(5)), s = ''; for (var i = 0; i < 5; i++) s += A[a[i] % A.length]; return s; }
+  function setBar(kind, html) { bar.hidden = false; bar.className = 'cb-live cb-' + kind; bar.innerHTML = html; }
+  function ownerMsg(text) {
+    var m = document.createElement('div'); m.className = 'cb-m cb-owner';
+    var who = document.createElement('small'); who.textContent = '👤 ' + D.owner; m.appendChild(who);
+    String(text).split('\n').forEach(function (line) { m.appendChild(document.createElement('br')); m.appendChild(document.createTextNode(line)); });
+    log.appendChild(m); scroll();
+  }
+  async function decrypt(msg) {
+    var o = JSON.parse(msg);
+    var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(o.iv)) }, live.key, P.unb64(o.d));
+    return JSON.parse(new TextDecoder().decode(data));
+  }
+  function tick() {
+    if (!live || live.joined || live.ended) return;
+    live.left -= 1;
+    if (live.left > 0) {
+      setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + live.left + 's</span><i style="width:' + (live.left / LIVE_SECS * 100) + '%"></i>');
+      return;
+    }
+    clearInterval(live.timer);
+    setBar('off', '🔴 Owner abhi offline hain');
+    bot('😔 *' + D.owner + '* abhi offline hain.\nVe aapko aapke *WhatsApp par reply ya call* karenge.');
+    if (live.phone) { offline(); return; }
+    flow = { step: 'offName' };
+    setTimeout(function () { bot('Apna *naam* likhiye:'); input.focus(); }, 600);
+  }
+  async function offline() {
+    if (!live || live.offlineSent) return;
+    live.offlineSent = true;
+    var ok = false;
+    try { ok = await P.sendChat({ sid: live.sid, offline: true, name: live.name || '', phone: live.phone || '' }); } catch (e) { ok = false; }
+    if (ok) bot('✅ Aapka naam-number *' + D.owner + '* tak pahunch gaya. Ve jaldi aapke WhatsApp (' + live.phone + ') par reply ya call karenge 🙏', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    else bot('Abhi nahi bhej paya. WhatsApp ya call kijiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, mujhe baat karni hai') }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
+  }
+  async function startLive(firstText) {
+    if (!P.canSend || !P.relayOrigin || !window.EventSource) { askOwner(firstText); return; }
+    if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
+    var raw = crypto.getRandomValues(new Uint8Array(32));
+    live = { sid: code(), rt: 'pccr-' + hex(12), raw: raw, left: LIVE_SECS, joined: false, ended: false, name: '', phone: '' };
+    live.key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
+    // Owner ka jawab isi raaste aata hai (sirf is browser ki chaabi se khulta hai)
+    live.es = new EventSource(P.relayOrigin + '/' + live.rt + '/sse');
+    live.es.onmessage = async function (e) {
+      var m; try { m = JSON.parse(e.data); } catch (err) { return; }
+      if (m.event && m.event !== 'message') return;
+      var o; try { o = await decrypt(m.message); } catch (err) { return; }
+      if (!live.joined) { live.joined = true; clearInterval(live.timer); }
+      if (o.end) { live.ended = true; setBar('end', '✅ Chat band'); ownerMsg(o.text); live.es.close(); return; }
+      setBar('on', '🟢 <b>' + D.owner + '</b> jud gaye · baat kijiye');
+      ownerMsg(o.text);
+    };
+    setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + LIVE_SECS + 's</span><i style="width:100%"></i>');
+    live.timer = setInterval(tick, 1000);
+    var ok = await P.sendChat({ sid: live.sid, rt: live.rt, k: P.b64(raw), text: firstText || '(Customer aapse baat karna chahta hai)' });
+    if (!ok) { clearInterval(live.timer); live.ended = true; bar.hidden = true; askOwner(firstText); return; }
+    bot('📲 *' + D.owner + '* ko WhatsApp par suchna bhej di hai.\nTab tak apna sawal likhiye. Apna *naam* aur *WhatsApp number* bhi likh dijiye, taaki owner offline hon to aapko WhatsApp par jawab de sakein.');
+    input.focus();
+  }
+  async function liveSay(text) {
+    var ph = P.phoneOk(text);
+    if (ph) live.phone = ph;
+    else if (!live.name && /^[\p{L}\p{M} .]{2,40}$/u.test(text) && text.split(/\s+/).length <= 4 && !findServices(text).length) live.name = text;
+    await P.sendChat({ sid: live.sid, text: text, name: live.name, phone: live.phone });
+  }
+  function talkOwner(firstText) { startLive(firstText); }
+
   // ---------- jawab ----------
   function answer(text) {
     var t = text.toLowerCase();
+    if (flow && flow.step === 'offName') { live.name = text.slice(0, 40); flow.step = 'offPhone'; bot('Aapka *WhatsApp number* (10 ank):'); return; }
+    if (flow && flow.step === 'offPhone') {
+      var ph = P.phoneOk(text);
+      if (!ph) { bot('Ye number sahi nahi laga. 10 ank ka mobile number likhiye:'); return; }
+      live.phone = ph; flow = null; offline(); return;
+    }
     if (flow) { flowStep(text); return; }
+    // Owner se baat chal rahi hai: sab owner tak
+    if (live && !live.ended && (live.joined || live.left > 0)) { liveSay(text); return; }
     var hits = findServices(text);
     if (IS.appt.test(t) && !(hits.length === 1 && IS.docs.test(t))) { showAppt(hits.length === 1 ? hits[0] : null); return; }
     if (IS.howLong.test(t)) {
@@ -625,11 +725,11 @@
     if (IS.address.test(t)) { showAddress(); return; }
     if (IS.docs.test(t) || IS.list.test(t)) { showList(); return; }
     if (IS.rate.test(t)) { bot('Rate kaam ke hisaab se alag hota hai. Seva chuniye ya seedhe poochh lijiye:', [{ label: '📋 Sevayein', say: 'Sevayein', go: showList }, { label: '💬 Owner se poochhein', say: 'Owner se poochhein', go: function () { askOwner(text); } }]); return; }
-    if (IS.owner.test(t)) { askOwner(); return; }
+    if (IS.owner.test(t)) { talkOwner(); return; }
     if (IS.hello.test(t)) { hello(); return; }
     if (IS.bye.test(t) || IS.thanks.test(t)) { bot('Dhanyavaad 🙏 Kuch aur poochhna ho to likhiye.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]); return; }
     bot('Is sawal ka jawab mere paas nahi hai 🙏\nKya main ise *' + D.owner + '* ko bhej doon? Jawab aapke WhatsApp par aayega.',
-      [{ label: '✅ Haan, bhejiye', main: true, say: 'Haan, bhejiye', go: function () { askOwner(text); } }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      [{ label: '💬 Owner se abhi baat', main: true, say: 'Owner se abhi baat', go: function () { talkOwner(text); } }, { label: '✅ Sawal bhej dijiye', say: 'Sawal bhej dijiye', go: function () { askOwner(text); } }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
   }
 
   form.addEventListener('submit', function (e) {
