@@ -206,6 +206,38 @@
   .phero p { margin: 10px 0 0; max-width: 620px; opacity: .9; }
   main[class^="page-"]:not(.page-home) section { padding-top: 34px; }
   main.page-sampark section, main.page-whatsapp section { padding-bottom: 40px; }
+
+  /* Chat bot */
+  .cb { position: fixed; right: 18px; bottom: 18px; z-index: 40; font-size: 15px; }
+  @media (max-width: 760px) { .cb { right: 14px; bottom: 82px; } }
+  .cb-fab { position: relative; width: 60px; height: 60px; border-radius: 50%; border: 0; cursor: pointer; background: linear-gradient(135deg, #1e4fd8, #0b2a86); color: #fff; box-shadow: 0 10px 26px rgba(11, 42, 134, .35); display: grid; place-items: center; transition: transform .15s ease; }
+  .cb-fab:hover { transform: scale(1.06); }
+  .cb-ico { font-size: 28px; line-height: 1; }
+  .cb-tip { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 7px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .cb-hint:not(.cb-open) .cb-tip { opacity: 1; }
+  .cb-open .cb-fab { display: none; }
+  .cb-panel { padding: 0; margin: 0; position: fixed; right: 18px; bottom: 18px; width: 370px; height: min(580px, calc(100vh - 36px)); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 50px rgba(15, 29, 61, .25); display: flex; flex-direction: column; overflow: hidden; }
+  .cb-panel[hidden] { display: none; }
+  @media (max-width: 760px) { .cb-panel { left: 0; right: 0; bottom: 0; width: auto; height: min(88vh, 640px); border-radius: 20px 20px 0 0; } }
+  .cb-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: linear-gradient(120deg, #0b2a86, #1e4fd8); color: #fff; }
+  .cb-head b { display: block; font-size: 15px; line-height: 1.2; }
+  .cb-head small { font-size: 12px; opacity: .85; }
+  .cb-head small::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #3ddc84; margin-right: 5px; vertical-align: middle; }
+  .cb-av { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.18); display: grid; place-items: center; font-size: 20px; flex: none; }
+  .cb-x { margin-left: auto; background: transparent; border: 0; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  .cb-log { flex: 1; overflow-y: auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+  .cb-m { max-width: 86%; padding: 9px 12px; border-radius: 14px; line-height: 1.45; word-wrap: break-word; }
+  .cb-bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); border-top-left-radius: 4px; }
+  .cb-me { align-self: flex-end; background: #1e4fd8; color: #fff; border-top-right-radius: 4px; }
+  .cb-chips { display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; max-width: 100%; }
+  .cb-chip { font: inherit; font-size: 14px; font-weight: 700; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--brand); background: var(--surface); color: var(--brand); cursor: pointer; text-decoration: none; text-align: left; }
+  .cb-chip:hover { background: color-mix(in srgb, var(--brand) 10%, var(--surface)); }
+  .cb-main { background: #1e4fd8; border-color: #1e4fd8; color: #fff; }
+  .cb-main:hover { background: #0b2a86; }
+  .cb-in { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--line); background: var(--surface); }
+  .cb-in input { flex: 1; font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; }
+  .cb-in input:focus { outline: none; border-color: var(--brand); }
+  .cb-in button { width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: #1e4fd8; color: #fff; font-size: 18px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -282,6 +314,245 @@
 </div>
 
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script type="application/json" id="site-config">{"wa":"918770882942","formServices":[["Aadhaar Mobile Number Update","Aadhaar Center"],["Aadhaar Name Correction","Aadhaar Center"],["PAN Card","CSC & Banking"],["Aadhaar Date of Birth Correction","Aadhaar Center"],["Aadhaar Biometric Update","Aadhaar Center"],["Aadhaar Seeding in Bank Account (DBT / NPCI)","CSC & Banking"],["Learner License (LL)","CSC & Banking"],["Driving License (DL)","CSC & Banking"],["DL Renewal","CSC & Banking"],["Duplicate DL / DL Address Change","CSC & Banking"],["RC Transfer (Vehicle Ownership Change)","CSC & Banking"],["Check / Pay Challan","CSC & Banking"],["Koi aur kaam",""]],"slots":{"Aadhaar Center":[["11 AM - 12 PM",12],["12 PM - 1 PM",13],["1 PM - 2 PM",14],["2 PM - 3 PM",15],["3 PM - 4 PM",16]],"CSC & Banking":[["8 AM - 10 AM",10],["10 AM - 12 PM",12],["12 PM - 2 PM",14],["2 PM - 4 PM",16],["4 PM - 6 PM",18],["6 PM - 8 PM",20]]},"closedDays":{"Aadhaar Center":[0],"CSC & Banking":[]},"relay":"https://ntfy.sh/pcc-c4f02e8111fb90e9fd2b5502","publicKey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0fCBGZfHmxpUnzDc4gkltPDcilB5qzYJuVkfMoBXBr6hn8JVaBZ1CNX9FYq9x27LXiydyoXLPtGkq+6klNkM1CdXpob9ISe5spG6JeMLNQpsr4GrI9todNgFO8egjU3L0aoXONW6jVmbTcqb9aIZNXZ+zaRUgB7TeG+zsTdEf+fpAowU8hsqxyo4aG2WE+5d1B6nq7shMpb+GFdxOrJvN+yIXeN/B5smdBbIR7s/cPgCwsO5j2Tr1ESkhhXsJySsGeOp1bif9viLFYN79kr+BK409iAdjXixf32cYHZ4+gy5UNYzI6R67N54ucRhqTAE6gBicGfaJ5UCZEtGt3CMeQIDAQAB","googleForm":"https://docs.google.com/forms/d/e/1FAIpQLSeuX2K1yiE_TTayfKjo8WQUCEHyMAq7r0XWylgbAVeeisdMJw/formResponse","googleEntry":"entry.1804072904","chat":{"name":"PANKAJ CHOICE CENTER","owner":"Pankaj ji","mobile":"8770882942","formOn":true,"pages":{"appointment":"appointment.html"},"services":[{"n":"Aadhaar Mobile Number Update","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Mobile Number"]},{"n":"Aadhaar Name Correction","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Proof of Identity (POI)","Marksheet","Marriage Certificate","Birth Certificate"]},{"n":"PAN Card","rate":"","place":"CSC & Banking","docs":["Aadhaar Card","Birth Certificate"]},{"n":"Aadhaar Date of Birth Correction","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Birth Certificate","Marksheet (Central or State Board)"]},{"n":"Aadhaar Biometric Update","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card"]},{"n":"Aadhaar Seeding in Bank Account (DBT / NPCI)","rate":"","place":"CSC & Banking","docs":["Bank Passbook","Aadhaar Card","Mobile Number"]},{"n":"Learner License (LL)","rate":"","place":"CSC & Banking","docs":["Aadhaar Card (with linked mobile number)","Passport Size Photo","Signature","Age Proof (10th Marksheet) if full date of birth is not on Aadhaar","Above 40 years: Medical Form 1A"]},{"n":"Driving License (DL)","rate":"","place":"CSC & Banking","docs":["Learner License (at least 30 days old, within 6 months)","Aadhaar Card","Vehicle for Driving Test"]},{"n":"DL Renewal","rate":"","place":"CSC & Banking","docs":["Old DL","Aadhaar Card","Passport Size Photo","Signature","Above 40 years: Medical Form 1A"]},{"n":"Duplicate DL / DL Address Change","rate":"","place":"CSC & Banking","docs":["DL Copy or DL Number","Aadhaar Card","If lost: FIR / Police Report"]},{"n":"RC Transfer (Vehicle Ownership Change)","rate":"","place":"CSC & Banking","docs":["RC","Insurance","PUC","Form 29 and 30 (signed by both)","Aadhaar of Buyer and Seller"]},{"n":"Check / Pay Challan","rate":"","place":"CSC & Banking","docs":["Vehicle Number or DL Number"]}],"places":[{"label":"Aadhaar Center","addr":"Gram Panchayat Bhawan ke paas, PHC Ratanpur, Khadgawan, MCB, Chhattisgarh 497449","time":"11 AM - 4 PM (sirf working days)","map":"https://cgpankaj22.github.io/map/?l=23.044244,82.419177&n=PANKAJ%20CHOICE%20CENTER%20-%20Aadhaar%20Center&g=https%3A%2F%2Fmaps.app.goo.gl%2FXjc4yxqhRFECGrph9"},{"label":"CSC & Banking","addr":"Jilda, Koriya, Chhattisgarh 497449","time":"8 AM - 8 PM (roz, sabhi din)","map":"https://cgpankaj22.github.io/map/?l=23.050682,82.475751&n=PANKAJ%20CHOICE%20CENTER%20-%20CSC%20%26%20Banking&g=https%3A%2F%2Fmaps.app.goo.gl%2FBehq2WphZaYCAGHP6"}]}}</script>
+<script>
+// Website ka saajha hissa: dukaan ki jaankari (site-config) aur sandesh bhejne ka taala-band raasta.
+// Do raaste: (1) ntfy relay (turant, 12 ghante tak), (2) Google Form (hamesha ke liye; PC band ho to bhi).
+// Bot dono ko padhta hai, ek hi sandesh do baar nahi ginta (rid se). Form aur chat bot dono yahi use karte hain.
+(function () {
+  var el = document.getElementById('site-config');
+  var C = el ? JSON.parse(el.textContent) : {};
+  function b64(buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
+  function unb64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.buffer; }
+  async function seal(obj) {
+    var pub = await crypto.subtle.importKey('spki', unb64(C.publicKey), { name: 'RSA-OAEP', hash: 'SHA-256' }, false, ['encrypt']);
+    var aes = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt']);
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var data = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, aes, new TextEncoder().encode(JSON.stringify(obj)));
+    var k = await crypto.subtle.encrypt({ name: 'RSA-OAEP' }, pub, await crypto.subtle.exportKey('raw', aes));
+    return JSON.stringify({ v: 1, k: b64(k), iv: b64(iv), d: b64(data) });
+  }
+  function rid() { var a = crypto.getRandomValues(new Uint8Array(9)); return 'w' + b64(a).replace(/[^A-Za-z0-9]/g, 'x'); }
+  // Google Form me chupchap (jawab padh nahi sakte, isliye no-cors; bas bhej dete hain)
+  function toGoogle(body) {
+    if (!C.googleForm || !C.googleEntry) return Promise.resolve(false);
+    var fd = new URLSearchParams(); fd.append(C.googleEntry, body);
+    return fetch(C.googleForm, { method: 'POST', mode: 'no-cors', body: fd }).then(function () { return true; }, function () { return false; });
+  }
+  function toRelay(body) {
+    if (!C.relay) return Promise.resolve(false);
+    return fetch(C.relay, { method: 'POST', body: body }).then(function (r) { return r.ok; }, function () { return false; });
+  }
+  /** Sandesh bhejo (rid, ts apne aap). true = kam se kam ek raasta chala */
+  async function send(f) {
+    if (!C.publicKey) return false;
+    f.rid = f.rid || rid(); f.ts = Date.now();
+    var body = await seal(f);
+    var res = await Promise.all([toRelay(body), toGoogle(body)]);
+    return res[0] || res[1];
+  }
+  function phoneOk(p) { var d = String(p).replace(/\D/g, ''); if (d.length === 12 && d.indexOf('91') === 0) d = d.slice(2); if (d.length === 11 && d[0] === '0') d = d.slice(1); return /^[6-9]\d{9}$/.test(d) ? d : ''; }
+  function niceDate(d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' }); }
+  function waLink(text) { return 'https://wa.me/' + C.wa + (text ? '?text=' + encodeURIComponent(text) : ''); }
+  window.PCC = { C: C, send: send, phoneOk: phoneOk, niceDate: niceDate, waLink: waLink, canSend: Boolean(C.publicKey && (C.relay || C.googleForm)) };
+})();
 
+// Website ka chat bot: website ke andar hi jawab (PC band ho tab bhi).
+// Sevayein + documents, samay, pata/map, appointment. Jo na samjhe: customer ka sawal (naam + number ke saath)
+// taala-band raaste se dukaan ke WhatsApp par (common.js ka PCC.send).
+(function () {
+  var P = window.PCC; if (!P || !P.C.chat) return;
+  var D = P.C.chat;
+
+  // ---------- samajh ----------
+  var SYN = [
+    [/aadh?aa?r|adhar|aadar|aadhar|आधार/, 'aadhaar'], [/\bpan\b|pancard|पैन/, 'pan'],
+    [/\bdl\b|licen[cs]e|lisens|लाइसेंस|लाइसेन्स|driving|ड्राइविंग/, 'license'], [/learner|\bll\b|लर्नर/, 'learner'],
+    [/\brc\b|ownership|transfer|gaadi|gadi|vahan|वाहन/, 'rc'], [/challan|chalan|चालान/, 'challan'],
+    [/mobile|\bmob\b|number|नंबर|मोबाइल/, 'mobile'], [/\bnaam\b|\bname\b|नाम/, 'name'],
+    [/\bdob\b|janm|birth|tithi|जन्म/, 'birth'], [/biometric|finger|angootha|बायोमेट्रिक/, 'biometric'],
+    [/bank|seeding|\bdbt\b|npci|बैंक/, 'bank'], [/renew|naveeni|रिन्यू/, 'renewal'],
+    [/duplicate|dupli|kho|lost|डुप्लीकेट/, 'duplicate'], [/correction|sudhar|change|badal|update|सुधार/, 'update']
+  ];
+  function tokens(s) {
+    var t = String(s).toLowerCase(), out = {};
+    SYN.forEach(function (x) { if (x[0].test(t)) out[x[1]] = 1; });
+    return out;
+  }
+  var SV = D.services.map(function (s) { return { s: s, t: tokens(s.n) }; });
+  function findServices(text) {
+    var t = tokens(text), best = 0, hits = [];
+    SV.forEach(function (x) {
+      var sc = 0; for (var k in t) if (x.t[k]) sc += (k === 'update' ? 0.5 : 1);
+      // seva ka naam seedha likha ho
+      if (text.toLowerCase().indexOf(x.s.n.toLowerCase()) >= 0) sc += 3;
+      if (sc > best) { best = sc; hits = [x.s]; } else if (sc === best && sc > 0) hits.push(x.s);
+    });
+    return best >= 1 ? hits : [];
+  }
+  var IS = {
+    hello: /^(hi+|hello|helo|hey|namaste|namaskar|ram ram|jai\s*\w+|good\s*(morning|evening|afternoon)|हेलो|नमस्ते|नमस्कार|राम राम)\b/,
+    thanks: /thank|thnx|dhanyavaad|dhanyawad|shukriya|\bok+\b|okay|theek|धन्यवाद|शुक्रिया|ठीक/,
+    howLong: /kitne\s*din|kitna\s*(time|samay)|time\s*lag|kab\s*tak\s*(ban|mil|aa)|कितने\s*दिन|कितना\s*समय/,
+    bye: /\bbye\b|alvida|tata|अलविदा/,
+    timing: /timing|samay|time|kab|khul|band|open|close|baje|holiday|chhutti|sunday|ravivar|समय|खुल|बंद|बजे|छुट्टी/,
+    address: /address|pata|kahan|kaha|location|map|rasta|raasta|kidhar|पता|कहां|कहाँ|लोकेशन|मैप|रास्ता/,
+    appt: /appointment|appoint|\bbook|booking|\bslot|अपॉइंटमेंट|बुक/,
+    docs: /document|docs|kagaz|kaagaz|papers|kya\s*(kya\s*)?(chahiye|lagega|lagta|laana)|dastavej|दस्तावेज|कागज/,
+    list: /service|sewa|seva|kaam|work|list|kya\s*kya|सेवा|सेवाएं|काम/,
+    owner: /owner|pankaj|baat|call|phone|contact|sampark|insaan|human|बात|संपर्क/,
+    rate: /rate|price|fees|fee|charge|kitna\s*(paisa|rupay|lagega)|kharcha|रेट|फीस|कितना/
+  };
+
+  // ---------- khidki ----------
+  var root = document.createElement('div');
+  root.className = 'cb';
+  root.innerHTML = '<button class="cb-fab" type="button" aria-label="Chat kholiye"><span class="cb-ico">💬</span><span class="cb-tip">Sawal poochhiye</span></button>' +
+    '<section class="cb-panel" role="dialog" aria-label="Chat" hidden><header class="cb-head"><div class="cb-av">🤖</div><div><b></b><small>Turant jawab · Online</small></div><button class="cb-x" type="button" aria-label="Band karein">×</button></header>' +
+    '<div class="cb-log" aria-live="polite"></div><form class="cb-in"><input type="text" maxlength="300" placeholder="Apna sawal likhiye…" aria-label="Sawal" autocomplete="off"><button type="submit" aria-label="Bhejein">➤</button></form></section>';
+  document.body.appendChild(root);
+  var fab = root.querySelector('.cb-fab'), panel = root.querySelector('.cb-panel'), log = root.querySelector('.cb-log');
+  var form = root.querySelector('.cb-in'), input = form.querySelector('input');
+  root.querySelector('.cb-head b').textContent = D.name;
+
+  function scroll() { log.scrollTop = log.scrollHeight; }
+  function add(who, text, buttons) {
+    var m = document.createElement('div'); m.className = 'cb-m cb-' + who;
+    String(text).split('\n').forEach(function (line, i) {
+      if (i) m.appendChild(document.createElement('br'));
+      // **mota** likhawat
+      line.split(/(\*[^*]+\*)/).forEach(function (part) {
+        if (/^\*[^*]+\*$/.test(part)) { var b = document.createElement('b'); b.textContent = part.slice(1, -1); m.appendChild(b); }
+        else m.appendChild(document.createTextNode(part));
+      });
+    });
+    log.appendChild(m);
+    if (buttons && buttons.length) {
+      var row = document.createElement('div'); row.className = 'cb-chips';
+      buttons.forEach(function (b) {
+        var el = document.createElement(b.href ? 'a' : 'button');
+        el.className = 'cb-chip' + (b.main ? ' cb-main' : '');
+        el.textContent = b.label;
+        if (b.href) { el.href = b.href; if (/^https?:/.test(b.href)) { el.target = '_blank'; el.rel = 'noopener'; } }
+        else { el.type = 'button'; el.addEventListener('click', function () { if (b.say) add('me', b.say); b.go(); }); }
+        row.appendChild(el);
+      });
+      log.appendChild(row);
+    }
+    scroll();
+  }
+  function bot(text, buttons) { setTimeout(function () { add('bot', text, buttons); }, 280); }
+
+  var page = D.pages || {};
+  function menu() {
+    return [
+      { label: '📋 Sevayein', say: 'Sevayein', go: showList },
+      { label: '🕐 Samay', say: 'Samay', go: showTiming },
+      { label: '📍 Pata / Map', say: 'Pata', go: showAddress },
+      D.formOn ? { label: '🗓️ Appointment', say: 'Appointment', go: function () { showAppt(); } } : null,
+      { label: '💬 Owner se baat', say: 'Owner se baat', go: askOwner }
+    ].filter(Boolean);
+  }
+  function hello() {
+    bot('Namaste 🙏 Main *' + D.name + '* ka sahayak hoon.\nSeva ka naam likhiye (jaise "PAN card" ya "Aadhaar naam sudhar"), main documents bata dunga. Ya neeche se chuniye:', menu());
+  }
+  function placeOf(label) { return D.places.filter(function (p) { return p.label === label; })[0]; }
+  function showService(s) {
+    var p = placeOf(s.place);
+    var txt = '*' + s.n + '*' + (s.rate ? '\nRate: ' + s.rate : '') +
+      '\n\n📄 Zaroori documents:\n' + (s.docs.length ? s.docs.map(function (d) { return '• ' + d; }).join('\n') : 'Documents ke liye call kijiye.') +
+      (p ? '\n\n📍 Kahan: *' + p.label + '*' + (p.time ? '\n⏰ ' + p.time : '') : '');
+    var b = [];
+    if (D.formOn) b.push({ label: '🗓️ Appointment book karein', main: true, href: page.appointment + '?service=' + encodeURIComponent(s.n) });
+    if (p && p.map) b.push({ label: '📍 Map', href: p.map });
+    b.push({ label: '📋 Aur sevayein', say: 'Aur sevayein', go: showList });
+    bot(txt, b);
+  }
+  function showList() {
+    bot('Hamari sevayein 👇 Jis par jaankari chahiye use dabaiye:', D.services.map(function (s) { return { label: s.n, say: s.n, go: function () { showService(s); } }; }));
+  }
+  function showTiming() {
+    bot('🕐 *Samay*\n' + D.places.filter(function (p) { return p.time; }).map(function (p) { return '\n*' + p.label + '*\n' + p.time; }).join('\n') +
+      '\n\nChhutti ke din pehle call karke pakka kar lijiye: ' + D.mobile, [{ label: '📞 Call', href: 'tel:+91' + D.mobile }, { label: '📍 Pata / Map', say: 'Pata', go: showAddress }]);
+  }
+  function showAddress() {
+    D.places.forEach(function (p, i) {
+      setTimeout(function () {
+        add('bot', '📍 *' + p.label + '*\n' + p.addr + (p.time ? '\n⏰ ' + p.time : ''), p.map ? [{ label: '🗺️ Map kholein', main: true, href: p.map }] : null);
+      }, 300 + i * 350);
+    });
+  }
+  function showAppt(s) {
+    bot(D.formOn ? 'Appointment ka form khol raha hoon 🗓️\nNaam, number, kaam, din aur samay chuniye. Confirm WhatsApp par aayega.' : 'Appointment ke liye call ya WhatsApp kijiye.',
+      [D.formOn ? { label: '🗓️ Form kholein', main: true, href: page.appointment + (s ? '?service=' + encodeURIComponent(s.n) : '') } : null,
+        { label: '📞 Call', href: 'tel:+91' + D.mobile }].filter(Boolean));
+  }
+
+  // ---------- owner ko sawal (naam + number) ----------
+  var flow = null; // { step: 'q'|'name'|'phone', q, name }
+  function askOwner(q) {
+    if (!P.canSend) { bot('Seedhe baat ke liye WhatsApp ya call kijiye 🙏', [{ label: '💬 WhatsApp', main: true, href: P.waLink(q || 'Namaste') }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]); return; }
+    flow = q ? { step: 'name', q: q } : { step: 'q' };
+    bot(q ? 'Theek hai, main ye sawal *' + D.owner + '* ko bhej deta hoon. Jawab aapke WhatsApp par aayega.\n\nAapka *naam* likhiye:' : 'Apna sawal likhiye, main *' + D.owner + '* ko bhej dunga:');
+    input.focus();
+  }
+  async function flowStep(text) {
+    if (flow.step === 'q') { flow.q = text; flow.step = 'name'; bot('Aapka *naam* likhiye:'); return; }
+    if (flow.step === 'name') { flow.name = text.slice(0, 60); flow.step = 'phone'; bot('Aapka *mobile number* (isi par WhatsApp jawab aayega):'); return; }
+    var ph = P.phoneOk(text);
+    if (!ph) { bot('Ye number sahi nahi laga. 10 ank ka mobile number likhiye:'); return; }
+    var f = { type: 'enquiry', name: flow.name, phone: ph, text: flow.q, service: '' };
+    var q = flow.q; flow = null;
+    add('bot', 'Bhej raha hoon… ⏳');
+    var ok = false;
+    try { ok = await P.send(f); } catch (e) { ok = false; }
+    if (ok) bot('✅ Aapka sawal bhej diya! Jawab aapke WhatsApp (' + ph + ') par aayega 🙏', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    else bot('Abhi nahi bhej paya. WhatsApp se seedhe bhejiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, ' + q + '\nNaam: ' + f.name) }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
+  }
+
+  // ---------- jawab ----------
+  function answer(text) {
+    var t = text.toLowerCase();
+    if (flow) { flowStep(text); return; }
+    var hits = findServices(text);
+    if (IS.appt.test(t) && !(hits.length === 1 && IS.docs.test(t))) { showAppt(hits.length === 1 ? hits[0] : null); return; }
+    if (IS.howLong.test(t)) {
+      bot('Kaam me kitna samay lagega, ye kaam aur sarkari portal par nirbhar karta hai. Main ye sawal *' + D.owner + '* se poochh leta hoon:',
+        [{ label: '✅ Haan, poochhiye', main: true, say: 'Haan, poochhiye', go: function () { askOwner(text); } }].concat(hits.length === 1 ? [{ label: '📄 ' + hits[0].n + ' ke documents', go: function () { showService(hits[0]); } }] : []));
+      return;
+    }
+    if (hits.length === 1) { showService(hits[0]); return; }
+    if (hits.length > 1) { bot('Inme se kaun si seva? 👇', hits.slice(0, 8).map(function (s) { return { label: s.n, say: s.n, go: function () { showService(s); } }; })); return; }
+    if (IS.timing.test(t)) { showTiming(); return; }
+    if (IS.address.test(t)) { showAddress(); return; }
+    if (IS.docs.test(t) || IS.list.test(t)) { showList(); return; }
+    if (IS.rate.test(t)) { bot('Rate kaam ke hisaab se alag hota hai. Seva chuniye ya seedhe poochh lijiye:', [{ label: '📋 Sevayein', say: 'Sevayein', go: showList }, { label: '💬 Owner se poochhein', say: 'Owner se poochhein', go: function () { askOwner(text); } }]); return; }
+    if (IS.owner.test(t)) { askOwner(); return; }
+    if (IS.hello.test(t)) { hello(); return; }
+    if (IS.bye.test(t) || IS.thanks.test(t)) { bot('Dhanyavaad 🙏 Kuch aur poochhna ho to likhiye.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]); return; }
+    bot('Is sawal ka jawab mere paas nahi hai 🙏\nKya main ise *' + D.owner + '* ko bhej doon? Jawab aapke WhatsApp par aayega.',
+      [{ label: '✅ Haan, bhejiye', main: true, say: 'Haan, bhejiye', go: function () { askOwner(text); } }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim(); if (!v) return;
+    input.value = ''; add('me', v); answer(v);
+  });
+  var opened = false;
+  function open() {
+    panel.hidden = false; root.classList.add('cb-open');
+    if (!opened) { opened = true; hello(); }
+    setTimeout(function () { input.focus({ preventScroll: true }); }, 50);
+  }
+  function close() { panel.hidden = true; root.classList.remove('cb-open'); }
+  fab.addEventListener('click', function () { panel.hidden ? open() : close(); });
+  root.querySelector('.cb-x').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) close(); });
+  // Pehli baar aane wale ko 6 second baad chhota sa ishara
+  try { if (!sessionStorage.getItem('cbTip')) { setTimeout(function () { root.classList.add('cb-hint'); }, 6000); sessionStorage.setItem('cbTip', '1'); } } catch (e) { /* chhodo */ }
+  window.PCCChat = { open: open, answer: function (t) { open(); add('me', t); answer(t); } };
+})();
+</script>
 </body>
 </html>
