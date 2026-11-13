@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-KWbHmvh7iB/A/0bJgsjBeWM8vCFmgwk1Xu8N4UVdicI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-8E/fg0nuRuZB8dseKIp44TVef+SUGMbDexRmHzmsGno='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -434,6 +434,7 @@
             <form id="t-pdf-form" class="t-target" novalidate>
               <label class="field">Target size<span class="t-inline"><input name="size" type="number" min="1" step="any" value="300" inputmode="decimal"><select name="unit"><option>KB</option><option>MB</option></select></span></label>
               <div class="t-chips"><button type="button" data-dkb="100">100 KB</button><button type="button" data-dkb="200">200 KB</button><button type="button" data-dkb="300" class="on">300 KB</button><button type="button" data-dkb="500">500 KB</button><button type="button" data-dkb="1024">1 MB</button></div>
+              <label class="field t-check"><input name="lossy" type="checkbox"> Zaroorat ho to <b>aur chhota</b> karein <small>(bahut zoom karne par lakeerein halki tedhi dikh sakti hain)</small></label>
               <button class="btn btn-call t-big" id="d-go" disabled>🗜️ PDF chhoti karein</button>
               <p class="t-step" id="d-step"></p>
               <div class="t-res" id="d-res" hidden>
@@ -651,6 +652,7 @@
   var PATH_OPS = { m: 1, l: 1, c: 1, v: 1, y: 1, re: 1 };
   var DELIM = '()<>[]{}/%';
   function fmtNum(t, d) {
+    if (d === 0.5) { var h = Math.round(+t * 2) / 2; return String(h === 0 ? 0 : h).replace(/^(-?)0\./, '$1.'); } // aadhe ank tak
     var v = (+t).toFixed(d);
     if (v.indexOf('.') >= 0) v = v.replace(/0+$/, '').replace(/\.$/, '');
     if (v === '-0') v = '0';
@@ -834,19 +836,23 @@
     }
     var res = await rebuild(p, u8, trailer, repl2, objStmMap);
 
-    // 3) Ab bhi badi ho: drawing (vector) ke number chhote — 3, 2, 1 dashamlav (dikhne me farak nahi)
-    var vec = 0;
+    // 3) Ab bhi badi ho: drawing (vector) ke number chhote — 3, 2, 1 dashamlav (dikhne me farak nahi);
+    //    opts.lossy ho to aur: aadha ank (0.5), poora ank (0) — bahut zoom par halka farak
+    var vec = null, lossy = false;
     if (target && res.length > target) {
       step('Drawing halki kar rahe hain…');
       var vlist = await contentStreams(p, u8);
-      for (var dd = 3; vlist.length && dd >= 1; dd--) {
+      var levels = [3, 2, 1].concat(opts.lossy ? [0.5, 0] : []);
+      for (var li = 0; vlist.length && li < levels.length; li++) {
+        var dd = levels[li];
+        if (dd < 1) step('Aur chhota kar rahe hain…');
         var r3 = await rebuild(p, u8, trailer, Object.assign({}, repl2, await vectorRepl(vlist, dd)), objStmMap);
-        if (r3.length < res.length) { res = r3; vec = dd; }
+        if (r3.length < res.length) { res = r3; vec = dd; lossy = dd < 1; }
         if (res.length <= target) break;
       }
     }
-    if (res.length >= before) res = u8;
-    return { bytes: res, before: before, after: res.length, images: imgs.length, pages: pages, q: best.q, scale: best.scale, vector: vec, reached: !target || res.length <= target };
+    if (res.length >= before) { res = u8; vec = null; lossy = false; }
+    return { bytes: res, before: before, after: res.length, images: imgs.length, pages: pages, q: best.q, scale: best.scale, vector: vec, lossy: lossy, reached: !target || res.length <= target };
   }
 
   /** Jaanch: naksha (xref) ki har jagah sahi object par? (tests ke liye) */
@@ -867,7 +873,8 @@
   async function analyze(u8) {
     var good = await shrink(u8, { targetBytes: 0 });
     var small = await shrink(u8, { targetBytes: 1 });
-    return { before: u8.length, good: good.after, smallest: small.after, images: good.images, pages: good.pages };
+    var tiny = small.vector != null ? await shrink(u8, { targetBytes: 1, lossy: true }) : small;
+    return { before: u8.length, good: good.after, smallest: small.after, smallestLossy: tiny.after, images: good.images, pages: good.pages };
   }
 
   window.PCCPdf = { shrink: shrink, analyze: analyze, check: check, parse: parse };
@@ -1079,7 +1086,8 @@
       an.innerHTML = a.images
         ? '✅ ' + a.pages + ' page, ' + a.images + ' photo. Achhi quality me lagbhag <b>' + kb(a.good) + '</b> · sabse chhoti <b>' + kb(a.smallest) + '</b> (text waisa hi).'
         : a.smallest < a.before - 5120
-          ? '✅ ' + a.pages + ' page. Isme badi photo nahi, <b>drawing / likhawat</b> bhari hai. Ise lagbhag <b>' + kb(a.smallest) + '</b> tak chhota kar sakte hain (dikhne me farak nahi).'
+          ? '✅ ' + a.pages + ' page. Isme badi photo nahi, <b>drawing / likhawat</b> bhari hai. Ise lagbhag <b>' + kb(a.smallest) + '</b> tak chhota kar sakte hain (dikhne me farak nahi)' +
+            (a.smallestLossy < a.smallest - 5120 ? ' · "aur chhota" tick karke lagbhag <b>' + kb(a.smallestLossy) + '</b> tak.' : '.')
           : 'ℹ️ Ye PDF pehle se chhoti hai (sirf text). Lagbhag <b>' + kb(Math.min(a.good, a.before)) + '</b> tak hi ho sakti hai.';
       // Chhoti se chhoti tak hi target maan lein
       if (Number(df.size.value) * (df.unit.value === 'MB' ? 1024 : 1) * 1024 < a.smallest) { /* user khud dekhe */ }
@@ -1096,13 +1104,15 @@
     var target = Math.round((Number(df.size.value) || 0) * (df.unit.value === 'MB' ? 1048576 : 1024));
     var btn = $('#d-go'), step = $('#d-step'); btn.disabled = true; $('#d-res').hidden = true;
     try {
-      var r = await window.PCCPdf.shrink(D.u8, { targetBytes: target, onStep: function (t) { step.textContent = '⏳ ' + t; } });
+      var r = await window.PCCPdf.shrink(D.u8, { targetBytes: target, lossy: df.lossy.checked, onStep: function (t) { step.textContent = '⏳ ' + t; } });
       D.out = new Blob([r.bytes], { type: 'application/pdf' });
       var pct = Math.max(0, Math.round((1 - r.after / r.before) * 100));
       $('#d-ba').innerHTML = '<s>' + kb(r.before) + '</s> → <b>' + kb(r.after) + '</b>' + (pct ? ' <span class="t-tag">' + pct + '% chhoti</span>' : '');
       $('#d-note').innerHTML = r.reached
-        ? '✅ ' + r.pages + ' page, text aur layout waisa hi. ' + (r.images ? r.images + ' photo halki ki. ' : '') + (r.vector ? 'Drawing ke number chhote kiye (dikhne me farak nahi).' : '')
-        : '<span class="t-err">' + kb(target) + ' tak nahi ho payi (sabse chhoti ' + kb(r.after) + '). Thoda bada size chuniye.</span>';
+        ? '✅ ' + r.pages + ' page, text aur layout waisa hi. ' + (r.images ? r.images + ' photo halki ki. ' : '') +
+          (r.lossy ? '⚠️ "Aur chhota" laga: bahut zoom par lakeerein halki tedhi dikh sakti hain.' : r.vector != null ? 'Drawing ke number chhote kiye (dikhne me farak nahi).' : '')
+        : '<span class="t-err">' + kb(target) + ' tak nahi ho payi (sabse chhoti ' + kb(r.after) + ').</span> ' +
+          (!df.lossy.checked && D.an && D.an.smallestLossy < r.after - 5120 ? '"Aur chhota" tick karke dobara dabaiye (lagbhag ' + kb(D.an.smallestLossy) + ' tak).' : 'Thoda bada size chuniye.');
       df.fname.value = D.name + '-' + Math.round(r.after / 1024) + 'kb';
       $('#d-res').hidden = false;
     } catch (err) {
