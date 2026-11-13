@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-XHUFGKbTM6/NsPWxSBneXimD/ylWqRYSnuib1LxWHYg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-cOz8jpxl02I8gIFYinKKFwf3KplpIjDpozIY5tHJhHE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Hamari Sevayein: Har seva ke zaroori documents. Seva par dabaiye, list khul jayegi. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -592,7 +592,7 @@
     if (!P.canSend || !P.relayOrigin || !window.EventSource) { askOwner(firstText); return; }
     if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
     var raw = crypto.getRandomValues(new Uint8Array(32));
-    live = { sid: code(), rt: 'pccr-' + hex(12), raw: raw, left: LIVE_SECS, joined: false, ended: false, name: '', phone: '' };
+    live = { sid: code(), rt: 'pccr-' + hex(12), raw: raw, left: LIVE_SECS, joined: false, ended: false, name: who.name, phone: who.phone };
     live.key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
     // Owner ka jawab isi raaste aata hai (sirf is browser ki chaabi se khulta hai)
     live.es = new EventSource(P.relayOrigin + '/' + live.rt + '/sse');
@@ -607,22 +607,46 @@
     };
     setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + LIVE_SECS + 's</span><i style="width:100%"></i>');
     live.timer = setInterval(tick, 1000);
-    var ok = await P.sendChat({ sid: live.sid, rt: live.rt, k: P.b64(raw), text: firstText || '(Customer aapse baat karna chahta hai)' });
+    var ok = await P.sendChat({ sid: live.sid, rt: live.rt, k: P.b64(raw), name: live.name, phone: live.phone, text: firstText || '(Customer aapse baat karna chahta hai)' });
     if (!ok) { clearInterval(live.timer); live.ended = true; bar.hidden = true; askOwner(firstText); return; }
-    bot('📲 *' + D.owner + '* ko WhatsApp par suchna bhej di hai.\nTab tak apna sawal likhiye. Apna *naam* aur *WhatsApp number* bhi likh dijiye, taaki owner offline hon to aapko WhatsApp par jawab de sakein.');
+    bot('📲 Aapka naam-number *' + D.owner + '* ko WhatsApp par bhej diya hai, unhe bula rahe hain.\nTab tak apna sawal likhiye 👇');
     input.focus();
   }
   async function liveSay(text) {
     var ph = P.phoneOk(text);
     if (ph) live.phone = ph;
-    else if (!live.name && /^[\p{L}\p{M} .]{2,40}$/u.test(text) && text.split(/\s+/).length <= 4 && !findServices(text).length) live.name = text;
     await P.sendChat({ sid: live.sid, text: text, name: live.name, phone: live.phone });
   }
-  function talkOwner(firstText) { startLive(firstText); }
+  // Owner se baat: pehle naam, phir WhatsApp number (ek-ek karke), phir jodna
+  var who = { name: '', phone: '' };
+  function talkOwner(firstText) {
+    if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
+    if (!P.canSend || !P.relayOrigin) { askOwner(firstText); return; }
+    if (who.name && who.phone) { bot('Theek hai ' + who.name + ' ji, ' + D.owner + ' se jod raha hoon…'); startLive(firstText); return; }
+    flow = { step: 'lvName', q: firstText || '' };
+    bot('*' + D.owner + '* se jodne se pehle 🙏\nAapka *naam* likhiye:');
+    input.focus();
+  }
 
   // ---------- jawab ----------
   function answer(text) {
     var t = text.toLowerCase();
+    if (flow && flow.step === 'lvName') {
+      var nm = text.replace(/\s+/g, ' ').trim();
+      if (!/^[\p{L}\p{M} .'-]{2,40}$/u.test(nm)) { bot('Kripya sirf apna *naam* likhiye (jaise: Ramesh Kumar):'); return; }
+      who.name = nm; flow.step = 'lvPhone';
+      bot('Dhanyavaad *' + nm + '* ji 🙏\nAb aapka *WhatsApp number* likhiye (10 ank):');
+      return;
+    }
+    if (flow && flow.step === 'lvPhone') {
+      var p2 = P.phoneOk(text);
+      if (!p2) { bot('Ye number sahi nahi laga. 10 ank ka *WhatsApp number* likhiye:'); return; }
+      who.phone = p2;
+      var q = flow.q; flow = null;
+      bot('✅ Shukriya! Ab *' + D.owner + '* se jod raha hoon…');
+      startLive(q);
+      return;
+    }
     if (flow && flow.step === 'offName') { live.name = text.slice(0, 40); flow.step = 'offPhone'; bot('Aapka *WhatsApp number* (10 ank):'); return; }
     if (flow && flow.step === 'offPhone') {
       var ph = P.phoneOk(text);
