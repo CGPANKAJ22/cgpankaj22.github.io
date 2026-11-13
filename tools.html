@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-Bso8sP1YgBE2VhrHkx3E482KVMu5+Jtoh1VfqrK3cJE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
+<meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PANKAJ CHOICE CENTER">
+<meta property="og:title" content="Photo &amp; PDF Tools | PANKAJ CHOICE CENTER">
+<meta property="og:description" content="Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.">
+<meta property="og:url" content="https://cgpankaj22.github.io/tools.html">
+<meta property="og:image" content="https://cgpankaj22.github.io/img/service.jpg">
+<meta property="og:image:width" content="1400">
+<meta property="og:image:height" content="933">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b2a86">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231e4fd8'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='800' font-size='28' fill='white' text-anchor='middle'%3EPC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f7fc; --surface: #ffffff; --ink: #0f1d3d; --muted: #56627e; --line: #e2e8f4;
+    --brand: #1e4fd8; --brand-deep: #0b2a86; --accent: #c9661a; --accent-soft: #fff3e8;
+    --wa: #1faa53; --shadow: 0 10px 30px rgba(15, 29, 61, .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1120; --surface: #141c30; --ink: #e9eefb; --muted: #9eabc8; --line: #25304a;
+      --brand: #6d93ff; --brand-deep: #9db5ff; --accent: #f0a05c; --accent-soft: #2a2015;
+      --wa: #2fc46a; --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Mukta', 'Nirmala UI', system-ui, sans-serif; font-size: 17px; line-height: 1.55; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  /* Upar ki patti */
+  .top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .top .wrap { display: flex; align-items: center; gap: 12px; height: 62px; }
+  .logo { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #1e4fd8; color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 17px; letter-spacing: -.5px; }
+  .brand { font-weight: 800; font-size: 17px; line-height: 1.1; color: var(--brand-deep); }
+  .brand small { display: block; font-weight: 600; font-size: 13px; color: var(--muted); }
+  .top nav { margin-left: auto; display: flex; gap: 22px; font-weight: 600; font-size: 15px; }
+  .top nav a { text-decoration: none; color: var(--muted); }
+  .top nav a:hover { color: var(--brand); }
+  .top .call { margin-left: 10px; }
+  @media (max-width: 760px) { .top nav { display: none; } .top .call { margin-left: auto; } }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, box-shadow .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn svg { width: 20px; height: 20px; flex: none; }
+  .btn-call { background: #1e4fd8; color: #fff; }
+  .btn-wa { background: var(--wa); color: #fff; }
+  .btn-ghost { border-color: currentColor; color: var(--brand); background: transparent; }
+  .btn-sm { padding: 8px 14px; font-size: 15px; border-radius: 10px; }
+
+  /* Hero */
+  .hero { position: relative; color: #fff; overflow: hidden; background: #0b2a86; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url('img/service.jpg') center/cover; opacity: .28; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(11,42,134,.95) 30%, rgba(30,79,216,.55)); }
+  .hero .wrap { position: relative; z-index: 1; padding: 64px 16px 72px; }
+  .eyebrow { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25); padding: 4px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+  .hero h1 { font-size: clamp(36px, 7vw, 64px); line-height: 1.02; margin: 16px 0 6px; font-weight: 800; letter-spacing: .5px; }
+  .hero .hi { font-size: clamp(22px, 4vw, 30px); font-weight: 700; opacity: .95; }
+  .hero p.lead { font-size: clamp(17px, 2.4vw, 20px); max-width: 620px; margin: 14px 0 26px; opacity: .92; }
+  .hero .owner { color: #ffc58f; font-weight: 700; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero .btn-ghost { color: #fff; }
+  .hero .btn-call { background: #fff; color: #0b2a86; }
+
+  /* Samay patti */
+  .quick { margin-top: -34px; position: relative; z-index: 2; }
+  .quick .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .qcard { background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); padding: 16px 18px; display: flex; gap: 14px; align-items: center; border: 1px solid var(--line); }
+  .qicon { flex: none; width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 22px; }
+  .qcard b { display: block; color: var(--brand-deep); }
+  .qcard span { color: var(--muted); font-size: 15px; }
+
+  section { padding: 64px 0 8px; }
+  .head { margin-bottom: 26px; }
+  .head h2 { font-size: clamp(26px, 4vw, 36px); margin: 0; color: var(--brand-deep); line-height: 1.15; }
+  .head p { margin: 6px 0 0; color: var(--muted); }
+  .kicker { color: var(--accent); font-weight: 800; letter-spacing: 1.5px; font-size: 13px; text-transform: uppercase; }
+
+  /* Sevayein */
+  .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+  .group { background: var(--surface); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .group .pic { height: 130px; background-size: cover; background-position: center; position: relative; }
+  .group .pic::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,42,134,.15), rgba(11,42,134,.85)); }
+  .group .pic h3 { position: absolute; z-index: 1; left: 18px; bottom: 12px; margin: 0; color: #fff; font-size: 22px; line-height: 1.1; }
+  .group .pic h3 small { display: block; font-size: 14px; font-weight: 600; opacity: .9; }
+  .group ul { list-style: none; margin: 0; padding: 8px 10px 12px; }
+  details { border-bottom: 1px solid var(--line); }
+  details:last-child { border-bottom: 0; }
+  summary { cursor: pointer; list-style: none; padding: 11px 8px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; margin-left: auto; color: var(--brand); font-size: 22px; line-height: 1; font-weight: 600; }
+  details[open] summary::after { content: '−'; }
+  summary .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+  .docs { padding: 0 8px 12px 26px; color: var(--muted); font-size: 15px; }
+  .docs b { color: var(--ink); font-size: 14px; }
+  .docs ul { padding: 4px 0 0 18px; margin: 0; list-style: disc; }
+  .more { margin-top: 18px; background: var(--accent-soft); border-radius: 14px; padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+  .more p { margin: 0; font-weight: 600; }
+
+  /* WhatsApp bot */
+  .bot { background: var(--surface); border-radius: 20px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 26px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 26px; align-items: center; }
+  @media (max-width: 760px) { .bot { grid-template-columns: 1fr; padding: 20px; } }
+  .chat { background: #e9ded3; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+  @media (prefers-color-scheme: dark) { .chat { background: #0f1a14; } }
+  .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; box-shadow: 0 1px 1px rgba(0,0,0,.1); color: #111; }
+  .msg.me { align-self: flex-end; background: #d9fdd3; }
+  .msg.bot { align-self: flex-start; background: #fff; }
+  @media (prefers-color-scheme: dark) { .msg { color: #e9edef; } .msg.me { background: #005c4b; } .msg.bot { background: #202c33; } }
+  .cmds { display: grid; gap: 10px; margin: 16px 0 20px; }
+  .cmd { display: flex; gap: 12px; align-items: baseline; }
+  .cmd code { flex: none; background: var(--accent-soft); color: var(--accent); padding: 2px 10px; border-radius: 8px; font-weight: 800; font-family: inherit; }
+
+  /* Jagah */
+  .places { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .place { background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .place iframe { width: 100%; height: 240px; border: 0; display: block; background: var(--line); }
+  .place .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .place h3 { margin: 0; font-size: 22px; color: var(--brand-deep); display: flex; align-items: center; gap: 10px; }
+  .num { width: 30px; height: 30px; border-radius: 50%; background: #1e4fd8; color: #fff; display: grid; place-items: center; font-size: 15px; flex: none; }
+  .place .addr { margin: 0; }
+  .place .addr-hi { margin: 0; color: var(--muted); font-size: 15px; }
+  .time { display: inline-flex; align-self: flex-start; gap: 8px; align-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 700; padding: 5px 12px; border-radius: 999px; font-size: 15px; }
+  .place .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+  /* Sampark */
+  .contact { background: linear-gradient(135deg, #0b2a86, #1e4fd8); color: #fff; border-radius: 24px; padding: 34px 26px; text-align: center; margin-bottom: 60px; }
+  .contact h2 { color: #fff; margin: 0 0 6px; font-size: clamp(26px, 4vw, 34px); }
+  .contact .big { font-size: clamp(30px, 6vw, 44px); font-weight: 800; letter-spacing: 1px; margin: 6px 0 18px; display: inline-block; text-decoration: none; }
+  .contact .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .contact .btn-call { background: #fff; color: #0b2a86; }
+  .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+  .social a { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 6px 14px 6px 8px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .social i { font-style: normal; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: #fff; }
+
+  /* Appointment / enquiry form */
+  .book { background: var(--surface); border-radius: 20px; border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
+  .tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+  .tabs button { font: inherit; font-weight: 700; font-size: 16px; padding: 16px 10px; border: 0; background: transparent; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; }
+  .tabs button[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); background: color-mix(in srgb, var(--brand) 6%, transparent); }
+  .book form { padding: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .book form[hidden] { display: none; }
+  @media (max-width: 640px) { .book form { grid-template-columns: 1fr; padding: 18px; } }
+  .field { display: flex; flex-direction: column; gap: 5px; font-weight: 700; font-size: 15px; }
+  .field.full { grid-column: 1 / -1; }
+  .field small { font-weight: 400; color: var(--muted); }
+  .field input, .field select, .field textarea { font: inherit; font-size: 16px; font-weight: 400; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; }
+  .field textarea { min-height: 96px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent); }
+  .slots { display: flex; flex-wrap: wrap; gap: 8px; }
+  .slots label { cursor: pointer; position: relative; }
+  .slots input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .slots span { display: inline-block; padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--line); font-weight: 600; font-size: 14px; }
+  .slots input:checked + span { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .slots input:focus-visible + span { box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 30%, transparent); }
+  .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; }
+  .book form { position: relative; }
+  .submit { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .submit .btn { border: 0; cursor: pointer; font-family: inherit; }
+  .submit .btn[disabled] { opacity: .6; cursor: wait; }
+  .note { color: var(--muted); font-size: 14px; margin: 0; }
+  .result { grid-column: 1 / -1; border-radius: 12px; padding: 14px 16px; font-weight: 600; display: none; }
+  .result.ok { display: block; background: color-mix(in srgb, var(--wa) 14%, transparent); color: var(--ink); }
+  .result.err { display: block; background: var(--accent-soft); color: var(--ink); }
+  .result a { font-weight: 800; color: var(--brand); }
+
+  footer { border-top: 1px solid var(--line); padding: 22px 0 90px; color: var(--muted); font-size: 14px; text-align: center; }
+
+  /* Phone par neeche Call / WhatsApp */
+  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: none; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -6px 20px rgba(0,0,0,.08); }
+  .dock .btn { flex: 1; }
+  @media (max-width: 760px) { .dock { display: flex; } }
+  @media (min-width: 761px) { footer { padding-bottom: 28px; } }
+  .credit { margin-top: 6px; font-size: 13px; }
+  .credit a { color: var(--brand); text-decoration: none; font-weight: 600; }
+
+  /* Tab: har hisse ka alag page */
+  .top nav a { padding: 6px 2px; border-bottom: 2px solid transparent; }
+  .top nav a.active { color: var(--brand); border-bottom-color: var(--brand); }
+  .tabbar { display: none; }
+  @media (max-width: 760px) {
+    .tabbar { display: flex; gap: 6px; overflow-x: auto; padding: 8px 16px 10px; border-top: 1px solid var(--line); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .tabbar::-webkit-scrollbar { display: none; }
+    .tabbar a { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); text-decoration: none; font-weight: 700; font-size: 14px; color: var(--muted); white-space: nowrap; }
+    .tabbar a.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+  }
+  .phero { position: relative; color: #fff; background: linear-gradient(120deg, #0b2a86, #1e4fd8); overflow: hidden; }
+  .phero::before { content: ''; position: absolute; inset: 0; background: url('img/service.jpg') center/cover; opacity: .14; }
+  .phero .wrap { position: relative; padding: 34px 16px 40px; }
+  .phero .crumb { font-size: 14px; opacity: .85; font-weight: 600; }
+  .phero .crumb a { color: #fff; }
+  .phero .crumb span { margin: 0 6px; }
+  .phero h1 { margin: 8px 0 2px; font-size: clamp(28px, 5vw, 44px); line-height: 1.1; }
+  .phero .hi { font-size: clamp(18px, 3vw, 22px); font-weight: 700; opacity: .92; }
+  .phero p { margin: 10px 0 0; max-width: 620px; opacity: .9; }
+  main[class^="page-"]:not(.page-home) section { padding-top: 34px; }
+  main.page-sampark section, main.page-whatsapp section { padding-bottom: 40px; }
+
+  /* Chat bot */
+  .cb { position: fixed; right: 18px; bottom: 18px; z-index: 40; font-size: 15px; }
+  @media (max-width: 760px) { .cb { right: 14px; bottom: 82px; } }
+  .cb-fab { position: relative; width: 60px; height: 60px; border-radius: 50%; border: 0; cursor: pointer; background: linear-gradient(135deg, #1e4fd8, #0b2a86); color: #fff; box-shadow: 0 10px 26px rgba(11, 42, 134, .35); display: grid; place-items: center; transition: transform .15s ease; }
+  .cb-fab:hover { transform: scale(1.06); }
+  .cb-ico { font-size: 28px; line-height: 1; }
+  .cb-tip { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 7px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .cb-hint:not(.cb-open) .cb-tip { opacity: 1; }
+  .cb-open .cb-fab { display: none; }
+  .cb-panel { padding: 0; margin: 0; position: fixed; right: 18px; bottom: 18px; width: 370px; height: min(580px, calc(100vh - 36px)); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 50px rgba(15, 29, 61, .25); display: flex; flex-direction: column; overflow: hidden; }
+  .cb-panel[hidden] { display: none; }
+  @media (max-width: 760px) { .cb-panel { left: 0; right: 0; bottom: 0; width: auto; height: min(88vh, 640px); border-radius: 20px 20px 0 0; } }
+  .cb-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: linear-gradient(120deg, #0b2a86, #1e4fd8); color: #fff; }
+  .cb-head b { display: block; font-size: 15px; line-height: 1.2; }
+  .cb-head small { font-size: 12px; opacity: .85; }
+  .cb-head small::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #3ddc84; margin-right: 5px; vertical-align: middle; }
+  .cb-av { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.18); display: grid; place-items: center; font-size: 20px; flex: none; }
+  .cb-x { margin-left: auto; background: transparent; border: 0; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  .cb-log { flex: 1; overflow-y: auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+  .cb-m { max-width: 86%; padding: 9px 12px; border-radius: 14px; line-height: 1.45; word-wrap: break-word; }
+  .cb-bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); border-top-left-radius: 4px; }
+  .cb-me { align-self: flex-end; background: #1e4fd8; color: #fff; border-top-right-radius: 4px; }
+  .cb-chips { display: flex; flex-wrap: wrap; gap: 6px; align-self: flex-start; max-width: 100%; }
+  .cb-chip { font: inherit; font-size: 14px; font-weight: 700; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--brand); background: var(--surface); color: var(--brand); cursor: pointer; text-decoration: none; text-align: left; }
+  .cb-chip:hover { background: color-mix(in srgb, var(--brand) 10%, var(--surface)); }
+  .cb-main { background: #1e4fd8; border-color: #1e4fd8; color: #fff; }
+  .cb-main:hover { background: #0b2a86; }
+  .cb-in { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--line); background: var(--surface); }
+  .cb-in input { flex: 1; font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; }
+  .cb-in input:focus { outline: none; border-color: var(--brand); }
+  .cb-in button { width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: #1e4fd8; color: #fff; font-size: 18px; cursor: pointer; }
+  /* Live chat: owner se baat */
+  .cb-live { position: relative; overflow: hidden; padding: 9px 14px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .cb-live[hidden] { display: none; }
+  .cb-live i { position: absolute; left: 0; bottom: 0; height: 3px; background: #1e4fd8; transition: width 1s linear; }
+  .cb-live .cb-count { float: right; font-variant-numeric: tabular-nums; font-weight: 800; color: var(--brand); }
+  .cb-live.cb-wait { background: color-mix(in srgb, var(--brand) 8%, var(--surface)); }
+  .cb-live.cb-on { background: color-mix(in srgb, #1faa53 14%, var(--surface)); }
+  .cb-live.cb-off { background: var(--accent-soft); color: var(--accent); }
+  .cb-owner { align-self: flex-start; background: color-mix(in srgb, #1faa53 12%, var(--surface)); border: 1px solid color-mix(in srgb, #1faa53 40%, var(--line)); border-top-left-radius: 4px; }
+  .cb-owner small { font-weight: 800; color: #148a43; }
+
+  /* Photo / PDF tools */
+  .tools { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; margin-bottom: 40px; }
+  .t-safe { margin: 0; padding: 12px 18px; background: color-mix(in srgb, #1faa53 12%, var(--surface)); font-size: 14px; font-weight: 600; }
+  .tools .tabs button { font: inherit; font-weight: 700; font-size: 16px; padding: 14px 10px; border: 0; background: transparent; color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent; }
+  .tools .tabs button[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+  .t-form { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .t-form[hidden] { display: none; }
+  @media (max-width: 640px) { .t-form { grid-template-columns: 1fr; padding: 16px; } }
+  .t-form .full { grid-column: 1 / -1; }
+  .t-form .note { margin: 0; color: var(--muted); font-size: 14px; }
+  .t-lbl { display: block; font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .t-file input[type=file] { padding: 14px; border: 2px dashed var(--brand); background: color-mix(in srgb, var(--brand) 5%, var(--bg)); cursor: pointer; }
+  .t-check { flex-direction: row; align-items: center; gap: 8px; }
+  .t-check input { width: auto; }
+  .t-form input[type=color] { height: 44px; padding: 4px; }
+  .t-form input[type=range] { padding: 0; }
+  #p-presets button { font: inherit; font-size: 14px; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+  #p-presets button.on, #p-presets button:hover { border-color: var(--brand); color: var(--brand); }
+  .t-result { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .t-result img { max-width: 180px; max-height: 180px; border: 1px solid var(--line); border-radius: 8px; background: repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 50% / 16px 16px; }
+  .t-result .result { flex: 1; min-width: 220px; margin: 0; line-height: 1.6; }
+  .t-err { color: #c0392b; font-weight: 700; }
+  .t-form .submit .btn[disabled] { opacity: .5; cursor: not-allowed; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Home" style="text-decoration:none">PC</a>
+    <a class="brand" href="./" style="text-decoration:none">PANKAJ CHOICE CENTER<small>पंकज चॉइस सेंटर</small></a>
+    <nav aria-label="Menu">
+      <a href="./">Home</a>
+      <a href="sevayein.html">Sevayein</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="tools.html" class="active" aria-current="page">Photo/PDF Tools</a>
+      <a href="pata.html">Pata &amp; Samay</a>
+      <a href="whatsapp.html">WhatsApp</a>
+      <a href="sampark.html">Sampark</a>
+    </nav>
+    <a class="btn btn-call btn-sm call" href="tel:+918770882942"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg> Call</a>
+  </div>
+  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html"><span>🗂️</span>Sevayein</a><a href="appointment.html"><span>🗓️</span>Appointment</a><a href="tools.html" class="active" aria-current="page"><span>🛠️</span>Photo/PDF Tools</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
+</header>
+
+<main class="page-tools">
+  <div class="phero">
+    <div class="wrap">
+      <div class="crumb"><a href="./">Home</a> <span>›</span> Photo/PDF Tools</div>
+      <h1>🛠️ Photo &amp; PDF Tools</h1>
+      <div class="hi">फोटो और पीडीएफ टूल</div>
+      <p>Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.</p>
+    </div>
+  </div>
+
+  <section id="tools-sec">
+    <div class="wrap">
+      <div class="tools" id="tools">
+        <p class="t-safe">🔒 Aapki photo / PDF <b>kahin upload nahi hoti</b>. Sab kaam aapke phone ya computer me hi hota hai.</p>
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" data-ttab="photo" aria-selected="true">📷 Photo resize</button>
+          <button type="button" role="tab" data-ttab="pdf" aria-selected="false">📄 PDF chhota / banaiye</button>
+        </div>
+
+        <form id="t-photo" class="t-form">
+          <label class="field full t-file">1. Photo chuniye<input name="file" type="file" accept="image/*"></label>
+          <p class="note full" id="p-in">JPG, PNG ya WEBP photo chuniye.</p>
+          <div class="full"><span class="t-lbl">Jaldi wale size</span>
+            <div class="slots" id="p-presets">
+              <button type="button" data-preset="passport">Passport 3.5×4.5 cm</button>
+              <button type="button" data-preset="photo50">Form photo 200×230 px · 50 KB</button>
+              <button type="button" data-preset="sign20">Signature 140×60 px · 20 KB</button>
+              <button type="button" data-preset="pan">PAN 2.5×3.5 cm</button>
+              <button type="button" data-preset="stamp">Stamp 2×2.5 cm</button>
+              <button type="button" data-preset="a4">A4 page</button>
+              <button type="button" id="p-orig">Asli size</button>
+            </div>
+          </div>
+          <label class="field">Naap ki ikai<select name="unit"><option value="px">Pixel (px)</option><option value="cm">Centimeter (cm)</option><option value="mm">Millimeter (mm)</option><option value="in">Inch</option></select></label>
+          <label class="field">DPI <small>(print ke liye 300)</small><input name="dpi" type="number" min="30" max="1200" value="300" list="dpis"><datalist id="dpis"><option value="72"><option value="96"><option value="150"><option value="200"><option value="300"><option value="600"></datalist></label>
+          <label class="field">Chaudai (width)<input name="w" type="number" min="0" step="any" inputmode="decimal"></label>
+          <label class="field">Oonchai (height)<input name="h" type="number" min="0" step="any" inputmode="decimal"></label>
+          <label class="field t-check"><input name="lock" type="checkbox" checked> Anupat (ratio) waisa hi rakhein</label>
+          <label class="field">Photo kaise baithe<select name="mode"><option value="crop">Kaat kar bhar dein (crop)</option><option value="fit">Poori dikhe (kinare safed)</option><option value="stretch">Kheench dein (stretch)</option></select></label>
+          <label class="field">Format<select name="fmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG (bina quality kam)</option><option value="image/webp">WEBP</option></select></label>
+          <label class="field">Quality <small>(KB khaali ho to)</small><input name="quality" type="range" min="40" max="100" value="92"></label>
+          <label class="field">Zyada se zyada KB <small>(khaali = original quality)</small><input name="kb" type="number" min="5" max="20000" placeholder="Jaise 50" inputmode="numeric"></label>
+          <label class="field">Kinare ka rang<input name="bg" type="color" value="#ffffff"></label>
+          <div class="t-result full"><img id="p-prev" alt="Nayi photo" hidden><div class="result ok" id="p-out" style="display:block">Photo chunne ke baad yahan naya size dikhega.</div></div>
+          <div class="submit"><button class="btn btn-call" type="button" id="p-dl" disabled>⬇️ Photo download karein</button></div>
+        </form>
+
+        <form id="t-pdf" class="t-form" hidden>
+          <label class="field full t-file">1. Scan wali PDF ya photos chuniye <small>(kai photo ek saath chun sakte hain → ek PDF)</small><input name="files" type="file" accept="application/pdf,image/*" multiple></label>
+          <p class="note full" id="d-in">PDF ya photo chuniye.</p>
+          <label class="field">PDF kitni KB ki chahiye<select name="kb"><option value="100">100 KB tak</option><option value="200" selected>200 KB tak</option><option value="300">300 KB tak</option><option value="500">500 KB tak</option><option value="1024">1 MB tak</option><option value="0">Jitni achhi (seema nahi)</option><option value="custom">Apna KB likhein…</option></select></label>
+          <label class="field">Apna KB<input name="kbCustom" type="number" min="20" max="20000" placeholder="Jaise 150" hidden inputmode="numeric"></label>
+          <label class="field">Page<select name="page"><option value="a4">A4 page (print ke liye)</option><option value="orig">Photo jitna</option></select></label>
+          <div class="t-result full"><div class="result ok" id="d-out" style="display:block">PDF chunne ke baad yahan naya size dikhega.</div></div>
+          <div class="submit"><button class="btn btn-call" type="button" id="d-dl" disabled>⬇️ PDF download karein</button></div>
+          <p class="note full">Note: sirf scan / photo wali PDF chhoti hoti hai. Typed text wali PDF pehle se chhoti hoti hai.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr">2026</span> PANKAJ CHOICE CENTER · Prop. Pankaj Kumar Jaiswal · Khadgawan, MCB / Jilda, Koriya
+    <div class="credit">Developed by Pankaj Jaiswal · <a href="tel:+918770882942">8770882942</a> · Using AI 🤖</div></div>
+</footer>
+
+<div class="dock">
+  <a class="btn btn-call" href="tel:+918770882942">📞 Call</a>
+  <a class="btn btn-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20jaankari%20chahiye" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script type="application/json" id="site-config">{"wa":"918770882942","formServices":[["Aadhaar Mobile Number Update","Aadhaar Center"],["Aadhaar Name Correction","Aadhaar Center"],["PAN Card","CSC & Banking"],["Aadhaar Date of Birth Correction","Aadhaar Center"],["Aadhaar Biometric Update","Aadhaar Center"],["Aadhaar Seeding in Bank Account (DBT / NPCI)","CSC & Banking"],["Learner License (LL)","CSC & Banking"],["Driving License (DL)","CSC & Banking"],["DL Renewal","CSC & Banking"],["Duplicate DL / DL Address Change","CSC & Banking"],["RC Transfer (Vehicle Ownership Change)","CSC & Banking"],["Check / Pay Challan","CSC & Banking"],["Koi aur kaam",""]],"slots":{"Aadhaar Center":[["11 AM - 12 PM",12],["12 PM - 1 PM",13],["1 PM - 2 PM",14],["2 PM - 3 PM",15],["3 PM - 4 PM",16]],"CSC & Banking":[["8 AM - 10 AM",10],["10 AM - 12 PM",12],["12 PM - 2 PM",14],["2 PM - 4 PM",16],["4 PM - 6 PM",18],["6 PM - 8 PM",20]]},"closedDays":{"Aadhaar Center":[0],"CSC & Banking":[]},"relay":"https://ntfy.sh/pcc-c4f02e8111fb90e9fd2b5502","publicKey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0fCBGZfHmxpUnzDc4gkltPDcilB5qzYJuVkfMoBXBr6hn8JVaBZ1CNX9FYq9x27LXiydyoXLPtGkq+6klNkM1CdXpob9ISe5spG6JeMLNQpsr4GrI9todNgFO8egjU3L0aoXONW6jVmbTcqb9aIZNXZ+zaRUgB7TeG+zsTdEf+fpAowU8hsqxyo4aG2WE+5d1B6nq7shMpb+GFdxOrJvN+yIXeN/B5smdBbIR7s/cPgCwsO5j2Tr1ESkhhXsJySsGeOp1bif9viLFYN79kr+BK409iAdjXixf32cYHZ4+gy5UNYzI6R67N54ucRhqTAE6gBicGfaJ5UCZEtGt3CMeQIDAQAB","googleForm":"https://docs.google.com/forms/d/e/1FAIpQLSeuX2K1yiE_TTayfKjo8WQUCEHyMAq7r0XWylgbAVeeisdMJw/formResponse","googleEntry":"entry.1804072904","chat":{"name":"PANKAJ CHOICE CENTER","owner":"Pankaj ji","mobile":"8770882942","formOn":true,"pages":{"appointment":"appointment.html"},"services":[{"n":"Aadhaar Mobile Number Update","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Mobile Number"]},{"n":"Aadhaar Name Correction","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Proof of Identity (POI)","Marksheet","Marriage Certificate","Birth Certificate"]},{"n":"PAN Card","rate":"","place":"CSC & Banking","docs":["Aadhaar Card","Birth Certificate"]},{"n":"Aadhaar Date of Birth Correction","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card","Birth Certificate","Marksheet (Central or State Board)"]},{"n":"Aadhaar Biometric Update","rate":"","place":"Aadhaar Center","docs":["Aadhaar Card"]},{"n":"Aadhaar Seeding in Bank Account (DBT / NPCI)","rate":"","place":"CSC & Banking","docs":["Bank Passbook","Aadhaar Card","Mobile Number"]},{"n":"Learner License (LL)","rate":"","place":"CSC & Banking","docs":["Aadhaar Card (with linked mobile number)","Passport Size Photo","Signature","Age Proof (10th Marksheet) if full date of birth is not on Aadhaar","Above 40 years: Medical Form 1A"]},{"n":"Driving License (DL)","rate":"","place":"CSC & Banking","docs":["Learner License (at least 30 days old, within 6 months)","Aadhaar Card","Vehicle for Driving Test"]},{"n":"DL Renewal","rate":"","place":"CSC & Banking","docs":["Old DL","Aadhaar Card","Passport Size Photo","Signature","Above 40 years: Medical Form 1A"]},{"n":"Duplicate DL / DL Address Change","rate":"","place":"CSC & Banking","docs":["DL Copy or DL Number","Aadhaar Card","If lost: FIR / Police Report"]},{"n":"RC Transfer (Vehicle Ownership Change)","rate":"","place":"CSC & Banking","docs":["RC","Insurance","PUC","Form 29 and 30 (signed by both)","Aadhaar of Buyer and Seller"]},{"n":"Check / Pay Challan","rate":"","place":"CSC & Banking","docs":["Vehicle Number or DL Number"]}],"places":[{"label":"Aadhaar Center","addr":"Gram Panchayat Bhawan ke paas, PHC Ratanpur, Khadgawan, MCB, Chhattisgarh 497449","time":"11 AM - 4 PM (sirf working days)","map":"https://cgpankaj22.github.io/map/?l=23.044244,82.419177&n=PANKAJ%20CHOICE%20CENTER%20-%20Aadhaar%20Center&g=https%3A%2F%2Fmaps.app.goo.gl%2FXjc4yxqhRFECGrph9"},{"label":"CSC & Banking","addr":"Jilda, Koriya, Chhattisgarh 497449","time":"8 AM - 8 PM (roz, sabhi din)","map":"https://cgpankaj22.github.io/map/?l=23.050682,82.475751&n=PANKAJ%20CHOICE%20CENTER%20-%20CSC%20%26%20Banking&g=https%3A%2F%2Fmaps.app.goo.gl%2FBehq2WphZaYCAGHP6"}]}}</script>
+<script>
+// Website ka saajha hissa: dukaan ki jaankari (site-config) aur sandesh bhejne ka taala-band raasta.
+// Do raaste: (1) ntfy relay (turant, 12 ghante tak), (2) Google Form (hamesha ke liye; PC band ho to bhi).
+// Bot dono ko padhta hai, ek hi sandesh do baar nahi ginta (rid se). Form aur chat bot dono yahi use karte hain.
+(function () {
+  var el = document.getElementById('site-config');
+  var C = el ? JSON.parse(el.textContent) : {};
+  function b64(buf) { var s = '', a = new Uint8Array(buf); for (var i = 0; i < a.length; i++) s += String.fromCharCode(a[i]); return btoa(s); }
+  function unb64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a.buffer; }
+  async function seal(obj) {
+    var pub = await crypto.subtle.importKey('spki', unb64(C.publicKey), { name: 'RSA-OAEP', hash: 'SHA-256' }, false, ['encrypt']);
+    var aes = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt']);
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    var data = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, aes, new TextEncoder().encode(JSON.stringify(obj)));
+    var k = await crypto.subtle.encrypt({ name: 'RSA-OAEP' }, pub, await crypto.subtle.exportKey('raw', aes));
+    return JSON.stringify({ v: 1, k: b64(k), iv: b64(iv), d: b64(data) });
+  }
+  function rid() { var a = crypto.getRandomValues(new Uint8Array(9)); return 'w' + b64(a).replace(/[^A-Za-z0-9]/g, 'x'); }
+  // Google Form me chupchap (jawab padh nahi sakte, isliye no-cors; bas bhej dete hain)
+  function toGoogle(body) {
+    if (!C.googleForm || !C.googleEntry) return Promise.resolve(false);
+    var fd = new URLSearchParams(); fd.append(C.googleEntry, body);
+    return fetch(C.googleForm, { method: 'POST', mode: 'no-cors', body: fd }).then(function () { return true; }, function () { return false; });
+  }
+  function toRelay(body) {
+    if (!C.relay) return Promise.resolve(false);
+    return fetch(C.relay, { method: 'POST', body: body }).then(function (r) { return r.ok; }, function () { return false; });
+  }
+  var loadedAt = Date.now();
+  /**
+   * Robot / baar-baar bhejna rokna: page khulte hi (3 second me) nahi;
+   * ek browser se ghante me form/sawal 4 tak, live chat ke sandesh 40 tak.
+   */
+  function allowed(kind) {
+    if (Date.now() - loadedAt < 3000) return false;
+    var key = kind === 'chat' ? 'pccChat' : 'pccSent', max = kind === 'chat' ? 40 : 4;
+    var list = [];
+    try { list = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return Date.now() - t < 3600000; }); } catch (e) { list = []; }
+    if (list.length >= max) return false;
+    list.push(Date.now());
+    try { localStorage.setItem(key, JSON.stringify(list)); } catch (e) { /* chhodo */ }
+    return true;
+  }
+  /** Sandesh bhejo (rid, ts apne aap). true = kam se kam ek raasta chala */
+  async function send(f) {
+    if (!C.publicKey || !allowed(f.type === 'chat' ? 'chat' : 'form')) return false;
+    f.rid = f.rid || rid(); f.ts = Date.now();
+    var body = await seal(f);
+    var res = await Promise.all([toRelay(body), toGoogle(body)]);
+    return res[0] || res[1];
+  }
+  function phoneOk(p) { var d = String(p).replace(/\D/g, ''); if (d.length === 12 && d.indexOf('91') === 0) d = d.slice(2); if (d.length === 11 && d[0] === '0') d = d.slice(1); return /^[6-9]\d{9}$/.test(d) ? d : ''; }
+  function niceDate(d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' }); }
+  function waLink(text) { return 'https://wa.me/' + C.wa + (text ? '?text=' + encodeURIComponent(text) : ''); }
+  /** Live chat sirf relay se (Google Form dheema hai) */
+  async function sendChat(f) {
+    if (!C.publicKey || !C.relay || !allowed('chat')) return false;
+    f.rid = rid(); f.ts = Date.now(); f.type = 'chat';
+    return toRelay(await seal(f));
+  }
+  window.PCC = { C: C, send: send, sendChat: sendChat, b64: b64, unb64: unb64, relayOrigin: C.relay ? new URL(C.relay).origin : '', phoneOk: phoneOk, niceDate: niceDate, waLink: waLink, canSend: Boolean(C.publicKey && (C.relay || C.googleForm)) };
+})();
+
+// Photo aur PDF tool: sab kuch customer ke apne phone/browser me (kahin upload nahi). Koi bahar ki library nahi.
+//  Photo: px / cm / mm / inch + DPI, chhota-bada, crop, JPG/PNG/WEBP, original quality ya "itne KB ke andar".
+//  PDF: scan wali PDF ko 100/200/300 KB jaise size tak chhota; photos se PDF.
+(function () {
+  var root = document.getElementById('tools');
+  if (!root) return;
+  var $ = function (s, el) { return (el || root).querySelector(s); };
+
+  // ---------- chhote kaam ----------
+  function kb(n) { return n < 1024 * 1024 ? (n / 1024).toFixed(n < 10240 ? 1 : 0) + ' KB' : (n / 1048576).toFixed(2) + ' MB'; }
+  function round(n, d) { var p = Math.pow(10, d); return Math.round(n * p) / p; }
+  var PER_INCH = { px: null, in: 1, cm: 2.54, mm: 25.4 };
+  function toPx(v, unit, dpi) { return unit === 'px' ? v : v / PER_INCH[unit] * dpi; }
+  function fromPx(px, unit, dpi) { return unit === 'px' ? px : px / dpi * PER_INCH[unit]; }
+  function canvasBlob(cv, type, q) { return new Promise(function (res) { cv.toBlob(function (b) { res(b); }, type, q); }); }
+  async function bytesOf(blob) { return new Uint8Array(await blob.arrayBuffer()); }
+  function download(blob, name) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+  }
+  async function loadImage(file) {
+    var bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    return bmp;
+  }
+
+  // ---------- DPI photo ke andar likhna (apna code) ----------
+  // JPEG: JFIF (APP0) me density; na ho to naya APP0 jodte hain
+  function jpegDpi(u8, dpi) {
+    if (u8[0] !== 0xFF || u8[1] !== 0xD8) return u8;
+    var d = Math.max(1, Math.min(65535, Math.round(dpi)));
+    if (u8[2] === 0xFF && u8[3] === 0xE0 && String.fromCharCode(u8[6], u8[7], u8[8], u8[9]) === 'JFIF') {
+      var o = u8.slice(); o[13] = 1; o[14] = d >> 8; o[15] = d & 255; o[16] = d >> 8; o[17] = d & 255; return o;
+    }
+    var app0 = [0xFF, 0xE0, 0, 16, 0x4A, 0x46, 0x49, 0x46, 0, 1, 1, 1, d >> 8, d & 255, d >> 8, d & 255, 0, 0];
+    var out = new Uint8Array(u8.length + app0.length); out.set(u8.subarray(0, 2)); out.set(app0, 2); out.set(u8.subarray(2), 2 + app0.length); return out;
+  }
+  // PNG: pHYs chunk (pixel per meter), IHDR ke baad
+  var CRC = (function () { var t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+  function crc32(u8) { var c = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+  function pngDpi(u8, dpi) {
+    if (u8[1] !== 0x50 || u8[2] !== 0x4E) return u8;
+    var ppm = Math.round(dpi / 0.0254), body = new Uint8Array(13);
+    var dv = new DataView(body.buffer); body.set([0x70, 0x48, 0x59, 0x73]); dv.setUint32(4, ppm); dv.setUint32(8, ppm); body[12] = 1;
+    var chunk = new Uint8Array(21); var cv = new DataView(chunk.buffer); cv.setUint32(0, 9); chunk.set(body, 4); cv.setUint32(17, crc32(body));
+    var at = 8 + 25; // signature + IHDR
+    var out = new Uint8Array(u8.length + 21); out.set(u8.subarray(0, at)); out.set(chunk, at); out.set(u8.subarray(at), at + 21); return out;
+  }
+
+  // ---------- canvas par banana: size + crop/stretch/fit ----------
+  function draw(bmp, w, h, mode, bg) {
+    var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    var g = cv.getContext('2d'); g.imageSmoothingQuality = 'high';
+    if (bg) { g.fillStyle = bg; g.fillRect(0, 0, w, h); }
+    var sw = bmp.width, sh = bmp.height;
+    if (mode === 'stretch') { g.drawImage(bmp, 0, 0, w, h); return cv; }
+    var r = mode === 'crop' ? Math.max(w / sw, h / sh) : Math.min(w / sw, h / sh);
+    var dw = sw * r, dh = sh * r;
+    g.drawImage(bmp, (w - dw) / 2, (h - dh) / 2, dw, dh);
+    return cv;
+  }
+  /** Diye KB ke andar sabse achhi quality (JPG/WEBP); phir bhi bada ho to pixel kam karke */
+  async function fitKB(make, type, maxBytes, minQ) {
+    var scale = 1, best = null;
+    for (var round_ = 0; round_ < 8; round_++) {
+      var cv = make(scale), lo = minQ || 0.3, hi = 0.95, got = null;
+      var top = await canvasBlob(cv, type, hi);
+      if (top.size <= maxBytes) return { blob: top, q: hi, scale: scale, cv: cv };
+      for (var i = 0; i < 7; i++) {
+        var mid = (lo + hi) / 2, b = await canvasBlob(cv, type, mid);
+        if (b.size <= maxBytes) { got = { blob: b, q: mid, scale: scale, cv: cv }; lo = mid; } else hi = mid;
+      }
+      if (got) return got;
+      var low = await canvasBlob(cv, type, minQ || 0.3); best = { blob: low, q: minQ || 0.3, scale: scale, cv: cv };
+      scale *= Math.max(0.5, Math.sqrt(maxBytes / low.size) * 0.95);
+    }
+    return best;
+  }
+
+  // ================= PHOTO =================
+  var P = { bmp: null, file: null, out: null, ratio: 1 };
+  var pf = $('#t-photo');
+  var PRESETS = {
+    passport: { unit: 'cm', w: 3.5, h: 4.5, dpi: 300, mode: 'crop', kb: '' },
+    photo50: { unit: 'px', w: 200, h: 230, dpi: 200, mode: 'crop', kb: 50 },
+    sign20: { unit: 'px', w: 140, h: 60, dpi: 200, mode: 'fit', kb: 20 },
+    pan: { unit: 'cm', w: 2.5, h: 3.5, dpi: 300, mode: 'crop', kb: 50 },
+    stamp: { unit: 'cm', w: 2, h: 2.5, dpi: 300, mode: 'crop', kb: '' },
+    a4: { unit: 'mm', w: 210, h: 297, dpi: 150, mode: 'fit', kb: '' }
+  };
+  function unitInfo() { return { unit: pf.unit.value, dpi: Math.max(1, Number(pf.dpi.value) || 300) }; }
+  function setWH(wpx, hpx) {
+    var u = unitInfo(), d = u.unit === 'px' ? 0 : 2;
+    pf.w.value = round(fromPx(wpx, u.unit, u.dpi), d); pf.h.value = round(fromPx(hpx, u.unit, u.dpi), d);
+  }
+  function targetPx() {
+    var u = unitInfo();
+    return { w: Math.max(1, Math.round(toPx(Number(pf.w.value) || 0, u.unit, u.dpi))), h: Math.max(1, Math.round(toPx(Number(pf.h.value) || 0, u.unit, u.dpi))) };
+  }
+  var lastUnit = 'px';
+  pf.unit.addEventListener('change', function () {
+    // purani unit se pixel, phir nayi unit me
+    var dpi = unitInfo().dpi;
+    var w = toPx(Number(pf.w.value) || 0, lastUnit, dpi), h = toPx(Number(pf.h.value) || 0, lastUnit, dpi);
+    lastUnit = pf.unit.value; setWH(w, h); schedule();
+  });
+  pf.w.addEventListener('input', function () { if (pf.lock.checked && P.ratio) pf.h.value = round((Number(pf.w.value) || 0) / P.ratio, pf.unit.value === 'px' ? 0 : 2); schedule(); });
+  pf.h.addEventListener('input', function () { if (pf.lock.checked && P.ratio) pf.w.value = round((Number(pf.h.value) || 0) * P.ratio, pf.unit.value === 'px' ? 0 : 2); schedule(); });
+  ['dpi', 'mode', 'fmt', 'quality', 'kb', 'bg'].forEach(function (n) { pf[n].addEventListener('input', schedule); pf[n].addEventListener('change', schedule); });
+  pf.lock.addEventListener('change', function () { if (pf.lock.checked && P.bmp) { var t = targetPx(); P.ratio = P.bmp.width / P.bmp.height; setWH(t.w, t.w / P.ratio); } schedule(); });
+  $('#p-presets').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-preset]'); if (!b) return;
+    var p = PRESETS[b.dataset.preset];
+    pf.lock.checked = false; pf.unit.value = p.unit; lastUnit = p.unit; pf.dpi.value = p.dpi; pf.w.value = p.w; pf.h.value = p.h;
+    pf.mode.value = p.mode; pf.kb.value = p.kb; pf.fmt.value = 'image/jpeg';
+    root.querySelectorAll('[data-preset]').forEach(function (x) { x.classList.toggle('on', x === b); });
+    schedule();
+  });
+  $('#p-orig').addEventListener('click', function () {
+    if (!P.bmp) return;
+    pf.lock.checked = true; P.ratio = P.bmp.width / P.bmp.height; pf.unit.value = 'px'; lastUnit = 'px';
+    pf.w.value = P.bmp.width; pf.h.value = P.bmp.height; pf.kb.value = ''; pf.quality.value = 95; schedule();
+  });
+  pf.file.addEventListener('change', async function () {
+    var f = pf.file.files[0]; if (!f) return;
+    try { P.bmp = await loadImage(f); } catch (e) { $('#p-in').textContent = 'Ye photo nahi khul payi. JPG / PNG / WEBP chuniye.'; return; }
+    P.file = f; P.ratio = P.bmp.width / P.bmp.height;
+    var u = unitInfo();
+    $('#p-in').textContent = 'Asli photo: ' + P.bmp.width + ' × ' + P.bmp.height + ' px · ' + kb(f.size) + ' · ' +
+      round(fromPx(P.bmp.width, 'cm', u.dpi), 2) + ' × ' + round(fromPx(P.bmp.height, 'cm', u.dpi), 2) + ' cm (' + u.dpi + ' DPI par)';
+    if (!pf.w.value) { pf.unit.value = 'px'; lastUnit = 'px'; pf.w.value = P.bmp.width; pf.h.value = P.bmp.height; }
+    schedule();
+  });
+  var timer = null, busy = 0;
+  function schedule() { clearTimeout(timer); timer = setTimeout(render, 250); }
+  async function render() {
+    if (!P.bmp) return;
+    var my = ++busy, t = targetPx(), type = pf.fmt.value, u = unitInfo();
+    var out = $('#p-out'), btn = $('#p-dl');
+    if (t.w > 12000 || t.h > 12000) { out.innerHTML = '<span class="t-err">Size bahut bada hai (12000 px tak).</span>'; btn.disabled = true; return; }
+    out.textContent = 'Bana rahe hain…'; btn.disabled = true;
+    var bg = type === 'image/jpeg' ? pf.bg.value : null;
+    var make = function (s) { return draw(P.bmp, Math.max(1, Math.round(t.w * s)), Math.max(1, Math.round(t.h * s)), pf.mode.value, bg); };
+    var maxKB = Number(pf.kb.value) || 0, res;
+    if (maxKB > 0 && type !== 'image/png') res = await fitKB(make, type, maxKB * 1024);
+    else { var cv = make(1); res = { blob: await canvasBlob(cv, type, (Number(pf.quality.value) || 92) / 100), q: (Number(pf.quality.value) || 92) / 100, scale: 1, cv: cv }; }
+    if (my !== busy) return;
+    var u8 = await bytesOf(res.blob);
+    if (type === 'image/jpeg') u8 = jpegDpi(u8, u.dpi); else if (type === 'image/png') u8 = pngDpi(u8, u.dpi);
+    var blob = new Blob([u8], { type: type });
+    P.out = { blob: blob, w: res.cv.width, h: res.cv.height };
+    var prev = $('#p-prev'); if (prev.dataset.url) URL.revokeObjectURL(prev.dataset.url);
+    prev.dataset.url = URL.createObjectURL(blob); prev.src = prev.dataset.url; prev.hidden = false;
+    var warn = maxKB > 0 && type === 'image/png' ? '<br><span class="t-err">PNG me KB ki seema nahi lagti (JPG chuniye).</span>'
+      : maxKB > 0 && blob.size > maxKB * 1024 ? '<br><span class="t-err">' + maxKB + ' KB tak nahi ho paya, size ya pixel kam kijiye.</span>'
+      : res.scale < 1 ? '<br><small>KB ke andar laane ke liye pixel thode kam kiye.</small>' : '';
+    out.innerHTML = '<b>Banne wali photo:</b> ' + res.cv.width + ' × ' + res.cv.height + ' px · <b>' + kb(blob.size) + '</b><br>' +
+      round(fromPx(res.cv.width, 'cm', u.dpi), 2) + ' × ' + round(fromPx(res.cv.height, 'cm', u.dpi), 2) + ' cm · ' +
+      round(fromPx(res.cv.width, 'mm', u.dpi), 1) + ' × ' + round(fromPx(res.cv.height, 'mm', u.dpi), 1) + ' mm · ' + u.dpi + ' DPI' +
+      (type !== 'image/png' ? ' · quality ' + Math.round(res.q * 100) + '%' : '') + warn;
+    btn.disabled = false;
+  }
+  $('#p-dl').addEventListener('click', function () {
+    if (!P.out) return;
+    var ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[pf.fmt.value];
+    var base = (P.file && P.file.name.replace(/\.[^.]+$/, '')) || 'photo';
+    download(P.out.blob, base + '-' + P.out.w + 'x' + P.out.h + '.' + ext);
+  });
+
+  // ================= PDF (apna PDF banane/padhne ka code) =================
+  var enc = new TextEncoder();
+  /** pages: [{ jpeg: Uint8Array, w, h (pixel), pw, ph (point) }] -> PDF bytes */
+  function makePdf(pages) {
+    var parts = [], offs = [], len = 0;
+    function put(x) { var b = typeof x === 'string' ? enc.encode(x) : x; parts.push(b); len += b.length; }
+    put('%PDF-1.4\n'); put(new Uint8Array([0x25, 0xE2, 0xE3, 0xCF, 0xD3, 0x0A]));
+    var n = pages.length, kids = [];
+    for (var i = 0; i < n; i++) kids.push((3 + i * 3) + ' 0 R');
+    function obj(id, body) { offs[id] = len; put(id + ' 0 obj\n'); put(body); put('\nendobj\n'); }
+    obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
+    obj(2, '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + n + ' >>');
+    pages.forEach(function (p, i) {
+      var pid = 3 + i * 3, cid = pid + 1, iid = pid + 2;
+      var pw = round(p.pw, 2), ph = round(p.ph, 2);
+      obj(pid, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + pw + ' ' + ph + '] /Resources << /XObject << /Im0 ' + iid + ' 0 R >> >> /Contents ' + cid + ' 0 R >>');
+      // Photo page ke andar bina kheenche (anupat wahi), beech me
+      var r = Math.min(pw / p.w, ph / p.h), dw = round(p.w * r, 2), dh = round(p.h * r, 2);
+      var c = 'q ' + dw + ' 0 0 ' + dh + ' ' + round((pw - dw) / 2, 2) + ' ' + round((ph - dh) / 2, 2) + ' cm /Im0 Do Q';
+      obj(cid, '<< /Length ' + c.length + ' >>\nstream\n' + c + '\nendstream');
+      offs[iid] = len; put(iid + ' 0 obj\n<< /Type /XObject /Subtype /Image /Width ' + p.w + ' /Height ' + p.h + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + p.jpeg.length + ' >>\nstream\n');
+      put(p.jpeg); put('\nendstream\nendobj\n');
+    });
+    var count = 3 + n * 3, xref = len;
+    var x = 'xref\n0 ' + count + '\n0000000000 65535 f \n';
+    for (var j = 1; j < count; j++) x += String(offs[j]).padStart(10, '0') + ' 00000 n \n';
+    put(x + 'trailer\n<< /Size ' + count + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF\n');
+    var out = new Uint8Array(len), o = 0; parts.forEach(function (b) { out.set(b, o); o += b.length; }); return out;
+  }
+  /** Scan wali PDF se JPEG photo (har page ki). Text wali PDF me photo nahi milti. */
+  function pdfJpegs(u8) {
+    var s = ''; for (var i = 0; i < u8.length; i += 65536) s += String.fromCharCode.apply(null, u8.subarray(i, i + 65536));
+    var out = [], re = /\/(DCTDecode)/g, m;
+    var seen = {};
+    while ((m = re.exec(s))) {
+      var st = s.indexOf('stream', m.index);
+      var dictStart = s.lastIndexOf('obj', m.index);
+      if (st < 0 || s.slice(dictStart, m.index).indexOf('/Image') < 0 && s.slice(m.index, st).indexOf('/Image') < 0) continue;
+      var a = st + 6; if (s[a] === '\r') a++; if (s[a] === '\n') a++;
+      var e = s.indexOf('endstream', a); if (e < 0) continue;
+      var soi = s.indexOf('\xFF\xD8', a); var eoi = s.lastIndexOf('\xFF\xD9', e);
+      if (soi < 0 || soi > e || eoi < soi) continue;
+      if (seen[soi]) continue; seen[soi] = 1;
+      out.push(u8.slice(soi, eoi + 2));
+    }
+    return out;
+  }
+
+  var D = { pages: [], name: 'document', out: null };
+  var df = $('#t-pdf');
+  function pageSize(w, h) {
+    // A4 (595×842 pt) me photo poori aaye; "original" me photo ke hisaab se 150 DPI
+    if (df.page.value === 'a4') { var land = w > h, pw = land ? 842 : 595, ph = land ? 595 : 842; return { pw: pw, ph: ph }; }
+    return { pw: w / 150 * 72, ph: h / 150 * 72 };
+  }
+  async function pagesFromFiles(files) {
+    var list = [];
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      if (f.type === 'application/pdf' || /\.pdf$/i.test(f.name)) {
+        var jpgs = pdfJpegs(await bytesOf(f));
+        if (!jpgs.length) throw new Error('"' + f.name + '" me scan/photo nahi mili (text wali PDF). Aisi PDF yahan chhoti nahi hoti.');
+        for (var j = 0; j < jpgs.length; j++) list.push(await createImageBitmap(new Blob([jpgs[j]], { type: 'image/jpeg' })));
+      } else {
+        list.push(await loadImage(f));
+      }
+    }
+    return list;
+  }
+  df.files.addEventListener('change', async function () {
+    var info = $('#d-in'); D.out = null; $('#d-dl').disabled = true; $('#d-out').textContent = '';
+    var files = [].slice.call(df.files.files); if (!files.length) return;
+    info.textContent = 'Padh rahe hain…';
+    try { D.pages = await pagesFromFiles(files); }
+    catch (e) { D.pages = []; info.innerHTML = '<span class="t-err">' + e.message + '</span>'; return; }
+    var total = files.reduce(function (a, f) { return a + f.size; }, 0);
+    D.name = files[0].name.replace(/\.[^.]+$/, '');
+    info.textContent = files.length + ' file · ' + D.pages.length + ' page · abhi ' + kb(total);
+    makeDoc();
+  });
+  ['kb', 'page', 'kbCustom'].forEach(function (n) { df[n].addEventListener('change', makeDoc); });
+  df.kb.addEventListener('change', function () { df.kbCustom.hidden = df.kb.value !== 'custom'; });
+  async function makeDoc() {
+    if (!D.pages.length) return;
+    var target = (df.kb.value === 'custom' ? Number(df.kbCustom.value) : Number(df.kb.value)) || 0;
+    var out = $('#d-out'), btn = $('#d-dl'); btn.disabled = true; out.textContent = 'PDF bana rahe hain…';
+    var overhead = 600 + D.pages.length * 450, area = D.pages.reduce(function (a, b) { return a + b.width * b.height; }, 0);
+    var scale = 1, q = 0.85, pages, size = Infinity, tries = 0;
+    // Bade photo pehle 2000 px tak (PDF ke liye kaafi)
+    var maxSide = Math.max.apply(null, D.pages.map(function (b) { return Math.max(b.width, b.height); }));
+    if (maxSide > 2000) scale = 2000 / maxSide;
+    while (tries++ < 14) {
+      pages = [];
+      for (var i = 0; i < D.pages.length; i++) {
+        var b = D.pages[i], w = Math.max(1, Math.round(b.width * scale)), h = Math.max(1, Math.round(b.height * scale));
+        var cv = draw(b, w, h, 'stretch', '#ffffff');
+        var j = await bytesOf(await canvasBlob(cv, 'image/jpeg', q));
+        var ps = pageSize(b.width, b.height);
+        // A4 par photo fit (beech me), baaki safed
+        pages.push({ jpeg: j, w: w, h: h, pw: ps.pw, ph: ps.ph });
+      }
+      size = pages.reduce(function (a, p) { return a + p.jpeg.length; }, overhead);
+      if (!target || size <= target * 1024) break;
+      if (q > 0.45) q -= 0.1; else scale *= Math.max(0.55, Math.sqrt(target * 1024 / size) * 0.95);
+    }
+    var bytes = makePdf(pages);
+    D.out = new Blob([bytes], { type: 'application/pdf' });
+    var ok = !target || D.out.size <= target * 1024;
+    out.innerHTML = '<b>Nayi PDF:</b> ' + pages.length + ' page · <b>' + kb(D.out.size) + '</b>' + (target ? ' (seema ' + target + ' KB)' : '') +
+      (ok ? '' : '<br><span class="t-err">' + target + ' KB tak nahi ho payi. Bada KB chuniye ya page kam kijiye.</span>') +
+      (scale < 1 ? '<br><small>Photo ' + Math.round(scale * 100) + '% size par, quality ' + Math.round(q * 100) + '%.</small>' : '<br><small>Quality ' + Math.round(q * 100) + '%.</small>');
+    btn.disabled = false;
+  }
+  $('#d-dl').addEventListener('click', function () { if (D.out) download(D.out, D.name + '-' + Math.round(D.out.size / 1024) + 'kb.pdf'); });
+
+  // Enter dabane par form kahin na jaye
+  [pf, df].forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); }); });
+  // Tab: Photo / PDF
+  root.querySelectorAll('[data-ttab]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      root.querySelectorAll('[data-ttab]').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
+      pf.hidden = b.dataset.ttab !== 'photo'; df.hidden = b.dataset.ttab !== 'pdf';
+    });
+  });
+  window.PCCTools = {
+    makePdf: makePdf, pdfJpegs: pdfJpegs, jpegDpi: jpegDpi, pngDpi: pngDpi,
+    lastPhoto: function () { return P.out && P.out.blob; }, lastPdf: function () { return D.out; }
+  };
+})();
+
+// Website ka chat bot: website ke andar hi jawab (PC band ho tab bhi).
+// Sevayein + documents, samay, pata/map, appointment. Jo na samjhe: customer ka sawal (naam + number ke saath)
+// taala-band raaste se dukaan ke WhatsApp par (common.js ka PCC.send).
+(function () {
+  var P = window.PCC; if (!P || !P.C.chat) return;
+  var D = P.C.chat;
+
+  // ---------- samajh ----------
+  var SYN = [
+    [/aadh?aa?r|adhar|aadar|aadhar|आधार/, 'aadhaar'], [/\bpan\b|pancard|पैन/, 'pan'],
+    [/\bdl\b|licen[cs]e|lisens|लाइसेंस|लाइसेन्स|driving|ड्राइविंग/, 'license'], [/learner|\bll\b|लर्नर/, 'learner'],
+    [/\brc\b|ownership|transfer|gaadi|gadi|vahan|वाहन/, 'rc'], [/challan|chalan|चालान/, 'challan'],
+    [/mobile|\bmob\b|number|नंबर|मोबाइल/, 'mobile'], [/\bnaam\b|\bname\b|नाम/, 'name'],
+    [/\bdob\b|janm|birth|tithi|जन्म/, 'birth'], [/biometric|finger|angootha|बायोमेट्रिक/, 'biometric'],
+    [/bank|seeding|\bdbt\b|npci|बैंक/, 'bank'], [/renew|naveeni|रिन्यू/, 'renewal'],
+    [/duplicate|dupli|kho|lost|डुप्लीकेट/, 'duplicate'], [/correction|sudhar|change|badal|update|सुधार/, 'update']
+  ];
+  function tokens(s) {
+    var t = String(s).toLowerCase(), out = {};
+    SYN.forEach(function (x) { if (x[0].test(t)) out[x[1]] = 1; });
+    return out;
+  }
+  var SV = D.services.map(function (s) { return { s: s, t: tokens(s.n) }; });
+  function findServices(text) {
+    var t = tokens(text), best = 0, hits = [];
+    SV.forEach(function (x) {
+      var sc = 0; for (var k in t) if (x.t[k]) sc += (k === 'update' ? 0.5 : 1);
+      // seva ka naam seedha likha ho
+      if (text.toLowerCase().indexOf(x.s.n.toLowerCase()) >= 0) sc += 3;
+      if (sc > best) { best = sc; hits = [x.s]; } else if (sc === best && sc > 0) hits.push(x.s);
+    });
+    return best >= 1 ? hits : [];
+  }
+  var IS = {
+    hello: /^(hi+|hello|helo|hey|namaste|namaskar|ram ram|jai\s*\w+|good\s*(morning|evening|afternoon)|हेलो|नमस्ते|नमस्कार|राम राम)\b/,
+    thanks: /thank|thnx|dhanyavaad|dhanyawad|shukriya|\bok+\b|okay|theek|धन्यवाद|शुक्रिया|ठीक/,
+    howLong: /kitne\s*din|kitna\s*(time|samay)|time\s*lag|kab\s*tak\s*(ban|mil|aa)|कितने\s*दिन|कितना\s*समय/,
+    bye: /\bbye\b|alvida|tata|अलविदा/,
+    timing: /timing|samay|time|kab|khul|band|open|close|baje|holiday|chhutti|sunday|ravivar|समय|खुल|बंद|बजे|छुट्टी/,
+    address: /address|pata|kahan|kaha|location|map|rasta|raasta|kidhar|पता|कहां|कहाँ|लोकेशन|मैप|रास्ता/,
+    appt: /appointment|appoint|\bbook|booking|\bslot|अपॉइंटमेंट|बुक/,
+    docs: /document|docs|kagaz|kaagaz|papers|kya\s*(kya\s*)?(chahiye|lagega|lagta|laana)|dastavej|दस्तावेज|कागज/,
+    list: /service|sewa|seva|kaam|work|list|kya\s*kya|सेवा|सेवाएं|काम/,
+    owner: /owner|pankaj|baat|call|phone|contact|sampark|insaan|human|बात|संपर्क/,
+    rate: /rate|price|fees|fee|charge|kitna\s*(paisa|rupay|lagega)|kharcha|रेट|फीस|कितना/
+  };
+
+  // ---------- khidki ----------
+  var root = document.createElement('div');
+  root.className = 'cb';
+  root.innerHTML = '<button class="cb-fab" type="button" aria-label="Chat kholiye"><span class="cb-ico">💬</span><span class="cb-tip">Sawal poochhiye</span></button>' +
+    '<section class="cb-panel" role="dialog" aria-label="Chat" hidden><header class="cb-head"><div class="cb-av">🤖</div><div><b></b><small>Turant jawab · Online</small></div><button class="cb-x" type="button" aria-label="Band karein">×</button></header>' +
+    '<div class="cb-live" role="status" hidden></div><div class="cb-log" aria-live="polite"></div><form class="cb-in"><input type="text" maxlength="300" placeholder="Apna sawal likhiye…" aria-label="Sawal" autocomplete="off"><button type="submit" aria-label="Bhejein">➤</button></form></section>';
+  document.body.appendChild(root);
+  var fab = root.querySelector('.cb-fab'), panel = root.querySelector('.cb-panel'), log = root.querySelector('.cb-log');
+  var form = root.querySelector('.cb-in'), input = form.querySelector('input');
+  root.querySelector('.cb-head b').textContent = D.name;
+
+  function scroll() { log.scrollTop = log.scrollHeight; }
+  function add(who, text, buttons) {
+    var m = document.createElement('div'); m.className = 'cb-m cb-' + who;
+    String(text).split('\n').forEach(function (line, i) {
+      if (i) m.appendChild(document.createElement('br'));
+      // **mota** likhawat
+      line.split(/(\*[^*]+\*)/).forEach(function (part) {
+        if (/^\*[^*]+\*$/.test(part)) { var b = document.createElement('b'); b.textContent = part.slice(1, -1); m.appendChild(b); }
+        else m.appendChild(document.createTextNode(part));
+      });
+    });
+    log.appendChild(m);
+    if (buttons && buttons.length) {
+      var row = document.createElement('div'); row.className = 'cb-chips';
+      buttons.forEach(function (b) {
+        var el = document.createElement(b.href ? 'a' : 'button');
+        el.className = 'cb-chip' + (b.main ? ' cb-main' : '');
+        el.textContent = b.label;
+        if (b.href) { el.href = b.href; if (/^https?:/.test(b.href)) { el.target = '_blank'; el.rel = 'noopener'; } }
+        else { el.type = 'button'; el.addEventListener('click', function () { if (b.say) add('me', b.say); b.go(); }); }
+        row.appendChild(el);
+      });
+      log.appendChild(row);
+    }
+    scroll();
+  }
+  function bot(text, buttons) { setTimeout(function () { add('bot', text, buttons); }, 280); }
+
+  var page = D.pages || {};
+  function menu() {
+    return [
+      { label: '📋 Sevayein', say: 'Sevayein', go: showList },
+      { label: '🕐 Samay', say: 'Samay', go: showTiming },
+      { label: '📍 Pata / Map', say: 'Pata', go: showAddress },
+      D.formOn ? { label: '🗓️ Appointment', say: 'Appointment', go: function () { showAppt(); } } : null,
+      { label: '💬 Owner se baat', say: 'Owner se baat', go: function () { talkOwner(); } }
+    ].filter(Boolean);
+  }
+  function hello() {
+    bot('Namaste 🙏 Main *' + D.name + '* ka sahayak hoon.\nSeva ka naam likhiye (jaise "PAN card" ya "Aadhaar naam sudhar"), main documents bata dunga. Ya neeche se chuniye:', menu());
+  }
+  function placeOf(label) { return D.places.filter(function (p) { return p.label === label; })[0]; }
+  function showService(s) {
+    var p = placeOf(s.place);
+    var txt = '*' + s.n + '*' + (s.rate ? '\nRate: ' + s.rate : '') +
+      '\n\n📄 Zaroori documents:\n' + (s.docs.length ? s.docs.map(function (d) { return '• ' + d; }).join('\n') : 'Documents ke liye call kijiye.') +
+      (p ? '\n\n📍 Kahan: *' + p.label + '*' + (p.time ? '\n⏰ ' + p.time : '') : '');
+    var b = [];
+    if (D.formOn) b.push({ label: '🗓️ Appointment book karein', main: true, href: page.appointment + '?service=' + encodeURIComponent(s.n) });
+    if (p && p.map) b.push({ label: '📍 Map', href: p.map });
+    b.push({ label: '📋 Aur sevayein', say: 'Aur sevayein', go: showList });
+    bot(txt, b);
+  }
+  function showList() {
+    bot('Hamari sevayein 👇 Jis par jaankari chahiye use dabaiye:', D.services.map(function (s) { return { label: s.n, say: s.n, go: function () { showService(s); } }; }));
+  }
+  function showTiming() {
+    bot('🕐 *Samay*\n' + D.places.filter(function (p) { return p.time; }).map(function (p) { return '\n*' + p.label + '*\n' + p.time; }).join('\n') +
+      '\n\nChhutti ke din pehle call karke pakka kar lijiye: ' + D.mobile, [{ label: '📞 Call', href: 'tel:+91' + D.mobile }, { label: '📍 Pata / Map', say: 'Pata', go: showAddress }]);
+  }
+  function showAddress() {
+    D.places.forEach(function (p, i) {
+      setTimeout(function () {
+        add('bot', '📍 *' + p.label + '*\n' + p.addr + (p.time ? '\n⏰ ' + p.time : ''), p.map ? [{ label: '🗺️ Map kholein', main: true, href: p.map }] : null);
+      }, 300 + i * 350);
+    });
+  }
+  function showAppt(s) {
+    bot(D.formOn ? 'Appointment ka form khol raha hoon 🗓️\nNaam, number, kaam, din aur samay chuniye. Confirm WhatsApp par aayega.' : 'Appointment ke liye call ya WhatsApp kijiye.',
+      [D.formOn ? { label: '🗓️ Form kholein', main: true, href: page.appointment + (s ? '?service=' + encodeURIComponent(s.n) : '') } : null,
+        { label: '📞 Call', href: 'tel:+91' + D.mobile }].filter(Boolean));
+  }
+
+  // ---------- owner ko sawal (naam + number) ----------
+  var flow = null; // { step: 'q'|'name'|'phone', q, name }
+  function askOwner(q) {
+    if (!P.canSend) { bot('Seedhe baat ke liye WhatsApp ya call kijiye 🙏', [{ label: '💬 WhatsApp', main: true, href: P.waLink(q || 'Namaste') }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]); return; }
+    flow = q ? { step: 'name', q: q } : { step: 'q' };
+    bot(q ? 'Theek hai, main ye sawal *' + D.owner + '* ko bhej deta hoon. Jawab aapke WhatsApp par aayega.\n\nAapka *naam* likhiye:' : 'Apna sawal likhiye, main *' + D.owner + '* ko bhej dunga:');
+    input.focus();
+  }
+  async function flowStep(text) {
+    if (flow.step === 'q') { flow.q = text; flow.step = 'name'; bot('Aapka *naam* likhiye:'); return; }
+    if (flow.step === 'name') { flow.name = text.slice(0, 60); flow.step = 'phone'; bot('Aapka *mobile number* (isi par WhatsApp jawab aayega):'); return; }
+    var ph = P.phoneOk(text);
+    if (!ph) { bot('Ye number sahi nahi laga. 10 ank ka mobile number likhiye:'); return; }
+    var f = { type: 'enquiry', name: flow.name, phone: ph, text: flow.q, service: '' };
+    var q = flow.q; flow = null;
+    add('bot', 'Bhej raha hoon… ⏳');
+    var ok = false;
+    try { ok = await P.send(f); } catch (e) { ok = false; }
+    if (ok) bot('✅ Aapka sawal bhej diya! Jawab aapke WhatsApp (' + ph + ') par aayega 🙏', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    else bot('Abhi nahi bhej paya. WhatsApp se seedhe bhejiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, ' + q + '\nNaam: ' + f.name) }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
+  }
+
+  // ---------- live: owner se seedhi baat (60 second ki ulti ginti) ----------
+  var LIVE_SECS = window.__cbLiveSecs || 60; // owner ke jawab ka intezaar
+  var live = null; // { sid, rt, key, raw, left, timer, joined, ended, es, name, phone, offlineSent }
+  var bar = root.querySelector('.cb-live');
+  function hex(n) { var a = crypto.getRandomValues(new Uint8Array(n)); return Array.prototype.map.call(a, function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }
+  function code() { var A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = crypto.getRandomValues(new Uint8Array(5)), s = ''; for (var i = 0; i < 5; i++) s += A[a[i] % A.length]; return s; }
+  function setBar(kind, html) { bar.hidden = false; bar.className = 'cb-live cb-' + kind; bar.innerHTML = html; }
+  function ownerMsg(text) {
+    var m = document.createElement('div'); m.className = 'cb-m cb-owner';
+    var who = document.createElement('small'); who.textContent = '👤 ' + D.owner; m.appendChild(who);
+    String(text).split('\n').forEach(function (line) { m.appendChild(document.createElement('br')); m.appendChild(document.createTextNode(line)); });
+    log.appendChild(m); scroll();
+  }
+  async function decrypt(msg) {
+    var o = JSON.parse(msg);
+    var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(o.iv)) }, live.key, P.unb64(o.d));
+    return JSON.parse(new TextDecoder().decode(data));
+  }
+  function tick() {
+    if (!live || live.joined || live.ended) return;
+    live.left -= 1;
+    if (live.left > 0) {
+      setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + live.left + 's</span><i style="width:' + (live.left / LIVE_SECS * 100) + '%"></i>');
+      return;
+    }
+    // 60 second me jawab nahi: chat band (owner baad me jawab de to customer ke WhatsApp par jayega)
+    clearInterval(live.timer);
+    live.ended = true;
+    try { live.es.close(); } catch (e) { /* chhodo */ }
+    setBar('off', '🔴 Owner offline · chat band');
+    bot('😔 *' + D.owner + '* abhi offline hain aur abhi koi *customer service online nahi* hai.\nYe chat band ki ja rahi hai. Ve aapko aapke *WhatsApp par reply ya call* karenge.');
+    if (live.phone) { offline(); return; }
+    flow = { step: 'offName' };
+    setTimeout(function () { bot('Apna *naam* likhiye:'); input.focus(); }, 600);
+  }
+  async function offline() {
+    if (!live || live.offlineSent) return;
+    live.offlineSent = true;
+    var ok = false;
+    try { ok = await P.sendChat({ sid: live.sid, offline: true, name: live.name || '', phone: live.phone || '' }); } catch (e) { ok = false; }
+    if (ok) bot('✅ Aapka naam-number *' + D.owner + '* tak pahunch gaya. Ve jaldi aapke WhatsApp (' + live.phone + ') par reply ya call karenge 🙏\n📩 Aapke number par SMS aur WhatsApp se website, pata aur samay bhej diya hai.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    else bot('Abhi nahi bhej paya. WhatsApp ya call kijiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, mujhe baat karni hai') }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
+  }
+  async function startLive(firstText) {
+    if (!P.canSend || !P.relayOrigin || !window.EventSource) { askOwner(firstText); return; }
+    if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
+    var raw = crypto.getRandomValues(new Uint8Array(32));
+    live = { sid: code(), rt: 'pccr-' + hex(12), raw: raw, left: LIVE_SECS, joined: false, ended: false, name: who.name, phone: who.phone };
+    live.key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
+    // Owner ka jawab isi raaste aata hai (sirf is browser ki chaabi se khulta hai)
+    live.es = new EventSource(P.relayOrigin + '/' + live.rt + '/sse');
+    live.es.onmessage = async function (e) {
+      var m; try { m = JSON.parse(e.data); } catch (err) { return; }
+      if (m.event && m.event !== 'message') return;
+      var o; try { o = await decrypt(m.message); } catch (err) { return; }
+      if (!live.joined) { live.joined = true; clearInterval(live.timer); }
+      if (o.end) { live.ended = true; setBar('end', '✅ Chat band'); ownerMsg(o.text); live.es.close(); return; }
+      setBar('on', '🟢 <b>' + D.owner + '</b> jud gaye · baat kijiye');
+      ownerMsg(o.text);
+    };
+    setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + LIVE_SECS + 's</span><i style="width:100%"></i>');
+    live.timer = setInterval(tick, 1000);
+    var ok = await P.sendChat({ sid: live.sid, rt: live.rt, k: P.b64(raw), name: live.name, phone: live.phone, text: firstText || '(Customer aapse baat karna chahta hai)' });
+    if (!ok) { clearInterval(live.timer); live.ended = true; bar.hidden = true; askOwner(firstText); return; }
+    bot('📲 Aapka naam-number *' + D.owner + '* ko WhatsApp par bhej diya hai, unhe bula rahe hain.\nTab tak apna sawal likhiye 👇');
+    input.focus();
+  }
+  async function liveSay(text) {
+    var ph = P.phoneOk(text);
+    if (ph) live.phone = ph;
+    await P.sendChat({ sid: live.sid, text: text, name: live.name, phone: live.phone });
+  }
+  // Owner se baat: pehle naam, phir WhatsApp number (ek-ek karke), phir jodna
+  var who = { name: '', phone: '' };
+  function talkOwner(firstText) {
+    if (live && !live.ended) { bot('Aap pehle se ' + D.owner + ' se jude hain. Apna sandesh likhiye 🙂'); return; }
+    if (!P.canSend || !P.relayOrigin) { askOwner(firstText); return; }
+    // Har baar pehle naam, phir number (purana yaad nahi rakhte), uske baad hi owner ko suchna aur ulti ginti
+    who = { name: '', phone: '' };
+    bar.hidden = true;
+    flow = { step: 'lvName', q: firstText || '' };
+    bot('*' + D.owner + '* se jodne se pehle 🙏\nAapka *naam* likhiye:');
+    input.focus();
+  }
+
+  // ---------- jawab ----------
+  function answer(text) {
+    var t = text.toLowerCase();
+    if (flow && flow.step === 'lvName') {
+      var nm = text.replace(/\s+/g, ' ').trim();
+      if (!/^[\p{L}\p{M} .'-]{2,40}$/u.test(nm)) { bot('Kripya sirf apna *naam* likhiye (jaise: Ramesh Kumar):'); return; }
+      who.name = nm; flow.step = 'lvPhone';
+      bot('Dhanyavaad *' + nm + '* ji 🙏\nAb aapka *WhatsApp number* likhiye (10 ank):');
+      return;
+    }
+    if (flow && flow.step === 'lvPhone') {
+      var p2 = P.phoneOk(text);
+      if (!p2) { bot('Ye number sahi nahi laga. 10 ank ka *WhatsApp number* likhiye:'); return; }
+      who.phone = p2;
+      var q = flow.q; flow = null;
+      bot('✅ Shukriya! Ab *' + D.owner + '* se jod raha hoon…');
+      startLive(q);
+      return;
+    }
+    if (flow && flow.step === 'offName') { live.name = text.slice(0, 40); flow.step = 'offPhone'; bot('Aapka *WhatsApp number* (10 ank):'); return; }
+    if (flow && flow.step === 'offPhone') {
+      var ph = P.phoneOk(text);
+      if (!ph) { bot('Ye number sahi nahi laga. 10 ank ka mobile number likhiye:'); return; }
+      live.phone = ph; flow = null; offline(); return;
+    }
+    if (flow) { flowStep(text); return; }
+    // Owner se baat chal rahi hai: sab owner tak
+    if (live && !live.ended && (live.joined || live.left > 0)) { liveSay(text); return; }
+    var hits = findServices(text);
+    if (IS.appt.test(t) && !(hits.length === 1 && IS.docs.test(t))) { showAppt(hits.length === 1 ? hits[0] : null); return; }
+    if (IS.howLong.test(t)) {
+      bot('Kaam me kitna samay lagega, ye kaam aur sarkari portal par nirbhar karta hai. Main ye sawal *' + D.owner + '* se poochh leta hoon:',
+        [{ label: '✅ Haan, poochhiye', main: true, say: 'Haan, poochhiye', go: function () { askOwner(text); } }].concat(hits.length === 1 ? [{ label: '📄 ' + hits[0].n + ' ke documents', go: function () { showService(hits[0]); } }] : []));
+      return;
+    }
+    if (hits.length === 1) { showService(hits[0]); return; }
+    if (hits.length > 1) { bot('Inme se kaun si seva? 👇', hits.slice(0, 8).map(function (s) { return { label: s.n, say: s.n, go: function () { showService(s); } }; })); return; }
+    if (IS.timing.test(t)) { showTiming(); return; }
+    if (IS.address.test(t)) { showAddress(); return; }
+    if (IS.docs.test(t) || IS.list.test(t)) { showList(); return; }
+    if (IS.rate.test(t)) { bot('Rate kaam ke hisaab se alag hota hai. Seva chuniye ya seedhe poochh lijiye:', [{ label: '📋 Sevayein', say: 'Sevayein', go: showList }, { label: '💬 Owner se poochhein', say: 'Owner se poochhein', go: function () { askOwner(text); } }]); return; }
+    if (IS.owner.test(t)) { talkOwner(); return; }
+    if (IS.hello.test(t)) { hello(); return; }
+    if (IS.bye.test(t) || IS.thanks.test(t)) { bot('Dhanyavaad 🙏 Kuch aur poochhna ho to likhiye.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]); return; }
+    bot('Is sawal ka jawab mere paas nahi hai 🙏\nKya main ise *' + D.owner + '* ko bhej doon? Jawab aapke WhatsApp par aayega.',
+      [{ label: '💬 Owner se abhi baat', main: true, say: 'Owner se abhi baat', go: function () { talkOwner(text); } }, { label: '✅ Sawal bhej dijiye', say: 'Sawal bhej dijiye', go: function () { askOwner(text); } }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim(); if (!v) return;
+    input.value = ''; add('me', v); answer(v);
+  });
+  var opened = false;
+  function open() {
+    panel.hidden = false; root.classList.add('cb-open');
+    if (!opened) { opened = true; hello(); }
+    setTimeout(function () { input.focus({ preventScroll: true }); }, 50);
+  }
+  function close() { panel.hidden = true; root.classList.remove('cb-open'); }
+  fab.addEventListener('click', function () { panel.hidden ? open() : close(); });
+  root.querySelector('.cb-x').addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) close(); });
+  // Pehli baar aane wale ko 6 second baad chhota sa ishara
+  try { if (!sessionStorage.getItem('cbTip')) { setTimeout(function () { root.classList.add('cb-hint'); }, 6000); sessionStorage.setItem('cbTip', '1'); } } catch (e) { /* chhodo */ }
+  window.PCCChat = { open: open, answer: function (t) { open(); add('me', t); answer(t); } };
+})();
+</script>
+</body>
+</html>
