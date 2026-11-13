@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DM4+zO133nCJ2xS+tHKQtLuHwMckIUwBm4xHZVNgzbA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>PANKAJ CHOICE CENTER | CSC, Aadhaar, PAN, Banking, RTO seva - Khadgawan, MCB</title>
 <meta name="description" content="PANKAJ CHOICE CENTER: Aadhaar Mobile Number Update, Aadhaar Name Correction, PAN Card, Aadhaar Date of Birth Correction, Aadhaar Biometric Update, Aadhaar Seeding in Bank Account (DBT / NPCI). Aadhaar Center: Gram Panchayat Bhawan ke paas, PHC Ratanpur, Khadgawan, MCB, Chhattisgarh 497449 | CSC &amp; Ba">
 <meta property="og:type" content="website">
@@ -487,9 +489,20 @@
     if (!C.relay) return Promise.resolve(false);
     return fetch(C.relay, { method: 'POST', body: body }).then(function (r) { return r.ok; }, function () { return false; });
   }
+  var loadedAt = Date.now();
+  /** Robot / baar-baar bhejna rokna: page khulte hi (3 second me) nahi, ek browser se ghante me 4 tak */
+  function allowed() {
+    if (Date.now() - loadedAt < 3000) return false;
+    var list = [];
+    try { list = JSON.parse(localStorage.getItem('pccSent') || '[]').filter(function (t) { return Date.now() - t < 3600000; }); } catch (e) { list = []; }
+    if (list.length >= 4) return false;
+    list.push(Date.now());
+    try { localStorage.setItem('pccSent', JSON.stringify(list)); } catch (e) { /* chhodo */ }
+    return true;
+  }
   /** Sandesh bhejo (rid, ts apne aap). true = kam se kam ek raasta chala */
   async function send(f) {
-    if (!C.publicKey) return false;
+    if (!C.publicKey || !allowed()) return false;
     f.rid = f.rid || rid(); f.ts = Date.now();
     var body = await seal(f);
     var res = await Promise.all([toRelay(body), toGoogle(body)]);
