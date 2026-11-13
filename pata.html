@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-WnGjZnJoDEDe5quxrBYFEXpz/qHIhntFgOo43toEBt4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-JvI6YoGvx/5I8FD3opa2dcpLEhCoMSNEOFOBeVlkYi8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Pata &amp; Samay | PANKAJ CHOICE CENTER</title>
 <meta name="description" content="Pata &amp; Samay: Dono jagah ka pata, khulne ka samay aur map. PANKAJ CHOICE CENTER, 📞 8770882942">
@@ -568,9 +568,12 @@
       setBar('wait', '⏳ <b>' + D.owner + '</b> ko bula rahe hain… <span class="cb-count">' + live.left + 's</span><i style="width:' + (live.left / LIVE_SECS * 100) + '%"></i>');
       return;
     }
+    // 60 second me jawab nahi: chat band (owner baad me jawab de to customer ke WhatsApp par jayega)
     clearInterval(live.timer);
-    setBar('off', '🔴 Owner abhi offline hain');
-    bot('😔 *' + D.owner + '* abhi offline hain.\nVe aapko aapke *WhatsApp par reply ya call* karenge.');
+    live.ended = true;
+    try { live.es.close(); } catch (e) { /* chhodo */ }
+    setBar('off', '🔴 Owner offline · chat band');
+    bot('😔 *' + D.owner + '* abhi offline hain aur abhi koi *customer service online nahi* hai.\nYe chat band ki ja rahi hai. Ve aapko aapke *WhatsApp par reply ya call* karenge.');
     if (live.phone) { offline(); return; }
     flow = { step: 'offName' };
     setTimeout(function () { bot('Apna *naam* likhiye:'); input.focus(); }, 600);
@@ -580,7 +583,7 @@
     live.offlineSent = true;
     var ok = false;
     try { ok = await P.sendChat({ sid: live.sid, offline: true, name: live.name || '', phone: live.phone || '' }); } catch (e) { ok = false; }
-    if (ok) bot('✅ Aapka naam-number *' + D.owner + '* tak pahunch gaya. Ve jaldi aapke WhatsApp (' + live.phone + ') par reply ya call karenge 🙏', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    if (ok) bot('✅ Aapka naam-number *' + D.owner + '* tak pahunch gaya. Ve jaldi aapke WhatsApp (' + live.phone + ') par reply ya call karenge 🙏\n📩 Aapke number par SMS aur WhatsApp se website, pata aur samay bhej diya hai.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
     else bot('Abhi nahi bhej paya. WhatsApp ya call kijiye:', [{ label: '💬 WhatsApp', main: true, href: P.waLink('Namaste, mujhe baat karni hai') }, { label: '📞 Call', href: 'tel:+91' + D.mobile }]);
   }
   async function startLive(firstText) {
