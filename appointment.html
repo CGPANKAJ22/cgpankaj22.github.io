@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-tSW/vt6dgbsgZ1IKOWDnFKkkqZLETItErraxgZenQ9o='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-OeskZ2el4aSfij3wzawkt0D7MGXiZ7uycuKwl8OhOQA='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
@@ -218,6 +218,10 @@
   .cb-ico { font-size: 28px; line-height: 1; }
   .cb-tip { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 7px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; }
   .cb-hint:not(.cb-open) .cb-tip { opacity: 1; }
+  .cb-visits { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: #0b2a86; color: #fff; padding: 7px 12px; border-radius: 12px; font-weight: 600; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: var(--shadow); }
+  .cb-visits[hidden] { display: none; }
+  .cb-fab:hover .cb-visits, .cb-fab:focus-visible .cb-visits { opacity: 1; }
+  .cb-fab:hover .cb-tip, .cb-fab:focus-visible .cb-tip { opacity: 0; }
   .cb-open .cb-fab { display: none; }
   .cb-panel { padding: 0; margin: 0; position: fixed; right: 18px; bottom: 18px; width: 370px; height: min(580px, calc(100vh - 36px)); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 50px rgba(15, 29, 61, .25); display: flex; flex-direction: column; overflow: hidden; }
   .cb-panel[hidden] { display: none; }
@@ -544,8 +548,11 @@
   fetch(url, { credentials: 'omit', referrerPolicy: 'no-referrer' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
     if (!j || typeof j.value !== 'number') return;
     try { sessionStorage.setItem('pcc-visit', '1'); } catch (e) { /* chhodo */ }
-    el.querySelector('b').textContent = (base + j.value).toLocaleString('en-IN');
+    var n = (base + j.value).toLocaleString('en-IN');
+    el.querySelector('b').textContent = n;
     el.hidden = false;
+    var cv = document.querySelector('.cb-visits'); // chat button ke bagal me (mouse le jaane par)
+    if (cv) { cv.querySelector('b').textContent = n; cv.hidden = false; }
   }).catch(function () { /* counter na chale to chhupa hi rahe */ });
 })();
 // Suchna ki date: "Aaj / Kal / 3 din pehle" aur 7 din tak NEW (dekhne wale ke din ke hisaab se)
@@ -766,11 +773,14 @@
   // ---------- khidki ----------
   var root = document.createElement('div');
   root.className = 'cb';
-  root.innerHTML = '<button class="cb-fab" type="button" aria-label="Chat kholiye"><span class="cb-ico">💬</span><span class="cb-tip">Sawal poochhiye</span></button>' +
+  root.innerHTML = '<button class="cb-fab" type="button" aria-label="Chat kholiye"><span class="cb-ico">💬</span><span class="cb-tip">Sawal poochhiye</span><span class="cb-visits" hidden>👁️ <b></b> visits</span></button>' +
     '<section class="cb-panel" role="dialog" aria-label="Chat" hidden><header class="cb-head"><div class="cb-av">🤖</div><div><b></b><small>Turant jawab · Online</small></div><button class="cb-x" type="button" aria-label="Band karein">×</button></header>' +
     '<div class="cb-live" role="status" hidden></div><div class="cb-log" aria-live="polite"></div><form class="cb-in"><input type="text" maxlength="300" placeholder="Apna sawal likhiye…" aria-label="Sawal" autocomplete="off"><button type="submit" aria-label="Bhejein">➤</button></form></section>';
   document.body.appendChild(root);
-  var fab = root.querySelector('.cb-fab'), panel = root.querySelector('.cb-panel'), log = root.querySelector('.cb-log');
+  // Visit ginti chat button par mouse le jaane par (common.js bharta hai; pehle bhar chuka ho to yahan se)
+  var foot = document.querySelector('.visits[data-ns]:not([hidden]) b');
+  if (foot) { var cv = root.querySelector('.cb-visits'); cv.querySelector('b').textContent = foot.textContent; cv.hidden = false; }
+  var fab =root.querySelector('.cb-fab'), panel = root.querySelector('.cb-panel'), log = root.querySelector('.cb-log');
   var form = root.querySelector('.cb-in'), input = form.querySelector('input');
   root.querySelector('.cb-head b').textContent = D.name;
 
