@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-K33Gxv9FK0apa7oequLFByZ1QN/p5kgqFNduPTNV/YI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-tvA6CxiDtz8wu9bJ0ULHMcYlq1QlWn4cW5NUuJcvNFU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>WhatsApp Seva | PANKAJ CHOICE CENTER</title>
@@ -499,6 +499,7 @@
   <div class="wrap f-bottom">
     <span>© <span id="yr">2026</span> PANKAJ CHOICE CENTER · Khadgawan, MCB / Jilda, Koriya</span>
     <span>🔒 Koi cookie ya ad-tracking nahi ·form ke sandesh taala-band (encrypted)</span>
+    <span class="visits" data-ns="pcc-cgpankaj22-cgpankaj22-github-io" data-base="10000" hidden>👁️ <b>10,000</b> visits</span>
     <div class="credit">Developed by Pankaj Jaiswal · <a href="tel:+918770882942">8770882942</a> · Using AI 🤖</div>
   </div>
 </footer>
@@ -526,6 +527,20 @@
     console.log('%c⚠️ Ruko!', 'color:#c0392b;font-size:28px;font-weight:800');
     console.log('%cYahan koi bhi code paste na karein. Koi aisa karne ko kahe to wo dhokha hai.', 'font-size:15px');
   } catch (e) { /* chhodo */ }
+})();
+// Visit counter: ek session (tab) me ek hi baar +1 (refresh se nahi badhta); dikhao base + asli visit. Cookie nahi.
+(function () {
+  var el = document.querySelector('.visits[data-ns]');
+  if (!el || !window.fetch) return;
+  var ns = el.getAttribute('data-ns'), base = Number(el.getAttribute('data-base')) || 0, counted = false;
+  try { counted = sessionStorage.getItem('pcc-visit') === '1'; } catch (e) { counted = true; }
+  var url = 'https://abacus.jasoncameron.dev/' + (counted ? 'get' : 'hit') + '/' + encodeURIComponent(ns) + '/visits';
+  fetch(url, { credentials: 'omit', referrerPolicy: 'no-referrer' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (!j || typeof j.value !== 'number') return;
+    try { sessionStorage.setItem('pcc-visit', '1'); } catch (e) { /* chhodo */ }
+    el.querySelector('b').textContent = (base + j.value).toLocaleString('en-IN');
+    el.hidden = false;
+  }).catch(function () { /* counter na chale to chhupa hi rahe */ });
 })();
 // Suchna ki date: "Aaj / Kal / 3 din pehle" aur 7 din tak NEW (dekhne wale ke din ke hisaab se)
 (function () {
