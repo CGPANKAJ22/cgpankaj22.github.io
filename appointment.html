@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-FZt12tzy/tX3PxkA2FtNIXf8InVWwURCZCgLKGXW1E8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-5RgYprdZ1dxgzfkAkzAeK4x8ztpKW6GEBeUX6JCjntc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
@@ -822,6 +822,8 @@
       { label: '🕐 Samay', say: 'Samay', go: showTiming },
       { label: '📍 Pata / Map', say: 'Pata', go: showAddress },
       D.formOn ? { label: '🗓️ Appointment', say: 'Appointment', go: function () { showAppt(); } } : null,
+      { label: '🪪 Aadhaar Status', say: 'Aadhaar Status', go: function () { askAadhaarNo(); } },
+      { label: '💳 PAN Card Status', say: 'PAN Card Status', go: showPanStatus },
       { label: '💬 Owner se baat', say: 'Owner se baat', go: function () { talkOwner(); } }
     ].filter(Boolean);
   }
@@ -992,6 +994,18 @@
     if (!ok && !st.done) { finish(); fallback(); }
   }
 
+  // Menu ke button: Aadhaar ka number poochho (agla sandesh number maana jayega)
+  function askAadhaarNo() {
+    flow = { step: 'aadhaarNo' };
+    bot('🪪 Aadhaar ka *Enrolment / Update number* (EID, SRN ya URN) likhiye.\nJaise: 1234/12345/12345 ya slip par chhapa 28 ank ka number.');
+    input.focus();
+  }
+  // PAN: UTI site CAPTCHA maangti hai, isliye WhatsApp par (bot wahan CAPTCHA ki photo bhejta hai)
+  function showPanStatus() {
+    bot('💳 *PAN Card Status*\nWhatsApp par yeh bhejiye:\n▪️ *pan status* + coupon / application number\n▪️ aavedak ki *janam tithi*\n\nJaise: _pan status UTI000123456789 15/08/1995_\n\nBot UTI site se ek CAPTCHA photo bhejega, uske akshar likhte hi status aa jayega. NSDL (15 ank) wale number ka status hum dekh kar batate hain.',
+      [{ label: '💬 WhatsApp par bhejein', main: true, href: P.waLink('pan status ') }, { label: '🔎 UTI site', href: 'https://www.trackpan.utiitsl.com/PANONLINE/' }, { label: '🔎 NSDL site', href: 'https://tin.tin.proteantech.in/pantan/StatusTrack.html' }]);
+  }
+
   // Owner se baat: pehle naam, phir WhatsApp number (ek-ek karke), phir jodna
   var who = { name: '', phone: '' };
   function talkOwner(firstText) {
@@ -1008,6 +1022,13 @@
   // ---------- jawab ----------
   function answer(text) {
     var t = text.toLowerCase();
+    if (flow && flow.step === 'aadhaarNo') {
+      flow = null;
+      var an0 = aadhaarNo('aadhaar ' + text);
+      if (an0) { askStatus(an0); return; }
+      bot('Yeh Aadhaar ka enrolment / update number nahi laga 🙏', [{ label: '🔁 Dobara likhein', main: true, say: 'Aadhaar Status', go: askAadhaarNo }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      return;
+    }
     if (flow && flow.step === 'lvName') {
       var nm = text.replace(/\s+/g, ' ').trim();
       if (!/^[\p{L}\p{M} .'-]{2,40}$/u.test(nm)) { bot('Kripya sirf apna *naam* likhiye (jaise: Ramesh Kumar):'); return; }
