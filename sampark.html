@@ -218,10 +218,10 @@
   .cb-ico { font-size: 28px; line-height: 1; }
   .cb-tip { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 7px 12px; border-radius: 12px; font-weight: 700; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; }
   .cb-hint:not(.cb-open) .cb-tip { opacity: 1; }
-  .cb-visits { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: #0b2a86; color: #fff; padding: 7px 12px; border-radius: 12px; font-weight: 600; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: var(--shadow); }
+  .cb-visits { position: absolute; right: 70px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: #0b2a86; color: #fff; padding: 7px 12px; border-radius: 12px; font-weight: 600; font-size: 13px; pointer-events: none; box-shadow: var(--shadow); }
   .cb-visits[hidden] { display: none; }
-  .cb-fab:hover .cb-visits, .cb-fab:focus-visible .cb-visits { opacity: 1; }
-  .cb-fab:hover .cb-tip, .cb-fab:focus-visible .cb-tip { opacity: 0; }
+  /* Visit ginti hamesha button ke bagal me; "Sawal poochhiye" tab button ke upar */
+  .cb-fab:has(.cb-visits:not([hidden])) .cb-tip { top: auto; bottom: 68px; right: 0; transform: none; }
   .cb-open .cb-fab { display: none; }
   .cb-panel { padding: 0; margin: 0; position: fixed; right: 18px; bottom: 18px; width: 370px; height: min(580px, calc(100vh - 36px)); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 50px rgba(15, 29, 61, .25); display: flex; flex-direction: column; overflow: hidden; }
   .cb-panel[hidden] { display: none; }
