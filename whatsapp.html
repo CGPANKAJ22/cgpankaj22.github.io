@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-tvA6CxiDtz8wu9bJ0ULHMcYlq1QlWn4cW5NUuJcvNFU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-Dbs/4IjpMH0qZE4XDLihzG/C4nDbXBXbgauMYiYcB5A='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>WhatsApp Seva | PANKAJ CHOICE CENTER</title>
@@ -700,7 +700,7 @@
         var el = document.createElement(b.href ? 'a' : 'button');
         el.className = 'cb-chip' + (b.main ? ' cb-main' : '');
         el.textContent = b.label;
-        if (b.href) { el.href = b.href; if (/^https?:/.test(b.href)) { el.target = '_blank'; el.rel = 'noopener'; } }
+        if (b.href) { el.href = b.href; if (/^https?:/.test(b.href)) { el.target = '_blank'; el.rel = 'noopener noreferrer'; } }
         else { el.type = 'button'; el.addEventListener('click', function () { if (b.say) add('me', b.say); b.go(); }); }
         row.appendChild(el);
       });
@@ -849,6 +849,44 @@
     if (ph) live.phone = ph;
     await P.sendChat({ sid: live.sid, text: text, name: live.name, phone: live.phone });
   }
+  // ---------- Aadhaar status: number dukaan ke bot tak (taala-band), bot UIDAI se la kar yahin bhejta hai ----------
+  var AADHAAR_RX = /aadh?aa?r|adhar|aadar|आधार|uidai/i;
+  function aadhaarNo(text) {
+    var t = String(text).replace(/[०-९]/g, function (d) { return String(d.charCodeAt(0) - 0x966); });
+    var m = t.match(/(?:^|[^A-Za-z0-9])([A-Za-z]{0,3})\s*(\d{12,14})[\s\/-]?((?:19|20)\d{12})(?!\d)/);
+    if (m) return (m[1] + m[2] + m[3]).toUpperCase();
+    if (!AADHAAR_RX.test(t)) return '';
+    m = t.match(/(?:^|[^A-Za-z0-9])(\d{4}\/\d{5}\/\d{5})(?!\d)/);
+    if (m) return m[1];
+    m = t.match(/(?:^|[^A-Za-z0-9\/])([A-Za-z]{0,3}\d{12,30})(?![A-Za-z0-9])/);
+    return m && !/^\d{12}$/.test(m[1]) ? m[1].toUpperCase() : '';
+  }
+  var ST_SECS = 75;
+  async function askStatus(num) {
+    function fallback() {
+      bot('UIDAI se abhi jawab nahi aaya 🙏 Khud dekhiye ya WhatsApp par number bhejiye, bot wahan bata dega:',
+        [{ label: '💬 WhatsApp par bhejein', main: true, href: P.waLink('Aadhaar status ' + num) }, { label: '🔎 UIDAI par dekhein', href: 'https://myaadhaar.uidai.gov.in/CheckAadhaarStatus/en' }]);
+    }
+    if (!P.canSend || !P.relayOrigin || !window.EventSource) { fallback(); return; }
+    var raw = crypto.getRandomValues(new Uint8Array(32));
+    var st = { sid: code(), rt: 'pccr-' + hex(12), done: false };
+    var key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
+    var es = new EventSource(P.relayOrigin + '/' + st.rt + '/sse');
+    function finish() { st.done = true; clearTimeout(st.timer); try { es.close(); } catch (e) { /* chhodo */ } bar.hidden = true; }
+    st.timer = setTimeout(function () { if (st.done) return; finish(); fallback(); }, ST_SECS * 1000);
+    es.onmessage = async function (e) {
+      var m; try { m = JSON.parse(e.data); } catch (err) { return; }
+      if ((m.event && m.event !== 'message') || st.done) return;
+      var o; try { var x = JSON.parse(m.message); var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(x.iv)) }, key, P.unb64(x.d)); o = JSON.parse(new TextDecoder().decode(data)); } catch (err) { return; }
+      finish();
+      bot(String(o.text || '').replace(/(^|\n)_([^_\n]+)_(?=\n|$)/g, '$1$2'), [{ label: '🏠 Menu', say: 'Menu', go: hello }]);
+    };
+    setBar('wait', '🔎 UIDAI se Aadhaar status dekh rahe hain… (1 minute tak)');
+    bot('🔎 Number mil gaya: *' + num + '*\nUIDAI se status dekh rahe hain, thoda rukiye…');
+    var ok = await P.sendChat({ sid: st.sid, rt: st.rt, k: P.b64(raw), text: num, status: 'aadhaar' });
+    if (!ok && !st.done) { finish(); fallback(); }
+  }
+
   // Owner se baat: pehle naam, phir WhatsApp number (ek-ek karke), phir jodna
   var who = { name: '', phone: '' };
   function talkOwner(firstText) {
@@ -890,6 +928,9 @@
     if (flow) { flowStep(text); return; }
     // Owner se baat chal rahi hai: sab owner tak
     if (live && !live.ended && (live.joined || live.left > 0)) { liveSay(text); return; }
+    // Aadhaar ka application number (EID/SRN/URN): UIDAI se status
+    var an = aadhaarNo(text);
+    if (an) { askStatus(an); return; }
     var hits = findServices(text);
     if (IS.appt.test(t) && !(hits.length === 1 && IS.docs.test(t))) { showAppt(hits.length === 1 ? hits[0] : null); return; }
     if (IS.howLong.test(t)) {
