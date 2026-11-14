@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-SljGLZL7yh+/tfH2RwRUJ7XEdt1VXPhBr61vjCMM4sU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-wpkALDh173EeekssOtpKuUmp3AoRhZQ3AEjmF9reYg4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
@@ -1072,7 +1072,7 @@
     if (!ok && !pan.done) { pan.finish(); panOnWhatsApp(); }
   }
   function panOnWhatsApp() {
-    bot('💳 *PAN Card Status*\nWhatsApp par yeh bhejiye:\n▪️ *pan status* + coupon / application number\n▪️ aavedak ki *janam tithi*\n\nJaise: pan status UTI000123456789 15/08/1995\n\nBot UTI site se ek CAPTCHA photo bhejega, uske akshar likhte hi status aa jayega. NSDL (88 se shuru 15 ank) wale number ka status hum dekh kar batate hain.',
+    bot('💳 *PAN Card Status*\nWhatsApp par yeh bhejiye:\n▪️ *pan status* + coupon / application number\n▪️ aavedak ki *janam tithi*\n\nJaise: pan status UTI000123456789 15/08/1995\n\nBot UTI site se ek CAPTCHA photo bhejega, uske akshar likhte hi status aa jayega. NSDL (88 se shuru 15 ank) wale number ka status NSDL ki website se milega.',
       [{ label: '💬 WhatsApp par bhejein', main: true, href: P.waLink('pan status ') }, { label: '🔎 UTI site', href: 'https://www.trackpan.utiitsl.com/PANONLINE/' }, { label: '🔎 NSDL site', href: 'https://tin.tin.proteantech.in/pantan/StatusTrack.html' }]);
   }
 
@@ -1097,8 +1097,8 @@
       if (!PAN_RX.test(pn)) { bot('Yeh number sahi nahi laga. UTI ka *Coupon / Application number* ya *PAN number* likhiye:'); return; }
       if (/^88\d{13}$/.test(pn)) {
         flow = null;
-        bot('Yeh *NSDL (Protean)* ka number hai. Unki site par Google ka "I\'m not a robot" aata hai, isliye iska status hum khud dekh kar batate hain 🙏',
-          [{ label: '💬 WhatsApp par bhejein', main: true, href: P.waLink('pan status ' + pn) }, { label: '🔎 NSDL site', href: 'https://tin.tin.proteantech.in/pantan/StatusTrack.html' }]);
+        bot('Yeh *NSDL (Protean)* ka number hai.\nNSDL ka PAN status *NSDL ki website se hi* milega:\n1️⃣ Application Type: *PAN – New / Change Request*\n2️⃣ Acknowledgement Number: *' + pn + '*\n3️⃣ "I\'m not a robot" par tick karke Submit',
+          [{ label: '🔎 NSDL website kholein', main: true, href: 'https://tin.tin.proteantech.in/pantan/StatusTrack.html' }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
         return;
       }
       flow = { step: 'panDob', no: pn };
