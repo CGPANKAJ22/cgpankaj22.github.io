@@ -394,7 +394,16 @@
   @media (prefers-reduced-motion: reduce) { .upd-new { animation: none; } }
   .upd h3 { margin: 4px 0 4px; font-size: 19px; line-height: 1.25; color: var(--ink); }
   .upd p { margin: 0; color: var(--muted); font-size: 15.5px; overflow-wrap: anywhere; }
-  .upd-link { display: inline-block; margin-top: 8px; font-weight: 800; color: var(--brand); text-decoration: none; }
+  .upd-acts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+  .upd-link, .upd-ext { display: inline-block; font-weight: 800; color: var(--brand); text-decoration: none; }
+  .upd-ext { color: var(--accent); }
+  /* Home par chhoti: 3 line; poori suchna page par */
+  .upd-text.clip { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  /* "Poori jaankari" se aaye: wahi suchna chamke, upar ki patti ke neeche na chhupe */
+  .upd { scroll-margin-top: 110px; }
+  .upd:target { box-shadow: 0 0 0 3px var(--brand), var(--shadow); animation: updFlash 1.6s ease-out 1; }
+  @keyframes updFlash { 0% { background: color-mix(in srgb, var(--brand) 14%, var(--surface)); } 100% { background: var(--surface); } }
+  @media (prefers-reduced-motion: reduce) { .upd:target { animation: none; } }
   .upd-all { margin-top: 16px; }
   .upd-empty { color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 14px; padding: 18px; text-align: center; }
   @media (max-width: 520px) { .upd { padding: 14px; gap: 12px; } .upd-date { width: 56px; } .upd-date b { font-size: 24px; } }
@@ -434,12 +443,12 @@
   <section id="suchna">
     <div class="wrap">
       <div class="upds">
-        <article class="upd pin" data-date="2026-11-15">
+        <article class="upd pin" id="upd-1" data-date="2026-11-15">
           <div class="upd-date" aria-hidden="true"><b>15</b><span>Nov</span><small>2026</small></div>
           <div class="upd-body">
             <div class="upd-meta"><span class="upd-tag pin">📌 Zaroori</span><span class="upd-tag">holiday</span><span class="upd-new" hidden>NEW</span><time datetime="2026-11-15">15 Nov 2026 · Ravivar</time><span class="upd-ago"></span></div>
             <h3>AADHAR CENTER</h3>
-            <p>कल छठ पूजा की छुट्टी है आधार सेंटर बंद रहेगा <br>दिनांक 16-11-2026 को आधार सेंटर होगा</p>
+            <p class="upd-text">कल छठ पूजा की छुट्टी है आधार सेंटर बंद रहेगा <br>दिनांक 16-11-2026 को आधार सेंटर होगा</p>
             
           </div>
         </article>
