@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-sebjpbjk36z8RvA4AzXYk5TR4KBfp2Woxw1F1NsP/gY='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-FNQLSPqVUhw7bQDyupJ42bTEQjZEoCyBOcWJTzXoscE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
@@ -972,6 +972,15 @@
     m = t.match(/(?:^|[^A-Za-z0-9\/])([A-Za-z]{0,3}\d{12,30})(?![A-Za-z0-9])/);
     return m && !/^\d{12}$/.test(m[1]) ? m[1].toUpperCase() : '';
   }
+  // 12 ank ka Aadhaar number: UIDAI is se status nahi deta (sirf EID/SID/SRN/URN)
+  function aadhaarNoOnly(text) {
+    var t = String(text).replace(/[०-९]/g, function (d) { return String(d.charCodeAt(0) - 0x966); });
+    return AADHAAR_RX.test(t) && !aadhaarNo(t) && /(?:^|[^\d\/])\d{4}[\s-]?\d{4}[\s-]?\d{4}(?![\d\/])/.test(t);
+  }
+  function aadhaarNoHelp() {
+    bot('🪪 *Aadhaar number (12 ank) se UIDAI status nahi batata* 🙏\nSlip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (14 ank + tareekh-samay)\n▪️ *SRN*: S13 / S22 / S27 se shuru 14 akshar\n▪️ *URN*: 8 ank\nSlip kho gayi ho to dukaan par aaiye, hum nikal denge.',
+      [{ label: '🔁 Slip wala number likhein', main: true, say: 'Aadhaar Status', go: askAadhaarNo }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
   var ST_SECS = 75;
   async function askStatus(num) {
     function fallback() {
@@ -1001,7 +1010,7 @@
   // Menu ke button: Aadhaar ka number poochho (agla sandesh number maana jayega)
   function askAadhaarNo() {
     flow = { step: 'aadhaarNo' };
-    bot('🪪 Aadhaar ka *Enrolment / Update number* (EID, SRN ya URN) likhiye.\nJaise: 1234/12345/12345 ya slip par chhapa 28 ank ka number.');
+    bot('🪪 Aadhaar slip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (jaise 1234/12345/12345 + tareekh-samay)\n▪️ *SRN*: S13 / S22 / S27 se shuru\n▪️ *URN*: 8 ank\n(12 ank wale Aadhaar number se UIDAI status nahi batata)');
     input.focus();
   }
   // PAN: number + janam tithi yahin; dukaan ka bot UTI site kholta hai, CAPTCHA ki photo isi chat me aati hai,
@@ -1117,8 +1126,9 @@
     if (flow && flow.step === 'panCaptcha') { sendCaptcha(text); return; }
     if (flow && flow.step === 'aadhaarNo') {
       flow = null;
-      var an0 = aadhaarNo('aadhaar ' + text);
+      var an0 = aadhaarNo('aadhaar ' + text) || (/^\s*\d{8}\s*$/.test(text) ? text.trim() : ''); // URN 8 ank
       if (an0) { askStatus(an0); return; }
+      if (aadhaarNoOnly('aadhaar ' + text)) { aadhaarNoHelp(); return; }
       bot('Yeh Aadhaar ka enrolment / update number nahi laga 🙏', [{ label: '🔁 Dobara likhein', main: true, say: 'Aadhaar Status', go: askAadhaarNo }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
       return;
     }
@@ -1150,6 +1160,7 @@
     // Aadhaar ka application number (EID/SRN/URN): UIDAI se status
     var an = aadhaarNo(text);
     if (an) { askStatus(an); return; }
+    if (aadhaarNoOnly(text)) { aadhaarNoHelp(); return; }
     var hits = findServices(text);
     if (IS.appt.test(t) && !(hits.length === 1 && IS.docs.test(t))) { showAppt(hits.length === 1 ? hits[0] : null); return; }
     if (IS.howLong.test(t)) {
