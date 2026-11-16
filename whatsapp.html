@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-VmV0y8211DY5ujuUO7zIONzlm5wvEdHo5LCdMAHr7Z8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-v3rpXvW/t9CRDre2HNDLrPlsmjp/kW3u6ttlv6CZDSk='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>WhatsApp Seva | PANKAJ CHOICE CENTER</title>
@@ -743,6 +743,28 @@
     });
   }
   draw(); setInterval(draw, 60000);
+})();
+
+// Website form: mobile number galat likha to turant laal warning
+(function () {
+  function why(raw) {
+    raw = String(raw || '').trim(); if (!raw) return '';
+    var d = raw.replace(/\D/g, '');
+    if (/[a-z]/i.test(raw)) return 'Sirf ank (0-9) likhiye';
+    if (d.length === 11 && d[0] === '0') d = d.slice(1);
+    if (d.length === 12 && d.indexOf('91') === 0) d = d.slice(2);
+    if (d.length > 10) return 'Number me ' + d.length + ' ank hain, 10 chahiye';
+    if (d.length < 10) return 'Abhi ' + d.length + ' ank, 10 ank ka number likhiye';
+    if (!/^[6-9]/.test(d)) return 'Mobile number 6, 7, 8 ya 9 se shuru hota hai';
+      return '';
+  }
+  document.addEventListener('input', function (e) {
+    var el = e.target; if (!el || el.type !== 'tel') return;
+    var w = why(el.value), tip = el.parentNode.querySelector('.phone-warn');
+    if (!tip) { tip = document.createElement('small'); tip.className = 'phone-warn'; tip.style.cssText = 'display:block;color:#dc2626;font-weight:700;margin-top:4px'; el.insertAdjacentElement('afterend', tip); }
+    tip.textContent = w ? '⚠️ ' + w : '';
+    el.style.borderColor = w ? '#dc2626' : '';
+  }, true);
 })();
 
 // Website ka chat bot: website ke andar hi jawab (PC band ho tab bhi).
