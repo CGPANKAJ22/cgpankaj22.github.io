@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-v3rpXvW/t9CRDre2HNDLrPlsmjp/kW3u6ttlv6CZDSk='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-OPRneBjCcZP1ElpG6cxFE0toLLYikqK1rNPTNEa08iE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Taaza Suchna | PANKAJ CHOICE CENTER</title>
@@ -876,6 +876,8 @@
       { label: '📍 Pata / Map', say: 'Pata', go: showAddress },
       D.formOn ? { label: '🗓️ Appointment', say: 'Appointment', go: function () { showAppt(); } } : null,
       { label: '🪪 Aadhaar Status', say: 'Aadhaar Status', go: function () { askAadhaarNo(); } },
+      { label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify },
+      { label: '📥 Aadhaar Download', say: 'Aadhaar Download', go: showAadhaarDownload },
       { label: '💳 PAN Card Status', say: 'PAN Card Status', go: showPanStatus },
       { label: '💬 Owner se baat', say: 'Owner se baat', go: function () { talkOwner(); } }
     ].filter(Boolean);
@@ -1026,9 +1028,21 @@
     var t = String(text).replace(/[०-९]/g, function (d) { return String(d.charCodeAt(0) - 0x966); });
     return AADHAAR_RX.test(t) && !aadhaarNo(t) && /(?:^|[^\d\/])\d{4}[\s-]?\d{4}[\s-]?\d{4}(?![\d\/])/.test(t);
   }
+  // Aadhaar Verify / Download: UIDAI ki official site par kaise karein (OTP/CAPTCHA customer khud bharta hai)
+  function aadhaarAtShop() {
+    return D.formOn ? { label: '🗓️ Dukaan par karwayein', say: 'Appointment', go: function () { showAppt(); } } : { label: '📞 Call', href: 'tel:+91' + D.mobile };
+  }
+  function showAadhaarVerify() {
+    bot('✅ *Aadhaar Verify (आधार सत्यापन)*\nAadhaar number asli aur chalu (active) hai ya nahi, UIDAI ki site par 1 minute me dekhiye:\n\n1️⃣ Neeche *"UIDAI Verify kholein"* dabaiye\n2️⃣ *12 ank ka Aadhaar number* likhiye\n3️⃣ Photo wale akshar (CAPTCHA) bhariye\n4️⃣ *Proceed* dabaiye\n\n✅ Sahi hoga to dikhega: *"Exists"*, saath me umar ki range, state aur mobile ke aakhri 3 ank.\n❌ Na mile to Aadhaar band (deactivate) ho sakta hai: dukaan par aaiye, hum dekh denge.\n\n🔒 Apna OTP kisi ko na batayein.',
+      [{ label: '🔎 UIDAI Verify kholein', main: true, href: 'https://myaadhaar.uidai.gov.in/verifyAadhaar' }, aadhaarAtShop(), { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+  function showAadhaarDownload() {
+    bot('📥 *Aadhaar Download / e-Aadhaar (आधार डाउनलोड)*\nAadhaar se *mobile number juda* hona chahiye (OTP aata hai):\n\n1️⃣ Neeche *"UIDAI Download kholein"* dabaiye\n2️⃣ *Aadhaar number* (12 ank) ya *Enrolment ID* (slip wala 28 ank) chuniye aur likhiye\n3️⃣ CAPTCHA bharkar *Send OTP* dabaiye\n4️⃣ Mobile par aaya OTP likhiye, *Verify & Download*\n\n🔑 PDF ka password: naam ke *pehle 4 akshar CAPITAL* + *janam ka saal*\n   Jaise: RAMESH, 1995 → *RAME1995*\n\n📱 Mobile juda nahi? Dukaan par aaiye: hum mobile jodkar ya biometric se nikal denge.',
+      [{ label: '🔎 UIDAI Download kholein', main: true, href: 'https://myaadhaar.uidai.gov.in/genricDownloadAadhaar' }, aadhaarAtShop(), { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
   function aadhaarNoHelp() {
     bot('🪪 *Aadhaar number (12 ank) se UIDAI status nahi batata* 🙏\nSlip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (14 ank + tareekh-samay)\n▪️ *SRN*: S13 / S22 / S27 se shuru 14 akshar\n▪️ *URN*: 8 ank\nSlip kho gayi ho to dukaan par aaiye, hum nikal denge.',
-      [{ label: '🔁 Slip wala number likhein', main: true, say: 'Aadhaar Status', go: askAadhaarNo }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      [{ label: '🔁 Slip wala number likhein', main: true, say: 'Aadhaar Status', go: askAadhaarNo }, { label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
   }
   var ST_SECS = 75;
   async function askStatus(num) {
@@ -1206,6 +1220,11 @@
     if (flow) { flowStep(text); return; }
     // Owner se baat chal rahi hai: sab owner tak
     if (live && !live.ended && (live.joined || live.left > 0)) { liveSay(text); return; }
+    // "aadhaar verify" / "aadhaar download" likha
+    if (/aadh?a+r|adhar|aadar|आधार/.test(t)) {
+      if (/verif|satyap|सत्याप|valid|asli|active|chalu\s*hai|असली/.test(t)) { showAadhaarVerify(); return; }
+      if (/download|downlod|dawnlod|e[-\s]?aadh|nikal|nikaal|print|pdf|डाउनलोड|निकाल/.test(t)) { showAadhaarDownload(); return; }
+    }
     // Aadhaar ka application number (EID/SRN/URN): UIDAI se status
     var an = aadhaarNo(text);
     if (an) { askStatus(an); return; }
