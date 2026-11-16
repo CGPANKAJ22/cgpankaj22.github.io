@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DwamPhkppd6ISyhgWZNfvrVGv29SDOVuSSUkvVJbdzE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-pARV2NuGdCJnI6nGH+g2Oh0SWrJpsL052spVfORaYuQ='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Taaza Suchna | PANKAJ CHOICE CENTER</title>
@@ -467,6 +467,9 @@
   .c-box i[data-h="sw"] { left: 0; top: 100%; cursor: nesw-resize; } .c-box i[data-h="se"] { left: 100%; top: 100%; cursor: nwse-resize; }
   .c-box i[data-h="n"] { left: 50%; top: 0; cursor: ns-resize; width: 16px; height: 16px; } .c-box i[data-h="s"] { left: 50%; top: 100%; cursor: ns-resize; width: 16px; height: 16px; }
   .c-box i[data-h="w"] { left: 0; top: 50%; cursor: ew-resize; width: 16px; height: 16px; } .c-box i[data-h="e"] { left: 100%; top: 50%; cursor: ew-resize; width: 16px; height: 16px; }
+
+  /* Meena AI chat me PDF download */
+  .cb-file .cb-dl { display: inline-block; padding: 10px 14px; border-radius: 10px; background: var(--brand); color: #fff; font-weight: 700; text-decoration: none; word-break: break-all; }
 </style>
 </head>
 <body>
@@ -1099,6 +1102,13 @@
       var m; try { m = JSON.parse(e.data); } catch (err) { return; }
       if ((m.event && m.event !== 'message') || st.done) return;
       var o; try { var x = JSON.parse(m.message); var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(x.iv)) }, key, P.unb64(x.d)); o = JSON.parse(new TextDecoder().decode(data)); } catch (err) { return; }
+      if (o.file) {
+        bar.hidden = true;
+        try { addFile(await getFile(o.file, key), o.file.name); if (o.text) add('bot', o.text); }
+        catch (err) { add('bot', 'PDF yahan nahi khul payi 🙏 Apne WhatsApp par dekhiye.'); }
+        wait(120);
+        return;
+      }
       if (o.img) {
         var g = st.parts[o.img.id] = st.parts[o.img.id] || [];
         g[o.img.i] = o.img.d;
@@ -1181,6 +1191,20 @@
     var m = String(text).match(/(\d{1,2})\s*[\/.-]\s*(\d{1,2})\s*[\/.-]\s*(\d{4})/);
     if (!m || +m[1] < 1 || +m[1] > 31 || +m[2] < 1 || +m[2] > 12) return '';
     return ('0' + m[1]).slice(-2) + '/' + ('0' + m[2]).slice(-2) + '/' + m[3];
+  }
+  /** PDF (taala khula hua) chat me download button ke saath */
+  function addFile(blob, name) {
+    var m = document.createElement('div'); m.className = 'cb-m cb-bot cb-file';
+    var a = document.createElement('a'); a.className = 'cb-dl'; a.href = URL.createObjectURL(blob); a.download = name || 'e-Aadhaar.pdf';
+    a.textContent = '⬇️ ' + (name || 'e-Aadhaar.pdf') + ' (' + Math.max(1, Math.round(blob.size / 1024)) + ' KB) download';
+    m.appendChild(a); log.appendChild(m); scroll();
+  }
+  /** Relay se file laao aur chat ki chaabi se kholo */
+  async function getFile(f, key) {
+    var r = await fetch(f.url, { credentials: 'omit', referrerPolicy: 'no-referrer' });
+    if (!r.ok) throw new Error('file nahi mili');
+    var plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(f.iv)) }, key, await r.arrayBuffer());
+    return new Blob([plain], { type: f.mime || 'application/pdf' });
   }
   function addImg(b64) {
     var m = document.createElement('div'); m.className = 'cb-m cb-bot cb-capm';
