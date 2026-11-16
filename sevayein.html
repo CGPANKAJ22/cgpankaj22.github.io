@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-pARV2NuGdCJnI6nGH+g2Oh0SWrJpsL052spVfORaYuQ='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-KvKJ9vW3IUAtfY8z/IgsPvf544vn15QvIVPBmi88quU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
@@ -1285,6 +1285,8 @@
     var a = document.createElement('a'); a.className = 'cb-dl'; a.href = URL.createObjectURL(blob); a.download = name || 'e-Aadhaar.pdf';
     a.textContent = '⬇️ ' + (name || 'e-Aadhaar.pdf') + ' (' + Math.max(1, Math.round(blob.size / 1024)) + ' KB) download';
     m.appendChild(a); log.appendChild(m); scroll();
+    // 15 minute baad browser ki yaad se bhi hata do
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) { /* chhodo */ } a.removeAttribute('href'); a.textContent = '🔒 PDF is chat se hata diya gaya (aapke download me hai)'; }, 15 * 60 * 1000);
   }
   /** Relay se file laao aur chat ki chaabi se kholo */
   async function getFile(f, key) {
