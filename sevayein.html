@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-OPRneBjCcZP1ElpG6cxFE0toLLYikqK1rNPTNEa08iE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DwamPhkppd6ISyhgWZNfvrVGv29SDOVuSSUkvVJbdzE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
@@ -1119,13 +1119,85 @@
   function aadhaarAtShop() {
     return D.formOn ? { label: '🗓️ Dukaan par karwayein', say: 'Appointment', go: function () { showAppt(); } } : { label: '📞 Call', href: 'tel:+91' + D.mobile };
   }
-  function showAadhaarVerify() {
+  function aadhaarVerifyStatic() {
     bot('✅ *Aadhaar Verify (आधार सत्यापन)*\nAadhaar number asli aur chalu (active) hai ya nahi, UIDAI ki site par 1 minute me dekhiye:\n\n1️⃣ Neeche *"UIDAI Verify kholein"* dabaiye\n2️⃣ *12 ank ka Aadhaar number* likhiye\n3️⃣ Photo wale akshar (CAPTCHA) bhariye\n4️⃣ *Proceed* dabaiye\n\n✅ Sahi hoga to dikhega: *"Exists"*, saath me umar ki range, state aur mobile ke aakhri 3 ank.\n❌ Na mile to Aadhaar band (deactivate) ho sakta hai: dukaan par aaiye, hum dekh denge.\n\n🔒 Apna OTP kisi ko na batayein.',
       [{ label: '🔎 UIDAI Verify kholein', main: true, href: 'https://myaadhaar.uidai.gov.in/verifyAadhaar' }, aadhaarAtShop(), { label: '🏠 Menu', say: 'Menu', go: hello }]);
   }
-  function showAadhaarDownload() {
+  function aadhaarDownloadStatic() {
     bot('📥 *Aadhaar Download / e-Aadhaar (आधार डाउनलोड)*\nAadhaar se *mobile number juda* hona chahiye (OTP aata hai):\n\n1️⃣ Neeche *"UIDAI Download kholein"* dabaiye\n2️⃣ *Aadhaar number* (12 ank) ya *Enrolment ID* (slip wala 28 ank) chuniye aur likhiye\n3️⃣ CAPTCHA bharkar *Send OTP* dabaiye\n4️⃣ Mobile par aaya OTP likhiye, *Verify & Download*\n\n🔑 PDF ka password: naam ke *pehle 4 akshar CAPITAL* + *janam ka saal*\n   Jaise: RAMESH, 1995 → *RAME1995*\n\n📱 Mobile juda nahi? Dukaan par aaiye: hum mobile jodkar ya biometric se nikal denge.',
       [{ label: '🔎 UIDAI Download kholein', main: true, href: 'https://myaadhaar.uidai.gov.in/genricDownloadAadhaar' }, aadhaarAtShop(), { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+  // Aadhaar Verify / Download isi chat me: number -> (download: WhatsApp number) -> CAPTCHA photo -> (download: OTP) -> jawab / PDF WhatsApp par
+  var ud = null;
+  function udCan() { return P.canSend && P.relayOrigin && window.EventSource && window.crypto && crypto.subtle; }
+  function showAadhaarVerify() {
+    if (!udCan()) { aadhaarVerifyStatic(); return; }
+    flow = { step: 'udNo', kind: 'verify' };
+    bot('✅ *Aadhaar Verify*\n12 ank ka *Aadhaar number* likhiye (jaise 2345 6789 0123).\nUIDAI ki site se CAPTCHA ki photo yahin aayegi, akshar likhte hi jawab mil jayega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
+    input.focus();
+  }
+  function showAadhaarDownload() {
+    if (!udCan()) { aadhaarDownloadStatic(); return; }
+    flow = { step: 'udNo', kind: 'download' };
+    bot('📥 *Aadhaar Download (e-Aadhaar)*\n*Aadhaar number* (12 ank) ya slip ka *Enrolment ID* (28 ank) likhiye.\n⚠️ Aadhaar se mobile juda hona chahiye: UIDAI usi par OTP bhejega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
+    input.focus();
+  }
+  function udNumber(text) {
+    var t = String(text).replace(/[\s\/-]/g, '');
+    if (/^\d{28}$/.test(t)) return { no: t, type: 'eid' };
+    if (/^\d{16}$/.test(t)) return { no: t, type: 'vid' };
+    if (/^[2-9]\d{11}$/.test(t)) return { no: t, type: 'uid' };
+    return null;
+  }
+  function udMask(n) { return n.length >= 8 ? 'XXXX XXXX ' + n.slice(-4) : n; }
+  async function startUidai(kind, no, wa) {
+    var raw = crypto.getRandomValues(new Uint8Array(32));
+    ud = { sid: code(), rt: 'pccr-' + hex(12), done: false, parts: {}, kind: kind };
+    var st = ud;
+    var key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
+    var es = new EventSource(P.relayOrigin + '/' + st.rt + '/sse');
+    function finish() { st.done = true; clearTimeout(st.timer); try { es.close(); } catch (e) { /* chhodo */ } bar.hidden = true; if (flow && /^ud/.test(flow.step)) flow = null; }
+    function wait(secs) {
+      clearTimeout(st.timer);
+      st.timer = setTimeout(function () { if (st.done) return; finish(); bot('UIDAI se abhi jawab nahi aaya 🙏 Thodi der baad dobara koshish kijiye.', [{ label: '🔁 Dobara', main: true, say: kind === 'verify' ? 'Aadhaar Verify' : 'Aadhaar Download', go: kind === 'verify' ? showAadhaarVerify : showAadhaarDownload }, { label: '🏠 Menu', say: 'Menu', go: hello }]); }, secs * 1000);
+    }
+    st.finish = finish; st.wait = wait;
+    wait(90);
+    es.onmessage = async function (e) {
+      var m; try { m = JSON.parse(e.data); } catch (err) { return; }
+      if ((m.event && m.event !== 'message') || st.done) return;
+      var o; try { var x = JSON.parse(m.message); var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(x.iv)) }, key, P.unb64(x.d)); o = JSON.parse(new TextDecoder().decode(data)); } catch (err) { return; }
+      if (o.img) {
+        var g = st.parts[o.img.id] = st.parts[o.img.id] || [];
+        g[o.img.i] = o.img.d;
+        if (g.filter(Boolean).length < o.img.n) return;
+        bar.hidden = true;
+        addImg(g.join(''));
+        if (o.text) add('bot', o.text);
+        flow = { step: 'udCaptcha' };
+        wait(300);
+        input.focus();
+        return;
+      }
+      bar.hidden = true;
+      if (!o.more) { finish(); bot(String(o.text || ''), [{ label: '🏠 Menu', say: 'Menu', go: hello }]); return; }
+      add('bot', String(o.text || ''));
+      flow = { step: o.step === 'otp' ? 'udOtp' : 'udCaptcha' };
+      wait(300);
+      input.focus();
+    };
+    setBar('wait', '🔎 UIDAI site khol rahe hain, CAPTCHA aa rahi hai…');
+    bot('🔎 Aadhaar: *' + udMask(no) + '*\nUIDAI site se CAPTCHA la rahe hain, thoda rukiye…');
+    var ok = await P.sendChat({ sid: st.sid, rt: st.rt, k: P.b64(raw), text: no, kind: kind, wa: wa || '', status: 'uidai' });
+    if (!ok && !st.done) { finish(); if (kind === 'verify') aadhaarVerifyStatic(); else aadhaarDownloadStatic(); }
+  }
+  async function udSend(text, status, waitMsg) {
+    if (!ud || ud.done) { flow = null; bot('Samay khatam ho gaya.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]); return; }
+    flow = null;
+    ud.wait(120);
+    setBar('wait', waitMsg);
+    var ok = await P.sendChat({ sid: ud.sid, text: text, status: status });
+    if (!ok && !ud.done) { ud.finish(); bot('Abhi nahi bhej paye 🙏 Dobara koshish kijiye.', [{ label: '🏠 Menu', say: 'Menu', go: hello }]); }
   }
   function aadhaarNoHelp() {
     bot('🪪 *Aadhaar number (12 ank) se UIDAI status nahi batata* 🙏\nSlip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (14 ank + tareekh-samay)\n▪️ *SRN*: S13 / S22 / S27 se shuru 14 akshar\n▪️ *URN*: 8 ank\nSlip kho gayi ho to dukaan par aaiye, hum nikal denge.',
@@ -1274,6 +1346,27 @@
       return;
     }
     if (flow && flow.step === 'panCaptcha') { sendCaptcha(text); return; }
+    if (flow && flow.step === 'udNo') {
+      var un = udNumber(text);
+      if (!un || (flow.kind === 'verify' && un.type !== 'uid')) { bot(flow.kind === 'verify' ? 'Yeh 12 ank ka Aadhaar number nahi laga. Dobara likhiye:' : 'Yeh Aadhaar number (12 ank) ya Enrolment ID (28 ank) nahi laga. Dobara likhiye:'); return; }
+      if (flow.kind === 'download') { flow = { step: 'udWa', kind: 'download', no: un.no }; bot('PDF aapke *WhatsApp* par bhejenge. Apna *WhatsApp number* (10 ank) likhiye:'); return; }
+      var k1 = flow.kind; flow = null; startUidai(k1, un.no, ''); return;
+    }
+    if (flow && flow.step === 'udWa') {
+      var wa = P.phoneOk(text);
+      if (!wa) { bot('Ye number sahi nahi laga. 10 ank ka *WhatsApp number* likhiye:'); return; }
+      var no2 = flow.no; flow = null; startUidai('download', no2, wa); return;
+    }
+    if (flow && flow.step === 'udCaptcha') {
+      var cc = String(text).replace(/\s+/g, '');
+      if (!/^[A-Za-z0-9]{4,8}$/.test(cc)) { bot('Sirf photo wale akshar likhiye (4–8 akshar):'); return; }
+      udSend(cc, 'uidai-captcha', '🔎 UIDAI par akshar daal rahe hain…'); return;
+    }
+    if (flow && flow.step === 'udOtp') {
+      var ot = String(text).replace(/\s+/g, '');
+      if (!/^\d{6}$/.test(ot)) { bot('OTP *6 ank* ka hota hai. Mobile par aaya OTP likhiye:'); return; }
+      udSend(ot, 'uidai-otp', '📥 OTP daal rahe hain, e-Aadhaar PDF aa rahi hai…'); return;
+    }
     if (flow && flow.step === 'aadhaarNo') {
       flow = null;
       var an0 = aadhaarNo('aadhaar ' + text) || (/^\s*\d{8}\s*$/.test(text) ? text.trim() : ''); // URN 8 ank
