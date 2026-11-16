@@ -448,6 +448,25 @@
 .open-now .on-khula { border-left-color: #16a34a; background: #f0fdf4; }
 .open-now .on-jald { border-left-color: #f59e0b; background: #fffbeb; }
 .open-now .on-band { border-left-color: #dc2626; background: #fef2f2; }
+
+  /* ✂️ Crop · PDF se Photo */
+  .tools .tabs.t4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 640px) { .tools .tabs.t4 { grid-template-columns: 1fr 1fr; } }
+  .c-work { display: grid; gap: 12px; }
+  .c-pw { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; }
+  .c-pw .field { flex: 1 1 240px; }
+  .c-pager { display: flex; gap: 12px; align-items: center; justify-content: center; font-weight: 700; }
+  .c-pager button { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+  .c-ratios button[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .c-stage { display: flex; justify-content: center; background: repeating-conic-gradient(#e9e9e9 0 25%, #fff 0 50%) 50% / 20px 20px; border-radius: 12px; padding: 10px; overflow: auto; }
+  .c-inner { position: relative; display: inline-block; line-height: 0; touch-action: none; }
+  .c-inner canvas { display: block; max-width: 100%; height: auto; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  .c-box { position: absolute; border: 2px solid #fff; outline: 1px solid rgba(0,0,0,.6); box-shadow: 0 0 0 9999px rgba(0,0,0,.45); cursor: move; touch-action: none; }
+  .c-box i { position: absolute; width: 22px; height: 22px; background: #fff; border: 2px solid var(--brand); border-radius: 50%; transform: translate(-50%, -50%); }
+  .c-box i[data-h="nw"] { left: 0; top: 0; cursor: nwse-resize; } .c-box i[data-h="ne"] { left: 100%; top: 0; cursor: nesw-resize; }
+  .c-box i[data-h="sw"] { left: 0; top: 100%; cursor: nesw-resize; } .c-box i[data-h="se"] { left: 100%; top: 100%; cursor: nwse-resize; }
+  .c-box i[data-h="n"] { left: 50%; top: 0; cursor: ns-resize; width: 16px; height: 16px; } .c-box i[data-h="s"] { left: 50%; top: 100%; cursor: ns-resize; width: 16px; height: 16px; }
+  .c-box i[data-h="w"] { left: 0; top: 50%; cursor: ew-resize; width: 16px; height: 16px; } .c-box i[data-h="e"] { left: 100%; top: 50%; cursor: ew-resize; width: 16px; height: 16px; }
 </style>
 </head>
 <body>

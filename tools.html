@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-ZKOOB+JTG/OCoyTe7UPqnwh3oDMq5cd1tdgDO1mIcM8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-ge0c7mNky8W8G2sTIhfPO334zEa7h0/KhHvIUv1kM4g=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
-<meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
+<meta name="description" content="Photo &amp; PDF Tools: Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye; PDF se 4K photo aur crop. Sab aapke phone me hi hota hai, file kahin upload nahi hoti. PANKAJ CHOICE CENTER, 📞 8770882942">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PANKAJ CHOICE CENTER">
 <meta property="og:title" content="Photo &amp; PDF Tools | PANKAJ CHOICE CENTER">
-<meta property="og:description" content="Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.">
+<meta property="og:description" content="Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye; PDF se 4K photo aur crop. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.">
 <meta property="og:url" content="https://cgpankaj22.github.io/tools.html">
 <meta property="og:image" content="https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200">
 <meta property="og:image:width" content="1400">
@@ -448,6 +448,25 @@
 .open-now .on-khula { border-left-color: #16a34a; background: #f0fdf4; }
 .open-now .on-jald { border-left-color: #f59e0b; background: #fffbeb; }
 .open-now .on-band { border-left-color: #dc2626; background: #fef2f2; }
+
+  /* ✂️ Crop · PDF se Photo */
+  .tools .tabs.t4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 640px) { .tools .tabs.t4 { grid-template-columns: 1fr 1fr; } }
+  .c-work { display: grid; gap: 12px; }
+  .c-pw { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; }
+  .c-pw .field { flex: 1 1 240px; }
+  .c-pager { display: flex; gap: 12px; align-items: center; justify-content: center; font-weight: 700; }
+  .c-pager button { font: inherit; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+  .c-ratios button[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .c-stage { display: flex; justify-content: center; background: repeating-conic-gradient(#e9e9e9 0 25%, #fff 0 50%) 50% / 20px 20px; border-radius: 12px; padding: 10px; overflow: auto; }
+  .c-inner { position: relative; display: inline-block; line-height: 0; touch-action: none; }
+  .c-inner canvas { display: block; max-width: 100%; height: auto; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  .c-box { position: absolute; border: 2px solid #fff; outline: 1px solid rgba(0,0,0,.6); box-shadow: 0 0 0 9999px rgba(0,0,0,.45); cursor: move; touch-action: none; }
+  .c-box i { position: absolute; width: 22px; height: 22px; background: #fff; border: 2px solid var(--brand); border-radius: 50%; transform: translate(-50%, -50%); }
+  .c-box i[data-h="nw"] { left: 0; top: 0; cursor: nwse-resize; } .c-box i[data-h="ne"] { left: 100%; top: 0; cursor: nesw-resize; }
+  .c-box i[data-h="sw"] { left: 0; top: 100%; cursor: nesw-resize; } .c-box i[data-h="se"] { left: 100%; top: 100%; cursor: nwse-resize; }
+  .c-box i[data-h="n"] { left: 50%; top: 0; cursor: ns-resize; width: 16px; height: 16px; } .c-box i[data-h="s"] { left: 50%; top: 100%; cursor: ns-resize; width: 16px; height: 16px; }
+  .c-box i[data-h="w"] { left: 0; top: 50%; cursor: ew-resize; width: 16px; height: 16px; } .c-box i[data-h="e"] { left: 100%; top: 50%; cursor: ew-resize; width: 16px; height: 16px; }
 </style>
 </head>
 <body>
@@ -477,7 +496,7 @@
       <div class="crumb"><a href="./">Home</a> <span>›</span> Photo/PDF Tools</div>
       <h1>🛠️ Photo &amp; PDF Tools</h1>
       <div class="hi">फोटो और पीडीएफ टूल</div>
-      <p>Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.</p>
+      <p>Photo ka size (px, cm, mm, inch), DPI aur KB badliye; PDF ko 100-200-300 KB tak chhota kijiye; PDF se 4K photo aur crop. Sab aapke phone me hi hota hai, file kahin upload nahi hoti.</p>
     </div>
   </div>
 
@@ -485,10 +504,43 @@
     <div class="wrap">
       <div class="tools" id="tools">
         <p class="t-safe">🔒 Aapki photo / PDF <b>kahin upload nahi hoti</b>. Sab kaam aapke phone ya computer me hi hota hai.</p>
-        <div class="tabs t3" role="tablist">
+        <div class="tabs t4" role="tablist">
           <button type="button" role="tab" data-ttab="photo" aria-selected="true">📷 Photo resize</button>
           <button type="button" role="tab" data-ttab="pdf" aria-selected="false">📄 PDF chhota</button>
           <button type="button" role="tab" data-ttab="merge" aria-selected="false">🖼️ Photo se PDF</button>
+          <button type="button" role="tab" data-ttab="crop" aria-selected="false">✂️ Crop · PDF se Photo (4K)</button>
+        </div>
+
+        <div class="t-pane" id="t-crop" hidden>
+          <label class="t-drop" id="c-drop"><input id="c-file" type="file" accept="image/*,application/pdf,.pdf"><span class="t-ico">✂️</span><b>Photo ya PDF chuniye</b><small>PDF ka page high quality photo banega · photo ko crop kijiye · 4K tak</small><em id="c-drop-msg"></em></label>
+          <div class="c-work" id="c-work" hidden>
+            <div class="c-pw" id="c-pw-row" hidden>
+              <label class="field">🔑 PDF ka password<input id="c-pw" type="password" autocomplete="off" placeholder="e-Aadhaar: naam ke pehle 4 akshar CAPITAL + janam ka saal"></label>
+              <button type="button" class="btn btn-call" id="c-pw-go">Kholein</button>
+            </div>
+            <div class="c-pager" id="c-pager" hidden><button type="button" id="c-prevpg">◀</button><span id="c-page"></span><button type="button" id="c-nextpg">▶</button></div>
+            <div class="t-chips c-ratios">
+              <button type="button" data-ratio="free" aria-pressed="true">Free crop</button>
+              <button type="button" data-ratio="full" aria-pressed="false">Poora</button>
+              <button type="button" data-ratio="1">1:1</button>
+              <button type="button" data-ratio="0.7778">Passport 3.5×4.5</button>
+              <button type="button" data-ratio="0.7071">A4 khada</button>
+              <button type="button" data-ratio="1.4142">A4 leta</button>
+              <button type="button" data-ratio="1.5858">Card (Aadhaar/PAN)</button>
+              <button type="button" data-ratio="1.7778">16:9</button>
+              <button type="button" data-ratio="0.5625">9:16</button>
+            </div>
+            <div class="c-stage" id="c-stage"><div class="c-inner"><canvas id="c-prev"></canvas><div class="c-box" id="c-box"><i data-h="nw"></i><i data-h="ne"></i><i data-h="sw"></i><i data-h="se"></i><i data-h="n"></i><i data-h="s"></i><i data-h="w"></i><i data-h="e"></i></div></div></div>
+            <p class="t-note">Dabba khiskaane ke liye beech se pakdiye, size ke liye kinaare/kone kheenchiye.</p>
+            <div class="t-row">
+              <label class="field">Photo ka size<select id="c-size"><option value="3840" selected>4K (3840 px) · sabse saaf</option><option value="2560">2K (2560 px)</option><option value="1920">Full HD (1920 px)</option><option value="orig">Asli (photo jaisi / PDF 300 DPI)</option></select></label>
+              <label class="field">Format<select id="c-fmt"><option value="image/png">PNG (bina quality kam)</option><option value="image/jpeg">JPG (chhoti file)</option></select></label>
+            </div>
+            <p class="t-info" id="c-info"></p>
+            <button type="button" class="btn btn-call t-big" id="c-dl">⬇️ Crop wali photo download</button>
+            <button type="button" class="btn t-big" id="c-dl-all" hidden>⬇️ PDF ke saare page photo me</button>
+            <button type="button" class="t-link" id="c-new">↺ Doosri photo / PDF chuniye</button>
+          </div>
         </div>
 
         <div class="t-pane" id="t-photo">
@@ -1555,6 +1607,233 @@
     makePdf: makePdf, jpegDpi: jpegDpi, pngDpi: pngDpi,
     lastPhoto: function () { return P.out && P.out.blob; }, lastPdf: function () { return D.out; }, lastMerged: function () { return M.out; }
   };
+})();
+
+// ✂️ Crop · PDF se Photo (sab kuch customer ke phone/browser me, kahin upload nahi)
+//  - Photo ya PDF chuniye. PDF ka page high quality photo banta hai (PDF.js, website par hi rakha hai).
+//  - Ungli/mouse se crop ka dabba khiskaiye; anupat (1:1, passport, A4...) chun sakte hain.
+//  - Download: 4K (3840 px) / 2K / Full HD / asli size, PNG ya JPG.
+//  - Password wali PDF (e-Aadhaar) ka password poochha jata hai.
+(function () {
+  var root = document.getElementById('t-crop');
+  if (!root) return;
+  var $ = function (s) { return root.querySelector(s); };
+  var PDFJS = 'lib/pdfjs-6.2.108/';
+  var lib = null; // pdf.js (pehli PDF par hi laate hain)
+  var S = { kind: '', name: 'photo', bmp: null, pdf: null, page: 1, pages: 0, w: 0, h: 0, crop: { x: 0, y: 0, w: 1, h: 1 }, ratio: 0, file: null };
+
+  var drop = $('#c-drop'), input = $('#c-file'), msg = $('#c-drop-msg'), work = $('#c-work');
+  var stage = $('#c-stage'), cv = $('#c-prev'), box = $('#c-box'), info = $('#c-info');
+  var pwRow = $('#c-pw-row'), pw = $('#c-pw'), pager = $('#c-pager'), pageLbl = $('#c-page');
+  var sizeSel = $('#c-size'), fmtSel = $('#c-fmt'), dl = $('#c-dl'), dlAll = $('#c-dl-all');
+
+  function say(t) { info.textContent = t || ''; }
+  function kb(n) { return n < 1048576 ? Math.round(n / 1024) + ' KB' : (n / 1048576).toFixed(2) + ' MB'; }
+  function blobOf(c, type, q) { return new Promise(function (res) { c.toBlob(res, type, q); }); }
+  function download(blob, name) {
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+  }
+  function baseName() { return String(S.name).replace(/\.[^.]+$/, '').replace(/[^\wऀ-ॿ-]+/g, '_').slice(0, 40) || 'photo'; }
+
+  async function loadLib() {
+    if (lib) return lib;
+    lib = await import(new URL(PDFJS + 'pdf.min.mjs', location.href).href);
+    lib.GlobalWorkerOptions.workerSrc = new URL(PDFJS + 'pdf.worker.min.mjs', location.href).href;
+    return lib;
+  }
+
+  // ---------- file kholna ----------
+  async function open(file) {
+    msg.textContent = ''; S.file = file; S.name = file.name || 'file';
+    S.bmp = null; S.pdf = null; pwRow.hidden = true; pager.hidden = true; dlAll.hidden = true;
+    var isPdf = /pdf/i.test(file.type) || /\.pdf$/i.test(file.name || '');
+    try {
+      if (isPdf) await openPdf(file, '');
+      else {
+        S.kind = 'img';
+        S.bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });
+        S.w = S.bmp.width; S.h = S.bmp.height;
+        work.hidden = false; drop.hidden = true;
+        resetCrop(); await preview();
+      }
+    } catch (e) { msg.textContent = '❌ Ye file nahi khul payi: ' + (e && e.message || e); }
+  }
+
+  async function openPdf(file, password) {
+    S.kind = 'pdf';
+    say('⏳ PDF khol rahe hain…');
+    work.hidden = false; drop.hidden = true;
+    var pdfjs = await loadLib();
+    var data = new Uint8Array(await file.arrayBuffer());
+    try {
+      S.pdf = await pdfjs.getDocument({ data: data, password: password || undefined, isEvalSupported: false, wasmUrl: new URL(PDFJS + 'wasm/', location.href).href, useSystemFonts: true }).promise;
+    } catch (e) {
+      if (e && e.name === 'PasswordException') {
+        pwRow.hidden = false; pw.value = ''; pw.focus();
+        say(password ? '❌ Password galat hai. Dobara likhiye.' : '🔑 Is PDF me password hai. Neeche likh kar "Kholein" dabaiye.');
+        return;
+      }
+      throw e;
+    }
+    pwRow.hidden = true;
+    S.pages = S.pdf.numPages; S.page = 1;
+    pager.hidden = S.pages < 2; dlAll.hidden = false;
+    await showPage();
+  }
+
+  async function showPage() {
+    var p = await S.pdf.getPage(S.page);
+    var vp = p.getViewport({ scale: 1 });
+    S.w = vp.width; S.h = vp.height; // PDF points
+    pageLbl.textContent = 'Page ' + S.page + ' / ' + S.pages;
+    resetCrop(); await preview();
+  }
+
+  // ---------- preview ----------
+  async function preview() {
+    var maxW = Math.min((stage.clientWidth || 600) - 20, 900), maxH = Math.max(320, (window.innerHeight || 800) * 0.7), scale = Math.min(maxW / S.w, maxH / S.h);
+    var w = Math.round(S.w * scale), h = Math.round(S.h * scale), dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    cv.style.width = w + 'px'; cv.style.height = h + 'px';
+    var g = cv.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, cv.width, cv.height);
+    if (S.kind === 'img') { g.imageSmoothingQuality = 'high'; g.drawImage(S.bmp, 0, 0, cv.width, cv.height); }
+    else {
+      var p = await S.pdf.getPage(S.page);
+      await p.render({ canvasContext: g, viewport: p.getViewport({ scale: scale * dpr }) }).promise;
+    }
+    drawBox(); say(sizeText());
+  }
+
+  // ---------- crop ka dabba ----------
+  function resetCrop() { S.crop = { x: 0, y: 0, w: 1, h: 1 }; if (S.ratio) applyRatio(); }
+  function applyRatio() {
+    if (!S.ratio) return;
+    var c = S.crop, want = S.ratio; // want = chaudai/oonchai (asli pixel me)
+    var w = c.w, h = (c.w * S.w) / want / S.h;
+    if (h > 1) { h = 1; w = (want * S.h) / S.w; }
+    if (w > 1) { w = 1; h = (S.w / want) / S.h; }
+    var cx = c.x + c.w / 2, cy = c.y + c.h / 2;
+    S.crop = clamp({ x: cx - w / 2, y: cy - h / 2, w: w, h: h });
+  }
+  function clamp(c) {
+    c.w = Math.min(1, Math.max(0.02, c.w)); c.h = Math.min(1, Math.max(0.02, c.h));
+    c.x = Math.min(1 - c.w, Math.max(0, c.x)); c.y = Math.min(1 - c.h, Math.max(0, c.y));
+    return c;
+  }
+  function drawBox() {
+    var c = S.crop;
+    box.style.left = c.x * 100 + '%'; box.style.top = c.y * 100 + '%';
+    box.style.width = c.w * 100 + '%'; box.style.height = c.h * 100 + '%';
+  }
+  var drag = null;
+  box.addEventListener('pointerdown', function (e) {
+    e.preventDefault();
+    var r = cv.getBoundingClientRect();
+    drag = { mode: e.target.dataset.h || 'move', sx: e.clientX, sy: e.clientY, c: Object.assign({}, S.crop), W: r.width, H: r.height };
+    box.setPointerCapture(e.pointerId);
+  });
+  box.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var dx = (e.clientX - drag.sx) / drag.W, dy = (e.clientY - drag.sy) / drag.H, o = drag.c, c = { x: o.x, y: o.y, w: o.w, h: o.h };
+    if (drag.mode === 'move') { c.x = o.x + dx; c.y = o.y + dy; }
+    else {
+      if (/w/.test(drag.mode)) { c.x = Math.min(o.x + o.w - 0.02, Math.max(0, o.x + dx)); c.w = o.x + o.w - c.x; }
+      if (/e/.test(drag.mode)) { c.w = Math.min(1 - o.x, Math.max(0.02, o.w + dx)); }
+      if (/n/.test(drag.mode)) { c.y = Math.min(o.y + o.h - 0.02, Math.max(0, o.y + dy)); c.h = o.y + o.h - c.y; }
+      if (/s/.test(drag.mode)) { c.h = Math.min(1 - o.y, Math.max(0.02, o.h + dy)); }
+      if (S.ratio) { // anupat bana rahe: chaudai ke hisaab se oonchai
+        var h2 = (c.w * S.w) / S.ratio / S.h;
+        if (/n/.test(drag.mode)) c.y = o.y + o.h - h2;
+        c.h = h2;
+      }
+    }
+    S.crop = clamp(c); drawBox(); say(sizeText());
+  });
+  ['pointerup', 'pointercancel'].forEach(function (ev) { box.addEventListener(ev, function () { drag = null; }); });
+
+  root.querySelectorAll('[data-ratio]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      root.querySelectorAll('[data-ratio]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var v = b.dataset.ratio;
+      S.ratio = v === 'free' || v === 'full' ? 0 : Number(v);
+      if (v === 'full') S.crop = { x: 0, y: 0, w: 1, h: 1 };
+      else if (S.ratio) applyRatio();
+      drawBox(); say(sizeText());
+    });
+  });
+
+  // ---------- size ----------
+  function targetLong() { var v = sizeSel.value; return v === 'orig' ? 0 : Number(v); }
+  function outSize() {
+    var cw = S.crop.w * S.w, ch = S.crop.h * S.h, t = targetLong(), k;
+    if (S.kind === 'pdf') k = t ? t / Math.max(cw, ch) : 300 / 72; // asli = 300 DPI
+    else k = t ? t / Math.max(cw, ch) : 1;
+    // phone ki seema: 4K x 4K se zyada pixel nahi (16.7 MP)
+    var maxArea = 16.7e6, area = cw * k * ch * k;
+    if (area > maxArea) k *= Math.sqrt(maxArea / area);
+    return { w: Math.max(1, Math.round(cw * k)), h: Math.max(1, Math.round(ch * k)), k: k };
+  }
+  function sizeText() {
+    var o = outSize(), up = S.kind === 'img' && o.k > 1.01;
+    return '📐 Nayi photo: ' + o.w + ' × ' + o.h + ' px' + (up ? ' (asli se badi, saaf banane ki koshish)' : '') + (S.kind === 'pdf' ? ' · Page ' + S.page + ' / ' + S.pages : '');
+  }
+  sizeSel.addEventListener('change', function () { say(sizeText()); });
+
+  // ---------- banana ----------
+  async function renderOut(pageNo, crop) {
+    var o, c = document.createElement('canvas'), g;
+    var save = S.crop; S.crop = crop; o = outSize(); S.crop = save;
+    c.width = o.w; c.height = o.h; g = c.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, o.w, o.h);
+    if (S.kind === 'img') {
+      g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+      g.drawImage(S.bmp, crop.x * S.w, crop.y * S.h, crop.w * S.w, crop.h * S.h, 0, 0, o.w, o.h);
+    } else {
+      var p = await S.pdf.getPage(pageNo);
+      var vp = p.getViewport({ scale: o.k });
+      // sirf crop wala hissa, poori quality me
+      await p.render({ canvasContext: g, viewport: vp, transform: [1, 0, 0, 1, -crop.x * vp.width, -crop.y * vp.height], background: 'white' }).promise;
+    }
+    return c;
+  }
+  function ext() { return fmtSel.value === 'image/png' ? 'png' : 'jpg'; }
+  dl.addEventListener('click', async function () {
+    dl.disabled = true; var old = dl.textContent; dl.textContent = '⏳ Ban rahi hai…';
+    try {
+      var c = await renderOut(S.page, S.crop);
+      var b = await blobOf(c, fmtSel.value, 0.95);
+      download(b, baseName() + (S.kind === 'pdf' ? '-page' + S.page : '') + '-' + c.width + 'x' + c.height + '.' + ext());
+      say(sizeText() + ' · File: ' + kb(b.size) + ' ✅');
+    } catch (e) { say('❌ Photo nahi bani: ' + (e && e.message || e)); }
+    dl.disabled = false; dl.textContent = old;
+  });
+  dlAll.addEventListener('click', async function () {
+    dlAll.disabled = true; var old = dlAll.textContent;
+    try {
+      for (var i = 1; i <= S.pages; i++) {
+        dlAll.textContent = '⏳ Page ' + i + ' / ' + S.pages + '…';
+        var c = await renderOut(i, { x: 0, y: 0, w: 1, h: 1 });
+        download(await blobOf(c, fmtSel.value, 0.95), baseName() + '-page' + i + '.' + ext());
+        await new Promise(function (r) { setTimeout(r, 400); });
+      }
+      say('✅ ' + S.pages + ' page ki photo download ho gayi.');
+    } catch (e) { say('❌ ' + (e && e.message || e)); }
+    dlAll.disabled = false; dlAll.textContent = old;
+  });
+
+  // ---------- baaki button ----------
+  $('#c-pw-go').addEventListener('click', function () { if (S.file) openPdf(S.file, pw.value).catch(function (e) { say('❌ ' + e.message); }); });
+  pw.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('#c-pw-go').click(); } });
+  $('#c-prevpg').addEventListener('click', function () { if (S.page > 1) { S.page--; showPage(); } });
+  $('#c-nextpg').addEventListener('click', function () { if (S.page < S.pages) { S.page++; showPage(); } });
+  $('#c-new').addEventListener('click', function () { work.hidden = true; drop.hidden = false; input.value = ''; S.bmp = null; S.pdf = null; });
+  input.addEventListener('change', function () { if (input.files[0]) open(input.files[0]); });
+  ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('on'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('on'); }); });
+  drop.addEventListener('drop', function (e) { var f = (e.dataTransfer.files || [])[0]; if (f) open(f); });
+  window.addEventListener('resize', function () { if (!work.hidden && (S.bmp || S.pdf)) preview(); });
 })();
 
 // Website ka chat bot: website ke andar hi jawab (PC band ho tab bhi).
