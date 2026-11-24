@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-PFj9LqyrTlZ7qco8cIPaBJZuCPY6ZwjXJhZrCt5AW7k='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-ZuLcQ6TiPE6JM5kSNP2sil3RsNHN6Ren5qRVnzA8Kfs='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>PANKAJ CHOICE CENTER | CSC, Aadhaar, PAN, Banking, RTO seva - Khadgawan, MCB</title>
@@ -1373,6 +1373,7 @@
     ].filter(Boolean);
   }
   function hello() {
+    flow = null;
     bot('Namaste 🙏 Main *' + BOT + '* hoon, *' + D.name + '* ki sahayak.\nSeva ka naam likhiye (jaise "PAN card" ya "Aadhaar naam sudhar"), main documents bata dungi. Ya neeche se chuniye:', menu());
   }
   function placeOf(label) { return D.places.filter(function (p) { return p.label === label; })[0]; }
@@ -1555,11 +1556,11 @@
       askStatus(id.no); return;
     }
     if (kind === 'status' && id && !id.bad && (id.type === 'uid' || id.type === 'vid')) {
-      bot('🪪 Yeh *' + id.name + '* hai, matlab Aadhaar ban chuka hai ✅\nIsse status nahi dekha jata. Kya karna hai?', [{ label: '📥 Aadhaar Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }].concat(id.type === 'uid' ? [{ label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }] : []).concat([{ label: '🏠 Menu', say: 'Menu', go: hello }]));
+      bot('🪪 Yeh *' + id.name + '* hai, matlab Aadhaar ban chuka hai ✅\nIsse status nahi dekha jata. Kya karna hai?', (on('aadhaarDownload') ? [{ label: '📥 Aadhaar Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }] : []).concat(id.type === 'uid' ? [{ label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }] : []).concat([{ label: '🏠 Menu', say: 'Menu', go: hello }]));
       return;
     }
     if (kind === 'verify' && id && id.type === 'vid') {
-      bot('🪪 Yeh *VID (16 ank)* hai. Verify sirf 12 ank ke Aadhaar number se hota hai.', [{ label: '📥 VID se Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }, { label: '🔁 Aadhaar number likhein', say: 'Aadhaar Verify', go: retry }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      bot('🪪 Yeh *VID (16 ank)* hai. Verify sirf 12 ank ke Aadhaar number se hota hai.', (on('aadhaarDownload') ? [{ label: '📥 VID se Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }] : []).concat([{ label: '🔁 Aadhaar number likhein', say: 'Aadhaar Verify', go: retry }, { label: '🏠 Menu', say: 'Menu', go: hello }]));
       return;
     }
     bot((idProblem(id) || '🪪 Yeh *' + id.name + '* hai, is kaam me nahi chalta.') + '\n\n' + ID_GUIDE, [{ label: '🔁 Dobara likhein', main: true, say: 'Dobara', go: retry }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
@@ -1849,13 +1850,14 @@
     who = { name: '', phone: '' };
     bar.hidden = true;
     flow = { step: 'lvName', q: firstText || '' };
-    bot('*' + D.owner + '* se jodne se pehle 🙏\nAapka *naam* likhiye:');
+    bot('*' + D.owner + '* se jodne se pehle 🙏\nAapka *naam* likhiye:', [{ label: '❌ Rehne dijiye', say: 'Rehne dijiye', go: hello }]);
     input.focus();
   }
 
   // ---------- jawab ----------
   function answer(text) {
     var t = text.toLowerCase();
+    if (flow && /^\s*(menu|cancel|band|ruko|stop|wapas|back|rehne do|rehne dijiye|मेनू)\s*$/i.test(t)) { hello(); return; }
     if (flow && flow.step === 'panNo') {
       var pn = text.replace(/\s+/g, '').toUpperCase();
       if (!PAN_RX.test(pn)) { bot('Yeh number sahi nahi laga. UTI ka *Coupon / Application number* ya *PAN number* likhiye:'); return; }
@@ -1954,10 +1956,14 @@
     }
     // Aadhaar ka application number (EID/SRN/URN): UIDAI se status
     var bare = idOf(text);
+    if (bare && bare.bad && String(text).replace(/[^A-Za-z0-9]/g, '').length <= bare.no.length + 2) {
+      bot(idProblem(bare), [{ label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      return;
+    }
     if (bare && !bare.bad && String(text).replace(/[^A-Za-z0-9]/g, '').length <= bare.no.length + 4) {
       if (idFits('status', bare) && bare.type !== 'urn') { askStatus(bare.no); return; }
       if (bare.type === 'uid' || bare.type === 'vid') {
-        bot('🪪 Yeh *' + bare.name + '* hai. Kya karna hai?', [{ label: '📥 Aadhaar Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }].concat(bare.type === 'uid' ? [{ label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }] : []).concat([{ label: '🏠 Menu', say: 'Menu', go: hello }]));
+        bot('🪪 Yeh *' + bare.name + '* hai. Kya karna hai?', (on('aadhaarDownload') ? [{ label: '📥 Aadhaar Download', main: true, say: 'Aadhaar Download', go: showAadhaarDownload }] : []).concat(bare.type === 'uid' ? [{ label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify }] : []).concat([{ label: '🏠 Menu', say: 'Menu', go: hello }]));
         return;
       }
     }
