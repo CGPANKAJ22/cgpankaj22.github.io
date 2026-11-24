@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-l9FrihB4s2bpoDzKiOE7B3/gZMgpZIpk9zFTmdNwwU0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-Ry3yYLV7tZs+amdC8Xy4GPcYK/hIsWaI7uCQi6xU1Z0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
@@ -52,7 +52,8 @@
   .top nav a { text-decoration: none; color: var(--muted); }
   .top nav a:hover { color: var(--brand); }
   .top .call { margin-left: 10px; }
-  @media (max-width: 760px) { .top nav { display: none; } .top .call { margin-left: auto; } }
+  @media (max-width: 1180px) { .top nav { display: none; } .top .call { margin-left: auto; } }
+  .top nav a { white-space: nowrap; }
 
   /* Buttons */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid transparent; transition: transform .15s ease, box-shadow .15s ease; }
@@ -192,7 +193,7 @@
   .top nav a { padding: 6px 2px; border-bottom: 2px solid transparent; }
   .top nav a.active { color: var(--brand); border-bottom-color: var(--brand); }
   .tabbar { display: none; }
-  @media (max-width: 760px) {
+  @media (max-width: 1180px) {
     .tabbar { display: flex; gap: 6px; overflow-x: auto; padding: 8px 16px 10px; border-top: 1px solid var(--line); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .tabbar::-webkit-scrollbar { display: none; }
     .tabbar a { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); text-decoration: none; font-weight: 700; font-size: 14px; color: var(--muted); white-space: nowrap; }
@@ -395,6 +396,56 @@
   .promo-art .phone { width: 120px; height: 200px; border-radius: 26px; border: 4px solid rgba(255, 255, 255, .75); background: rgba(255, 255, 255, .12); display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; font-size: 34px; }
   @media (max-width: 640px) { .promo { grid-template-columns: 1fr; padding: 20px; } .promo-art { display: none; } }
 
+  /* Aadhaar Documents page */
+  .ad-cta { padding: 10px 0 4px; }
+  .ad-cta-in { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 18px; text-decoration: none; color: #fff; background: linear-gradient(120deg, #ff7a18, #e0245e 55%, #7b2ff7); box-shadow: 0 12px 28px rgba(224, 36, 94, .25); }
+  .ad-cta-in small { opacity: .92; }
+  .ad-cta-ic { font-size: 34px; }
+  .ad-cta-go { margin-left: auto; background: #fff; color: #b3124a; font-weight: 800; padding: 8px 14px; border-radius: 999px; white-space: nowrap; }
+  .ad-sec { padding: 18px 0 40px; }
+  .ad-main { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px; border-radius: 20px; background: linear-gradient(135deg, #0b2a86, #1e4fd8); color: #fff; box-shadow: var(--shadow); }
+  .ad-main h2 { margin: 0 0 4px; font-size: 20px; color: #fff; }
+  .ad-main p { margin: 0; opacity: .9; }
+  .ad-cal { margin-top: 18px; background: linear-gradient(135deg, #0f766e, #14b8a6); }
+  .ad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 18px 0; }
+  .ad-card { border-radius: 20px; padding: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-top: 6px solid var(--adc); display: flex; flex-direction: column; }
+  .ad-pink { --adc: #e0245e; --adbg: #fff0f5; } .ad-blue { --adc: #1e4fd8; --adbg: #eef3ff; } .ad-green { --adc: #12925a; --adbg: #ecfbf3; }
+  .ad-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .ad-ic { font-size: 30px; width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; background: var(--adbg); }
+  .ad-top h3 { margin: 0; font-size: 20px; color: var(--adc); }
+  .ad-hi { font-size: 14px; opacity: .8; }
+  .ad-form { margin-left: auto; font-weight: 800; font-size: 13px; color: #fff; background: var(--adc); padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+  .ad-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; flex: 1; }
+  .ad-list li { display: flex; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--adbg); }
+  .ad-list li > span { font-size: 22px; }
+  .ad-list b { display: block; }
+  .ad-list small { display: block; opacity: .85; line-height: 1.45; }
+  .ad-note { margin: 12px 0; font-size: 14px; font-weight: 600; color: var(--adc); }
+  .ad-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ad-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; font-weight: 800; text-decoration: none; border: 0; cursor: pointer; font: inherit; font-weight: 800; background: #ffcc33; color: #1b1b1b; }
+  .ad-card .ad-btn { background: var(--adc); color: #fff; }
+  .ad-btn.ghost { background: transparent; color: inherit; border: 2px solid currentColor; }
+  .ad-card .ad-btn.ghost { background: transparent; color: var(--adc); }
+  .ad-btn.sm { padding: 6px 10px; font-size: 13px; background: var(--brand); color: #fff; }
+  .ad-btn.sm.ghost { background: transparent; color: var(--brand); }
+  .ad-more { margin: 6px 0 0; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 12px 16px; }
+  .ad-more summary { cursor: pointer; font-weight: 800; }
+  .ad-rows { display: grid; gap: 8px; margin-top: 10px; }
+  .ad-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 0; border-top: 1px dashed var(--line); }
+  .ad-row > span:last-child { display: flex; gap: 6px; }
+  .ad-print-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+  .ad-print-row .ad-btn { background: var(--brand); color: #fff; }
+  .ad-disc { font-size: 13px; opacity: .75; margin-top: 10px; }
+  @media (max-width: 900px) { .ad-grid { grid-template-columns: 1fr; } .ad-cta-go { display: none; } }
+  @media print {
+    header, nav, .tabbar, .dock, footer, .cb, .phero .crumb, .ad-print-row, .ad-cta, .ad-more, .ad-cal, .ad-btns { display: none !important; }
+    body { background: #fff !important; }
+    .ad-grid { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .ad-card, .ad-main { box-shadow: none; break-inside: avoid; }
+    .ad-main { background: #0b2a86 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ad-card, .ad-list li, .ad-form, .ad-ic { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
   /* Teen kadam */
   .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; counter-reset: s; }
   .steps li { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px 20px 20px; box-shadow: var(--shadow); }
@@ -495,6 +546,7 @@
     <a class="brand" href="./" style="text-decoration:none">PANKAJ CHOICE CENTER<small>पंकज चॉइस सेंटर</small></a>
     <nav aria-label="Menu">
       <a href="./">Home</a>
+      <a href="aadhaar.html">Aadhaar Docs</a>
       <a href="sevayein.html" class="active" aria-current="page">Sevayein</a>
       <a href="appointment.html">Appointment</a>
       <a href="tools.html">Photo/PDF Tools</a>
@@ -505,7 +557,7 @@
     </nav>
     <a class="btn btn-call btn-sm call" href="tel:+918770882942"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg> Call</a>
   </div>
-  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="sevayein.html" class="active" aria-current="page"><span>🗂️</span>Sevayein</a><a href="appointment.html"><span>🗓️</span>Appointment</a><a href="tools.html"><span>🛠️</span>Photo/PDF Tools</a><a href="suchna.html"><span>📰</span>Suchna</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
+  <div class="tabbar" role="navigation" aria-label="Pages"><a href="./"><span>🏠</span>Home</a><a href="aadhaar.html"><span>🪪</span>Aadhaar Docs</a><a href="sevayein.html" class="active" aria-current="page"><span>🗂️</span>Sevayein</a><a href="appointment.html"><span>🗓️</span>Appointment</a><a href="tools.html"><span>🛠️</span>Photo/PDF Tools</a><a href="suchna.html"><span>📰</span>Suchna</a><a href="pata.html"><span>📍</span>Pata &amp; Samay</a><a href="whatsapp.html"><span>💬</span>WhatsApp</a><a href="sampark.html"><span>📞</span>Sampark</a></div>
 </header>
 
 <main class="page-sevayein">
@@ -650,6 +702,7 @@
     <div class="f-col">
       <h4>Pages</h4>
       <a href="./">Home</a>
+      <a href="aadhaar.html">Aadhaar Docs</a>
       <a href="sevayein.html">Sevayein</a>
       <a href="appointment.html">Appointment</a>
       <a href="tools.html">Photo/PDF Tools</a>
@@ -1004,6 +1057,8 @@
       on('aadhaarStatus') ? { label: '🪪 Aadhaar Status', say: 'Aadhaar Status', go: function () { askAadhaarNo(); } } : null,
       on('aadhaarVerify') ? { label: '✅ Aadhaar Verify', say: 'Aadhaar Verify', go: showAadhaarVerify } : null,
       on('aadhaarDownload') ? { label: '📥 Aadhaar Download', say: 'Aadhaar Download', go: showAadhaarDownload } : null,
+      { label: '🪪 Aadhaar Documents / Form', say: 'Aadhaar Documents', go: showAadhaarDocs },
+      { label: '📅 Aadhaar Calendar', say: 'Aadhaar Calendar', go: function () { answer('aadhaar calendar'); } },
       on('panStatus') ? { label: '💳 PAN Card Status', say: 'PAN Card Status', go: showPanStatus } : null,
       { label: '💬 Owner se baat', say: 'Owner se baat', go: function () { talkOwner(); } }
     ].filter(Boolean);
@@ -1199,6 +1254,46 @@
       return;
     }
     bot((idProblem(id) || '🪪 Yeh *' + id.name + '* hai, is kaam me nahi chalta.') + '\n\n' + ID_GUIDE, [{ label: '🔁 Dobara likhein', main: true, say: 'Dobara', go: retry }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+  // ---------- Aadhaar documents / form / calendar: PDF isi chat me + customer ke WhatsApp par ----------
+  var PDF_NAME = { form5Hi: 'Form 5 (0–5 saal)', form3Hi: 'Form 3 (5–18 saal)', form1Hi: 'Form 1 (18+ saal)', docListHi: 'Documents ki poori list', calYear: 'Aadhaar e-Calendar', calTraining: 'Training Calendar' };
+  function showAadhaarDocs() {
+    bot('🪪 *Aadhaar banwana / update: kya chahiye*\n\n👶 *0–5 saal*: Janm praman patra + Mata/Pita ka Aadhaar\n🧒 *5–18 saal*: Pehchan + Pata (ya Mata/Pita ka Aadhaar), Janm praman patra\n🧑 *18+ saal*: Pehchan + Pata + Janm tithi praman\n\nKaunsa PDF chahiye? Chat me milega aur aapke WhatsApp par bhi 👇',
+      [{ label: '👶 Form 5 (0–5)', main: true, say: 'Form 5', go: function () { askPdf('form5Hi'); } },
+       { label: '🧒 Form 3 (5–18)', say: 'Form 3', go: function () { askPdf('form3Hi'); } },
+       { label: '🧑 Form 1 (18+)', say: 'Form 1', go: function () { askPdf('form1Hi'); } },
+       { label: '📋 Poori list', say: 'Documents list', go: function () { askPdf('docListHi'); } },
+       { label: '📄 Sab ek page par', href: 'aadhaar.html' },
+       { label: '🏠 Menu', say: 'Menu', go: hello }]);
+  }
+  function askPdf(kind) {
+    if (!P.canSend || !P.relayOrigin || !window.EventSource || !window.crypto || !crypto.subtle) {
+      bot('📄 ' + PDF_NAME[kind] + ': is page par download kijiye 👇', [{ label: '📄 Aadhaar Docs page', main: true, href: 'aadhaar.html' }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      return;
+    }
+    flow = { step: 'pdfWa', kind: kind };
+    bot('📄 *' + PDF_NAME[kind] + '*\nApna *WhatsApp number* (10 ank) likhiye, PDF wahan bhi bhej denge.', [{ label: '⏭️ Sirf yahin download', say: 'Sirf yahin', go: function () { flow = null; sendPdf(kind, ''); } }, { label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
+    input.focus();
+  }
+  async function sendPdf(kind, wa) {
+    var raw = crypto.getRandomValues(new Uint8Array(32));
+    var st = { sid: code(), rt: 'pccr-' + hex(12), done: false };
+    var key = await crypto.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['decrypt']);
+    var es = new EventSource(P.relayOrigin + '/' + st.rt + '/sse');
+    function finish() { st.done = true; clearTimeout(st.timer); try { es.close(); } catch (e) { /* chhodo */ } bar.hidden = true; }
+    function fail() { finish(); bot('🙏 Abhi PDF nahi aa paya. Yahan se download kijiye:', [{ label: '📄 Aadhaar Docs page', main: true, href: 'aadhaar.html' }, { label: '🏠 Menu', say: 'Menu', go: hello }]); }
+    st.timer = setTimeout(function () { if (!st.done) fail(); }, 120000);
+    es.onmessage = async function (e) {
+      var m; try { m = JSON.parse(e.data); } catch (err) { return; }
+      if ((m.event && m.event !== 'message') || st.done) return;
+      var o; try { var x = JSON.parse(m.message); var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(x.iv)) }, key, P.unb64(x.d)); o = JSON.parse(new TextDecoder().decode(data)); } catch (err) { return; }
+      finish();
+      if (o.file) { try { addFile(await getFile(o.file, key), o.file.name); } catch (err) { /* chhodo */ } }
+      bot(String(o.text || ''), [{ label: '🪪 Aur form', say: 'Aadhaar Documents', go: showAadhaarDocs }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+    };
+    setBar('wait', '📄 PDF la rahe hain… (1 minute tak)');
+    var ok = await P.sendChat({ sid: st.sid, rt: st.rt, k: P.b64(raw), text: PDF_NAME[kind] || kind, kind: kind, wa: wa || '', status: 'pdf' });
+    if (!ok && !st.done) fail();
   }
   // ---------- Aadhaar status: number dukaan ke bot tak (taala-band), bot UIDAI se la kar yahin bhejta hai ----------
   var AADHAAR_RX = /aadh?aa?r|adhar|aadar|आधार|uidai/i;
@@ -1478,6 +1573,11 @@
       if (flow.kind === 'download') { flow = { step: 'udWa', kind: 'download', no: un.no }; bot('PDF aapke *WhatsApp* par bhejenge. Apna *WhatsApp number* (10 ank) likhiye:'); return; }
       var k1 = flow.kind; flow = null; startUidai(k1, un.no, ''); return;
     }
+    if (flow && flow.step === 'pdfWa') {
+      var pw = P.phoneOk(text);
+      if (!pw) { bot('10 ank ka *WhatsApp number* likhiye (ya "Sirf yahin download" dabaiye):'); return; }
+      var pk = flow.kind; flow = null; sendPdf(pk, pw); return;
+    }
     if (flow && flow.step === 'udWa') {
       var wa = P.phoneOk(text);
       if (!wa) { bot('Ye number sahi nahi laga. 10 ank ka *WhatsApp number* likhiye:'); return; }
@@ -1527,6 +1627,15 @@
     if (flow) { flowStep(text); return; }
     // Owner se baat chal rahi hai: sab owner tak
     if (live && !live.ended && (live.joined || live.left > 0)) { liveSay(text); return; }
+    // Aadhaar documents / form (umar ke hisaab se): alag page par sab PDF
+    if (/aadh?a+r|adhar|aadar|आधार/.test(t) && /\bform\b|farm|फॉर्म|फार्म|document|docs?\b|dastavej|दस्तावेज|kagaz|kagaj|कागज|supporting|list|सूची/.test(t) && !/status|download|verify/.test(t)) { showAadhaarDocs(); return; }
+    // UIDAI calendar PDF: chat me + WhatsApp par
+    if (/calend[ae]r|kalendar|kelendar|कैलेंडर|कैलेण्डर/.test(t)) {
+      var trn = /training|ट्रेनिंग/.test(t);
+      if (trn) { askPdf('calTraining'); return; }
+      bot('📅 *UIDAI Calendar*: kaunsa chahiye?', [{ label: '📅 Aadhaar e-Calendar', main: true, say: 'e-Calendar', go: function () { askPdf('calYear'); } }, { label: '🎓 Training Calendar', say: 'Training Calendar', go: function () { askPdf('calTraining'); } }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      return;
+    }
     // "aadhaar verify" / "aadhaar download" likha
     if (/aadh?a+r|adhar|aadar|आधार/.test(t)) {
       if (/verif|satyap|सत्याप|valid|asli|active|chalu\s*hai|असली/.test(t)) { showAadhaarVerify(); return; }
