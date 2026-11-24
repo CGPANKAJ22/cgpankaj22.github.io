@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-ZuLcQ6TiPE6JM5kSNP2sil3RsNHN6Ren5qRVnzA8Kfs='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-pn0sKnTqeruGFVAICx14tHCe6PeM3ghV4gc/zn6olZ8='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
@@ -1201,14 +1201,15 @@
     for (var i = 0; i < runs.length; i++) { var c0 = runs[i].replace(/[^A-Z0-9]/g, ''); if (c0.replace(/\D/g, '').length > best.replace(/\D/g, '').length) best = c0; }
     if (!best) return null;
     var c = best, pre = (c.match(/^[A-Z]+/) || [''])[0];
-    if (pre && !(pre === 'S' && /^S\d{13}$/.test(c))) c = c.slice(pre.length);
+    if (pre && !(pre === 'S' && /^S(\d{13}|\d{27})$/.test(c))) c = c.slice(pre.length);
     function hint(k, re) { return re.test(t) || pre === k; }
     var dg = c.replace(/\D/g, '');
     function o(type, no, name, bad) { return { type: type, no: no, name: name, bad: bad || '' }; }
+    if (/^S\d{27}$/.test(c)) return o('sid', c, 'SID (Service ID)');
     if (/^S\d{13}$/.test(c)) return o('srn', c, 'SRN (Service Request Number)');
     if (/^[A-Z]/.test(c)) return o('unknown', c, 'number');
     if (hint('SRN', /\bSRN\b|SERVICE\s*REQ/) && (dg.length === 13 || dg.length === 14 || dg.length === 10)) return o('srn', dg.length === 13 ? 'S' + dg : dg, 'SRN (Service Request Number)');
-    if (hint('SID', /\bSID\b|SERVICE\s*ID|SEQUENCE/) && dg.length >= 14 && dg.length <= 30) return o('sid', dg, 'SID (Service ID)');
+    if (hint('SID', /\bSID\b|SERVICE\s*ID|SEQUENCE/) && dg.length >= 14 && dg.length <= 30) return o('sid', dg.length === 27 ? 'S' + dg : dg, 'SID (Service ID)');
     var urnH = hint('URN', /\bURN\b|UPDATE\s*REQ/);
     if (urnH && (dg.length === 8 || dg.length === 14)) return o('urn', dg, 'URN (Update Request Number)');
     if (dg.length === 12) return /^[01]/.test(dg) ? o('uid', dg, 'Aadhaar number', 'start') : o('uid', dg, 'Aadhaar number', verhoeffOk(dg) ? '' : 'checksum');
@@ -1219,13 +1220,13 @@
       if (dm && stampOk(dm[3] + dm[2] + dm[1] + dm[4])) return o('eid', dg.slice(0, 14) + dm[3] + dm[2] + dm[1] + dm[4], 'EID (Enrolment ID)');
       return o('sid', dg, 'SID (Service ID)');
     }
-    if (dg.length === 27) return o('sid', dg, 'SID (Service ID)');
+    if (dg.length === 27) return o('sid', 'S' + dg, 'SID (Service ID)');
     if (dg.length === 14) return o('enrol14', dg, 'Enrolment number (14 ank)');
     if (dg.length === 8) return o('urn', dg, 'URN (Update Request Number)');
     if (dg.length === 10 && /^[6-9]/.test(dg)) return o('mobile', dg, 'mobile number');
     return o('unknown', dg, 'number');
   }
-  var ID_USE = { verify: ['uid'], download: ['uid', 'vid', 'eid'], status: ['eid', 'enrol14', 'srn', 'sid', 'urn'] };
+  var ID_USE = { verify: ['uid'], download: ['uid', 'vid', 'eid', 'sid'], status: ['eid', 'enrol14', 'srn', 'sid', 'urn'] };
   function idFits(kind, id) { return !!id && !id.bad && ID_USE[kind].indexOf(id.type) >= 0; }
   function idProblem(id) {
     if (!id) return 'Koi number nahi mila 🙏';
@@ -1235,11 +1236,11 @@
     if (id.type === 'unknown') return '❓ Yeh ' + id.no.length + ' ank/akshar ka number kisi Aadhaar number jaisa nahi hai.';
     return '';
   }
-  var ID_GUIDE = '▪️ *Aadhaar number*: 12 ank → Verify, Download\n▪️ *VID*: 16 ank → Download\n▪️ *EID*: 28 ank (14 ank + tareekh-samay, slip par) → Status, Download\n▪️ *SRN*: S se shuru 14 akshar (jaise S13…) → Status\n▪️ *SID*: 27-28 ank (update slip) → Status\n▪️ *URN*: 8 ank → Status';
+  var ID_GUIDE = '▪️ *Aadhaar number*: 12 ank → Verify, Download\n▪️ *VID*: 16 ank → Download\n▪️ *EID*: 28 ank (14 ank + tareekh-samay, slip par) → Download, Status\n▪️ *SRN*: S se shuru 14 akshar (jaise S13…) → Status\n▪️ *SID*: S + 27 ank (update slip) → Download, Status\n▪️ *URN*: 8 ank → Status';
   // Number dekh kar sahi kaam: kind = jo customer ne chuna tha (verify/download/status)
   function idRoute(kind, id, retry) {
     if (idFits('status', id) && kind !== 'status') {
-      bot('🪪 Yeh *' + id.name + '* hai. ' + (kind === 'verify' ? 'Verify sirf 12 ank ke Aadhaar number se hota hai' : 'Download Aadhaar number, EID (28 ank) ya VID se hota hai') + ', isliye iska *Aadhaar status* dekh rahe hain…');
+      bot('🪪 Yeh *' + id.name + '* hai. ' + (kind === 'verify' ? 'Verify sirf 12 ank ke Aadhaar number se hota hai' : 'Download Aadhaar number, EID, SID ya VID se hota hai') + ', isliye iska *Aadhaar status* dekh rahe hain…');
       askStatus(id.no); return;
     }
     if (kind === 'status' && id && !id.bad && (id.type === 'uid' || id.type === 'vid')) {
@@ -1335,7 +1336,7 @@
   function showAadhaarDownload() {
     if (!udCan()) { aadhaarDownloadStatic(); return; }
     flow = { step: 'udNo', kind: 'download' };
-    bot('📥 *Aadhaar Download (e-Aadhaar)*\n*Aadhaar number* (12 ank), slip ka *EID* (28 ank) ya *VID* (16 ank) likhiye.\n(SRN / SID / URN likhenge to uska status bata denge)\n⚠️ Aadhaar se mobile juda hona chahiye: UIDAI usi par OTP bhejega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
+    bot('📥 *Aadhaar Download (e-Aadhaar)*\ninme se koi ek number likhiye:\n▪️ *Aadhaar number* (12 ank)\n▪️ *EID* (slip ka 28 ank)\n▪️ *SID* (S + 27 ank, update slip)\n▪️ *VID* (16 ank)\n(SRN / URN likhenge to uska status bata denge)\n⚠️ Aadhaar se mobile juda hona chahiye: UIDAI usi par OTP bhejega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
     input.focus();
   }
   function udNumber(text) {
@@ -1435,7 +1436,7 @@
   // Menu ke button: Aadhaar ka number poochho (agla sandesh number maana jayega)
   function askAadhaarNo() {
     flow = { step: 'aadhaarNo' };
-    bot('🪪 Aadhaar slip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (jaise 1234/12345/12345 + tareekh-samay)\n▪️ *SRN*: S se shuru 14 akshar (jaise S13…)\n▪️ *SID*: 27-28 ank (update slip)\n▪️ *URN*: 8 ank\n(12 ank wale Aadhaar number se UIDAI status nahi batata)');
+    bot('🪪 Aadhaar slip / receipt par chhapa number likhiye:\n▪️ *EID*: 28 ank (jaise 1234/12345/12345 + tareekh-samay)\n▪️ *SRN*: S se shuru 14 akshar (jaise S13…)\n▪️ *SID*: S + 27 ank (update slip)\n▪️ *URN*: 8 ank\n(12 ank wale Aadhaar number se UIDAI status nahi batata)');
     input.focus();
   }
   // PAN: number + janam tithi yahin; dukaan ka bot UTI site kholta hai, CAPTCHA ki photo isi chat me aati hai,
