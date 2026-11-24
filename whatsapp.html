@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-39QeLYN6koNAAAxAk+A9WxH0yuwJNjqI2O2uHKCW09o='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-sD1uw0bsBj+HZ2V35+AiC0rGlvm5053F894TKEJiH7Q='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>WhatsApp Seva | PANKAJ CHOICE CENTER</title>
@@ -1114,16 +1114,19 @@
     var dg = c.replace(/\D/g, '');
     function o(type, no, name, bad) { return { type: type, no: no, name: name, bad: bad || '' }; }
     if (/^S\d{27}$/.test(c)) return o('sid', c, 'SID (Service ID)');
-    var em = t.match(/(\d{4})\s*[/.\- ]?\s*(\d{5})\s*[/.\- ]?\s*(\d{5})\D{1,8}?(\d{1,4})[/.\-](\d{1,2})[/.\-](\d{1,4})\D{1,6}?(\d{1,2})[:.](\d{1,2})(?:[:.](\d{1,2}))?\s*(AM|PM)?/i);
+    var em = t.match(/(\d{4})\s*[/.\- ]?\s*(\d{5})\s*[/.\- ]?\s*(\d{5})\D{1,8}?(\d{1,5})[/.\-](\d{1,2})[/.\-](\d{1,5})\D{1,6}?(\d{1,2})[:.](\d{1,2})(?:[:.](\d{1,2}))?\s*(AM|PM)?/i);
     if (em) {
       var p2 = function (x) { return ('0' + x).slice(-2); };
-      var y = em[4].length === 4 ? em[4] : em[6], mo = em[5], dd = em[4].length === 4 ? em[6] : em[4];
+      var y = em[4].length >= 4 ? em[4] : em[6], mo = em[5], dd = em[4].length >= 4 ? em[6] : em[4];
       if (y.length === 2) y = '20' + y;
       var hh = +em[7];
       if (/pm/i.test(em[10] || '') && hh < 12) hh += 12;
       if (/am/i.test(em[10] || '') && hh === 12) hh = 0;
       var stamp = y + p2(mo) + p2(dd) + p2(hh) + p2(em[8]) + p2(em[9] || '0');
       if (y.length === 4 && stampOk(stamp)) return o('eid', em[1] + em[2] + em[3] + stamp, 'EID (Enrolment ID)');
+      var bd = o('eid', em[1] + em[2] + em[3], 'EID (Enrolment ID)', 'date');
+      bd.dateText = em[4] + '/' + em[5] + '/' + em[6] + ' ' + em[7] + ':' + em[8] + (em[9] ? ':' + em[9] : '');
+      return bd;
     }
     if (/^S\d{13}$/.test(c)) return o('srn', c, 'SRN (Service Request Number)');
     if (/^[A-Z]/.test(c)) return o('unknown', c, 'number');
@@ -1151,7 +1154,8 @@
     if (!id) return 'Koi number nahi mila 🙏';
     if (id.bad === 'start') return '❌ Aadhaar number *0 ya 1* se shuru nahi hota. Card dekh kar dobara likhiye.';
     if (id.bad === 'checksum') return '❌ Yeh Aadhaar number sahi nahi hai: koi ek ank galat likha gaya hai (ya do ank aage-peeche). Card dekh kar dhyan se dobara likhiye.';
-    if (id.bad === 'short') return '❓ Yeh EID lag raha hai par ek ank kam hai. Slip par *14 ank + tareekh + samay* poora likhiye (jaise 1234/12345/12345 24/11/2025 16:45:12). SID ho to aage *S* lagaiye.';
+    if (id.bad === 'date') return '❓ Yeh EID hai, par tareekh / samay galat likha hai: *' + id.dateText + '*\nSlip dekh kar aise likhiye: *' + id.no.slice(0, 4) + '/' + id.no.slice(4, 9) + '/' + id.no.slice(9, 14) + ' DD/MM/YYYY HH:MM:SS*\n(saal 4 ank ka, jaise 2026)';
+        if (id.bad === 'short') return '❓ Yeh EID lag raha hai par ek ank kam hai. Slip par *14 ank + tareekh + samay* poora likhiye (jaise 1234/12345/12345 24/11/2025 16:45:12). SID ho to aage *S* lagaiye.';
     if (id.type === 'mobile') return '📱 Yeh *mobile number* lag raha hai, Aadhaar ka number nahi.';
     if (id.type === 'unknown') return '❓ Yeh ' + id.no.length + ' ank/akshar ka number kisi Aadhaar number jaisa nahi hai.';
     return '';
