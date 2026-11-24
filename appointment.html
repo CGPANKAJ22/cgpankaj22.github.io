@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-hA+lYOUG3xWdapmVvLCcDveXNxt1xl1rZ9R5lNo0sc0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-PFj9LqyrTlZ7qco8cIPaBJZuCPY6ZwjXJhZrCt5AW7k='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Appointment &amp; Sawal | PANKAJ CHOICE CENTER</title>
@@ -1285,7 +1285,9 @@
       var o; try { var x = JSON.parse(m.message); var data = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(P.unb64(x.iv)) }, key, P.unb64(x.d)); o = JSON.parse(new TextDecoder().decode(data)); } catch (err) { return; }
       finish();
       if (o.file) { try { addFile(await getFile(o.file, key), o.file.name); } catch (err) { /* chhodo */ } }
-      bot(String(o.text || ''), [{ label: '🪪 Aur form', say: 'Aadhaar Documents', go: showAadhaarDocs }, { label: '🏠 Menu', say: 'Menu', go: hello }]);
+      var dl = String(o.text || '').match(/⬇️ Download: (https?:\/\/\S+)/);
+      var txt = String(o.text || '').replace(/\n?⬇️ Download: \S+/, '');
+      bot(txt, (dl ? [{ label: '⬇️ PDF download', main: true, href: dl[1] }] : []).concat([{ label: '🪪 Aur form', say: 'Aadhaar Documents', go: showAadhaarDocs }, { label: '🏠 Menu', say: 'Menu', go: hello }]));
     };
     setBar('wait', '📄 PDF la rahe hain… (1 minute tak)');
     var ok = await P.sendChat({ sid: st.sid, rt: st.rt, k: P.b64(raw), text: PDF_NAME[kind] || kind, kind: kind, wa: wa || '', status: 'pdf' });
@@ -1326,7 +1328,7 @@
   function showAadhaarVerify() {
     if (!udCan()) { aadhaarVerifyStatic(); return; }
     flow = { step: 'udNo', kind: 'verify' };
-    bot('✅ *Aadhaar Verify*\n12 ank ka *Aadhaar number* likhiye (jaise 2345 6789 0123).\nUIDAI ki site se CAPTCHA ki photo yahin aayegi, akshar likhte hi jawab mil jayega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
+    bot('✅ *Aadhaar Verify*\n12 ank ka *Aadhaar number* likhiye (jaise 2XXX XXXX XXXX).\nUIDAI ki site se CAPTCHA ki photo yahin aayegi, akshar likhte hi jawab mil jayega.', [{ label: '🏠 Menu', say: 'Menu', go: function () { flow = null; hello(); } }]);
     input.focus();
   }
   function showAadhaarDownload() {
