@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-bnTZ7iOPKpCfPsc6+A2EB35S3N7wRP5206Qwg+JK5Ao=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-oHAshOnBT6/+v8Hsb6NgVjAeC7QLXK/HZVfGiihnWoo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-YoFD2Tf/6KSXQgatItCvnDQHz3vL6MT+nBnCSMAlqCI=' 'sha256-zDEQ+T/XhPQ+mHZ/UjTEkxcx4CYcN5egLRE3vfMK9ZU=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-oHAshOnBT6/+v8Hsb6NgVjAeC7QLXK/HZVfGiihnWoo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>PANKAJ CHOICE CENTER | CSC, Aadhaar, PAN, Banking, RTO seva - Khadgawan, MCB</title>
@@ -53,6 +53,7 @@
   .top nav a:hover { color: var(--brand); }
   .top .call { margin-left: 10px; }
   @media (max-width: 1180px) { .top nav { display: none; } .top .call { margin-left: auto; } }
+  @media (min-width: 1181px) { .top .brand { font-size: 15px; max-width: 150px; } .top .brand small { display: none; } }
   .top nav a { white-space: nowrap; }
 
   /* Buttons */
@@ -531,7 +532,71 @@
   .mp-art { display: none; }
   @media (max-width: 520px) { .mp-stage { height: 318px; } .mp-node small { font-size: 10px; } .mp-hubn, .mp-prnn { font-size: 12.5px; } .mp-cap { font-size: 12.5px; } }
   @media (prefers-reduced-motion: reduce) { .mp::before, .mp-btn, .mp-btn::after, .mp-wires path, .mp-rec { animation: none; } .mp-f, .mp-steps li { opacity: 1; transform: none; } }
+  /* Testing: upar chalti bulletin */
+  .tick { display: flex; align-items: stretch; height: 34px; background: linear-gradient(90deg, #0b2a86, #1e4fd8); color: #fff; font-size: 14px; overflow: hidden; }
+  .tick-lbl { flex: none; display: flex; align-items: center; padding: 0 12px; background: #ffb547; color: #3a2200; font-weight: 800; position: relative; z-index: 1; }
+  .tick-lbl::after { content: ""; position: absolute; right: -10px; top: 0; border-left: 10px solid #ffb547; border-top: 17px solid transparent; border-bottom: 17px solid transparent; }
+  .tick-vp { flex: 1; overflow: hidden; display: flex; align-items: center; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+  .tick-run { display: flex; width: max-content; animation: tickgo var(--tick-dur, 40s) linear infinite; }
+  .tick:hover .tick-run { animation-play-state: paused; }
+  .tick-row { display: flex; align-items: center; gap: 18px; padding-left: 18px; white-space: nowrap; }
+  .tick-row a, .tick-row span { color: #fff; text-decoration: none; font-weight: 600; }
+  .tick-row a:hover { text-decoration: underline; }
+  .tick-row i { color: #ffb547; font-style: normal; }
+  @keyframes tickgo { to { transform: translateX(-50%); } }
+  /* Testing: sevaon ka video */
+  .svv-sec { padding: 26px 0 0; }
+  .svv-head { text-align: center; margin-bottom: 14px; }
+  .svv-tag { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .06em; padding: 4px 10px; border-radius: 999px; background: #ffe1e1; color: #b3261e; }
+  .svv-head h2 { margin: 8px 0 4px; color: var(--brand-deep); font-size: clamp(22px, 3.2vw, 30px); }
+  .svv-head p { margin: 0; color: var(--muted); }
+  .svv { max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; background: #050d2b; box-shadow: 0 18px 40px rgba(11,42,134,.3); }
+  .svv-scr { position: relative; aspect-ratio: 16 / 9; overflow: hidden; color: #fff; background: radial-gradient(90% 100% at 30% 20%, #2450d6 0%, #0b2a86 50%, #050d2b 100%); }
+  .svv-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1.08); transition: opacity .8s; }
+  .svv-bg.on { opacity: .22; animation: svvken 9s ease-out forwards; }
+  @keyframes svvken { to { transform: scale(1.18) translate(-2%, -1%); } }
+  .svv-scr::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,13,43,.2), rgba(5,13,43,.75)); pointer-events: none; }
+  .svv-brand { position: absolute; left: 14px; top: 12px; z-index: 3; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 13px; }
+  .svv-brand::before { content: ""; } .svv-brand { padding: 4px 10px 4px 4px; border-radius: 999px; background: rgba(255,255,255,.12); }
+  .svv-brand span { opacity: .9; }
+  .svv-body { position: absolute; inset: 44px 18px 58px; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .svv-ic { font-size: clamp(34px, 6vw, 58px); line-height: 1; }
+  .svv-t { font-weight: 800; font-size: clamp(20px, 3.6vw, 36px); line-height: 1.15; margin-top: 6px; }
+  .svv-hi { font-weight: 700; color: #ffcf7a; font-size: clamp(15px, 2.4vw, 22px); }
+  .svv-sub { margin-top: 10px; color: #cfe0ff; font-size: clamp(13px, 2vw, 17px); }
+  .svv-body.in .svv-ic { animation: svvpop .6s cubic-bezier(.2,.9,.3,1.4) both; }
+  .svv-body.in .svv-t, .svv-body.in .svv-hi, .svv-body.in .svv-sub { animation: svvup .55s ease-out both; }
+  .svv-body.in .svv-hi { animation-delay: .1s; } .svv-body.in .svv-sub { animation-delay: .2s; }
+  .svv-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 820px; }
+  .svv-list li { display: flex; flex-direction: column; padding: 6px 12px; border-radius: 12px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); font-size: clamp(11px, 1.6vw, 14px); line-height: 1.25; opacity: 0; animation: svvchip .45s ease-out forwards; }
+  .svv-list li small { color: #ffcf7a; font-size: .85em; }
+  .svv-list li.more { background: #ffb547; color: #3a2200; justify-content: center; }
+  .svv-call { margin-top: 14px; padding: 10px 22px; border-radius: 14px; background: #25d366; color: #fff; font-weight: 800; font-size: clamp(18px, 3vw, 26px); text-decoration: none; animation: svvpop .6s .3s both, mppulse 2.4s 1s ease-in-out infinite; }
+  @keyframes svvpop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes svvup { from { transform: translateY(16px); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes svvchip { from { transform: translateY(14px) scale(.9); opacity: 0; } to { transform: none; opacity: 1; } }
+  .svv-cap { position: absolute; left: 12px; right: 12px; bottom: 10px; z-index: 3; padding: 6px 12px; border-radius: 10px; background: rgba(0,0,0,.55); font-size: clamp(11.5px, 1.7vw, 14px); line-height: 1.35; text-align: center; max-height: 3.1em; overflow: hidden; }
+  .svv-big { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 0; background: rgba(5,13,43,.55); color: #fff; font: inherit; font-weight: 800; font-size: 18px; cursor: pointer; }
+  .svv-big span { display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%; background: #fff; color: #0b2a86; font-size: 30px; box-shadow: 0 0 0 0 rgba(255,255,255,.5); animation: mppulse 2s infinite; }
+  .svv-big small { font-weight: 600; color: #cfe0ff; }
+  .svv.playing .svv-big { display: none; }
+  .svv-tap { display: none; position: absolute; right: 12px; top: 10px; z-index: 6; padding: 7px 12px; border: 0; border-radius: 999px; background: #fff; color: #0b2a86; font: inherit; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,.35); animation: mppulse 2s infinite; }
+  .svv.playing.muted .svv-tap { display: block; }
+  .svv-ctrl { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #0a1640; }
+  .svv-b { width: 36px; height: 34px; border: 0; border-radius: 9px; background: rgba(255,255,255,.14); color: #fff; font-size: 15px; cursor: pointer; }
+  .svv-b.on { background: #1faa53; }
+  .svv-prog { flex: 1; display: flex; gap: 3px; cursor: pointer; }
+  .svv-prog i { flex: 1; height: 6px; border-radius: 4px; background: rgba(255,255,255,.18); overflow: hidden; }
+  .svv-prog i.done b { width: 100%; }
+  .svv-prog i b { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #9fd0ff, #ffb547); }
+  .svv-prog i.done b { width: 100%; animation: none !important; }
+  .svv-prog i.now b { animation: svvbar linear forwards; }
+  @keyframes svvbar { to { width: 100%; } }
+  .svv-n { color: #9fb4e8; font-size: 12px; min-width: 34px; text-align: right; }
+  @media (max-width: 560px) { .svv-scr { aspect-ratio: 4 / 5; } .svv-body { inset: 44px 10px 64px; } .svv-cap { max-height: 4.2em; } .tick { font-size: 13px; height: 30px; } .tick-lbl::after { border-top-width: 15px; border-bottom-width: 15px; } }
+  @media (prefers-reduced-motion: reduce) { .tick-run { animation-duration: 120s; } .svv-bg.on { animation: none; } }
   @media print {
+    .tick, .svv-sec { display: none !important; }
     header, nav, .tabbar, .dock, footer, .cb, .phero .crumb, .ad-print-row, .ad-cta, .ad-more, .ad-cal, .ad-btns { display: none !important; }
     body { background: #fff !important; }
     .ad-grid { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
@@ -635,6 +700,7 @@
 <body>
 
 <header class="top">
+  <div class="tick" role="marquee" aria-label="Taaza khabar"><span class="tick-lbl">🔔 Taaza</span><div class="tick-vp"><div class="tick-run" style="--tick-dur:117s"><div class="tick-row"><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 आधारसेवा केंद्र PHC रतनपुर</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div><div class="tick-row" aria-hidden="true"><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 आधारसेवा केंद्र PHC रतनपुर</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div></div></div></div>
   <div class="wrap">
     <a class="logo" href="./" aria-label="Home" style="text-decoration:none">PC</a>
     <a class="brand" href="./" style="text-decoration:none">PANKAJ CHOICE CENTER<small>पंकज चॉइस सेंटर</small></a>
@@ -678,6 +744,78 @@
       <div class="qcard"><div class="qicon">🏦</div><div><b>CSC &amp; Banking · 8 AM - 8 PM</b><span>roz, sabhi din</span></div></div>
     </div>
   </div>
+
+  <section id="sv-video" class="svv-sec">
+    <div class="wrap">
+      <div class="svv-head"><span class="svv-tag">🎬 VIDEO · TESTING</span><h2>Hamari sabhi sevayein: video me dekhiye</h2><p>11 tarah ki sevayein, 56+ kaam. 🔊 dabakar awaaz ke saath suniye.</p></div>
+      <div class="svv" id="svv">
+        <div class="svv-scr" id="svv-scr">
+          <div class="svv-bg" id="svv-bg"></div>
+          <div class="svv-brand">PC <span>PANKAJ CHOICE CENTER</span></div>
+          <div class="svv-body" id="svv-body"></div>
+          <div class="svv-cap" id="svv-cap"></div>
+          <button type="button" class="svv-tap" id="svv-tap">🔊 Awaaz chalu karein</button>
+          <button type="button" class="svv-big" id="svv-big"><span>▶</span>Video dekhiye<small>🔊 awaaz ke saath</small></button>
+        </div>
+        <div class="svv-ctrl">
+          <button type="button" class="svv-b" id="svv-pp" aria-label="Play / Pause">▶</button>
+          <button type="button" class="svv-b" id="svv-mute" aria-label="Awaaz chalu / band">🔇</button>
+          <div class="svv-prog" id="svv-prog"></div>
+          <span class="svv-n" id="svv-n">1/13</span>
+        </div>
+      </div>
+    </div>
+  </section>
+<script>(function(){
+  var S=[{"kind":"intro","icon":"🙏","title":"PANKAJ CHOICE CENTER","hi":"पंकज चॉइस सेंटर","list":[],"say":"नमस्ते! पंकज चॉइस सेंटर में आपका स्वागत है। यहाँ एक ही जगह पर 11 तरह की ऑनलाइन सेवाएँ मिलती हैं। आइए देखते हैं।"},{"kind":"grp","icon":"🪪","title":"Aadhaar Card Services","hi":"आधार कार्ड सेवाएं","img":"https://images.pexels.com/photos/7479537/pexels-photo-7479537.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Aadhaar Mobile Number Update","hi":"मोबाइल नंबर अपडेट"},{"en":"Aadhaar Name Update","hi":"आधार कार्ड में नाम सुधार"},{"en":"Aadhaar Date of Birth Update","hi":"जन्मतिथि सुधार"},{"en":"Aadhaar Biometric Update","hi":""},{"en":"New Aadhaar Enrollment","hi":"नया आधार कार्ड बनवाना"},{"en":"Aadhaar Address Update","hi":"पता परिवर्तन"},{"en":"Aadhaar Verify","hi":"आधार सत्यापन"},{"en":"Aadhaar Download / e-Aadhaar","hi":"आधार डाउनलोड"}],"more":0,"say":"आधार कार्ड सेवाएं। मोबाइल नंबर अपडेट। आधार कार्ड में नाम सुधार। जन्मतिथि सुधार। Aadhaar Biometric Update। नया आधार कार्ड बनवाना। पता परिवर्तन। और भी कई सेवाएँ।"},{"kind":"grp","icon":"💳","title":"PAN Card Services","hi":"पैन कार्ड सेवाएं","img":"https://images.pexels.com/photos/6484708/pexels-photo-6484708.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"PAN Card","hi":""},{"en":"PAN Card Correction","hi":"पैन कार्ड में सुधार"},{"en":"PAN Card Reprint","hi":"पैन कार्ड पुनः प्रिंट"},{"en":"PAN Card Name Change","hi":"पैन कार्ड में नाम परिवर्तन"},{"en":"PAN Card Date of Birth Correction","hi":"पैन कार्ड में जन्मतिथि सुधार"},{"en":"New PAN Card Application","hi":"नया पैन कार्ड आवेदन"}],"more":0,"say":"पैन कार्ड सेवाएं। PAN Card। पैन कार्ड में सुधार। पैन कार्ड पुनः प्रिंट। पैन कार्ड में नाम परिवर्तन। पैन कार्ड में जन्मतिथि सुधार। नया पैन कार्ड आवेदन।"},{"kind":"grp","icon":"🏦","title":"Banking Services","hi":"बैंकिंग सेवाएं","img":"https://images.pexels.com/photos/6484708/pexels-photo-6484708.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Aadhaar Seeding in Bank Account","hi":"DBT / NPCI"},{"en":"AEPS Cash Withdrawal","hi":"आधार से पैसे निकालना"},{"en":"AEPS Balance Enquiry","hi":"बैंक बैलेंस चेक"},{"en":"AEPS Mini Statement","hi":"मिनी स्टेटमेंट"},{"en":"Bank Account Opening","hi":"बैंक खाता खोलना"},{"en":"Money Transfer","hi":"मनी ट्रांसफर"}],"more":0,"say":"बैंकिंग सेवाएं। DBT / NPCI। आधार से पैसे निकालना। बैंक बैलेंस चेक। मिनी स्टेटमेंट। बैंक खाता खोलना। मनी ट्रांसफर।"},{"kind":"grp","icon":"🚗","title":"Driving Licence & RTO Services","hi":"ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं","img":"https://images.pexels.com/photos/6862165/pexels-photo-6862165.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Learner License","hi":"LL"},{"en":"Driving License","hi":"DL"},{"en":"DL Renewal","hi":""},{"en":"Duplicate DL / DL Address Change","hi":""},{"en":"RC Transfer","hi":"Vehicle Ownership Change"},{"en":"Check / Pay Challan","hi":""},{"en":"Vehicle RC Download","hi":"वाहन आरसी डाउनलोड"}],"more":0,"say":"ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं। LL। DL। DL Renewal। Duplicate DL / DL Address Change। Vehicle Ownership Change। Check / Pay Challan। और भी कई सेवाएँ।"},{"kind":"grp","icon":"🗳️","title":"Voter ID Services","hi":"मतदाता पहचान पत्र सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"New Voter ID Registration","hi":"नया वोटर आईडी आवेदन"},{"en":"Voter ID Correction","hi":"वोटर आईडी में सुधार"},{"en":"Voter ID Address Change","hi":"वोटर आईडी में पता परिवर्तन"},{"en":"Voter ID Download","hi":"वोटर आईडी डाउनलोड"}],"more":0,"say":"मतदाता पहचान पत्र सेवाएं। नया वोटर आईडी आवेदन। वोटर आईडी में सुधार। वोटर आईडी में पता परिवर्तन। वोटर आईडी डाउनलोड।"},{"kind":"grp","icon":"📜","title":"Income, Caste & Domicile Certificate Services","hi":"प्रमाण पत्र सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Income Certificate","hi":"आय प्रमाण पत्र"},{"en":"Caste Certificate","hi":"जाति प्रमाण पत्र"},{"en":"Domicile Certificate","hi":"मूल निवासी प्रमाण पत्र"},{"en":"Birth Certificate","hi":"जन्म प्रमाण पत्र"},{"en":"Death Certificate","hi":"मृत्यु प्रमाण पत्र"}],"more":0,"say":"प्रमाण पत्र सेवाएं। आय प्रमाण पत्र। जाति प्रमाण पत्र। मूल निवासी प्रमाण पत्र। जन्म प्रमाण पत्र। मृत्यु प्रमाण पत्र।"},{"kind":"grp","icon":"🏛️","title":"e-Shram & Government Scheme Services","hi":"सरकारी योजना सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"New e-Shram Card Registration","hi":"नया ई-श्रम कार्ड"},{"en":"Ayushman Bharat Card","hi":"आयुष्मान कार्ड"},{"en":"PM Kisan Registration","hi":"पीएम किसान पंजीयन"},{"en":"Pension Scheme Registration","hi":"पेंशन योजना पंजीयन"},{"en":"UDID Card Registration","hi":"दिव्यांग पहचान पत्र"}],"more":0,"say":"सरकारी योजना सेवाएं। नया ई-श्रम कार्ड। आयुष्मान कार्ड। पीएम किसान पंजीयन। पेंशन योजना पंजीयन। दिव्यांग पहचान पत्र।"},{"kind":"grp","icon":"🛡️","title":"Insurance Services","hi":"बीमा सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Two Wheeler Insurance","hi":"दो पहिया वाहन बीमा"},{"en":"Four Wheeler Insurance","hi":"चार पहिया वाहन बीमा"},{"en":"Life Insurance","hi":"जीवन बीमा"},{"en":"Health Insurance","hi":"स्वास्थ्य बीमा"}],"more":0,"say":"बीमा सेवाएं। दो पहिया वाहन बीमा। चार पहिया वाहन बीमा। जीवन बीमा। स्वास्थ्य बीमा।"},{"kind":"grp","icon":"🎓","title":"Education & Online Application Services","hi":"शिक्षा एवं ऑनलाइन आवेदन","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Scholarship Application","hi":"छात्रवृत्ति आवेदन"},{"en":"Government Job Application","hi":"सरकारी नौकरी आवेदन"},{"en":"College Admission Form","hi":"कॉलेज प्रवेश आवेदन"},{"en":"ITI Admission Form","hi":"आईटीआई प्रवेश आवेदन"}],"more":0,"say":"शिक्षा एवं ऑनलाइन आवेदन। छात्रवृत्ति आवेदन। सरकारी नौकरी आवेदन। कॉलेज प्रवेश आवेदन। आईटीआई प्रवेश आवेदन।"},{"kind":"grp","icon":"📱","title":"Utility & Recharge Services","hi":"बिल भुगतान एवं रिचार्ज सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Electricity Bill Payment","hi":"बिजली बिल भुगतान"},{"en":"Mobile Recharge","hi":"मोबाइल रिचार्ज"},{"en":"DTH Recharge","hi":"डीटीएच रिचार्ज"},{"en":"FASTag Recharge","hi":"फास्टैग रिचार्ज"}],"more":0,"say":"बिल भुगतान एवं रिचार्ज सेवाएं। बिजली बिल भुगतान। मोबाइल रिचार्ज। डीटीएच रिचार्ज। फास्टैग रिचार्ज।"},{"kind":"grp","icon":"🏢","title":"Business & Registration Services","hi":"व्यवसाय एवं पंजीयन सेवाएं","img":"https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&cs=tinysrgb&w=1200","list":[{"en":"Udyam Registration","hi":"उद्यम रजिस्ट्रेशन"},{"en":"GST Registration","hi":"जीएसटी रजिस्ट्रेशन"},{"en":"FSSAI Registration","hi":"खाद्य लाइसेंस पंजीयन"}],"more":0,"say":"व्यवसाय एवं पंजीयन सेवाएं। उद्यम रजिस्ट्रेशन। जीएसटी रजिस्ट्रेशन। खाद्य लाइसेंस पंजीयन।"},{"kind":"outro","icon":"📞","title":"Aaj hi sampark kijiye","hi":"आज ही संपर्क कीजिए","list":[],"phone":"8770882942","say":"सही जानकारी और भरोसे के साथ काम। कॉल या व्हाट्सऐप कीजिए। पंकज चॉइस सेंटर, आपकी सेवा में।"}];
+  var box=document.getElementById('svv'); if(!box) return;
+  var body=document.getElementById('svv-body'), bg=document.getElementById('svv-bg'), cap=document.getElementById('svv-cap'), big=document.getElementById('svv-big'), pp=document.getElementById('svv-pp'), mu=document.getElementById('svv-mute'), prog=document.getElementById('svv-prog'), num=document.getElementById('svv-n');
+  var i=-1, playing=false, muted=true, timer=0, token=0, voice=null, tts=('speechSynthesis' in window);
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  prog.innerHTML=S.map(function(_,k){return '<i data-k="'+k+'"><b></b></i>';}).join('');
+  function pick(){ if(!tts) return; var v=speechSynthesis.getVoices()||[]; voice=v.filter(function(x){return /^hi/i.test(x.lang);})[0]||v.filter(function(x){return /en-IN/i.test(x.lang);})[0]||null; }
+  if(tts){ pick(); speechSynthesis.onvoiceschanged=pick; }
+  function e(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function chime(){ if(muted) return; try{ var A=window.AudioContext||window.webkitAudioContext; if(!A) return; chime.c=chime.c||new A(); var c=chime.c, o=c.createOscillator(), g=c.createGain(); o.type='sine'; o.frequency.setValueAtTime(880,c.currentTime); o.frequency.exponentialRampToValueAtTime(1320,c.currentTime+.12); g.gain.setValueAtTime(.0001,c.currentTime); g.gain.exponentialRampToValueAtTime(.08,c.currentTime+.02); g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.35); o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime+.4);}catch(_){} }
+  function render(s){
+    bg.style.backgroundImage=s.img?'url('+s.img+')':''; bg.className='svv-bg'+(s.img?' on':'');
+    var h='<div class="svv-ic">'+s.icon+'</div><div class="svv-t">'+e(s.title)+'</div>'+(s.hi?'<div class="svv-hi">'+e(s.hi)+'</div>':'');
+    if(s.list.length) h+='<ul class="svv-list">'+s.list.map(function(x,k){return '<li style="animation-delay:'+(0.35+k*0.28)+'s"><b>'+e(x.en)+'</b>'+(x.hi?'<small>'+e(x.hi)+'</small>':'')+'</li>';}).join('')+(s.more?'<li class="more" style="animation-delay:'+(0.35+s.list.length*0.28)+'s"><b>+ '+s.more+' aur</b></li>':'')+'</ul>';
+    if(s.kind==='outro'&&s.phone) h+='<a class="svv-call" href="tel:+91'+e(s.phone)+'">📞 '+e(s.phone)+'</a>';
+    if(s.kind==='intro') h+='<div class="svv-sub">CSC · Aadhaar · PAN · Banking · RTO · aur bhi</div>';
+    body.className='svv-body k-'+s.kind; body.innerHTML=h; void body.offsetWidth; body.classList.add('in');
+    cap.textContent=s.say; num.textContent=(i+1)+'/'+S.length;
+    [].forEach.call(prog.children,function(el,k){ el.className=k<i?'done':(k===i?'now':''); var b=el.firstChild; b.style.animation='none'; void b.offsetWidth; b.style.animation=''; });
+  }
+  function dur(s){ return Math.max(4500, 2600+s.list.length*700); }
+  function go(k){
+    clearTimeout(timer); token++; var my=token; if(tts) speechSynthesis.cancel();
+    if(k>=S.length){ k=0; }
+    i=k; var s=S[i]; render(s); chime();
+    var cur=prog.children[i].firstChild; cur.style.animationDuration=dur(s)+'ms'; cur.style.animationPlayState=playing?'running':'paused';
+    if(!playing) return;
+    var next=function(){ if(my===token&&playing) go(i+1); };
+    if(!muted&&tts){
+      var u=new SpeechSynthesisUtterance(s.say); if(voice) u.voice=voice; u.lang=voice?voice.lang:'hi-IN'; u.rate=1; u.pitch=1;
+      var t0=Date.now(); u.onend=function(){ var left=Math.max(600, 1800-(Date.now()-t0)); timer=setTimeout(next,left); };
+      u.onerror=function(){ timer=setTimeout(next,dur(s)); };
+      speechSynthesis.speak(u); timer=setTimeout(next, Math.max(dur(s), s.say.length*95)+3000); // awaaz atke to bhi aage
+    } else timer=setTimeout(next,dur(s));
+  }
+  function setMute(m){ muted=m; mu.textContent=m?'🔇':'🔊'; mu.classList.toggle('on',!m); box.classList.toggle('muted',m); if(m&&tts) speechSynthesis.cancel(); if(playing) go(i<0?0:i); }
+  function play(fromStart){ playing=true; box.classList.add('playing'); pp.textContent='❚❚'; go(fromStart||i<0?0:i); }
+  function pause(){ playing=false; clearTimeout(timer); token++; if(tts) speechSynthesis.cancel(); pp.textContent='▶'; var c=prog.children[i]; if(c) c.firstChild.style.animationPlayState='paused'; }
+  big.addEventListener('click',function(){ muted=false; mu.textContent='🔊'; mu.classList.add('on'); box.classList.remove('muted'); play(true); });
+  document.getElementById('svv-tap').addEventListener('click',function(){ setMute(false); });
+  box.classList.add('muted');
+  pp.addEventListener('click',function(){ playing?pause():play(); });
+  mu.addEventListener('click',function(){ setMute(!muted); if(!playing) play(); });
+  prog.addEventListener('click',function(ev){ var t=ev.target.closest('i'); if(!t) return; i=+t.dataset.k; if(!playing) play(); else go(i); });
+  document.addEventListener('visibilitychange',function(){ if(document.hidden&&playing) pause(); });
+  i=0; render(S[0]); i=-1;
+  // Screen par aate hi bina awaaz ke chale (browser bina dabaye awaaz nahi chalne deta)
+  if('IntersectionObserver' in window&&!calm){ new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting&&!playing&&i<0) play(true); else if(!en.isIntersecting&&playing) pause(); }); },{threshold:.55}).observe(box); }
+})();</script>
 
   <div class="trust">
     <div class="wrap">
@@ -723,7 +861,7 @@
             <p class="mp-note">Download hui <b>MeraPrint-Host-Install.bat</b> chalaiye. Browser poochhe to <b>Keep / Rakhein</b>, Windows poochhe to <b>More info → Run anyway</b>. Node.js na ho to ek baar khud lag jayega. Firewall poochhe to <b>Private networks → Allow</b>.</p>
           </div>
           <div class="mp-video" id="mp-video">
-            <div class="mp-vbar"><span class="mp-rec">● DEMO VIDEO</span><span class="mp-vtime" id="mp-vtime">0:00 / 0:24</span></div>
+            <div class="mp-vbar"><span class="mp-rec">● DEMO VIDEO</span><span class="mp-vtime" id="mp-vtime">0:00 / 0:30</span></div>
             <div class="mp-stage" id="mp-stage">
               <div class="mp-node mp-n1" data-n="pc1"><span>🖥️</span><small>Counter 1</small></div>
               <div class="mp-node mp-n2" data-n="pc2"><span>🖥️</span><small>Counter 2</small></div>
@@ -740,6 +878,7 @@
             <div class="mp-ctrl">
               <button type="button" class="mp-pp" id="mp-pp" aria-label="Play / Pause">▶</button>
               <div class="mp-prog" id="mp-prog"><i id="mp-progi"></i></div>
+              <button type="button" class="mp-pp" id="mp-mute" aria-label="Awaaz chalu / band">🔇</button>
               <span class="mp-scn" id="mp-scn">1/6</span>
             </div>
           </div>
@@ -768,14 +907,14 @@
   var cap=document.getElementById('mp-cap'), pp=document.getElementById('mp-pp'), big=document.getElementById('mp-bigplay'), bar=document.getElementById('mp-progi'), tm=document.getElementById('mp-vtime'), scn=document.getElementById('mp-scn');
   var N=function(k){return st.querySelector('[data-n="'+k+'"]');};
   var S=[
-    {t:'🖥️ Counter 1 se Print dabaya: page Host se hota hua printer par', from:['pc1'], icon:'📄'},
-    {t:'🖥️🖥️ Counter 2 aur 3 se bhi ek saath: sab ek hi printer par', from:['pc2','pc3'], icon:'📄'},
-    {t:'📱 Phone se photo / PDF print: pen drive ki zaroorat nahi', from:['ph'], icon:'🖼️'},
-    {t:'📠 Scan kiya: file seedha Counter 2 ke PC par', rev:'pc2', icon:'📑'},
-    {t:'🖥️ Remote Access: Counter 3 se Host PC chalaiye', remote:'pc3'},
-    {t:'🔐 Host ID + PIN: sirf aapke chune hue device jud sakte hain', lock:true}
+    {t:'🖥️ Counter 1 se Print dabaya: page Host se hota hua printer par', from:['pc1'], icon:'📄', say:'काउंटर एक से प्रिंट दबाया। पेज होस्ट से होता हुआ सीधे प्रिंटर पर।'},
+    {t:'🖥️🖥️ Counter 2 aur 3 se bhi ek saath: sab ek hi printer par', from:['pc2','pc3'], icon:'📄', say:'काउंटर दो और तीन से भी एक साथ। सब एक ही प्रिंटर पर।'},
+    {t:'📱 Phone se photo / PDF print: pen drive ki zaroorat nahi', from:['ph'], icon:'🖼️', say:'फ़ोन से फ़ोटो या पीडीएफ़ प्रिंट। पेन ड्राइव की ज़रूरत नहीं।'},
+    {t:'📠 Scan kiya: file seedha Counter 2 ke PC par', rev:'pc2', icon:'📑', say:'स्कैन किया, फ़ाइल सीधे काउंटर दो के कंप्यूटर पर।'},
+    {t:'🖥️ Remote Access: Counter 3 se Host PC chalaiye', remote:'pc3', say:'रिमोट एक्सेस। काउंटर तीन से होस्ट कंप्यूटर चलाइए।'},
+    {t:'🔐 Host ID + PIN: sirf aapke chune hue device jud sakte hain', lock:true, say:'होस्ट आईडी और पिन से सुरक्षित। मेरा प्रिंट, आज ही डाउनलोड कीजिए।'}
   ];
-  var DUR=4000, i=0, t0=0, el=0, playing=false, raf=0, timers=[];
+  var DUR=5000, i=0, muted=true, tts=('speechSynthesis' in window), mvoice=null, mute=document.getElementById('mp-mute'), t0=0, el=0, playing=false, raf=0, timers=[];
   function fmt(ms){var s=Math.floor(ms/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
   function center(n){var r=n.getBoundingClientRect(), b=st.getBoundingClientRect();return {x:r.left-b.left+r.width/2,y:r.top-b.top+r.height/2};}
   function fly(a,b,icon,delay,cb){ timers.push(setTimeout(function(){ var p=document.createElement('span'); p.className='mp-paper'; p.textContent=icon; st.appendChild(p);
@@ -784,7 +923,10 @@
   function glow(n,ms){ n.classList.add('on'); timers.push(setTimeout(function(){n.classList.remove('on');},ms||900)); }
   function printOut(){ var pr=N('prn'); pr.classList.remove('printing'); void pr.offsetWidth; pr.classList.add('printing'); glow(pr,1200); }
   function clear(){ timers.forEach(clearTimeout); timers=[]; st.querySelectorAll('.mp-paper').forEach(function(x){x.remove();}); st.classList.remove('remote','lock'); st.querySelectorAll('.on').forEach(function(x){x.classList.remove('on');}); }
-  function scene(k){ clear(); i=k; var s=S[k]; cap.textContent=s.t; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); scn.textContent=(k+1)+'/'+S.length;
+  function mpick(){ if(!tts) return; var v=speechSynthesis.getVoices()||[]; mvoice=v.filter(function(x){return /^hi/i.test(x.lang);})[0]||null; }
+  if(tts){ mpick(); speechSynthesis.addEventListener&&speechSynthesis.addEventListener('voiceschanged',mpick); }
+  function talk(t){ if(!tts) return; speechSynthesis.cancel(); if(muted||!playing||!t) return; var u=new SpeechSynthesisUtterance(t); if(mvoice) u.voice=mvoice; u.lang=mvoice?mvoice.lang:'hi-IN'; speechSynthesis.speak(u); }
+  function scene(k){ clear(); i=k; var s=S[k]; talk(s.say); cap.textContent=s.t; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); scn.textContent=(k+1)+'/'+S.length;
     var hub=N('hub'), prn=N('prn');
     if(s.from) s.from.forEach(function(f,j){ glow(N(f)); fly(N(f),hub,s.icon,300+j*350,function(){ glow(hub,600); fly(hub,prn,s.icon,100,printOut); }); });
     if(s.rev){ glow(prn,1200); fly(prn,hub,s.icon,400,function(){ glow(hub,600); fly(hub,N(s.rev),s.icon,100,function(){glow(N(s.rev),1200);}); }); }
@@ -794,8 +936,9 @@
   function tick(now){ if(!playing) return; var e=el+(now-t0); var total=DUR*S.length; if(e>=total){ e=0; el=0; t0=now; }
     var k=Math.floor(e/DUR); if(k!==i) scene(k); bar.style.width=(e/total*100)+'%'; tm.textContent=fmt(e)+' / '+fmt(total); raf=requestAnimationFrame(tick); }
   function play(){ if(playing) return; playing=true; st.classList.add('playing'); pp.textContent='❚❚'; t0=performance.now(); if(el===0) scene(0); raf=requestAnimationFrame(tick); }
-  function pause(){ if(!playing) return; playing=false; el+=performance.now()-t0; cancelAnimationFrame(raf); pp.textContent='▶'; }
-  pp.addEventListener('click',function(){ playing?pause():play(); }); big.addEventListener('click',play);
+  function pause(){ if(!playing) return; playing=false; if(tts) speechSynthesis.cancel(); el+=performance.now()-t0; cancelAnimationFrame(raf); pp.textContent='▶'; }
+  pp.addEventListener('click',function(){ playing?pause():play(); }); big.addEventListener('click',function(){ muted=false; mute.textContent='🔊'; play(); talk(S[i].say); });
+  mute.addEventListener('click',function(){ muted=!muted; mute.textContent=muted?'🔇':'🔊'; if(muted){ if(tts) speechSynthesis.cancel(); } else { if(!playing) play(); talk(S[i].say); } });
   document.getElementById('mp-prog').addEventListener('click',function(e){ var r=this.getBoundingClientRect(); var f=Math.max(0,Math.min(.999,(e.clientX-r.left)/r.width)); el=f*DUR*S.length; t0=performance.now(); scene(Math.floor(el/DUR)); if(!playing) play(); });
   // Screen par aate hi apne aap chale (awaaz nahi hai)
   if('IntersectionObserver' in window&&!calm){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) play(); else pause(); }); },{threshold:.5}).observe(st); }
