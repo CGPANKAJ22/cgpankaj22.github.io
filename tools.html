@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DaROXJgvRnkCCeKMz9CXvHMN9xpURXSrgA90kZXyxVI=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-bnTZ7iOPKpCfPsc6+A2EB35S3N7wRP5206Qwg+JK5Ao=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-DaROXJgvRnkCCeKMz9CXvHMN9xpURXSrgA90kZXyxVI=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Photo &amp; PDF Tools | PANKAJ CHOICE CENTER</title>
@@ -474,6 +474,63 @@
   @media (max-width: 860px) { .mp-head { grid-template-columns: 1fr; } .mp-grid { grid-template-columns: 1fr 1fr; } .mp-steps { grid-template-columns: 1fr; } }
   @media (max-width: 520px) { .mp { padding: 18px; } .mp-grid { grid-template-columns: 1fr; } .mp-btn { width: 100%; justify-content: center; } }
   @media (prefers-reduced-motion: reduce) { .mp-lines i, .mp-down { animation: none; } }
+  /* MeraPrint: chalta-phirta (animated) roop + demo video */
+  .mp { position: relative; isolation: isolate; }
+  .mp::before { content: ""; position: absolute; inset: -40%; z-index: -1; background: conic-gradient(from 0deg, transparent 0 70%, rgba(120,170,255,.35) 80%, transparent 90%); animation: mpspin 14s linear infinite; }
+  .mp::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(120% 140% at 0% 0%, #2b5cff 0%, #0b2a86 55%, #071a57 100%); margin: 2px; }
+  @keyframes mpspin { to { transform: rotate(360deg); } }
+  .mp-rot { margin-top: 6px; font-size: clamp(18px, 2.6vw, 24px); font-weight: 800; color: #cfe0ff; }
+  .mp-word { display: inline-block; min-width: 4.2em; padding: 0 10px; border-radius: 10px; background: #ffb547; color: #3a2200; }
+  .mp-word.in { animation: mpword .45s cubic-bezier(.2,.8,.2,1.2); }
+  @keyframes mpword { from { transform: translateY(60%) scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
+  .mp-btn { position: relative; overflow: hidden; animation: mppulse 2.4s ease-in-out infinite; }
+  .mp-btn::after { content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(30,79,216,.18), transparent); animation: mpshine 3s ease-in-out infinite; }
+  @keyframes mppulse { 0%,100% { box-shadow: 0 8px 18px rgba(0,0,0,.22), 0 0 0 0 rgba(255,255,255,.45); } 50% { box-shadow: 0 8px 18px rgba(0,0,0,.22), 0 0 0 10px rgba(255,255,255,0); } }
+  @keyframes mpshine { 0%,60% { left: -60%; } 100% { left: 130%; } }
+  .mp-f, .mp-steps li { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease, background .2s, border-color .2s; }
+  .mp-f.show, .mp-steps li.show { opacity: 1; transform: none; }
+  .mp-f:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.3); transform: translateY(-4px); }
+  .mp-fi { display: inline-block; transition: transform .3s; } .mp-f:hover .mp-fi { transform: scale(1.25) rotate(-8deg); }
+  /* Demo video */
+  .mp-video { border-radius: 18px; overflow: hidden; background: #050d2b; border: 1px solid rgba(255,255,255,.16); box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+  .mp-vbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; font-size: 12px; color: #9fb4e8; background: rgba(255,255,255,.05); }
+  .mp-rec { color: #ff6b6b; font-weight: 800; letter-spacing: .05em; animation: mpblink 1.4s steps(2) infinite; }
+  @keyframes mpblink { 50% { opacity: .35; } }
+  .mp-stage { position: relative; height: 300px; background: radial-gradient(80% 90% at 50% 40%, #13307e 0%, #071a57 70%); overflow: hidden; }
+  .mp-wires { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .mp-wires path { fill: none; stroke: rgba(159,208,255,.45); stroke-width: 2; stroke-dasharray: 6 6; animation: mpdash 1.2s linear infinite; }
+  @keyframes mpdash { to { stroke-dashoffset: -24; } }
+  .mp-node { position: absolute; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 12px; background: rgba(255,255,255,.12); color: #fff; transition: transform .25s, box-shadow .25s, background .25s; }
+  .mp-node span { font-size: 24px; line-height: 1; } .mp-node small { font-size: 11px; color: #d6e2ff; margin-top: 2px; }
+  .mp-n1, .mp-n2, .mp-n3, .mp-n4 { top: 14px; width: 21%; height: 56px; transform: translateX(-50%); }
+  .mp-n1 { left: 12.5%; } .mp-n2 { left: 37.5%; } .mp-n3 { left: 62.5%; } .mp-n4 { left: 87.5%; }
+  .mp-hubn { left: 50%; top: 122px; transform: translateX(-50%); flex-direction: row; gap: 6px; padding: 8px 14px; background: #fff; color: #0b2a86; font-size: 14px; }
+  .mp-prnn { left: 50%; top: 200px; transform: translateX(-50%); flex-direction: row; gap: 6px; padding: 6px 14px; background: #ffb547; color: #3a2200; font-size: 14px; overflow: visible; }
+  .mp-node.on { box-shadow: 0 0 0 3px #9fd0ff, 0 0 22px 4px rgba(159,208,255,.75); background: rgba(159,208,255,.28); }
+  .mp-n1.on, .mp-n2.on, .mp-n3.on, .mp-n4.on { transform: translateX(-50%) scale(1.08); }
+  .mp-hubn.on { background: #fff; transform: translateX(-50%) scale(1.08); }
+  .mp-prnn.on { background: #ffc66e; transform: translateX(-50%) scale(1.08); }
+  .mp-sheet { position: absolute; left: 50%; top: 70%; width: 26px; height: 0; margin-left: -13px; background: #fff; border-radius: 2px; box-shadow: 0 2px 6px rgba(0,0,0,.3); z-index: -1; }
+  .mp-prnn.printing .mp-sheet { animation: mpsheet 1.3s ease-out; }
+  @keyframes mpsheet { 0% { height: 0; top: 92%; opacity: 1; } 55% { height: 18px; top: 92%; opacity: 1; } 100% { height: 18px; top: 120%; opacity: 0; } }
+  .mp-paper { position: absolute; left: 0; top: 0; z-index: 5; width: 24px; height: 24px; display: grid; place-items: center; font-size: 18px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)); pointer-events: none; }
+  .mp-stage.remote .mp-n3::after { content: "🖱️"; position: absolute; right: -6px; bottom: -8px; font-size: 16px; animation: mpmouse 1s ease-in-out infinite alternate; }
+  .mp-stage.remote .mp-hubn::after { content: "🖥️ Remote chalu"; position: absolute; top: 110%; white-space: nowrap; font-size: 11px; color: #9fd0ff; }
+  @keyframes mpmouse { to { transform: translate(-6px, -4px); } }
+  .mp-stage.lock .mp-hubn::before { content: "🔐"; position: absolute; left: -22px; font-size: 20px; animation: mpword .5s; }
+  .mp-cap { position: absolute; left: 10px; right: 10px; bottom: 8px; z-index: 6; padding: 6px 10px; border-radius: 10px; background: rgba(0,0,0,.55); color: #fff; font-size: 13.5px; line-height: 1.3; text-align: center; }
+  .mp-cap.in { animation: mpcap .4s ease-out; }
+  @keyframes mpcap { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .mp-bigplay { position: absolute; left: 50%; top: 45%; z-index: 7; width: 64px; height: 64px; margin: -32px 0 0 -32px; border: 0; border-radius: 50%; background: rgba(255,255,255,.92); color: #0b2a86; font-size: 26px; cursor: pointer; box-shadow: 0 8px 22px rgba(0,0,0,.4); }
+  .mp-stage.playing .mp-bigplay { display: none; }
+  .mp-ctrl { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255,255,255,.05); }
+  .mp-pp { width: 32px; height: 32px; border: 0; border-radius: 8px; background: rgba(255,255,255,.14); color: #fff; cursor: pointer; font-size: 13px; }
+  .mp-prog { flex: 1; height: 6px; border-radius: 6px; background: rgba(255,255,255,.15); cursor: pointer; overflow: hidden; }
+  .mp-prog i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #9fd0ff, #ffb547); }
+  .mp-scn { font-size: 12px; color: #9fb4e8; min-width: 28px; text-align: right; }
+  .mp-art { display: none; }
+  @media (max-width: 520px) { .mp-stage { height: 318px; } .mp-node small { font-size: 10px; } .mp-hubn, .mp-prnn { font-size: 12.5px; } .mp-cap { font-size: 12.5px; } }
+  @media (prefers-reduced-motion: reduce) { .mp::before, .mp-btn, .mp-btn::after, .mp-wires path, .mp-rec { animation: none; } .mp-f, .mp-steps li { opacity: 1; transform: none; } }
   @media print {
     header, nav, .tabbar, .dock, footer, .cb, .phero .crumb, .ad-print-row, .ad-cta, .ad-more, .ad-cal, .ad-btns { display: none !important; }
     body { background: #fff !important; }
@@ -614,6 +671,7 @@
           <div class="mp-txt">
             <span class="mp-tag">🛠️ FREE TOOL · NAYA</span>
             <h2>MeraPrint: Printer aur Remote Access</h2>
+            <div class="mp-rot">Har computer se <span class="mp-word" id="mp-word">Print</span></div>
             <div class="mp-hi">प्रिंटर और रिमोट एक्सेस: एक प्रिंटर, सारे कंप्यूटर</div>
             <p class="mp-lead">CSC / cyber cafe me <b>kai computer</b> hain aur printer ek? MeraPrint se <b>har computer aur phone se kisi bhi printer par print</b> kijiye, scan, file aur remote bhi.</p>
             <div class="mp-cta">
@@ -622,12 +680,26 @@
             </div>
             <p class="mp-note">Download hui <b>MeraPrint-Host-Install.bat</b> chalaiye. Browser poochhe to <b>Keep / Rakhein</b>, Windows poochhe to <b>More info → Run anyway</b>. Node.js na ho to ek baar khud lag jayega. Firewall poochhe to <b>Private networks → Allow</b>.</p>
           </div>
-          <div class="mp-art" aria-hidden="true">
-            <div class="mp-pcs"><div class="mp-pc"><span>🖥️</span><small>PC 1</small></div><div class="mp-pc"><span>🖥️</span><small>PC 2</small></div><div class="mp-pc"><span>🖥️</span><small>PC 3</small></div><div class="mp-pc"><span>📱</span><small>Phone</small></div></div>
-            <div class="mp-lines"><i></i><i></i><i></i><i></i></div>
-            <div class="mp-hub"><span>🖧</span><b>MeraPrint Host</b><small>Host ID + PIN</small></div>
-            <div class="mp-down"></div>
-            <div class="mp-prn"><span>🖨️</span><b>Printer</b></div>
+          <div class="mp-video" id="mp-video">
+            <div class="mp-vbar"><span class="mp-rec">● DEMO VIDEO</span><span class="mp-vtime" id="mp-vtime">0:00 / 0:24</span></div>
+            <div class="mp-stage" id="mp-stage">
+              <div class="mp-node mp-n1" data-n="pc1"><span>🖥️</span><small>Counter 1</small></div>
+              <div class="mp-node mp-n2" data-n="pc2"><span>🖥️</span><small>Counter 2</small></div>
+              <div class="mp-node mp-n3" data-n="pc3"><span>🖥️</span><small>Counter 3</small></div>
+              <div class="mp-node mp-n4" data-n="ph"><span>📱</span><small>Phone</small></div>
+              <svg class="mp-wires" viewBox="0 0 400 260" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M50 62 C 50 120, 200 100, 200 140"/><path d="M150 62 C 150 110, 200 110, 200 140"/><path d="M250 62 C 250 110, 200 110, 200 140"/><path d="M350 62 C 350 120, 200 100, 200 140"/><path d="M200 168 L 200 205"/>
+              </svg>
+              <div class="mp-node mp-hubn" data-n="hub"><span>🖧</span><b>MeraPrint Host</b></div>
+              <div class="mp-node mp-prnn" data-n="prn"><span class="mp-prn-ic">🖨️</span><b>Printer</b><i class="mp-sheet"></i></div>
+              <div class="mp-cap" id="mp-cap" aria-live="polite">▶ Play dabaiye</div>
+              <button type="button" class="mp-bigplay" id="mp-bigplay" aria-label="Demo video chalaiye">▶</button>
+            </div>
+            <div class="mp-ctrl">
+              <button type="button" class="mp-pp" id="mp-pp" aria-label="Play / Pause">▶</button>
+              <div class="mp-prog" id="mp-prog"><i id="mp-progi"></i></div>
+              <span class="mp-scn" id="mp-scn">1/6</span>
+            </div>
           </div>
         </div>
         <div class="mp-grid"><div class="mp-f"><span class="mp-fi">🖨️</span><b>Kisi bhi printer par print</b><small>Host PC se juda har printer (laser, inkjet, photo) sab computer aur phone se.</small></div><div class="mp-f"><span class="mp-fi">🏢</span><b>CSC ke sab computer ek saath</b><small>Counter 1, 2, 3… har PC se ek hi printer. Har PC par alag printer lagane ki zaroorat nahi.</small></div><div class="mp-f"><span class="mp-fi">📠</span><b>Scan seedha aapke PC par</b><small>Scanner ka kaam doosre computer ya phone se.</small></div><div class="mp-f"><span class="mp-fi">📁</span><b>File bhejein / lein</b><small>PC se PC aur phone se PC, pen drive ke bina.</small></div><div class="mp-f"><span class="mp-fi">🖥️</span><b>Remote Access</b><small>Doosre PC se Host PC chalaiye. Kaun remote kar sake, yeh aap chunte hain.</small></div><div class="mp-f"><span class="mp-fi">🔐</span><b>Host ID + PIN</b><small>Har Host ka apna ID aur PIN. Aapka data kisi aur ko nahi dikhta.</small></div></div>
@@ -639,6 +711,53 @@
       </div>
     </div>
   </section>
+<script>(function(){
+  var root=document.getElementById('meraprint'); if(!root) return;
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Kaam badalta shabd
+  var W=['Print','Scan','File','Remote'], wi=0, w=document.getElementById('mp-word');
+  if(w&&!calm) setInterval(function(){ wi=(wi+1)%W.length; w.classList.remove('in'); void w.offsetWidth; w.textContent=W[wi]; w.classList.add('in'); }, 2200);
+  // Card scroll par dheere-dheere aate hain
+  var items=root.querySelectorAll('.mp-f,.mp-steps li');
+  if('IntersectionObserver' in window&&!calm){ var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });},{threshold:.15});
+    items.forEach(function(el,i){ el.style.transitionDelay=(i%3)*90+'ms'; io.observe(el); }); } else items.forEach(function(el){el.classList.add('show');});
+  // Demo video (scene by scene)
+  var st=document.getElementById('mp-stage'); if(!st) return;
+  var cap=document.getElementById('mp-cap'), pp=document.getElementById('mp-pp'), big=document.getElementById('mp-bigplay'), bar=document.getElementById('mp-progi'), tm=document.getElementById('mp-vtime'), scn=document.getElementById('mp-scn');
+  var N=function(k){return st.querySelector('[data-n="'+k+'"]');};
+  var S=[
+    {t:'🖥️ Counter 1 se Print dabaya: page Host se hota hua printer par', from:['pc1'], icon:'📄'},
+    {t:'🖥️🖥️ Counter 2 aur 3 se bhi ek saath: sab ek hi printer par', from:['pc2','pc3'], icon:'📄'},
+    {t:'📱 Phone se photo / PDF print: pen drive ki zaroorat nahi', from:['ph'], icon:'🖼️'},
+    {t:'📠 Scan kiya: file seedha Counter 2 ke PC par', rev:'pc2', icon:'📑'},
+    {t:'🖥️ Remote Access: Counter 3 se Host PC chalaiye', remote:'pc3'},
+    {t:'🔐 Host ID + PIN: sirf aapke chune hue device jud sakte hain', lock:true}
+  ];
+  var DUR=4000, i=0, t0=0, el=0, playing=false, raf=0, timers=[];
+  function fmt(ms){var s=Math.floor(ms/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2);}
+  function center(n){var r=n.getBoundingClientRect(), b=st.getBoundingClientRect();return {x:r.left-b.left+r.width/2,y:r.top-b.top+r.height/2};}
+  function fly(a,b,icon,delay,cb){ timers.push(setTimeout(function(){ var p=document.createElement('span'); p.className='mp-paper'; p.textContent=icon; st.appendChild(p);
+      var A=center(a),B=center(b); var an=p.animate([{transform:'translate('+(A.x-12)+'px,'+(A.y-12)+'px) scale(.6)',opacity:0},{opacity:1,offset:.15},{transform:'translate('+(B.x-12)+'px,'+(B.y-12)+'px) scale(1)',opacity:1}],{duration:900,easing:'cubic-bezier(.5,0,.3,1)'});
+      an.onfinish=function(){p.remove(); if(cb)cb();}; },delay)); }
+  function glow(n,ms){ n.classList.add('on'); timers.push(setTimeout(function(){n.classList.remove('on');},ms||900)); }
+  function printOut(){ var pr=N('prn'); pr.classList.remove('printing'); void pr.offsetWidth; pr.classList.add('printing'); glow(pr,1200); }
+  function clear(){ timers.forEach(clearTimeout); timers=[]; st.querySelectorAll('.mp-paper').forEach(function(x){x.remove();}); st.classList.remove('remote','lock'); st.querySelectorAll('.on').forEach(function(x){x.classList.remove('on');}); }
+  function scene(k){ clear(); i=k; var s=S[k]; cap.textContent=s.t; cap.classList.remove('in'); void cap.offsetWidth; cap.classList.add('in'); scn.textContent=(k+1)+'/'+S.length;
+    var hub=N('hub'), prn=N('prn');
+    if(s.from) s.from.forEach(function(f,j){ glow(N(f)); fly(N(f),hub,s.icon,300+j*350,function(){ glow(hub,600); fly(hub,prn,s.icon,100,printOut); }); });
+    if(s.rev){ glow(prn,1200); fly(prn,hub,s.icon,400,function(){ glow(hub,600); fly(hub,N(s.rev),s.icon,100,function(){glow(N(s.rev),1200);}); }); }
+    if(s.remote){ st.classList.add('remote'); glow(N(s.remote),3200); glow(hub,3200); }
+    if(s.lock){ st.classList.add('lock'); glow(hub,3200); }
+  }
+  function tick(now){ if(!playing) return; var e=el+(now-t0); var total=DUR*S.length; if(e>=total){ e=0; el=0; t0=now; }
+    var k=Math.floor(e/DUR); if(k!==i) scene(k); bar.style.width=(e/total*100)+'%'; tm.textContent=fmt(e)+' / '+fmt(total); raf=requestAnimationFrame(tick); }
+  function play(){ if(playing) return; playing=true; st.classList.add('playing'); pp.textContent='❚❚'; t0=performance.now(); if(el===0) scene(0); raf=requestAnimationFrame(tick); }
+  function pause(){ if(!playing) return; playing=false; el+=performance.now()-t0; cancelAnimationFrame(raf); pp.textContent='▶'; }
+  pp.addEventListener('click',function(){ playing?pause():play(); }); big.addEventListener('click',play);
+  document.getElementById('mp-prog').addEventListener('click',function(e){ var r=this.getBoundingClientRect(); var f=Math.max(0,Math.min(.999,(e.clientX-r.left)/r.width)); el=f*DUR*S.length; t0=performance.now(); scene(Math.floor(el/DUR)); if(!playing) play(); });
+  // Screen par aate hi apne aap chale (awaaz nahi hai)
+  if('IntersectionObserver' in window&&!calm){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) play(); else pause(); }); },{threshold:.5}).observe(st); }
+})();</script>
   <section id="tools-sec">
     <div class="wrap">
       <div class="tools" id="tools">
