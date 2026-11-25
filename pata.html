@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-YO6C5dSEp7MMgqy7Qks5NoiYDB1TO4IVgwjnVPJh7F4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-YO6C5dSEp7MMgqy7Qks5NoiYDB1TO4IVgwjnVPJh7F4=' 'sha256-XasOF48wnmrw7Sn7Z6mHUACPTd6jshRFZW49j7yRv9E='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Pata &amp; Samay | PANKAJ CHOICE CENTER</title>
@@ -53,6 +53,7 @@
   .top nav a:hover { color: var(--brand); }
   .top .call { margin-left: 10px; }
   @media (max-width: 1180px) { .top nav { display: none; } .top .call { margin-left: auto; } }
+  @media (min-width: 1181px) and (max-width: 1320px) { .top nav { gap: 14px; font-size: 14.5px; } }
   @media (min-width: 1181px) { .top .brand { font-size: 15px; max-width: 150px; } .top .brand small { display: none; } }
   .top nav a { white-space: nowrap; }
 
@@ -596,6 +597,57 @@
   .svv-n { color: #9fb4e8; font-size: 12px; min-width: 34px; text-align: right; }
   @media (max-width: 560px) { .svv-scr { aspect-ratio: 4 / 5; } .svv-body { inset: 44px 10px 64px; } .svv-cap { max-height: 4.2em; } .tick { font-size: 13px; height: 30px; } .tick-lbl::after { border-top-width: 15px; border-bottom-width: 15px; } }
   @media (prefers-reduced-motion: reduce) { .tick-run { animation-duration: 120s; } .svv-bg.on { animation: none; } }
+  /* Videos tab */
+  .vd-sec { padding: 8px 0 30px; }
+  .vd-main { display: grid; grid-template-columns: 1.6fr 1fr; gap: 22px; align-items: center; padding: 18px; border-radius: 22px; background: radial-gradient(120% 140% at 0% 0%, #1e4fd8 0%, #0b2a86 55%, #061650 100%); box-shadow: 0 18px 40px rgba(11,42,134,.28); color: #fff; }
+  .vd-stage { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 12px 28px rgba(0,0,0,.4); }
+  .vd-stage.in { animation: svvup .45s ease-out; }
+  .vd-stage iframe, .vd-poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vd-poster { padding: 0; cursor: pointer; background: #000; }
+  .vd-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .3s; }
+  .vd-poster:hover img { transform: scale(1.05); filter: brightness(.8); }
+  .vd-bigplay { position: absolute; left: 50%; top: 50%; width: 78px; height: 54px; margin: -27px 0 0 -39px; border-radius: 16px; background: #ff0000; color: #fff; display: grid; place-items: center; font-size: 26px; box-shadow: 0 8px 22px rgba(0,0,0,.45); transition: transform .2s; animation: mppulse 2.2s infinite; }
+  .vd-poster:hover .vd-bigplay { transform: scale(1.12); }
+  .vd-now { font-size: 13px; font-weight: 700; color: #ffcf7a; }
+  .vd-info h2 { margin: 6px 0 14px; font-size: clamp(19px, 2.6vw, 26px); line-height: 1.25; color: #fff; }
+  .vd-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .vd-btn { padding: 9px 14px; border: 0; border-radius: 12px; background: rgba(255,255,255,.14); color: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; text-decoration: none; transition: background .2s, transform .2s; }
+  .vd-btn:hover { background: rgba(255,255,255,.26); transform: translateY(-2px); }
+  .vd-btn.yt { background: #fff; color: #c4302b; }
+  .vd-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 26px 0 12px; }
+  .vd-head h3 { margin: 0; color: var(--brand-deep); font-size: 22px; }
+  .vd-head input { flex: 0 1 280px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; font: inherit; background: var(--surface); color: var(--ink); }
+  .vd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+  .vd-card { display: flex; flex-direction: column; gap: 8px; padding: 0 0 12px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); color: var(--ink); text-align: left; font: inherit; cursor: pointer; box-shadow: 0 4px 14px rgba(15,29,61,.06); opacity: 0; transform: translateY(18px); transition: opacity .5s ease calc(var(--i) % 4 * 80ms), transform .5s ease calc(var(--i) % 4 * 80ms), box-shadow .25s, border-color .25s; }
+  .vd-card.show { opacity: 1; transform: none; }
+  .vd-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(15,29,61,.16); }
+  .vd-card.on { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 30%, transparent); }
+  .vd-th { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+  .vd-th img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
+  .vd-card:hover .vd-th img { transform: scale(1.08); }
+  .vd-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; margin: -18px 0 0 -26px; border-radius: 10px; background: rgba(255,0,0,.92); color: #fff; display: grid; place-items: center; font-size: 17px; opacity: .9; transition: transform .2s; }
+  .vd-card:hover .vd-play { transform: scale(1.15); opacity: 1; }
+  .vd-badge { position: absolute; left: 8px; top: 8px; padding: 2px 8px; border-radius: 999px; background: #ff0000; color: #fff; font-size: 11px; font-weight: 800; }
+  .vd-t { padding: 0 12px; font-weight: 700; font-size: 15px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  @media (max-width: 820px) { .vd-main { grid-template-columns: 1fr; padding: 12px; } }
+  @media (prefers-reduced-motion: reduce) { .vd-card { opacity: 1; transform: none; } .vd-bigplay { animation: none; } }
+  /* Testing: mouse ke saath lehar (wave) */
+  .fx-wave { position: fixed; z-index: 9999; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid rgba(30,79,216,.55); pointer-events: none; animation: fxwave .9s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes fxwave { from { transform: scale(.3); opacity: 1; } to { transform: scale(9); opacity: 0; } }
+  .fx-host { position: relative; overflow: hidden; }
+  .fx-rip { position: absolute; border-radius: 50%; background: rgba(255,255,255,.45); pointer-events: none; transform: scale(0); animation: fxrip .65s ease-out forwards; }
+  @keyframes fxrip { to { transform: scale(1); opacity: 0; } }
+  .fx-glow { position: fixed; left: 0; top: 0; z-index: 1; width: 320px; height: 320px; border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(circle, rgba(30,79,216,.10) 0%, rgba(201,102,26,.05) 40%, transparent 70%); }
+  .fx-card { position: relative; }
+  .fx-tilt { transition: transform .18s ease-out, box-shadow .25s; }
+  .fx-spot { position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(30,79,216,.14), transparent 65%); }
+  .fx-card:hover > .fx-spot { opacity: 1; }
+  .fx-tilt:hover { box-shadow: 0 16px 34px rgba(15,29,61,.16); }
+  .fx-ring { position: absolute; z-index: 2; border-radius: 50%; pointer-events: none; border: 2px solid rgba(30,79,216,.35); background: radial-gradient(circle, rgba(30,79,216,.07), transparent 60%); transform: scale(0); animation: fxring .85s ease-out forwards; }
+  @keyframes fxring { to { transform: scale(1); opacity: 0; } }
+  .mp .fx-spot, .vd-main .fx-spot, .svv .fx-spot { background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.12), transparent 65%); }
+  .mp .fx-ring, .vd-main .fx-ring, .svv .fx-ring, .mp-f .fx-ring { border-color: rgba(255,255,255,.35); background: radial-gradient(circle, rgba(255,255,255,.08), transparent 60%); }
+  @media print { .fx-glow, .fx-wave { display: none !important; } }
   @media print {
     .tick, .svv-sec { display: none !important; }
     header, nav, .tabbar, .dock, footer, .cb, .phero .crumb, .ad-print-row, .ad-cta, .ad-more, .ad-cal, .ad-btns { display: none !important; }
@@ -1809,5 +1861,36 @@
   window.PCCChat = { open: open, answer: function (t) { open(); add('me', t); answer(t); } };
 })();
 </script>
+<script>(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var fine=window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches;
+  document.documentElement.classList.add('fx');
+  // Click / tap par lehar (har jagah)
+  document.addEventListener('pointerdown',function(e){
+    for(var k=0;k<2;k++){ var w=document.createElement('span'); w.className='fx-wave'; w.style.left=e.clientX+'px'; w.style.top=e.clientY+'px'; w.style.animationDelay=(k*120)+'ms'; document.body.appendChild(w); setTimeout(function(x){return function(){x.remove();};}(w),1100); }
+    var b=e.target.closest&&e.target.closest('.btn,.mp-btn,.vd-btn,.ad-btn,.svv-b,.cb-chip,.tabbar a,.top nav a');
+    if(b){ var r=b.getBoundingClientRect(), d=Math.max(r.width,r.height)*2.2, s=document.createElement('span'); s.className='fx-rip'; s.style.width=s.style.height=d+'px'; s.style.left=(e.clientX-r.left-d/2)+'px'; s.style.top=(e.clientY-r.top-d/2)+'px'; b.classList.add('fx-host'); b.appendChild(s); setTimeout(function(){s.remove();},700); }
+  },{passive:true});
+  if(!fine) return;
+  // Mouse ke peechhe halki chamak
+  var g=document.createElement('div'); g.className='fx-glow'; document.body.appendChild(g);
+  var gx=-500, gy=-500, tx=-500, ty=-500, run=false;
+  function loop(){ gx+=(tx-gx)*.18; gy+=(ty-gy)*.18; g.style.transform='translate('+(gx-160)+'px,'+(gy-160)+'px)'; if(Math.abs(tx-gx)+Math.abs(ty-gy)>.5) requestAnimationFrame(loop); else run=false; }
+  document.addEventListener('pointermove',function(e){ tx=e.clientX; ty=e.clientY; g.style.opacity=1; if(!run){ run=true; requestAnimationFrame(loop); } },{passive:true});
+  document.addEventListener('pointerleave',function(){ g.style.opacity=0; });
+  // Card par: roshni mouse ke saath, ghusne par lehar, halka 3D jhukaav
+  var SEL='.qcard,.group,.place,.tr-item,.ad-card,.upd,.vd-card,.mp-f,.tools,.book,.bot,.svv,.vd-main';
+  var TILT='.qcard,.group,.place,.tr-item,.ad-card,.upd';
+  var cur=null;
+  function spot(el){ if(!el.querySelector(':scope > .fx-spot')){ var s=document.createElement('span'); s.className='fx-spot'; el.appendChild(s); el.classList.add('fx-card'); if(el.matches(TILT)) el.classList.add('fx-tilt'); } }
+  document.addEventListener('pointerover',function(e){ var el=e.target.closest&&e.target.closest(SEL); if(!el||el===cur) return; cur=el; spot(el);
+    var r=el.getBoundingClientRect(), w=document.createElement('span'); w.className='fx-ring'; var d=Math.max(r.width,r.height)*2.4; w.style.width=w.style.height=d+'px'; w.style.left=(e.clientX-r.left-d/2)+'px'; w.style.top=(e.clientY-r.top-d/2)+'px'; el.appendChild(w); setTimeout(function(){w.remove();},900);
+  },{passive:true});
+  document.addEventListener('pointermove',function(e){ if(!cur) return; var r=cur.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+    if(x<0||y<0||x>r.width||y>r.height){ if(cur.matches(TILT)) cur.style.transform=''; cur=null; return; }
+    cur.style.setProperty('--mx',x+'px'); cur.style.setProperty('--my',y+'px');
+    if(cur.matches(TILT)){ var rx=((y/r.height)-.5)*-5, ry=((x/r.width)-.5)*5; cur.style.transform='perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-3px)'; }
+  },{passive:true});
+})();</script>
 </body>
 </html>
