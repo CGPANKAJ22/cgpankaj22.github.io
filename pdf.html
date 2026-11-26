@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Bz1FAmYDw5yOZOm70oW61acl8oW5B9irJ7d7VkuQMBA=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-9T/6dLLsyfjwlNfaZDOunjv+/5gdzpHect1UsT1YYCM=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <title>PDF | PANKAJ CHOICE CENTER</title>
@@ -83,11 +83,12 @@
     .pv-pages { padding: 10px 4px 30px; gap: 10px; }
   }
   @media print {
-    @page { margin: 0; }
-    body { background: #fff; }
+    /* Printer kaagaz ke kinare par nahi chhaapta: 8 mm surakshit margin, aur har page kaagaz me poora fit (upar-neeche kuch na kate) */
+    @page { margin: 8mm; }
+    html, body { margin: 0; padding: 0; background: #fff; }
     .pv-bar, .pv-tools, .pv-msg, .pv-n, .pv-w .x, .pv-w .mv { display: none !important; }
-    .pv-pages { padding: 0; gap: 0; display: block; }
-    .pv-pg { max-width: none; width: 100% !important; box-shadow: none; break-after: page; page-break-after: always; }
+    .pv-pages { padding: 0; gap: 0; display: block; overflow: visible; }
+    .pv-pg { max-width: 100%; width: min(100%, calc((100vh - 1mm) * var(--ar, .707))) !important; margin: 0 auto; box-shadow: none; break-inside: avoid; page-break-inside: avoid; break-after: page; page-break-after: always; }
     .pv-pg:last-of-type { break-after: auto; page-break-after: auto; }
     .pv-w { background: transparent !important; box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body.blankprint .pv-w { display: none !important; }
@@ -247,7 +248,7 @@
       msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page';
       for(var i=1;i<=pdf.numPages;i++){
         var pg=await pdf.getPage(i), v1=pg.getViewport({scale:1}), vp=pg.getViewport({scale:2}), wr=document.createElement('div'), c=document.createElement('canvas'), lay=document.createElement('div');
-        wr.className='pv-pg'; lay.className='pv-lay';
+        wr.className='pv-pg'; lay.className='pv-lay'; wr.style.setProperty('--ar',(v1.width/v1.height).toFixed(4));
         c.width=Math.floor(vp.width); c.height=Math.floor(vp.height); c.setAttribute('aria-label','Page '+i);
         wr.appendChild(c); wr.appendChild(lay); box.appendChild(wr); await pg.render({canvasContext:c.getContext('2d'), viewport:vp, intent:'print'}).promise; // print intent: background tab me bhi poora bane
         PAGES.push({canvas:c, lay:lay, pw:v1.width, ph:v1.height}); fill.disabled=false;
