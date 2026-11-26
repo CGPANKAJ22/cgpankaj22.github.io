@@ -3,60 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-SB4SDDBmRU9nh8v8yvp6hAcc7VMK80CZqzRWBRnNh3E=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Bz1FAmYDw5yOZOm70oW61acl8oW5B9irJ7d7VkuQMBA=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <title>PDF | PANKAJ CHOICE CENTER</title>
 <style>
-  :root { --b: #1e4fd8; --bd: #0b2a86; --ink: #0f1d3d; --mut: #5b6782; --pen: #1238a8; }
+  :root { --b: #1e4fd8; --ink: #1f2937; --mut: #6b7280; --line: #e5e7eb; --pen: #1238a8; }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; background: #e9edf5; color: var(--ink); }
-  .pv-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; background: linear-gradient(90deg, var(--bd), var(--b)); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
-  .pv-back { color: #fff; text-decoration: none; font-weight: 700; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.14); }
-  .pv-t { flex: 1 1 200px; min-width: 0; }
-  .pv-t b { display: block; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pv-t small { opacity: .85; }
-  .pv-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-  .pv-b { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: 0; border-radius: 12px; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer; text-decoration: none; transition: transform .15s, box-shadow .2s; }
-  .pv-b:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.25); }
-  .pv-dl { background: #22c55e; color: #fff; } .pv-pr { background: #fff; color: var(--bd); } .pv-z { background: rgba(255,255,255,.16); color: #fff; padding: 10px 12px; }
-  .pv-fill { background: #ffb547; color: #3a2200; }
-  .pv-fill.on { background: #fff3cd; box-shadow: inset 0 0 0 2px #ffb547; }
-  .pv-b[disabled] { opacity: .55; cursor: wait; }
-  .pv-b[hidden] { display: none; }
-  /* Form bharne ki patti */
-  .pv-tools { position: sticky; top: var(--bar-h, 62px); z-index: 19; display: none; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 14px; background: #fff8e6; border-bottom: 1px solid #f3d48a; font-size: 14px; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; background: #f1f3f6; color: var(--ink); font-size: 14px; }
+  button { font: inherit; }
+  .pv-bar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--line); }
+  .pv-back { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px; color: var(--ink); text-decoration: none; font-size: 20px; }
+  .pv-back:hover { background: #f3f4f6; }
+  .pv-t { flex: 1; min-width: 0; }
+  .pv-t b { display: block; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pv-t small { color: var(--mut); font-size: 12px; }
+  .pv-btns { flex: none; display: flex; align-items: center; gap: 8px; }
+  .pv-zoom { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .pv-zoom button { width: 32px; height: 34px; border: 0; background: #fff; color: var(--ink); font-size: 17px; cursor: pointer; }
+  .pv-zoom button:hover { background: #f3f4f6; }
+  .pv-zoom span { min-width: 46px; text-align: center; font-size: 12px; color: var(--mut); border-left: 1px solid var(--line); border-right: 1px solid var(--line); line-height: 34px; }
+  .pv-b { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+  .pv-b:hover { background: #f9fafb; border-color: #d1d5db; }
+  .pv-b.pri { background: var(--b); border-color: var(--b); color: #fff; }
+  .pv-b.pri:hover { background: #1a45c0; }
+  .pv-b.on { background: #eef2ff; border-color: #c7d2fe; color: var(--b); }
+  .pv-b[disabled] { opacity: .5; cursor: default; }
+  .pv-b svg { width: 16px; height: 16px; flex: none; }
+  .pv-b .car { font-size: 10px; opacity: .7; display: none; }
+  body.has .pv-b .car { display: inline; }
+  .pv-dd { position: relative; }
+  .pv-menu { position: absolute; right: 0; top: calc(100% + 6px); min-width: 190px; padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 30px rgba(17,24,39,.12); display: none; z-index: 30; }
+  .pv-dd.open .pv-menu { display: block; }
+  .pv-menu a, .pv-menu button { display: block; width: 100%; padding: 9px 10px; border: 0; border-radius: 6px; background: none; color: var(--ink); text-align: left; text-decoration: none; cursor: pointer; }
+  .pv-menu a:hover, .pv-menu button:hover { background: #f3f4f6; }
+  .pv-menu small { display: block; color: var(--mut); font-size: 12px; }
+  /* Form bharne ki patli patti */
+  .pv-tools { position: sticky; top: var(--bar-h, 57px); z-index: 19; display: none; align-items: center; gap: 6px; padding: 6px 16px; background: #fff; border-bottom: 1px solid var(--line); }
   body.filling .pv-tools { display: flex; }
-  .pv-tools .tip { flex: 1 1 240px; color: #6b4e00; font-weight: 600; }
-  .pv-tb { padding: 7px 12px; border: 1px solid #e4c06a; border-radius: 10px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
-  .pv-tb.on { background: #ffb547; border-color: #ffb547; }
-  .pv-ink { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 2px #e4c06a; cursor: pointer; padding: 0; }
-  .pv-ink.on { box-shadow: 0 0 0 3px #1e4fd8; }
-  .pv-msg { max-width: 760px; margin: 24px auto; padding: 16px 18px; border-radius: 14px; background: #fff; text-align: center; font-weight: 600; color: var(--mut); }
-  .pv-msg.err { color: #b3261e; }
-  .pv-pages { display: flex; flex-direction: column; align-items: safe center; gap: 14px; padding: 18px 10px 40px; overflow-x: auto; }
-  .pv-pg { position: relative; flex: none; width: var(--pw, 900px); max-width: none; container-type: inline-size; background: #fff; border-radius: 4px; box-shadow: 0 6px 22px rgba(15,29,61,.18); }
-  .pv-pg canvas { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .pv-seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .pv-tb { height: 30px; padding: 0 10px; border: 0; background: #fff; color: var(--ink); cursor: pointer; font-size: 13px; }
+  .pv-seg .pv-tb + .pv-tb { border-left: 1px solid var(--line); }
+  .pv-tb:hover { background: #f3f4f6; }
+  .pv-tb.on { background: #eef2ff; color: var(--b); font-weight: 600; }
+  .pv-ink { width: 20px; height: 20px; margin: 0 2px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); cursor: pointer; padding: 0; }
+  .pv-ink.on { box-shadow: 0 0 0 2px var(--b); }
+  .pv-sep { width: 1px; height: 20px; background: var(--line); margin: 0 4px; }
+  .pv-tools .tip { flex: 1; color: var(--mut); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pv-tools .pv-b { height: 30px; padding: 0 12px; }
+  .pv-msg { max-width: 640px; margin: 24px auto; padding: 14px 16px; border-radius: 10px; background: #fff; border: 1px solid var(--line); text-align: center; color: var(--mut); }
+  .pv-msg.err { color: #b91c1c; }
+  .pv-pages { display: flex; flex-direction: column; align-items: safe center; gap: 16px; padding: 20px 12px 48px; overflow-x: auto; }
+  .pv-pg { position: relative; flex: none; width: var(--pw, 900px); max-width: none; container-type: inline-size; background: #fff; box-shadow: 0 1px 3px rgba(17,24,39,.12), 0 4px 14px rgba(17,24,39,.06); }
+  .pv-pg canvas { display: block; width: 100%; height: auto; }
   .pv-lay { position: absolute; inset: 0; }
   body.filling .pv-lay { cursor: text; }
   body.filling.tick .pv-lay { cursor: crosshair; }
   /* Pen jaisa likha hua */
   .pv-w { position: absolute; min-width: 1.2em; padding: 0 .12em; outline: none; white-space: pre; line-height: 1.15; color: var(--c, var(--pen)); font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", "Kalam", cursive; font-size: calc(var(--fs, 1.9) * 1cqw); font-weight: 600; letter-spacing: .01em; background: transparent; border-radius: 3px; }
-  body.filling .pv-w { background: rgba(255,214,102,.18); box-shadow: 0 0 0 1px rgba(30,79,216,.35); }
-  body.filling .pv-w:focus { background: rgba(255,214,102,.32); box-shadow: 0 0 0 2px #1e4fd8; }
-  .pv-w .x, .pv-w .mv { display: none; position: absolute; top: -.95em; width: 1.25em; height: 1.25em; border-radius: 50%; font: 700 11px/1.25em system-ui, sans-serif; text-align: center; color: #fff; cursor: pointer; user-select: none; }
-  .pv-w .x { right: -.7em; background: #dc2626; }
-  .pv-w .mv { left: -.7em; background: #1e4fd8; cursor: move; }
+  body.filling .pv-w { box-shadow: 0 0 0 1px rgba(30,79,216,.25); }
+  body.filling .pv-w:focus-within { background: rgba(30,79,216,.05); box-shadow: 0 0 0 1px var(--b); }
+  .pv-w .x, .pv-w .mv { display: none; position: absolute; top: -1.05em; width: 16px; height: 16px; border-radius: 50%; font: 600 10px/16px system-ui, sans-serif; text-align: center; color: #fff; cursor: pointer; user-select: none; }
+  .pv-w .x { right: -8px; background: #6b7280; }
+  .pv-w .mv { left: -8px; background: var(--b); cursor: move; }
   body.filling .pv-w:focus-within .x, body.filling .pv-w:focus-within .mv, body.filling .pv-w:hover .x, body.filling .pv-w:hover .mv { display: block; }
   .pv-w [data-t] { outline: none; display: inline-block; min-width: .6em; }
-  .pv-n { font-size: 12px; color: var(--mut); margin-top: -8px; }
-  @media (max-width: 640px) {
-    .pv-bar { position: static; gap: 8px; padding: 8px 10px; }
-    .pv-b { padding: 8px 11px; font-size: 13.5px; border-radius: 10px; }
-    .pv-tools { top: 0; gap: 6px; padding: 6px 8px; }
-    .pv-tools .tip { flex-basis: 100%; font-size: 12px; }
-    .pv-tb { padding: 5px 9px; font-size: 13px; }
-    .pv-ink { width: 22px; height: 22px; }
+  .pv-n { font-size: 11px; color: var(--mut); margin-top: -10px; }
+  @media (max-width: 700px) {
+    .pv-bar { flex-wrap: wrap; gap: 8px; padding: 8px 10px; position: static; }
+    .pv-t { flex-basis: calc(100% - 50px); }
+    .pv-btns { width: 100%; }
+    .pv-btns .pv-dd, .pv-btns > .pv-b { flex: 1; }
+    .pv-btns .pv-b { width: 100%; justify-content: center; padding: 0 8px; }
+    .pv-zoom { display: none; }
+    .pv-tools { top: 0; flex-wrap: wrap; padding: 6px 8px; }
+    .pv-tools .tip { flex-basis: 100%; order: 9; }
+    .pv-sep { display: none; }
+    #pv-done { margin-left: auto; }
     .pv-pages { padding: 10px 4px 30px; gap: 10px; }
   }
   @media print {
@@ -64,7 +87,7 @@
     body { background: #fff; }
     .pv-bar, .pv-tools, .pv-msg, .pv-n, .pv-w .x, .pv-w .mv { display: none !important; }
     .pv-pages { padding: 0; gap: 0; display: block; }
-    .pv-pg { max-width: none; width: 100% !important; box-shadow: none; border-radius: 0; break-after: page; page-break-after: always; }
+    .pv-pg { max-width: none; width: 100% !important; box-shadow: none; break-after: page; page-break-after: always; }
     .pv-pg:last-of-type { break-after: auto; page-break-after: auto; }
     .pv-w { background: transparent !important; box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body.blankprint .pv-w { display: none !important; }
@@ -73,57 +96,66 @@
 </head>
 <body>
 <div class="pv-bar" id="pv-bar">
-  <a class="pv-back" href="aadhaar.html">← Aadhaar Docs</a>
+  <a class="pv-back" href="aadhaar.html" aria-label="Aadhaar Docs par wapas" title="Wapas">←</a>
   <div class="pv-t"><b id="pv-title">PDF</b><small id="pv-sub">PANKAJ CHOICE CENTER</small></div>
   <div class="pv-btns">
-    <button type="button" class="pv-b pv-z" id="pv-zo" aria-label="Chhota karein">➖</button><button type="button" class="pv-b pv-z" id="pv-zi" aria-label="Bada karein">➕</button>
-    <button type="button" class="pv-b pv-fill" id="pv-fill" disabled>✍️ Form bharein</button>
-    <a class="pv-b pv-dl" id="pv-dl" href="#" download>⬇️ Download</a>
-    <button type="button" class="pv-b pv-dl" id="pv-dlf" hidden>⬇️ Bhara hua PDF</button>
-    <button type="button" class="pv-b pv-pr" id="pv-pr" disabled>🖨️ Print</button>
-    <button type="button" class="pv-b pv-pr" id="pv-prb" hidden>🖨️ Khali print</button>
+    <div class="pv-zoom"><button type="button" id="pv-zo" aria-label="Chhota karein">−</button><span id="pv-zv">100%</span><button type="button" id="pv-zi" aria-label="Bada karein">+</button></div>
+    <button type="button" class="pv-b" id="pv-fill" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>Form bharein</button>
+    <div class="pv-dd" id="pv-dd-dl">
+      <button type="button" class="pv-b" id="pv-dlb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Download<span class="car">▾</span></button>
+      <div class="pv-menu"><button type="button" id="pv-dlf">Bhara hua form<small>Aapka likha hua saath me</small></button><a id="pv-dl" href="#" download>Khali form<small>Original PDF</small></a></div>
+    </div>
+    <div class="pv-dd" id="pv-dd-pr">
+      <button type="button" class="pv-b pri" id="pv-pr" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>Print<span class="car">▾</span></button>
+      <div class="pv-menu"><button type="button" id="pv-prf">Bhara hua form</button><button type="button" id="pv-prb">Khali form</button></div>
+    </div>
   </div>
 </div>
 <div class="pv-tools" id="pv-tools">
-  <span class="tip" id="pv-tip">✍️ Form par jahan likhna hai wahan dabaiye aur type kijiye. Likha hua neeli syahi (pen) jaisa dikhega.</span>
-  <button type="button" class="pv-tb on" id="pv-mtext">🔤 Likhein</button>
-  <button type="button" class="pv-tb" id="pv-mtick">✔ Tick</button>
-  <button type="button" class="pv-tb" id="pv-fsm" aria-label="Akshar chhote">A−</button><button type="button" class="pv-tb" id="pv-fsp" aria-label="Akshar bade">A+</button>
-  <button type="button" class="pv-ink on" id="pv-blue" style="background:#1238a8" aria-label="Neeli syahi"></button>
-  <button type="button" class="pv-ink" id="pv-black" style="background:#111" aria-label="Kaali syahi"></button>
-  <button type="button" class="pv-tb" id="pv-clear">🗑️ Sab mitayein</button>
-  <button type="button" class="pv-tb" id="pv-done">✅ Ho gaya</button>
+  <div class="pv-seg"><button type="button" class="pv-tb on" id="pv-mtext">Likhein</button><button type="button" class="pv-tb" id="pv-mtick">✓ Tick</button></div>
+  <div class="pv-seg"><button type="button" class="pv-tb" id="pv-fsm" aria-label="Akshar chhote">A−</button><button type="button" class="pv-tb" id="pv-fsp" aria-label="Akshar bade">A+</button></div>
+  <button type="button" class="pv-ink on" id="pv-blue" style="background:#1238a8" aria-label="Neeli syahi" title="Neeli syahi"></button><button type="button" class="pv-ink" id="pv-black" style="background:#111" aria-label="Kaali syahi" title="Kaali syahi"></button>
+  <span class="pv-sep"></span>
+  <button type="button" class="pv-tb" id="pv-clear">Sab mitayein</button>
+  <span class="tip" id="pv-tip">Form par jahan likhna hai wahan click karke type kijiye</span>
+  <button type="button" class="pv-b pri" id="pv-done">Ho gaya</button>
 </div>
-<div class="pv-msg" id="pv-msg">⏳ PDF khul rahi hai…</div>
+<div class="pv-msg" id="pv-msg">PDF khul rahi hai…</div>
 <div class="pv-pages" id="pv-pages"></div>
 <script>(function(){
   var P=new URLSearchParams(location.hash.slice(1)), f=P.get('f')||'', t=(P.get('t')||'').slice(0,140);
-  var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl'), dlf=document.getElementById('pv-dlf'), fill=document.getElementById('pv-fill');
+  var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl'), dlf=document.getElementById('pv-dlf'), dlb=document.getElementById('pv-dlb'), fill=document.getElementById('pv-fill');
   var bar=document.getElementById('pv-bar'); function barH(){ document.body.style.setProperty('--bar-h', bar.offsetHeight+'px'); } barH(); window.addEventListener('resize',barH);
   function err(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; }
-  if(!/^aadhaar\/[\w.-]+\.pdf$/.test(f)){ err('❌ Yeh PDF nahi mili. Aadhaar Docs page par wapas jaakar dobara dabaiye.'); pr.disabled=true; dl.removeAttribute('href'); return; }
+  if(!/^aadhaar\/[\w.-]+\.pdf$/.test(f)){ err('Yeh PDF nahi mili. Aadhaar Docs page par wapas jaakar dobara kholiye.'); pr.disabled=true; dlb.disabled=true; dl.removeAttribute('href'); return; }
   var name=(t||f.split('/').pop()).replace(/[^\w\u0900-\u097F() .-]+/g,' ').replace(/\s+/g,' ').trim().slice(0,90)||'aadhaar';
   document.getElementById('pv-title').textContent=t||name; document.title=(t||name)+' | PDF';
   var file=name.replace(/\s+/g,'_');
   dl.href=f; dl.setAttribute('download', file+'.pdf');
   var J='lib/pdfjs-6.2.108/', W=900, PAGES=[];
-  function setW(w){ W=Math.max(280,Math.min(2000,w)); box.style.setProperty('--pw',W+'px'); }
-  setW(Math.min(900, (box.clientWidth||innerWidth)-20));
+  var W0=900; function setW(w){ W=Math.max(280,Math.min(2000,w)); box.style.setProperty('--pw',W+'px'); var zv=document.getElementById('pv-zv'); if(zv) zv.textContent=Math.round(W/W0*100)+'%'; }
+  W0=Math.min(900, (box.clientWidth||innerWidth)-20); setW(W0);
   document.getElementById('pv-zi').onclick=function(){ setW(W+150); };
   document.getElementById('pv-zo').onclick=function(){ setW(W-150); };
-  pr.onclick=function(){ document.activeElement&&document.activeElement.blur(); window.print(); };
+  // Download / Print: form bhara ho to chhota menu (bhara hua / khali), warna seedha
+  function closeMenus(){ [].forEach.call(document.querySelectorAll('.pv-dd.open'),function(m){ m.classList.remove('open'); }); }
+  document.addEventListener('click',function(e){ if(!e.target.closest('.pv-dd')) closeMenus(); });
+  function doPrint(blank){ closeMenus(); document.activeElement&&document.activeElement.blur(); if(blank) document.body.classList.add('blankprint'); window.print(); setTimeout(function(){ document.body.classList.remove('blankprint'); },500); }
+  window.addEventListener('afterprint',function(){ document.body.classList.remove('blankprint'); });
+  pr.onclick=function(){ if(any()){ var o=!document.getElementById('pv-dd-pr').classList.contains('open'); closeMenus(); document.getElementById('pv-dd-pr').classList.toggle('open',o); } else doPrint(false); };
+  dlb.onclick=function(){ if(any()){ var o=!document.getElementById('pv-dd-dl').classList.contains('open'); closeMenus(); document.getElementById('pv-dd-dl').classList.toggle('open',o); } else dl.click(); };
+  document.getElementById('pv-prf').onclick=function(){ doPrint(false); };
+  document.getElementById('pv-prb').onclick=function(){ doPrint(true); };
+  dl.addEventListener('click',function(){ closeMenus(); });
 
   // ---------- Form bharna: neeli syahi jaisa likhna ----------
   var mode='text', ink='#1238a8', FS=1.9, last=null;
   function any(){ return [].some.call(box.querySelectorAll('.pv-w [data-t]'),function(e){ return e.textContent.trim(); }); }
-  var prb=document.getElementById('pv-prb');
-  function refresh(){ var has=any(); dlf.hidden=!has; prb.hidden=!has; dl.textContent=has?'⬇️ Khali form':'⬇️ Download'; pr.textContent=has?'🖨️ Bhara hua print':'🖨️ Print'; }
-  prb.onclick=function(){ document.activeElement&&document.activeElement.blur(); document.body.classList.add('blankprint'); window.print(); setTimeout(function(){ document.body.classList.remove('blankprint'); },500); };
-  window.addEventListener('afterprint',function(){ document.body.classList.remove('blankprint'); });
+  function refresh(){ document.body.classList.toggle('has', any()); }
   function setMode(m){ mode=m; document.body.classList.toggle('tick',m==='tick'); document.getElementById('pv-mtext').classList.toggle('on',m==='text'); document.getElementById('pv-mtick').classList.toggle('on',m==='tick');
-    document.getElementById('pv-tip').textContent=m==='tick'?'✔ Jis khaane me tick lagana hai wahan dabaiye.':'✍️ Form par jahan likhna hai wahan dabaiye aur type kijiye. Likha hua neeli syahi (pen) jaisa dikhega.'; }
-  fill.onclick=function(){ var on=!document.body.classList.contains('filling'); document.body.classList.toggle('filling',on); fill.classList.toggle('on',on); fill.textContent=on?'✍️ Bhar rahe hain…':'✍️ Form bharein'; barH(); };
-  document.getElementById('pv-done').onclick=function(){ document.activeElement&&document.activeElement.blur(); document.body.classList.remove('filling'); fill.classList.remove('on'); fill.textContent='✍️ Form bharein'; refresh(); };
+    document.getElementById('pv-tip').textContent=m==='tick'?'Jis khaane me tick lagana hai wahan click kijiye':'Form par jahan likhna hai wahan click karke type kijiye'; }
+  fill.onclick=function(){ var on=!document.body.classList.contains('filling'); document.body.classList.toggle('filling',on); fill.classList.toggle('on',on); barH(); };
+  document.getElementById('pv-done').onclick=function(){ document.activeElement&&document.activeElement.blur(); document.body.classList.remove('filling'); fill.classList.remove('on'); refresh(); };
   document.getElementById('pv-mtext').onclick=function(){ setMode('text'); };
   document.getElementById('pv-mtick').onclick=function(){ setMode('tick'); };
   function inkSet(c,el){ ink=c; [].forEach.call(document.querySelectorAll('.pv-ink'),function(b){ b.classList.toggle('on',b===el); }); if(last) last.style.setProperty('--c',c); }
@@ -133,12 +165,12 @@
   document.getElementById('pv-fsm').onclick=function(){ size(-.25); };
   document.getElementById('pv-fsp').onclick=function(){ size(.25); };
   document.getElementById('pv-clear').onclick=function(){ if(confirmClear()) { [].forEach.call(box.querySelectorAll('.pv-w'),function(w){ w.remove(); }); last=null; refresh(); } };
-  function confirmClear(){ var b=document.getElementById('pv-clear'); if(b.dataset.sure){ delete b.dataset.sure; b.textContent='🗑️ Sab mitayein'; return true; } b.dataset.sure=1; b.textContent='❗ Pakka? Dobara dabaiye'; setTimeout(function(){ delete b.dataset.sure; b.textContent='🗑️ Sab mitayein'; },3000); return false; }
+  function confirmClear(){ var b=document.getElementById('pv-clear'); if(b.dataset.sure){ delete b.dataset.sure; b.textContent='Sab mitayein'; return true; } b.dataset.sure=1; b.textContent='Pakka? Dobara dabaiye'; setTimeout(function(){ delete b.dataset.sure; b.textContent='Sab mitayein'; },3000); return false; }
   function addBox(lay,x,y,txt,isTick){
     var w=document.createElement('div'); w.className='pv-w'; var fs=isTick?Math.max(FS,2.2):FS; w.dataset.fs=fs; w.style.setProperty('--fs',fs); w.style.setProperty('--c',ink);
     var px=lay.clientWidth, h=lay.clientHeight, fpx=fs/100*px;
     w.style.left=Math.max(0,(x-fpx*.12)/px*100)+'%'; w.style.top=Math.max(0,(y-fpx*.62)/h*100)+'%';
-    w.innerHTML='<span class="mv" title="Khiskayein">✥</span><span data-t contenteditable="plaintext-only" spellcheck="false"></span><span class="x" title="Hatayein">✕</span>';
+    w.innerHTML='<span class="mv" title="Khiskayein">⤧</span><span data-t contenteditable="plaintext-only" spellcheck="false"></span><span class="x" title="Hatayein">×</span>';
     var tx=w.querySelector('[data-t]'); if(tx.contentEditable!=='plaintext-only') tx.contentEditable='true';
     if(txt) tx.textContent=txt;
     lay.appendChild(w); last=w;
@@ -159,12 +191,12 @@
     if(!document.body.classList.contains('filling')) return;
     var lay=e.target.closest('.pv-lay'); if(!lay||e.target.closest('.pv-w')) return;
     e.preventDefault(); var r=lay.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
-    if(mode==='tick') addBox(lay,x,y,'✔',true); else addBox(lay,x,y,'',false);
+    if(mode==='tick') addBox(lay,x,y,'✓',true); else addBox(lay,x,y,'',false);
   });
 
   // ---------- Bhara hua PDF banana (har page ki photo + likha hua, bina kisi library) ----------
   async function filledPdf(){
-    dlf.disabled=true; var old=dlf.textContent; dlf.textContent='⏳ Ban raha hai…';
+    closeMenus(); dlb.disabled=true; var old=dlb.innerHTML; dlb.textContent='Ban raha hai…';
     try{
       var imgs=[];
       for(var i=0;i<PAGES.length;i++){
@@ -181,8 +213,8 @@
         imgs.push({jpg:u, w:c.width, h:c.height, pw:pg.pw, ph:pg.ph});
       }
       var blob=makePdf(imgs), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file+'_bhara.pdf'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },4000);
-    }catch(e){ alertMsg('❌ Bhara hua PDF nahi ban paya. 🖨️ Print → "Save as PDF" se save kijiye.'); }
-    dlf.disabled=false; dlf.textContent=old;
+    }catch(e){ alertMsg('Bhara hua PDF nahi ban paya. Print → "Save as PDF" se save kijiye.'); }
+    dlb.disabled=false; dlb.innerHTML=old;
   }
   function alertMsg(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; setTimeout(function(){ msg.hidden=true; },6000); }
   function makePdf(imgs){
@@ -204,6 +236,7 @@
     return new Blob(parts,{type:'application/pdf'});
   }
   dlf.onclick=function(){ document.activeElement&&document.activeElement.blur(); filledPdf(); };
+  dlb.disabled=false;
   window.addEventListener('beforeunload',function(e){ if(any()){ e.preventDefault(); e.returnValue=''; } });
 
   (async function(){
@@ -211,7 +244,7 @@
       var lib=await import(new URL(J+'pdf.min.mjs',location.href).href);
       lib.GlobalWorkerOptions.workerSrc=new URL(J+'pdf.worker.min.mjs',location.href).href;
       var pdf=await lib.getDocument({url:new URL(f,location.href).href, isEvalSupported:false, wasmUrl:new URL(J+'wasm/',location.href).href, useSystemFonts:true}).promise;
-      msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page · PANKAJ CHOICE CENTER';
+      msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page';
       for(var i=1;i<=pdf.numPages;i++){
         var pg=await pdf.getPage(i), v1=pg.getViewport({scale:1}), vp=pg.getViewport({scale:2}), wr=document.createElement('div'), c=document.createElement('canvas'), lay=document.createElement('div');
         wr.className='pv-pg'; lay.className='pv-lay';
@@ -221,7 +254,7 @@
         var n=document.createElement('div'); n.className='pv-n'; n.textContent='Page '+i+' / '+pdf.numPages; box.appendChild(n);
       }
       pr.disabled=false; fill.disabled=false;
-    }catch(e){ err('❌ PDF yahan nahi khul payi. Upar ⬇️ Download dabakar phone me kholiye.'); }
+    }catch(e){ err('PDF yahan nahi khul payi. Download karke kholiye.'); }
   })();
 })();</script>
 </body>
