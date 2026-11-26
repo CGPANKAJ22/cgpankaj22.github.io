@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qAwo+Rcm7ZZDnF+ndhpEt0PlYh0A5s8Gv1oF6pcI3+I=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-LeCeGSmQePedzXxT2bKNnjp9eShue0OI18PLa0tTHcg=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <title>PDF | PANKAJ CHOICE CENTER</title>
 <style>
-  :root { --b: #1e4fd8; --bd: #0b2a86; --ink: #0f1d3d; --mut: #5b6782; }
+  :root { --b: #1e4fd8; --bd: #0b2a86; --ink: #0f1d3d; --mut: #5b6782; --pen: #1238a8; }
   * { box-sizing: border-box; }
   body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; background: #e9edf5; color: var(--ink); }
-  .pv-bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; background: linear-gradient(90deg, var(--bd), var(--b)); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  .pv-bar { position: sticky; top: 0; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; background: linear-gradient(90deg, var(--bd), var(--b)); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
   .pv-back { color: #fff; text-decoration: none; font-weight: 700; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.14); }
   .pv-t { flex: 1 1 200px; min-width: 0; }
   .pv-t b { display: block; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -20,19 +20,54 @@
   .pv-b { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: 0; border-radius: 12px; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer; text-decoration: none; transition: transform .15s, box-shadow .2s; }
   .pv-b:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.25); }
   .pv-dl { background: #22c55e; color: #fff; } .pv-pr { background: #fff; color: var(--bd); } .pv-z { background: rgba(255,255,255,.16); color: #fff; padding: 10px 12px; }
+  .pv-fill { background: #ffb547; color: #3a2200; }
+  .pv-fill.on { background: #fff3cd; box-shadow: inset 0 0 0 2px #ffb547; }
   .pv-b[disabled] { opacity: .55; cursor: wait; }
+  .pv-b[hidden] { display: none; }
+  /* Form bharne ki patti */
+  .pv-tools { position: sticky; top: var(--bar-h, 62px); z-index: 19; display: none; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 14px; background: #fff8e6; border-bottom: 1px solid #f3d48a; font-size: 14px; }
+  body.filling .pv-tools { display: flex; }
+  .pv-tools .tip { flex: 1 1 240px; color: #6b4e00; font-weight: 600; }
+  .pv-tb { padding: 7px 12px; border: 1px solid #e4c06a; border-radius: 10px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+  .pv-tb.on { background: #ffb547; border-color: #ffb547; }
+  .pv-ink { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 2px #e4c06a; cursor: pointer; padding: 0; }
+  .pv-ink.on { box-shadow: 0 0 0 3px #1e4fd8; }
   .pv-msg { max-width: 760px; margin: 24px auto; padding: 16px 18px; border-radius: 14px; background: #fff; text-align: center; font-weight: 600; color: var(--mut); }
   .pv-msg.err { color: #b3261e; }
-  .pv-pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 10px 40px; }
-  .pv-pages canvas { display: block; width: 100%; max-width: var(--pw, 900px); height: auto; background: #fff; border-radius: 4px; box-shadow: 0 6px 22px rgba(15,29,61,.18); }
+  .pv-pages { display: flex; flex-direction: column; align-items: safe center; gap: 14px; padding: 18px 10px 40px; overflow-x: auto; }
+  .pv-pg { position: relative; flex: none; width: var(--pw, 900px); max-width: none; container-type: inline-size; background: #fff; border-radius: 4px; box-shadow: 0 6px 22px rgba(15,29,61,.18); }
+  .pv-pg canvas { display: block; width: 100%; height: auto; border-radius: 4px; }
+  .pv-lay { position: absolute; inset: 0; }
+  body.filling .pv-lay { cursor: text; }
+  body.filling.tick .pv-lay { cursor: crosshair; }
+  /* Pen jaisa likha hua */
+  .pv-w { position: absolute; min-width: 1.2em; padding: 0 .12em; outline: none; white-space: pre; line-height: 1.15; color: var(--c, var(--pen)); font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", "Kalam", cursive; font-size: calc(var(--fs, 1.9) * 1cqw); font-weight: 600; letter-spacing: .01em; background: transparent; border-radius: 3px; }
+  body.filling .pv-w { background: rgba(255,214,102,.18); box-shadow: 0 0 0 1px rgba(30,79,216,.35); }
+  body.filling .pv-w:focus { background: rgba(255,214,102,.32); box-shadow: 0 0 0 2px #1e4fd8; }
+  .pv-w .x, .pv-w .mv { display: none; position: absolute; top: -.95em; width: 1.25em; height: 1.25em; border-radius: 50%; font: 700 11px/1.25em system-ui, sans-serif; text-align: center; color: #fff; cursor: pointer; user-select: none; }
+  .pv-w .x { right: -.7em; background: #dc2626; }
+  .pv-w .mv { left: -.7em; background: #1e4fd8; cursor: move; }
+  body.filling .pv-w:focus-within .x, body.filling .pv-w:focus-within .mv, body.filling .pv-w:hover .x, body.filling .pv-w:hover .mv { display: block; }
+  .pv-w [data-t] { outline: none; display: inline-block; min-width: .6em; }
   .pv-n { font-size: 12px; color: var(--mut); margin-top: -8px; }
+  @media (max-width: 640px) {
+    .pv-bar { position: static; gap: 8px; padding: 8px 10px; }
+    .pv-b { padding: 8px 11px; font-size: 13.5px; border-radius: 10px; }
+    .pv-tools { top: 0; gap: 6px; padding: 6px 8px; }
+    .pv-tools .tip { flex-basis: 100%; font-size: 12px; }
+    .pv-tb { padding: 5px 9px; font-size: 13px; }
+    .pv-ink { width: 22px; height: 22px; }
+    .pv-pages { padding: 10px 4px 30px; gap: 10px; }
+  }
   @media print {
     @page { margin: 0; }
     body { background: #fff; }
-    .pv-bar, .pv-msg, .pv-n { display: none !important; }
+    .pv-bar, .pv-tools, .pv-msg, .pv-n, .pv-w .x, .pv-w .mv { display: none !important; }
     .pv-pages { padding: 0; gap: 0; display: block; }
-    .pv-pages canvas { max-width: none; width: 100%; box-shadow: none; border-radius: 0; break-after: page; page-break-after: always; }
-    .pv-pages canvas:last-of-type { break-after: auto; page-break-after: auto; }
+    .pv-pg { max-width: none; width: 100% !important; box-shadow: none; border-radius: 0; break-after: page; page-break-after: always; }
+    .pv-pg:last-of-type { break-after: auto; page-break-after: auto; }
+    .pv-w { background: transparent !important; box-shadow: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body.blankprint .pv-w { display: none !important; }
   }
 </style>
 </head>
@@ -42,26 +77,135 @@
   <div class="pv-t"><b id="pv-title">PDF</b><small id="pv-sub">PANKAJ CHOICE CENTER</small></div>
   <div class="pv-btns">
     <button type="button" class="pv-b pv-z" id="pv-zo" aria-label="Chhota karein">➖</button><button type="button" class="pv-b pv-z" id="pv-zi" aria-label="Bada karein">➕</button>
+    <button type="button" class="pv-b pv-fill" id="pv-fill" disabled>✍️ Form bharein</button>
     <a class="pv-b pv-dl" id="pv-dl" href="#" download>⬇️ Download</a>
+    <button type="button" class="pv-b pv-dl" id="pv-dlf" hidden>⬇️ Bhara hua PDF</button>
     <button type="button" class="pv-b pv-pr" id="pv-pr" disabled>🖨️ Print</button>
+    <button type="button" class="pv-b pv-pr" id="pv-prb" hidden>🖨️ Khali print</button>
   </div>
+</div>
+<div class="pv-tools" id="pv-tools">
+  <span class="tip" id="pv-tip">✍️ Form par jahan likhna hai wahan dabaiye aur type kijiye. Likha hua neeli syahi (pen) jaisa dikhega.</span>
+  <button type="button" class="pv-tb on" id="pv-mtext">🔤 Likhein</button>
+  <button type="button" class="pv-tb" id="pv-mtick">✔ Tick</button>
+  <button type="button" class="pv-tb" id="pv-fsm" aria-label="Akshar chhote">A−</button><button type="button" class="pv-tb" id="pv-fsp" aria-label="Akshar bade">A+</button>
+  <button type="button" class="pv-ink on" id="pv-blue" style="background:#1238a8" aria-label="Neeli syahi"></button>
+  <button type="button" class="pv-ink" id="pv-black" style="background:#111" aria-label="Kaali syahi"></button>
+  <button type="button" class="pv-tb" id="pv-clear">🗑️ Sab mitayein</button>
+  <button type="button" class="pv-tb" id="pv-done">✅ Ho gaya</button>
 </div>
 <div class="pv-msg" id="pv-msg">⏳ PDF khul rahi hai…</div>
 <div class="pv-pages" id="pv-pages"></div>
 <script>(function(){
   var P=new URLSearchParams(location.hash.slice(1)), f=P.get('f')||'', t=(P.get('t')||'').slice(0,140);
-  var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl');
+  var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl'), dlf=document.getElementById('pv-dlf'), fill=document.getElementById('pv-fill');
+  var bar=document.getElementById('pv-bar'); function barH(){ document.body.style.setProperty('--bar-h', bar.offsetHeight+'px'); } barH(); window.addEventListener('resize',barH);
   function err(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; }
   if(!/^aadhaar\/[\w.-]+\.pdf$/.test(f)){ err('❌ Yeh PDF nahi mili. Aadhaar Docs page par wapas jaakar dobara dabaiye.'); pr.disabled=true; dl.removeAttribute('href'); return; }
   var name=(t||f.split('/').pop()).replace(/[^\w\u0900-\u097F() .-]+/g,' ').replace(/\s+/g,' ').trim().slice(0,90)||'aadhaar';
   document.getElementById('pv-title').textContent=t||name; document.title=(t||name)+' | PDF';
-  dl.href=f; dl.setAttribute('download', name.replace(/\s+/g,'_')+'.pdf');
-  var J='lib/pdfjs-6.2.108/', W=900;
-  function setW(w){ W=Math.max(320,Math.min(1600,w)); box.style.setProperty('--pw',W+'px'); }
-  setW(900);
+  var file=name.replace(/\s+/g,'_');
+  dl.href=f; dl.setAttribute('download', file+'.pdf');
+  var J='lib/pdfjs-6.2.108/', W=900, PAGES=[];
+  function setW(w){ W=Math.max(280,Math.min(2000,w)); box.style.setProperty('--pw',W+'px'); }
+  setW(Math.min(900, (box.clientWidth||innerWidth)-20));
   document.getElementById('pv-zi').onclick=function(){ setW(W+150); };
   document.getElementById('pv-zo').onclick=function(){ setW(W-150); };
-  pr.onclick=function(){ window.print(); };
+  pr.onclick=function(){ document.activeElement&&document.activeElement.blur(); window.print(); };
+
+  // ---------- Form bharna: neeli syahi jaisa likhna ----------
+  var mode='text', ink='#1238a8', FS=1.9, last=null;
+  function any(){ return [].some.call(box.querySelectorAll('.pv-w [data-t]'),function(e){ return e.textContent.trim(); }); }
+  var prb=document.getElementById('pv-prb');
+  function refresh(){ var has=any(); dlf.hidden=!has; prb.hidden=!has; dl.textContent=has?'⬇️ Khali form':'⬇️ Download'; pr.textContent=has?'🖨️ Bhara hua print':'🖨️ Print'; }
+  prb.onclick=function(){ document.activeElement&&document.activeElement.blur(); document.body.classList.add('blankprint'); window.print(); setTimeout(function(){ document.body.classList.remove('blankprint'); },500); };
+  window.addEventListener('afterprint',function(){ document.body.classList.remove('blankprint'); });
+  function setMode(m){ mode=m; document.body.classList.toggle('tick',m==='tick'); document.getElementById('pv-mtext').classList.toggle('on',m==='text'); document.getElementById('pv-mtick').classList.toggle('on',m==='tick');
+    document.getElementById('pv-tip').textContent=m==='tick'?'✔ Jis khaane me tick lagana hai wahan dabaiye.':'✍️ Form par jahan likhna hai wahan dabaiye aur type kijiye. Likha hua neeli syahi (pen) jaisa dikhega.'; }
+  fill.onclick=function(){ var on=!document.body.classList.contains('filling'); document.body.classList.toggle('filling',on); fill.classList.toggle('on',on); fill.textContent=on?'✍️ Bhar rahe hain…':'✍️ Form bharein'; barH(); };
+  document.getElementById('pv-done').onclick=function(){ document.activeElement&&document.activeElement.blur(); document.body.classList.remove('filling'); fill.classList.remove('on'); fill.textContent='✍️ Form bharein'; refresh(); };
+  document.getElementById('pv-mtext').onclick=function(){ setMode('text'); };
+  document.getElementById('pv-mtick').onclick=function(){ setMode('tick'); };
+  function inkSet(c,el){ ink=c; [].forEach.call(document.querySelectorAll('.pv-ink'),function(b){ b.classList.toggle('on',b===el); }); if(last) last.style.setProperty('--c',c); }
+  document.getElementById('pv-blue').onclick=function(){ inkSet('#1238a8',this); };
+  document.getElementById('pv-black').onclick=function(){ inkSet('#111111',this); };
+  function size(dv){ if(last){ var v=Math.max(.9,Math.min(5,(+last.dataset.fs||FS)+dv)); last.dataset.fs=v; last.style.setProperty('--fs',v); FS=v; last.querySelector('[data-t]').focus(); } else FS=Math.max(.9,Math.min(5,FS+dv)); }
+  document.getElementById('pv-fsm').onclick=function(){ size(-.25); };
+  document.getElementById('pv-fsp').onclick=function(){ size(.25); };
+  document.getElementById('pv-clear').onclick=function(){ if(confirmClear()) { [].forEach.call(box.querySelectorAll('.pv-w'),function(w){ w.remove(); }); last=null; refresh(); } };
+  function confirmClear(){ var b=document.getElementById('pv-clear'); if(b.dataset.sure){ delete b.dataset.sure; b.textContent='🗑️ Sab mitayein'; return true; } b.dataset.sure=1; b.textContent='❗ Pakka? Dobara dabaiye'; setTimeout(function(){ delete b.dataset.sure; b.textContent='🗑️ Sab mitayein'; },3000); return false; }
+  function addBox(lay,x,y,txt,isTick){
+    var w=document.createElement('div'); w.className='pv-w'; var fs=isTick?Math.max(FS,2.2):FS; w.dataset.fs=fs; w.style.setProperty('--fs',fs); w.style.setProperty('--c',ink);
+    var px=lay.clientWidth, h=lay.clientHeight, fpx=fs/100*px;
+    w.style.left=Math.max(0,(x-fpx*.12)/px*100)+'%'; w.style.top=Math.max(0,(y-fpx*.62)/h*100)+'%';
+    w.innerHTML='<span class="mv" title="Khiskayein">✥</span><span data-t contenteditable="plaintext-only" spellcheck="false"></span><span class="x" title="Hatayein">✕</span>';
+    var tx=w.querySelector('[data-t]'); if(tx.contentEditable!=='plaintext-only') tx.contentEditable='true';
+    if(txt) tx.textContent=txt;
+    lay.appendChild(w); last=w;
+    w.querySelector('.x').onclick=function(e){ e.stopPropagation(); w.remove(); if(last===w) last=null; refresh(); };
+    tx.addEventListener('focus',function(){ last=w; });
+    tx.addEventListener('input',refresh);
+    tx.addEventListener('blur',function(){ if(!tx.textContent.trim()) { w.remove(); if(last===w) last=null; } refresh(); });
+    tx.addEventListener('keydown',function(e){ if(e.key==='Escape') tx.blur(); });
+    // Khiskana (✥ pakad kar)
+    w.querySelector('.mv').addEventListener('pointerdown',function(e){ e.preventDefault(); e.stopPropagation(); var r=lay.getBoundingClientRect(), sx=e.clientX, sy=e.clientY, l0=parseFloat(w.style.left), t0=parseFloat(w.style.top);
+      function mv(ev){ w.style.left=Math.max(0,Math.min(98,l0+(ev.clientX-sx)/r.width*100))+'%'; w.style.top=Math.max(0,Math.min(98,t0+(ev.clientY-sy)/r.height*100))+'%'; }
+      function up(){ window.removeEventListener('pointermove',mv); window.removeEventListener('pointerup',up); }
+      window.addEventListener('pointermove',mv); window.addEventListener('pointerup',up); });
+    if(!isTick) tx.focus();
+    refresh(); return w;
+  }
+  box.addEventListener('pointerdown',function(e){
+    if(!document.body.classList.contains('filling')) return;
+    var lay=e.target.closest('.pv-lay'); if(!lay||e.target.closest('.pv-w')) return;
+    e.preventDefault(); var r=lay.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+    if(mode==='tick') addBox(lay,x,y,'✔',true); else addBox(lay,x,y,'',false);
+  });
+
+  // ---------- Bhara hua PDF banana (har page ki photo + likha hua, bina kisi library) ----------
+  async function filledPdf(){
+    dlf.disabled=true; var old=dlf.textContent; dlf.textContent='⏳ Ban raha hai…';
+    try{
+      var imgs=[];
+      for(var i=0;i<PAGES.length;i++){
+        var pg=PAGES[i], src=pg.canvas, c=document.createElement('canvas'); c.width=src.width; c.height=src.height; var x=c.getContext('2d');
+        x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(src,0,0);
+        var lay=pg.lay, LW=lay.clientWidth||1, LH=lay.clientHeight||1, sx=c.width/LW, sy=c.height/LH;
+        [].forEach.call(lay.querySelectorAll('.pv-w'),function(w){
+          var tx=w.querySelector('[data-t]'), txt=tx.textContent; if(!txt.trim()) return;
+          var cs=getComputedStyle(tx), fpx=parseFloat(cs.fontSize)*sx, tr=tx.getBoundingClientRect(), lr=lay.getBoundingClientRect();
+          x.fillStyle=cs.color; x.font=cs.fontWeight+' '+fpx+'px '+cs.fontFamily; x.textBaseline='top';
+          var lh=fpx*1.15; txt.split('\n').forEach(function(line,k){ x.fillText(line,(tr.left-lr.left)*sx,(tr.top-lr.top)*sy+k*lh+fpx*.05); });
+        });
+        var b64=c.toDataURL('image/jpeg',.9).split(',')[1], bin=atob(b64), u=new Uint8Array(bin.length); for(var k=0;k<bin.length;k++) u[k]=bin.charCodeAt(k);
+        imgs.push({jpg:u, w:c.width, h:c.height, pw:pg.pw, ph:pg.ph});
+      }
+      var blob=makePdf(imgs), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file+'_bhara.pdf'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },4000);
+    }catch(e){ alertMsg('❌ Bhara hua PDF nahi ban paya. 🖨️ Print → "Save as PDF" se save kijiye.'); }
+    dlf.disabled=false; dlf.textContent=old;
+  }
+  function alertMsg(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; setTimeout(function(){ msg.hidden=true; },6000); }
+  function makePdf(imgs){
+    var enc=new TextEncoder(), parts=[], off=0, xref=[];
+    function put(x){ var b=typeof x==='string'?enc.encode(x):x; parts.push(b); off+=b.length; }
+    put('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+    var n=imgs.length, kids=[]; for(var i=0;i<n;i++) kids.push((3+i*3)+' 0 R');
+    xref[1]=off; put('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+    xref[2]=off; put('2 0 obj\n<< /Type /Pages /Kids ['+kids.join(' ')+'] /Count '+n+' >>\nendobj\n');
+    imgs.forEach(function(im,i){
+      var pid=3+i*3, iid=pid+1, cid=pid+2, pw=im.pw.toFixed(2), ph=im.ph.toFixed(2), cs='q '+pw+' 0 0 '+ph+' 0 0 cm /Im0 Do Q';
+      xref[pid]=off; put(pid+' 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+pw+' '+ph+'] /Resources << /XObject << /Im0 '+iid+' 0 R >> >> /Contents '+cid+' 0 R >>\nendobj\n');
+      xref[iid]=off; put(iid+' 0 obj\n<< /Type /XObject /Subtype /Image /Width '+im.w+' /Height '+im.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+im.jpg.length+' >>\nstream\n'); put(im.jpg); put('\nendstream\nendobj\n');
+      xref[cid]=off; put(cid+' 0 obj\n<< /Length '+cs.length+' >>\nstream\n'+cs+'\nendstream\nendobj\n');
+    });
+    var total=3+n*3, xo=off, xs='xref\n0 '+total+'\n0000000000 65535 f \n';
+    for(var j=1;j<total;j++) xs+=String(xref[j]).padStart(10,'0')+' 00000 n \n';
+    put(xs+'trailer\n<< /Size '+total+' /Root 1 0 R >>\nstartxref\n'+xo+'\n%%EOF');
+    return new Blob(parts,{type:'application/pdf'});
+  }
+  dlf.onclick=function(){ document.activeElement&&document.activeElement.blur(); filledPdf(); };
+  window.addEventListener('beforeunload',function(e){ if(any()){ e.preventDefault(); e.returnValue=''; } });
+
   (async function(){
     try{
       var lib=await import(new URL(J+'pdf.min.mjs',location.href).href);
@@ -69,12 +213,14 @@
       var pdf=await lib.getDocument({url:new URL(f,location.href).href, isEvalSupported:false, wasmUrl:new URL(J+'wasm/',location.href).href, useSystemFonts:true}).promise;
       msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page · PANKAJ CHOICE CENTER';
       for(var i=1;i<=pdf.numPages;i++){
-        var pg=await pdf.getPage(i), vp=pg.getViewport({scale:2}), c=document.createElement('canvas');
+        var pg=await pdf.getPage(i), v1=pg.getViewport({scale:1}), vp=pg.getViewport({scale:2}), wr=document.createElement('div'), c=document.createElement('canvas'), lay=document.createElement('div');
+        wr.className='pv-pg'; lay.className='pv-lay';
         c.width=Math.floor(vp.width); c.height=Math.floor(vp.height); c.setAttribute('aria-label','Page '+i);
-        box.appendChild(c); await pg.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
+        wr.appendChild(c); wr.appendChild(lay); box.appendChild(wr); await pg.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
+        PAGES.push({canvas:c, lay:lay, pw:v1.width, ph:v1.height});
         var n=document.createElement('div'); n.className='pv-n'; n.textContent='Page '+i+' / '+pdf.numPages; box.appendChild(n);
       }
-      pr.disabled=false;
+      pr.disabled=false; fill.disabled=false;
     }catch(e){ err('❌ PDF yahan nahi khul payi. Upar ⬇️ Download dabakar phone me kholiye.'); }
   })();
 })();</script>
