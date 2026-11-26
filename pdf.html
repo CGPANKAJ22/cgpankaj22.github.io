@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-LeCeGSmQePedzXxT2bKNnjp9eShue0OI18PLa0tTHcg=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-SB4SDDBmRU9nh8v8yvp6hAcc7VMK80CZqzRWBRnNh3E=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <title>PDF | PANKAJ CHOICE CENTER</title>
@@ -216,8 +216,8 @@
         var pg=await pdf.getPage(i), v1=pg.getViewport({scale:1}), vp=pg.getViewport({scale:2}), wr=document.createElement('div'), c=document.createElement('canvas'), lay=document.createElement('div');
         wr.className='pv-pg'; lay.className='pv-lay';
         c.width=Math.floor(vp.width); c.height=Math.floor(vp.height); c.setAttribute('aria-label','Page '+i);
-        wr.appendChild(c); wr.appendChild(lay); box.appendChild(wr); await pg.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
-        PAGES.push({canvas:c, lay:lay, pw:v1.width, ph:v1.height});
+        wr.appendChild(c); wr.appendChild(lay); box.appendChild(wr); await pg.render({canvasContext:c.getContext('2d'), viewport:vp, intent:'print'}).promise; // print intent: background tab me bhi poora bane
+        PAGES.push({canvas:c, lay:lay, pw:v1.width, ph:v1.height}); fill.disabled=false;
         var n=document.createElement('div'); n.className='pv-n'; n.textContent='Page '+i+' / '+pdf.numPages; box.appendChild(n);
       }
       pr.disabled=false; fill.disabled=false;
