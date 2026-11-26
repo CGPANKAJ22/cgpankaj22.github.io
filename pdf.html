@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-qAwo+Rcm7ZZDnF+ndhpEt0PlYh0A5s8Gv1oF6pcI3+I=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>PDF | PANKAJ CHOICE CENTER</title>
+<style>
+  :root { --b: #1e4fd8; --bd: #0b2a86; --ink: #0f1d3d; --mut: #5b6782; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; background: #e9edf5; color: var(--ink); }
+  .pv-bar { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; background: linear-gradient(90deg, var(--bd), var(--b)); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  .pv-back { color: #fff; text-decoration: none; font-weight: 700; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.14); }
+  .pv-t { flex: 1 1 200px; min-width: 0; }
+  .pv-t b { display: block; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pv-t small { opacity: .85; }
+  .pv-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pv-b { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: 0; border-radius: 12px; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer; text-decoration: none; transition: transform .15s, box-shadow .2s; }
+  .pv-b:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.25); }
+  .pv-dl { background: #22c55e; color: #fff; } .pv-pr { background: #fff; color: var(--bd); } .pv-z { background: rgba(255,255,255,.16); color: #fff; padding: 10px 12px; }
+  .pv-b[disabled] { opacity: .55; cursor: wait; }
+  .pv-msg { max-width: 760px; margin: 24px auto; padding: 16px 18px; border-radius: 14px; background: #fff; text-align: center; font-weight: 600; color: var(--mut); }
+  .pv-msg.err { color: #b3261e; }
+  .pv-pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 18px 10px 40px; }
+  .pv-pages canvas { display: block; width: 100%; max-width: var(--pw, 900px); height: auto; background: #fff; border-radius: 4px; box-shadow: 0 6px 22px rgba(15,29,61,.18); }
+  .pv-n { font-size: 12px; color: var(--mut); margin-top: -8px; }
+  @media print {
+    @page { margin: 0; }
+    body { background: #fff; }
+    .pv-bar, .pv-msg, .pv-n { display: none !important; }
+    .pv-pages { padding: 0; gap: 0; display: block; }
+    .pv-pages canvas { max-width: none; width: 100%; box-shadow: none; border-radius: 0; break-after: page; page-break-after: always; }
+    .pv-pages canvas:last-of-type { break-after: auto; page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="pv-bar" id="pv-bar">
+  <a class="pv-back" href="aadhaar.html">← Aadhaar Docs</a>
+  <div class="pv-t"><b id="pv-title">PDF</b><small id="pv-sub">PANKAJ CHOICE CENTER</small></div>
+  <div class="pv-btns">
+    <button type="button" class="pv-b pv-z" id="pv-zo" aria-label="Chhota karein">➖</button><button type="button" class="pv-b pv-z" id="pv-zi" aria-label="Bada karein">➕</button>
+    <a class="pv-b pv-dl" id="pv-dl" href="#" download>⬇️ Download</a>
+    <button type="button" class="pv-b pv-pr" id="pv-pr" disabled>🖨️ Print</button>
+  </div>
+</div>
+<div class="pv-msg" id="pv-msg">⏳ PDF khul rahi hai…</div>
+<div class="pv-pages" id="pv-pages"></div>
+<script>(function(){
+  var P=new URLSearchParams(location.hash.slice(1)), f=P.get('f')||'', t=(P.get('t')||'').slice(0,140);
+  var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl');
+  function err(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; }
+  if(!/^aadhaar\/[\w.-]+\.pdf$/.test(f)){ err('❌ Yeh PDF nahi mili. Aadhaar Docs page par wapas jaakar dobara dabaiye.'); pr.disabled=true; dl.removeAttribute('href'); return; }
+  var name=(t||f.split('/').pop()).replace(/[^\w\u0900-\u097F() .-]+/g,' ').replace(/\s+/g,' ').trim().slice(0,90)||'aadhaar';
+  document.getElementById('pv-title').textContent=t||name; document.title=(t||name)+' | PDF';
+  dl.href=f; dl.setAttribute('download', name.replace(/\s+/g,'_')+'.pdf');
+  var J='lib/pdfjs-6.2.108/', W=900;
+  function setW(w){ W=Math.max(320,Math.min(1600,w)); box.style.setProperty('--pw',W+'px'); }
+  setW(900);
+  document.getElementById('pv-zi').onclick=function(){ setW(W+150); };
+  document.getElementById('pv-zo').onclick=function(){ setW(W-150); };
+  pr.onclick=function(){ window.print(); };
+  (async function(){
+    try{
+      var lib=await import(new URL(J+'pdf.min.mjs',location.href).href);
+      lib.GlobalWorkerOptions.workerSrc=new URL(J+'pdf.worker.min.mjs',location.href).href;
+      var pdf=await lib.getDocument({url:new URL(f,location.href).href, isEvalSupported:false, wasmUrl:new URL(J+'wasm/',location.href).href, useSystemFonts:true}).promise;
+      msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page · PANKAJ CHOICE CENTER';
+      for(var i=1;i<=pdf.numPages;i++){
+        var pg=await pdf.getPage(i), vp=pg.getViewport({scale:2}), c=document.createElement('canvas');
+        c.width=Math.floor(vp.width); c.height=Math.floor(vp.height); c.setAttribute('aria-label','Page '+i);
+        box.appendChild(c); await pg.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
+        var n=document.createElement('div'); n.className='pv-n'; n.textContent='Page '+i+' / '+pdf.numPages; box.appendChild(n);
+      }
+      pr.disabled=false;
+    }catch(e){ err('❌ PDF yahan nahi khul payi. Upar ⬇️ Download dabakar phone me kholiye.'); }
+  })();
+})();</script>
+</body>
+</html>
