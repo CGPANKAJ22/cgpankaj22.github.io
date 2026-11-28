@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-XGTF0nsWDyH1dBCsW8rkm2sqPsmL3Seinzm2jVuK1mQ=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-4mJIiZTEpkEMdsSCp7ruwP703GzqrGZsz9kQ6SZkoN4=' 'sha256-bBWGHB4J/dIaHataeHi+5qhQ4ym+74ZmOd/NIO1YxEM=' 'sha256-90ZhA0a0mTHs9iqv6f2jznSGi6DaU6RdZ4zULtzaZ0w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-g4DfirPIjMOgR6n9btJYnQ/ohllyv/PSQ27RPHlTf0c=' 'sha256-XGTF0nsWDyH1dBCsW8rkm2sqPsmL3Seinzm2jVuK1mQ=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-4mJIiZTEpkEMdsSCp7ruwP703GzqrGZsz9kQ6SZkoN4=' 'sha256-bBWGHB4J/dIaHataeHi+5qhQ4ym+74ZmOd/NIO1YxEM=' 'sha256-90ZhA0a0mTHs9iqv6f2jznSGi6DaU6RdZ4zULtzaZ0w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Aadhaar Documents &amp; Form | PANKAJ CHOICE CENTER</title>
@@ -1034,6 +1034,68 @@
   .svx-allw { text-align: center; margin-top: 16px; }
   .svx-all { cursor: pointer; font-family: inherit; }
   .svx-tools { grid-column: 1 / -1; }
+
+  /* ===== guide ===== */
+  /* Aadhaar: Naam / Janm tithi sudhaar guide */
+  .ag { margin: 18px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+  .ag-head h2 { margin: 0 0 4px; font-size: clamp(18px, 2.6vw, 21px); color: var(--brand-deep); line-height: 1.3; }
+  .ag-head p { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
+  .ag-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 4px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); }
+  .ag-tab { font: inherit; font-weight: 800; font-size: 14.5px; padding: 10px 8px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
+  .ag-tab[aria-selected="true"] { background: var(--brand); color: #fff; box-shadow: 0 4px 12px rgba(30, 79, 216, .25); }
+  .ag-pane { padding-top: 12px; }
+  .ag-ex { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; font-size: 13px; }
+  .ag-ex > span { font-weight: 700; color: var(--muted); }
+  .ag-exb { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+  .ag-exb:hover { border-color: var(--brand); color: var(--brand); }
+  .ag-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ag-f { display: block; }
+  .ag-f span { display: block; font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .ag-f input { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); }
+  .ag-f input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(30, 79, 216, .15); }
+  .ag-q { border: 0; margin: 10px 0 0; padding: 0; min-width: 0; }
+  .ag-q legend { font-weight: 700; font-size: 14px; margin-bottom: 5px; padding: 0; }
+  .ag-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ag-opt { position: relative; cursor: pointer; }
+  .ag-opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .ag-opt span { display: inline-block; padding: 7px 12px; border-radius: 10px; border: 1.5px solid var(--line); font-size: 14px; background: var(--surface); }
+  .ag-opt input:checked + span { border-color: var(--brand); background: var(--brand); color: #fff; font-weight: 700; }
+  .ag-opt input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .ag-chk { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: 14px; cursor: pointer; }
+  .ag-chk input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--brand); }
+  .ag-out { margin-top: 12px; }
+  .ag-hint { margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--bg); color: var(--muted); font-size: 14px; }
+  .ag-card { --agc: #12925a; --agb: #ecfbf3; border: 1.5px solid var(--agc); border-left-width: 6px; border-radius: 14px; padding: 12px 14px; background: var(--surface); }
+  .ag-orange { --agc: #c9661a; --agb: #fff3e8; } .ag-red { --agc: #c0392b; --agb: #fdeceb; }
+  .ag-card-h { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+  .ag-card-h b { font-size: 15.5px; }
+  .ag-badge { font-size: 12.5px; font-weight: 800; color: #fff; background: var(--agc); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .ag-eg { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+  .ag-info { margin: 6px 0 0; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+  .ag-k { margin-top: 10px; font-size: 12.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; color: var(--agc); }
+  .ag-docs { margin: 4px 0 0; padding-left: 20px; font-size: 14.5px; line-height: 1.5; }
+  .ag-aff { margin: 8px 0 0; padding: 6px 10px; border-radius: 10px; background: var(--agb); color: #1b1b1b; font-weight: 700; font-size: 14px; }
+  .ag-small { margin: 6px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+  .ag-warn { margin: 8px 0 0; padding: 7px 10px; border-radius: 10px; background: #fdeceb; color: #8e1f14; font-size: 13.5px; line-height: 1.45; }
+  .ag-wa { display: inline-flex; margin-top: 10px; font-size: 14.5px; }
+  .ag-sum { margin-top: 12px; border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; background: var(--bg); }
+  .ag-sum summary { cursor: pointer; font-weight: 800; }
+  .ag-sum h3 { margin: 10px 0 4px; font-size: 15.5px; color: var(--brand-deep); }
+  .ag-sum ul { margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.5; }
+  .ag-sum li { margin: 3px 0; }
+  .ag-sum-g { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .ag-poi ul { columns: 2; column-gap: 24px; }
+  .ag-pan { margin: 8px 0 2px; font-weight: 700; color: #c0392b; font-size: 14px; }
+  .ag-src { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  .ag-src a, .ag-src a.ad-btn { display: inline; padding: 0; background: none; border: 0; border-radius: 0; font-weight: 500; font-size: 12.5px; color: var(--brand); text-decoration: underline; }
+  .ag-date { flex-basis: 100%; }
+  @media (max-width: 640px) {
+    .ag { padding: 14px 12px; }
+    .ag-2, .ag-sum-g { grid-template-columns: 1fr; }
+    .ag-poi ul { columns: 1; }
+    .ag-tab { font-size: 13.5px; padding: 10px 4px; }
+  }
+  @media print { .ag-tool { display: none !important; } .ag-sum { display: block; } }
 </style>
 </head>
 <body>
@@ -1079,7 +1141,317 @@
       <p class="ad-ldate">🗓️ List ki tareekh: Oct 2026 (हिंदी) · Jun 2026 (English)</p></div>
     <div class="ad-btns"><a class="ad-btn " href="pdf.html#f=aadhaar%2FdocListHi.pdf&t=Aadhaar%20documents%20ki%20list%20(%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A5%80)" target="_blank" rel="noopener">📄 List PDF (हिंदी)</a><a class="ad-btn ghost" href="pdf.html#f=aadhaar%2FdocListEn.pdf&t=Aadhaar%20documents%20list%20(English)" target="_blank" rel="noopener">📄 List PDF (English)</a><a class="ad-btn ghost" href="pdf.html#f=aadhaar%2FdocListEn.pdf&t=Supporting%20document%3A%20Certificate%20%2F%20Self-declaration%20format%20(UIDAI)&p=15,14,20,21" target="_blank" rel="noopener">📝 Supporting document (Certificate format)</a></div>
   </div>
-  <div class="ad-chips-w"><h2 class="ad-chips-h">🔎 Aapko kya karwana hai?</h2><div class="ad-chips"><a href="#ad-adult" class="ad-chip"><b>✏️ Naam badlna <i aria-hidden="true">↓</i></b><small>POI: naam + photo wala document (PAN, Voter ID, Passport)</small></a><a href="#ad-adult" class="ad-chip"><b>🏠 Pata badlna <i aria-hidden="true">↓</i></b><small>POA: bijli bill / bank passbook / ration card</small></a><a href="#ad-teen" class="ad-chip"><b>🎂 Janm tithi <i aria-hidden="true">↓</i></b><small>DOB: janm praman patra / 10vi marksheet. 18 se kam: sirf Birth Certificate</small></a><div class="ad-chip"><b>📱 Mobile / Email</b><small>Koi document nahi. Aadhaar le kar khud center aaiye (finger lagegi)</small></div><div class="ad-chip"><b>📸 Photo / Biometric</b><small>Koi document nahi. 5 aur 15 saal par bachche ka MBU zaroori</small></div><a href="#ad-child" class="ad-chip"><b>👶 Naya Aadhaar 0-5 <i aria-hidden="true">↓</i></b><small>Birth Certificate + mata/pita ka Aadhaar · Form 5</small></a><a href="#ad-teen" class="ad-chip"><b>🧒 Naya Aadhaar 5-18 <i aria-hidden="true">↓</i></b><small>POI + POA ya mata/pita ka Aadhaar · Form 3</small></a><a href="#ad-adult" class="ad-chip"><b>🧑 Naya Aadhaar 18+ <i aria-hidden="true">↓</i></b><small>POI + POA + DOB · Form 1</small></a></div></div>
+  <div class="ad-chips-w"><h2 class="ad-chips-h">🔎 Aapko kya karwana hai?</h2><div class="ad-chips"><a href="#ad-adult" class="ad-chip"><b>✏️ Naam badlna <i aria-hidden="true">↓</i></b><small>POI: naye naam + photo wala document (Voter ID, Passport, Ration card; PAN nahi chalta)</small></a><a href="#ad-adult" class="ad-chip"><b>🏠 Pata badlna <i aria-hidden="true">↓</i></b><small>POA: bijli bill / bank passbook / ration card</small></a><a href="#ad-teen" class="ad-chip"><b>🎂 Janm tithi <i aria-hidden="true">↓</i></b><small>DOB: janm praman patra / 10vi marksheet. 18 se kam: sirf Birth Certificate</small></a><div class="ad-chip"><b>📱 Mobile / Email</b><small>Koi document nahi. Aadhaar le kar khud center aaiye (finger lagegi)</small></div><div class="ad-chip"><b>📸 Photo / Biometric</b><small>Koi document nahi. 5 aur 15 saal par bachche ka MBU zaroori</small></div><a href="#ad-child" class="ad-chip"><b>👶 Naya Aadhaar 0-5 <i aria-hidden="true">↓</i></b><small>Birth Certificate + mata/pita ka Aadhaar · Form 5</small></a><a href="#ad-teen" class="ad-chip"><b>🧒 Naya Aadhaar 5-18 <i aria-hidden="true">↓</i></b><small>POI + POA ya mata/pita ka Aadhaar · Form 3</small></a><a href="#ad-adult" class="ad-chip"><b>🧑 Naya Aadhaar 18+ <i aria-hidden="true">↓</i></b><small>POI + POA + DOB · Form 1</small></a></div></div>
+  <div class="ag" id="ag" data-wa="https://wa.me/918770882942">
+    <div class="ag-head">
+      <h2>🧭 Naam / Janm tithi sudhaar guide — kaunse document lagenge?</h2>
+      <p>नाम / जन्म तिथि सुधार: apna purana aur sahi naam ya DOB likhiye, turant pata chalega kaunsa document aur affidavit lagega. UIDAI ke naye SOP ke hisaab se.</p>
+    </div>
+    <div class="ag-tool" id="ag-tool" hidden>
+      <div class="ag-tabs" role="tablist">
+        <button type="button" class="ag-tab" id="ag-t-name" role="tab" aria-selected="true" aria-controls="ag-p-name">✏️ Naam badalna</button>
+        <button type="button" class="ag-tab" id="ag-t-dob" role="tab" aria-selected="false" aria-controls="ag-p-dob">🎂 Janm tithi (DOB) badalna</button>
+      </div>
+      <div class="ag-pane" id="ag-p-name" role="tabpanel">
+        <div class="ag-ex"><span>Udaharan:</span><button type="button" class="ag-exb" data-ex-old="Pankaj Kumar Jayswal" data-ex-new="Pankaj Kumar Jaiswal">Pankaj Kumar Jayswal → Pankaj Kumar Jaiswal</button><button type="button" class="ag-exb" data-ex-old="Pankaj Kumar Jaiswal" data-ex-new="Pankaj Jaiswal">Pankaj Kumar Jaiswal → Pankaj Jaiswal</button><button type="button" class="ag-exb" data-ex-old="Pankaj Kumar Jaiswal" data-ex-new="Pankaj Kumar">Pankaj Kumar Jaiswal → Pankaj Kumar</button><button type="button" class="ag-exb" data-ex-old="Ram Gupta" data-ex-new="Shyam Gupta">Ram Gupta → Shyam Gupta</button></div>
+        <div class="ag-2">
+          <label class="ag-f"><span>Abhi Aadhaar me naam</span><input id="ag-old" type="text" autocomplete="off" placeholder="Jaise: Pankaj Kumar Jayswal"></label>
+          <label class="ag-f"><span>Naya / sahi naam</span><input id="ag-new" type="text" autocomplete="off" placeholder="Jaise: Pankaj Kumar Jaiswal"></label>
+        </div>
+        <fieldset class="ag-q"><legend>Umar</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-age" value="adult" checked><span>18+</span></label><label class="ag-opt"><input type="radio" name="ag-age" value="child"><span>18 se kam</span></label></div></fieldset>
+        <fieldset class="ag-q"><legend>Pehle kitni baar naam badla?</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-cnt" value="0" checked><span>0</span></label><label class="ag-opt"><input type="radio" name="ag-cnt" value="1"><span>1</span></label><label class="ag-opt"><input type="radio" name="ag-cnt" value="2"><span>2 ya zyada</span></label></div></fieldset>
+        <label class="ag-chk"><input type="checkbox" id="ag-mar"> Shaadi / talaq ke baad surname</label>
+        <label class="ag-chk"><input type="checkbox" id="ag-op"> Operator ki galti thi (jo document diya tha usme naam sahi hai)</label>
+        <div class="ag-out" id="ag-n-out" aria-live="polite"></div>
+      </div>
+      <div class="ag-pane" id="ag-p-dob" role="tabpanel" hidden>
+        <div class="ag-ex"><span>Udaharan:</span><button type="button" class="ag-exb" data-ex-d1="01/01/1999" data-ex-d2="01/01/2005">01/01/1999 → 01/01/2005</button><button type="button" class="ag-exb" data-ex-d1="01/01/1999" data-ex-d2="05/15/2005">01/01/1999 → 05/15/2005</button></div>
+        <div class="ag-2">
+          <label class="ag-f"><span>Aadhaar me abhi DOB</span><input id="ag-dob-old" type="text" inputmode="numeric" autocomplete="off" placeholder="dd/mm/yyyy"></label>
+          <label class="ag-f"><span>Sahi DOB</span><input id="ag-dob-new" type="text" inputmode="numeric" autocomplete="off" placeholder="dd/mm/yyyy"></label>
+        </div>
+        <fieldset class="ag-q"><legend>Aadhaar me DOB kaise hai?</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-st" value="declared"><span>Declared / Approximate (sirf saal ya andaaz se)</span></label><label class="ag-opt"><input type="radio" name="ag-st" value="verified"><span>Verified (document se)</span></label><label class="ag-opt"><input type="radio" name="ag-st" value="unknown" checked><span>Pata nahi</span></label></div></fieldset>
+        <fieldset class="ag-q"><legend>Pehle kaunsa document diya tha?</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-doc" value="bc"><span>Janm praman patra</span></label><label class="ag-opt"><input type="radio" name="ag-doc" value="other"><span>Marksheet / Passport / anya</span></label><label class="ag-opt"><input type="radio" name="ag-doc" value="unknown" checked><span>Pata nahi</span></label></div></fieldset>
+        <fieldset class="ag-q"><legend>Pehle kabhi DOB badli hai?</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-bef" value="no" checked><span>Nahi</span></label><label class="ag-opt"><input type="radio" name="ag-bef" value="yes"><span>Haan</span></label></div></fieldset>
+        <fieldset class="ag-q"><legend>Galti operator ki thi (document me sahi hai)?</legend><div class="ag-opts"><label class="ag-opt"><input type="radio" name="ag-opr" value="yes"><span>Haan</span></label><label class="ag-opt"><input type="radio" name="ag-opr" value="no" checked><span>Nahi</span></label></div></fieldset>
+        <div class="ag-out" id="ag-d-out" aria-live="polite"></div>
+        <p class="ag-small">Saal ki seema: purane niyam (UIDAI OM 2019) me DOB sirf ±3 saal tak badal sakti thi; 24-12-2025 ke SOP me saal ki koi seema nahi likhi hai — iske badle documents ki sakht jaanch hoti hai.</p>
+      </div>
+    </div>
+    <details class="ag-sum" id="ag-sum" open><summary>📌 Niyam ka saar (naam aur DOB)</summary>
+      <div class="ag-sum-g">
+        <div><h3>✏️ Naam (SOP 18-09-2026)</h3><ul>
+          <li>Naam normal tarike se <b>sirf 2 baar</b> badal sakta hai (Regulation 19). Uske baad "limit exceeded" — exception: 1947 / help@uidai.gov.in, Gazette lagega.</li>
+          <li><b>Koi document nahi:</b> sirf capital letter (RaMesh → Ramesh) ya bindu hatana (R.V.N Srinivas → RVN Srinivas).</li>
+          <li><b>Chhota badlav → PoI</b> (naye naam wala): spelling (Jayswal → Jaiswal), naam jodna / hatana (Pankaj Kumar Jaiswal → Pankaj Jaiswal), kram badalna, initials (T R D Prasad ↔ Tadi Rama Durga Prasad). Shri / Smt / Dr hatana ya Hindi spelling: PoI.</li>
+          <li><b>Shaadi / talaq ke baad surname:</b> Affidavit (Annexure D) + PoI. <b>Urf / alias hatana:</b> Affidavit (Annexure E / F) + PoI. <b>Operator ki galti:</b> Affidavit (Annexure B / C) + wahi PoI / PoR.</li>
+          <li><b>Bada badlav</b> (pehla naam / poora naam, jaise Ram Gupta → Shyam Gupta): PoI + <b>Gazette Notification</b>. Gazette ke bina reject.</li>
+          <li>Affidavit: kam se kam ₹10 ka non-judicial stamp paper, Magistrate ya Notary se attest. Aadhaar me naam bilkul document jaisa likha jata hai; sabhi documents me naam aur DOB ek jaise hon.</li>
+        </ul></div>
+        <div><h3>🎂 Janm tithi (SOP 24-12-2025)</h3><ul>
+          <li>Ek vyakti ki ek hi DOB. Kanooni praman: <b>Birth Certificate</b> (जन्म प्रमाण पत्र, Registration of Births &amp; Deaths Act 1969).</li>
+          <li><b>DOB declared / andaaz se:</b> 18 se kam → sirf Birth Certificate. 18+ → Birth Certificate, 10vi jaisi marksheet / certificate, Passport, Service / Pensioner photo ID (DOB wala), Transgender ID. NRI 18 se kam: Birth Certificate ya Indian Passport.</li>
+          <li><b>DOB Birth Certificate se verified:</b> sirf sudhra hua Birth Certificate (wahi Birth Registration Number, wahi registrar) + Annexure-I affidavit; sirf exceptional case.</li>
+          <li><b>Doosre document se verified:</b> usi document ka sudhra version ya Birth Certificate + Annexure-I; exceptional case, sirf 18+. <b>Doosri baar badalna:</b> Birth Certificate + Annexure-I, exceptional case.</li>
+          <li><b>Operator ki galti:</b> wahi document dobara, ya self-declaration Annexure-II (18+) / II-A (bachcha). Shaadi ke baad naam badla ho: shaadi se pehle ka DOB document + naam badalne ka praman (purana Aadhaar ya dono naam wala marriage certificate).</li>
+          <li>⚠️ <b>Galat / farzi document</b> (jaise bachcha 0-5 me banwaya par asal me bada tha): fraud — request reject, Aadhaar deactivate ho sakta hai; dobara chalu sirf UIDAI Regional Office se, poora biometric update + online verify hone wala Birth Certificate + Annexure-III affidavit.</li>
+          <li>Saal ki seema: purane niyam (UIDAI OM 2019) me sirf ±3 saal; 24-12-2025 ke SOP me saal ki seema nahi likhi — documents ki sakht jaanch hoti hai.</li>
+        </ul></div>
+      </div>
+      <div class="ag-poi"><h3>🪪 Naam ke liye PoI (List IV, naam + photo)</h3>
+        <ul><li>Valid Indian Passport</li><li>Ration / PDS photo card / e-Ration card</li><li>Voter ID / e-Voter ID</li><li>Driving licence</li><li>Service photo ID (Kendra / Rajya sarkar / PSU)</li><li>Pensioner / Freedom fighter photo ID / PPO</li><li>Kisan photo passbook</li><li>CGHS / ECHS / ESIC / Medi-claim card (Sarkari / PSU)</li><li>MGNREGA job card + Domicile certificate</li><li>Marriage certificate (photo na ho to purane naam ka photo PoI saath me)</li><li>Divorce decree (photo na ho to purane naam ka photo PoI saath me)</li><li>SC / ST / OBC certificate</li><li>Marksheet / Certificate — manyata prapt Board / University</li><li>Transgender ID (Transgender Persons Act 2019)</li><li>Gazette notification (pehla naam / poora naam badalne ke liye)</li><li>UIDAI format ka certificate — NACO / State AIDS officer ya DCPO (vishesh case)</li></ul>
+        <p class="ag-pan">❌ PAN card naam ke praman (PoI) me nahi chalta — yeh List IV me nahi hai.</p>
+      </div>
+    </details>
+    <div class="ag-src"><b>Srot:</b>
+      <a href="https://uidai.gov.in/en/circulars" target="_blank" rel="noopener noreferrer">UIDAI SOP: Name update (HQ-16024/4/2020-EU-I-HQ, 18-09-2026)</a>
+      <a href="https://uidai.gov.in/images/SOP_for_DOB_update.pdf" target="_blank" rel="noopener noreferrer">UIDAI SOP: Date of Birth update (24-12-2025 + corrigendum 2026)</a>
+      <a class="ad-btn ag-src-a" href="pdf.html#f=aadhaar%2FdocListEn.pdf&t=Aadhaar%20documents%20list%20(English)" target="_blank" rel="noopener">UIDAI: List of acceptable documents (List IV — update)</a>
+      <span class="ag-date">Jaankari ki tareekh: Nov 2026 · Aakhri faisla Aadhaar centre / UIDAI ka hota hai.</span>
+    </div>
+  </div>
+<script>// Aadhaar: Naam / Janm tithi sudhaar guide (sirf browser me; kuch save nahi hota, koi network nahi)
+// Niyam: UIDAI SOP naam update (18-09-2026) aur SOP DOB update (24-12-2025). window.AadhaarGuide test ke liye bhi.
+(function (root) {
+  'use strict';
+  // ---------------- Naam ----------------
+  var SALUT = { shri: 1, sri: 1, smt: 1, shrimati: 1, mr: 1, mrs: 1, ms: 1, dr: 1, prof: 1, kumari: 1, capt: 1, col: 1, maj: 1, lt: 1, gen: 1, brig: 1, sgt: 1, hav: 1, sub: 1 };
+  function norm(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+  function words(s) { return norm(s).toLowerCase().split(/[\s.]+/).filter(Boolean); }
+  // Ek jaisi awaaz wale naam ki chaabi: Pooja = Puja, Jayswal = Jaiswal, Abhishek = Abhisek
+  function phon(w) {
+    var k = String(w || '').toLowerCase().replace(/[^a-z]/g, '');
+    if (!k) return String(w || '').toLowerCase();
+    k = k.replace(/ksh/g, 'x').replace(/ph/g, 'f').replace(/sh/g, 's').replace(/y/g, 'i').replace(/w/g, 'v').replace(/z/g, 'j')
+      .replace(/ee/g, 'i').replace(/oo/g, 'u').replace(/aa/g, 'a').replace(/(.)\1+/g, '$1');
+    while (k.length > 1 && /[ah]$/.test(k)) k = k.slice(0, -1);
+    return k;
+  }
+  function pair(a, b) {
+    if (a === b) return 'exact';
+    if (phon(a) === phon(b)) return 'spell';
+    if (a.length === 1 && b.length > 1 && b.charAt(0) === a) return 'init';
+    if (b.length === 1 && a.length > 1 && a.charAt(0) === b) return 'init';
+    return '';
+  }
+  var DEVA = /[ऀ-ॿ]/;
+  /** Purana aur naya naam milakar sudhaar ka prakar: same | nodoc | salutation | alias | regional | spelling | add | remove | order | initials | combination | major */
+  function classifyName(oldName, newName) {
+    var o = norm(oldName), n = norm(newName);
+    if (!o || !n) return { type: '' };
+    if (o === n) return { type: 'same' };
+    if (DEVA.test(o) || DEVA.test(n)) return { type: 'regional' };
+    var lo = o.toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ').trim(), ln = n.toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ').trim();
+    if (lo === ln) return { type: 'nodoc' }; // sirf capital letter ya bindu (.)
+    if (/\./.test(o) && lo.replace(/ /g, '') === ln.replace(/ /g, '')) return { type: 'nodoc' }; // R. V. N. -> RVN
+    var A = words(o), B = words(n);
+    var rmUrf = function (L) { var i = L.indexOf('urf'); if (i < 0) i = L.indexOf('alias'); return i; };
+    if (rmUrf(A) >= 0 && rmUrf(B) < 0) return { type: 'alias' };
+    var A2 = A.filter(function (w) { return !SALUT[w]; }), B2 = B.filter(function (w) { return !SALUT[w]; });
+    if (A2.length < A.length && B2.length === B.length && A2.join(' ') === B2.join(' ')) return { type: 'salutation' };
+    A = A2.length ? A2 : A; B = B2.length ? B2 : B;
+    // Har purane shabd ka naye me jod (pehle bilkul same, phir awaaz, phir initial)
+    var usedB = {}, mA = [], f = {};
+    ['exact', 'spell', 'init'].forEach(function (kind) {
+      A.forEach(function (a, i) {
+        if (mA[i] != null) return;
+        for (var j = 0; j < B.length; j++) if (!usedB[j] && pair(a, B[j]) === kind) { mA[i] = j; usedB[j] = 1; if (kind === 'spell') f.spelling = 1; if (kind === 'init') f.initials = 1; return; }
+      });
+    });
+    var matched = 0, last = -1, ordered = true;
+    for (var i = 0; i < A.length; i++) { if (mA[i] == null) continue; matched++; if (mA[i] < last) ordered = false; last = mA[i]; }
+    var addN = B.length - Object.keys(usedB).length, remN = A.length - matched;
+    if (!matched) return { type: 'major' };
+    if (mA[0] == null && !usedB[0]) return { type: 'major' }; // pehla naam hi badal gaya (Ram -> Shyam)
+    if (!ordered) f.order = 1;
+    if (addN) f.add = 1;
+    if (remN) f.remove = 1;
+    var keys = Object.keys(f);
+    if (!keys.length) return { type: 'nodoc' };
+    if (keys.length > 1) return { type: 'combination', parts: keys };
+    return { type: keys[0] };
+  }
+  var MINOR = { spelling: 1, add: 1, remove: 1, order: 1, initials: 1, combination: 1 };
+  var TYPE = {
+    same: ['Dono naam ek jaise hain', 'Koi badlav nahi dikh raha.'],
+    nodoc: ['Sirf capital letter / bindu (.) ka sudhaar', 'SOP udaharan: RaMesh → Ramesh, R.V.N Srinivas → RVN Srinivas'],
+    salutation: ['Shri / Smt / Mr / Dr jaisa shabd hatana', 'Salutation / prefix (Shri, Smt, Mr, Ms, Dr, Prof, rank) hatana'],
+    alias: ['"Urf" / "Alias" hatana', 'Naam me se urf / alias wala hissa hatana'],
+    regional: ['Hindi (sthaniya bhasha) me spelling ki galti', 'Sirf क्षेत्रीय भाषा wale naam ki galti'],
+    spelling: ['Chhota badlav: spelling (awaaz wahi)', 'SOP udaharan: Pooja → Puja, Abhishek → Abhisek, Jayswal → Jaiswal'],
+    add: ['Chhota badlav: beech ka / aakhri naam jodna', 'SOP udaharan: Himanshu Gupta → Himanshu Chandra Gupta'],
+    remove: ['Chhota badlav: beech ka / aakhri naam hatana', 'SOP udaharan: Pankaj Kumar Jaiswal → Pankaj Jaiswal, Pankaj Kumar Jaiswal → Pankaj Kumar'],
+    order: ['Chhota badlav: naam ka kram (order) badalna', 'SOP udaharan: Divakar Anand → Anand Divakar'],
+    initials: ['Chhota badlav: initials ko poora likhna / chhota karna', 'SOP udaharan: T R D Prasad ↔ Tadi Rama Durga Prasad'],
+    combination: ['Chhota badlav: upar ke badlav ek saath', 'SOP: chhote badlavon ka combination bhi chhota badlav hai'],
+    major: ['Bada badlav: pehla naam / poora naam badalna', 'SOP udaharan: Ram Gupta → Shyam Gupta'],
+    marriage: ['Shaadi / talaq ke baad surname badalna', 'Shaadi ya talaq ke baad upnaam (surname)'],
+    dataentry: ['Data entry ki galti (operator ki)', 'Aadhaar ka naam us document se mel khana chahiye jo UIDAI ke paas pehle se hai'],
+  };
+  var PART = { spelling: 'spelling', add: 'naam jodna', remove: 'naam hatana', order: 'kram', initials: 'initials' };
+  var POI = 'PoI (पहचान का प्रमाण) jisme NAYA naam likha ho — jaise Voter ID, Passport, Driving licence, Ration card (photo wala), 10vi/12vi marksheet';
+  var AFF = 'Affidavit: kam se kam ₹10 ka non-judicial stamp paper, Judicial / Executive Magistrate ya Notary se attest';
+  /** Naam: kaunse document, affidavit, chetavni. o = { type, child, count, marriage, dataentry } */
+  function nameAdvice(o) {
+    var t = o.type, child = !!o.child, docs = [], aff = '', warn = [], badge = 'green', label = 'Chhota sudhaar';
+    if (o.dataentry && t !== 'same' && t !== 'nodoc') t = 'dataentry';
+    else if (o.marriage && t !== 'major' && t !== 'same') t = 'marriage';
+    if (t === 'nodoc') docs.push('Koi document nahi lagega');
+    else if (t === 'same') docs.push('—');
+    else if (t === 'salutation' || t === 'regional') docs.push(POI);
+    else if (MINOR[t]) {
+      docs.push(POI);
+      if (child) docs.push('18 se kam: PoI, ya PoR / Birth Certificate (जन्म प्रमाण पत्र) / legal guardianship document jisme naya naam ho');
+    } else if (t === 'marriage') {
+      aff = 'Affidavit — Annexure D'; badge = 'orange'; label = 'Affidavit chahiye';
+      docs.push(POI); docs.push('Marriage certificate / Divorce decree bhi PoI me chalta hai (photo na ho to purane naam ka photo PoI saath me)');
+    } else if (t === 'alias') {
+      aff = 'Affidavit — Annexure ' + (child ? 'F (18 se kam)' : 'E (18+)'); badge = 'orange'; label = 'Affidavit chahiye';
+      docs.push(POI);
+    } else if (t === 'dataentry') {
+      aff = 'Affidavit — Annexure ' + (child ? 'C (18 se kam)' : 'B (18+)'); badge = 'orange'; label = 'Affidavit chahiye';
+      docs.push('Wahi PoI / PoR document jo UIDAI ke paas pehle se hai (naam usi jaisa hoga)');
+    } else if (t === 'major') {
+      badge = 'red'; label = 'Gazette / Exception';
+      docs.push(POI); docs.push('Gazette Notification (राजपत्र) — naam badalne ki');
+      warn.push('Gazette ke bina pehla naam / poora naam badalne ki request reject ho jayegi.');
+    }
+    var cnt = Number(o.count) || 0;
+    if (t !== 'same' && cnt >= 2) {
+      badge = 'red'; label = 'Gazette / Exception';
+      warn.push('Naam normal tarike se sirf 2 baar badal sakta hai (Regulation 19). 2 baar ho chuka hai, isliye request "limit exceeded" se reject hogi. Exception ke liye 1947 par call karein ya help@uidai.gov.in par email karein — Gazette notification lagega.');
+    } else if (t !== 'same' && cnt === 1) warn.push('Dhyan dein: yeh aapka doosra (aakhri normal) naam update hoga. Naam dhyan se check karke bharwayein.');
+    return { type: t, title: (TYPE[t] || ['', ''])[0], example: (TYPE[t] || ['', ''])[1], docs: docs, affidavit: aff, warn: warn, badge: badge, label: label };
+  }
+
+  // ---------------- Janm tithi ----------------
+  function valid(d, m, y) { if (m < 1 || m > 12 || d < 1 || y < 1900 || y > 2100) return false; var x = new Date(Date.UTC(y, m - 1, d)); return x.getUTCDate() === d && x.getUTCMonth() === m - 1; }
+  var p2 = function (x) { return (x < 10 ? '0' : '') + x; };
+  /** dd/mm/yyyy (ya dd-mm-yyyy, dd.mm.yyyy). Galti se mm/dd likha ho to sujhav. */
+  function parseDate(s) {
+    var m = String(s || '').trim().match(/^(\d{1,2})\s*[\/\-.]\s*(\d{1,2})\s*[\/\-.]\s*(\d{4})$/);
+    if (!m) return { ok: false, msg: 'Tareekh dd/mm/yyyy me likhiye (jaise 15/08/2005)' };
+    var a = +m[1], b = +m[2], y = +m[3];
+    if (valid(a, b, y)) return { ok: true, d: a, m: b, y: y, text: p2(a) + '/' + p2(b) + '/' + y };
+    if (b > 12 && valid(b, a, y)) return { ok: true, d: b, m: a, y: y, text: p2(b) + '/' + p2(a) + '/' + y, swapped: true, msg: b + ' mahina nahi hota — kya aapka matlab ' + p2(b) + '/' + p2(a) + '/' + y + ' hai?' };
+    return { ok: false, msg: 'Yeh tareekh sahi nahi hai (' + String(s).trim() + ')' };
+  }
+  /** Do tareekh ka farak: saal / mahine / din */
+  function dateDiff(a, b) {
+    var x = a, z = b, later = 1;
+    if (Date.UTC(a.y, a.m - 1, a.d) > Date.UTC(b.y, b.m - 1, b.d)) { x = b; z = a; later = -1; }
+    var y = z.y - x.y, m = z.m - x.m, d = z.d - x.d;
+    if (d < 0) { m--; d += new Date(Date.UTC(z.y, z.m - 1, 0)).getUTCDate(); }
+    if (m < 0) { y--; m += 12; }
+    return { y: y, m: m, d: d, later: later };
+  }
+  function ageOn(dob, now) {
+    now = now || new Date();
+    var t = { y: now.getFullYear(), m: now.getMonth() + 1, d: now.getDate() };
+    return dateDiff(dob, t).y;
+  }
+  var DOB_DOCS = ['Birth Certificate (जन्म प्रमाण पत्र)', 'Marksheet / Certificate — manyata prapt Board / University (jaise 10vi)', 'Valid Indian Passport', 'Service photo ID (Sarkari / PSU) jisme DOB ho', 'Pensioner photo ID / PPO jisme DOB ho', 'Transgender ID jisme DOB ho'];
+  /** Janm tithi: o = { child, status: declared|verified|unknown, doc: bc|other|unknown, before: bool, operator: bool } */
+  function dobAdvice(o) {
+    var docs = [], aff = '', warn = [], badge = 'green', label = 'Chhota sudhaar', title = '';
+    var exc = function () { badge = 'red'; label = 'Gazette / Exception'; };
+    if (o.operator) {
+      title = 'Operator ki galti (document me DOB sahi hai)'; badge = 'orange'; label = 'Affidavit chahiye';
+      docs.push('Wahi document dobara jo Aadhaar banwate samay diya tha');
+      docs.push('Ya self-declaration — Annexure-' + (o.child ? 'II-A (bachcha)' : 'II (18+)'));
+    } else if (o.before) {
+      title = 'DOB pehle bhi badal chuki hai (doosri baar)'; exc();
+      docs.push('Birth Certificate (ya sudhra hua Birth Certificate, wahi Birth Registration Number)');
+      aff = 'Affidavit — Annexure-I';
+      warn.push('Doosri baar DOB badalna sirf asaadharan (exceptional) case me hota hai.');
+    } else if (o.status === 'verified') {
+      title = 'Aadhaar me DOB verified hai (document se)'; exc(); aff = 'Affidavit — Annexure-I';
+      if (o.doc !== 'other') docs.push('Agar Birth Certificate se verified hai: sirf sudhra hua Birth Certificate — wahi Birth Registration Number, wahi registrar. Doosre document reject honge.');
+      if (o.doc !== 'bc') docs.push('Agar marksheet / passport / anya se verified hai: usi document ka sudhra hua version, ya Birth Certificate' + (o.child ? ' (yeh raasta sirf 18+ ke liye hai)' : ' (sirf 18+)'));
+      warn.push('Verified DOB sirf asaadharan (exceptional) case me badalti hai.');
+    } else {
+      title = o.status === 'declared' ? 'Aadhaar me DOB declared / andaaz se hai' : 'DOB ki sthiti pata nahi';
+      if (o.child) docs.push('18 se kam: SIRF Birth Certificate (जन्म प्रमाण पत्र)');
+      else DOB_DOCS.forEach(function (x) { docs.push(x); });
+      docs.push('Document me naam aur janm tithi dono hone chahiye');
+      if (o.status !== 'declared') { badge = 'orange'; label = 'Affidavit chahiye (ho sakta hai)'; warn.push('Centre par Aadhaar dekh kar pata chalega. Agar DOB pehle se verified hai to Annexure-I affidavit + exception lagega.'); }
+    }
+    return { title: title, docs: docs, affidavit: aff, warn: warn, badge: badge, label: label };
+  }
+  var api = { phon: phon, classifyName: classifyName, nameAdvice: nameAdvice, parseDate: parseDate, dateDiff: dateDiff, ageOn: ageOn, dobAdvice: dobAdvice };
+  root.AadhaarGuide = api;
+
+  // ---------------- Page se jodna ----------------
+  var doc = root.document;
+  var box = doc && doc.getElementById && doc.getElementById('ag');
+  if (!box) return;
+  var $ = function (id) { return doc.getElementById(id); };
+  var tool = $('ag-tool'); if (tool) tool.hidden = false;
+  var sum = $('ag-sum'); if (sum && sum.removeAttribute) sum.removeAttribute('open');
+  var WA = box.getAttribute('data-wa') || '';
+  var el = function (tag, cls, txt) { var e = doc.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  function list(ul, items) { items.forEach(function (x) { ul.appendChild(el('li', '', x)); }); return ul; }
+  function card(out, r, waText, extra) {
+    out.textContent = '';
+    var c = el('div', 'ag-card ag-' + r.badge);
+    var h = el('div', 'ag-card-h'); h.appendChild(el('span', 'ag-badge', r.label)); h.appendChild(el('b', '', r.title)); c.appendChild(h);
+    if (r.example) c.appendChild(el('p', 'ag-eg', r.example));
+    (extra || []).forEach(function (x) { c.appendChild(el('p', 'ag-info', x)); });
+    c.appendChild(el('div', 'ag-k', 'Lagne wale documents'));
+    c.appendChild(list(el('ul', 'ag-docs'), r.docs));
+    if (r.affidavit) { c.appendChild(el('p', 'ag-aff', '📝 ' + r.affidavit)); c.appendChild(el('p', 'ag-small', AFF)); }
+    r.warn.forEach(function (w) { c.appendChild(el('p', 'ag-warn', '⚠️ ' + w)); });
+    if (WA) { var a = el('a', 'btn btn-wa ag-wa', '💬 Is kaam ke liye dukaan se baat karein'); a.href = WA + '?text=' + encodeURIComponent(waText); a.target = '_blank'; a.rel = 'noopener noreferrer'; c.appendChild(a); }
+    out.appendChild(c);
+  }
+  // Tabs
+  var tabs = [$('ag-t-name'), $('ag-t-dob')], panes = [$('ag-p-name'), $('ag-p-dob')];
+  tabs.forEach(function (t, i) {
+    if (!t) return;
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x, j) { x.setAttribute('aria-selected', i === j ? 'true' : 'false'); panes[j].hidden = i !== j; });
+    });
+  });
+  function val(name) { var r = box.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  // Naam
+  function runName() {
+    var o = $('ag-old').value, n = $('ag-new').value, out = $('ag-n-out');
+    var c = classifyName(o, n);
+    if (!c.type) { out.textContent = ''; out.appendChild(el('p', 'ag-hint', 'Dono naam likhiye — turant pata chalega kaunsa document lagega.')); return; }
+    var r = nameAdvice({ type: c.type, child: val('ag-age') === 'child', count: val('ag-cnt'), marriage: $('ag-mar').checked, dataentry: $('ag-op').checked });
+    if (c.type === 'combination' && r.type === 'combination') {
+      r.example = 'Isme: ' + c.parts.map(function (p) { return PART[p] || p; }).join(' + ') + '. ' + r.example;
+      if (c.parts.indexOf('add') >= 0 && c.parts.indexOf('remove') >= 0) r.warn.unshift('Surname shaadi / talaq ke kaaran badal raha hai to upar "Shaadi / talaq ke baad surname" tick karein — tab Affidavit (Annexure D) lagega.');
+    }
+    card(out, r, 'Namaste, mujhe Aadhaar me naam sudhaar karwana hai: "' + norm(o) + '" se "' + norm(n) + '". Kaunse document lagenge?', ['"' + norm(o) + '" → "' + norm(n) + '"']);
+  }
+  ['ag-old', 'ag-new'].forEach(function (id) { $(id).addEventListener('input', runName); });
+  Array.prototype.forEach.call(box.querySelectorAll('#ag-p-name input[type=radio], #ag-p-name input[type=checkbox]'), function (x) { x.addEventListener('change', runName); });
+  Array.prototype.forEach.call(box.querySelectorAll('[data-ex-old]'), function (b) {
+    b.addEventListener('click', function () { $('ag-old').value = b.getAttribute('data-ex-old'); $('ag-new').value = b.getAttribute('data-ex-new'); runName(); });
+  });
+  // DOB
+  function runDob() {
+    var out = $('ag-d-out'), a = parseDate($('ag-dob-old').value), b = parseDate($('ag-dob-new').value), info = [];
+    out.textContent = '';
+    if (!$('ag-dob-old').value.trim() && !$('ag-dob-new').value.trim()) { out.appendChild(el('p', 'ag-hint', 'Dono tareekh dd/mm/yyyy me likhiye.')); return; }
+    [[a, 'Aadhaar me DOB'], [b, 'Sahi DOB']].forEach(function (x) { if (x[0].msg) info.push(x[1] + ': ' + x[0].msg); });
+    if (!a.ok || !b.ok) { info.forEach(function (t) { out.appendChild(el('p', 'ag-warn', t)); }); return; }
+    var df = dateDiff(a, b), age = ageOn(b);
+    info.push('Farak: ' + df.y + ' saal ' + df.m + ' mahine ' + df.d + ' din' + (df.y || df.m || df.d ? (df.later > 0 ? ' (sahi DOB baad ki hai)' : ' (sahi DOB pehle ki hai)') : ''));
+    info.push('Sahi DOB se umar: ' + age + ' saal → ' + (age < 18 ? '18 se kam' : '18+'));
+    var r = dobAdvice({ child: age < 18, status: val('ag-st'), doc: val('ag-doc'), before: val('ag-bef') === 'yes', operator: val('ag-opr') === 'yes' });
+    r.warn.push('Galat / farzi document diya ho (jaise bachcha 0-5 me banwaya par asal me bada tha, ya 5-18 me par asal me 18+) to UIDAI ise fraud maanta hai: request reject, Aadhaar band (deactivate) ho sakta hai.');
+    card(out, r, 'Namaste, mujhe Aadhaar me janm tithi sudhaar karwana hai: ' + a.text + ' se ' + b.text + '. Kaunse document lagenge?', info);
+  }
+  ['ag-dob-old', 'ag-dob-new'].forEach(function (id) { $(id).addEventListener('input', runDob); });
+  Array.prototype.forEach.call(box.querySelectorAll('#ag-p-dob input[type=radio]'), function (x) { x.addEventListener('change', runDob); });
+  Array.prototype.forEach.call(box.querySelectorAll('[data-ex-d1]'), function (bt) {
+    bt.addEventListener('click', function () { $('ag-dob-old').value = bt.getAttribute('data-ex-d1'); $('ag-dob-new').value = bt.getAttribute('data-ex-d2'); runDob(); });
+  });
+  runName(); runDob();
+})(typeof window !== 'undefined' ? window : this);
+</script>
   <div class="ad-grid">
     <article class="ad-card ad-pink" id="ad-child">
       <div class="ad-top"><span class="ad-ic">👶</span><div><h3>0 – 5 saal</h3><div class="ad-hi">0 से 5 वर्ष</div></div><span class="ad-form">Form 5</span></div>
