@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-9T/6dLLsyfjwlNfaZDOunjv+/5gdzpHect1UsT1YYCM=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-08fXIMAdv6omPCmf5Myz/BA5nWOGldGnBtX6Zus2h6Y=' 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex">
 <title>PDF | PANKAJ CHOICE CENTER</title>
@@ -125,6 +125,7 @@
 <div class="pv-pages" id="pv-pages"></div>
 <script>(function(){
   var P=new URLSearchParams(location.hash.slice(1)), f=P.get('f')||'', t=(P.get('t')||'').slice(0,140);
+  var PP=(P.get('p')||'').split(',').map(function(x){return parseInt(x,10);}).filter(function(x){return x>0&&x<1000;}).slice(0,60); // sirf ye page, isi kram me
   var msg=document.getElementById('pv-msg'), box=document.getElementById('pv-pages'), pr=document.getElementById('pv-pr'), dl=document.getElementById('pv-dl'), dlf=document.getElementById('pv-dlf'), dlb=document.getElementById('pv-dlb'), fill=document.getElementById('pv-fill');
   var bar=document.getElementById('pv-bar'); function barH(){ document.body.style.setProperty('--bar-h', bar.offsetHeight+'px'); } barH(); window.addEventListener('resize',barH);
   function err(m){ msg.className='pv-msg err'; msg.textContent=m; msg.hidden=false; }
@@ -133,6 +134,7 @@
   document.getElementById('pv-title').textContent=t||name; document.title=(t||name)+' | PDF';
   var file=name.replace(/\s+/g,'_');
   dl.href=f; dl.setAttribute('download', file+'.pdf');
+  if(PP.length){ dl.removeAttribute('download'); dl.href='#'; dl.onclick=function(e){ e.preventDefault(); document.activeElement&&document.activeElement.blur(); filledPdf(true); }; dl.querySelector('small').textContent='Sirf ye '+PP.length+' page'; }
   var J='lib/pdfjs-6.2.108/', W=900, PAGES=[];
   var W0=900; function setW(w){ W=Math.max(280,Math.min(2000,w)); box.style.setProperty('--pw',W+'px'); var zv=document.getElementById('pv-zv'); if(zv) zv.textContent=Math.round(W/W0*100)+'%'; }
   W0=Math.min(900, (box.clientWidth||innerWidth)-20); setW(W0);
@@ -196,7 +198,7 @@
   });
 
   // ---------- Bhara hua PDF banana (har page ki photo + likha hua, bina kisi library) ----------
-  async function filledPdf(){
+  async function filledPdf(blank){
     closeMenus(); dlb.disabled=true; var old=dlb.innerHTML; dlb.textContent='Ban raha hai…';
     try{
       var imgs=[];
@@ -204,7 +206,7 @@
         var pg=PAGES[i], src=pg.canvas, c=document.createElement('canvas'); c.width=src.width; c.height=src.height; var x=c.getContext('2d');
         x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(src,0,0);
         var lay=pg.lay, LW=lay.clientWidth||1, LH=lay.clientHeight||1, sx=c.width/LW, sy=c.height/LH;
-        [].forEach.call(lay.querySelectorAll('.pv-w'),function(w){
+        if(!blank) [].forEach.call(lay.querySelectorAll('.pv-w'),function(w){
           var tx=w.querySelector('[data-t]'), txt=tx.textContent; if(!txt.trim()) return;
           var cs=getComputedStyle(tx), fpx=parseFloat(cs.fontSize)*sx, tr=tx.getBoundingClientRect(), lr=lay.getBoundingClientRect();
           x.fillStyle=cs.color; x.font=cs.fontWeight+' '+fpx+'px '+cs.fontFamily; x.textBaseline='top';
@@ -213,7 +215,7 @@
         var b64=c.toDataURL('image/jpeg',.9).split(',')[1], bin=atob(b64), u=new Uint8Array(bin.length); for(var k=0;k<bin.length;k++) u[k]=bin.charCodeAt(k);
         imgs.push({jpg:u, w:c.width, h:c.height, pw:pg.pw, ph:pg.ph});
       }
-      var blob=makePdf(imgs), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file+'_bhara.pdf'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },4000);
+      var blob=makePdf(imgs), a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file+(blank?'':'_bhara')+'.pdf'; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },4000);
     }catch(e){ alertMsg('Bhara hua PDF nahi ban paya. Print → "Save as PDF" se save kijiye.'); }
     dlb.disabled=false; dlb.innerHTML=old;
   }
@@ -245,14 +247,16 @@
       var lib=await import(new URL(J+'pdf.min.mjs',location.href).href);
       lib.GlobalWorkerOptions.workerSrc=new URL(J+'pdf.worker.min.mjs',location.href).href;
       var pdf=await lib.getDocument({url:new URL(f,location.href).href, isEvalSupported:false, wasmUrl:new URL(J+'wasm/',location.href).href, useSystemFonts:true}).promise;
-      msg.hidden=true; document.getElementById('pv-sub').textContent=pdf.numPages+' page';
-      for(var i=1;i<=pdf.numPages;i++){
+      msg.hidden=true;
+      var LIST=PP.filter(function(i){return i<=pdf.numPages;}); if(!LIST.length){ LIST=[]; for(var q=1;q<=pdf.numPages;q++) LIST.push(q); }
+      document.getElementById('pv-sub').textContent=LIST.length+' page'+(LIST.length<pdf.numPages?' (poori PDF me '+pdf.numPages+')':'');
+      for(var li=0;li<LIST.length;li++){ var i=LIST[li];
         var pg=await pdf.getPage(i), v1=pg.getViewport({scale:1}), vp=pg.getViewport({scale:2}), wr=document.createElement('div'), c=document.createElement('canvas'), lay=document.createElement('div');
         wr.className='pv-pg'; lay.className='pv-lay'; wr.style.setProperty('--ar',(v1.width/v1.height).toFixed(4));
         c.width=Math.floor(vp.width); c.height=Math.floor(vp.height); c.setAttribute('aria-label','Page '+i);
         wr.appendChild(c); wr.appendChild(lay); box.appendChild(wr); await pg.render({canvasContext:c.getContext('2d'), viewport:vp, intent:'print'}).promise; // print intent: background tab me bhi poora bane
         PAGES.push({canvas:c, lay:lay, pw:v1.width, ph:v1.height}); fill.disabled=false;
-        var n=document.createElement('div'); n.className='pv-n'; n.textContent='Page '+i+' / '+pdf.numPages; box.appendChild(n);
+        var n=document.createElement('div'); n.className='pv-n'; n.textContent=LIST.length<pdf.numPages?('Page '+(li+1)+' / '+LIST.length+' (PDF ka page '+i+')'):('Page '+i+' / '+pdf.numPages); box.appendChild(n);
       }
       pr.disabled=false; fill.disabled=false;
     }catch(e){ err('PDF yahan nahi khul payi. Download karke kholiye.'); }
