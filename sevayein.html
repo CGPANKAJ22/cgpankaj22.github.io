@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-YO6C5dSEp7MMgqy7Qks5NoiYDB1TO4IVgwjnVPJh7F4=' 'sha256-bBWGHB4J/dIaHataeHi+5qhQ4ym+74ZmOd/NIO1YxEM=' 'sha256-90ZhA0a0mTHs9iqv6f2jznSGi6DaU6RdZ4zULtzaZ0w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-QxsKHhms7A3JMaR7b/WSWqJgC5wUKjstI0igsk+yXwo=' 'sha256-M6zLAIivTVMpEoUudkxZ1DNtwihwWHGf6MuDkBRrXFE=' 'sha256-4mJIiZTEpkEMdsSCp7ruwP703GzqrGZsz9kQ6SZkoN4=' 'sha256-bBWGHB4J/dIaHataeHi+5qhQ4ym+74ZmOd/NIO1YxEM=' 'sha256-90ZhA0a0mTHs9iqv6f2jznSGi6DaU6RdZ4zULtzaZ0w='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://images.pexels.com; connect-src 'self' https://ntfy.sh https://docs.google.com https://abacus.jasoncameron.dev; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
 <title>Hamari Sevayein | PANKAJ CHOICE CENTER</title>
-<meta name="description" content="Hamari Sevayein: Har seva ke zaroori documents. Seva par dabaiye, list khul jayegi. PANKAJ CHOICE CENTER, 📞 8770882942">
+<meta name="description" content="Hamari Sevayein: Apna kaam khojiye: har seva ke saath zaroori documents aur WhatsApp par seedha sawaal. PANKAJ CHOICE CENTER, 📞 8770882942">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PANKAJ CHOICE CENTER">
 <meta property="og:title" content="Hamari Sevayein | PANKAJ CHOICE CENTER">
-<meta property="og:description" content="Har seva ke zaroori documents. Seva par dabaiye, list khul jayegi.">
+<meta property="og:description" content="Apna kaam khojiye: har seva ke saath zaroori documents aur WhatsApp par seedha sawaal.">
 <meta property="og:url" content="https://cgpankaj22.github.io/sevayein.html">
 <meta property="og:image" content="https://images.pexels.com/photos/7648049/pexels-photo-7648049.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200">
 <meta property="og:image:width" content="1400">
@@ -830,12 +830,216 @@
 
   /* Meena AI chat me PDF download */
   .cb-file .cb-dl { display: inline-block; padding: 10px 14px; border-radius: 10px; background: var(--brand); color: #fff; font-weight: 700; text-decoration: none; word-break: break-all; }
+
+  /* ===== suchna ===== */
+
+  /* Suchna: purani (tareekh nikal gayi) + prakar ke chip */
+  .upd-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .upd-chips button { font: inherit; font-size: 14px; font-weight: 700; padding: 6px 13px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; min-height: 36px; }
+  .upd-chips button.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .upd-chips button:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 45%, transparent); outline-offset: 2px; }
+  .upd.upd-off { display: none; }
+  .upd-oldsec { margin-top: 26px; padding-top: 16px; border-top: 1px dashed var(--line); }
+  .upd-oldsec[hidden], .upd-exp[hidden], .tick a[hidden], .tick i[hidden], .upd[hidden], #suchna[hidden] { display: none !important; }
+  .upd-oldh { margin: 0 0 12px; font-size: 16px; color: var(--muted); font-weight: 800; }
+  .upd-oldh small { font-weight: 600; font-size: 13px; }
+  .upd.old { opacity: .72; box-shadow: none; background: var(--bg); }
+  .upd.old .upd-date span { background: #8792a8; }
+  .upd.old .upd-new { display: none !important; }
+  .upd.old h3 { color: var(--muted); }
+  .upd-exp { background: #eceff4; color: #5b6478; padding: 1px 9px; border-radius: 999px; font-weight: 800; }
+  .upd.old.pin { border-color: var(--line); box-shadow: none; }
+
+  /* ===== aadhaar ===== */
+  /* Aadhaar page: POI/POA shabd-kosh, udaharan, list ki tareekh, update shortcut */
+  .ad-gl { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; font-size: 13px; }
+  .ad-gl li { padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .25); }
+  .ad-gl b { color: #ffcc33; }
+  .ad-gl span { opacity: .85; }
+  .ad-main p.ad-eg { margin-top: 8px; font-size: 13.5px; }
+  .ad-main p.ad-ldate { margin-top: 6px; font-size: 12px; opacity: .75; }
+  .ad-chips-w { margin: 18px 0 0; }
+  .ad-chips-h { margin: 0 0 10px; font-size: 18px; }
+  .ad-chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .ad-chip { display: block; padding: 10px 12px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); color: inherit; text-decoration: none; box-shadow: var(--shadow); }
+  a.ad-chip:hover { border-color: var(--brand); }
+  .ad-chip b { display: block; font-size: 14.5px; }
+  .ad-chip b i { font-style: normal; color: var(--brand); }
+  .ad-chip small { display: block; margin-top: 3px; font-size: 12.5px; opacity: .8; line-height: 1.4; }
+  .ad-card { scroll-margin-top: 80px; }
+  .ad-card:target { outline: 3px solid var(--adc); outline-offset: 2px; }
+  @media (max-width: 900px) { .ad-chips { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 380px) { .ad-chips { grid-template-columns: 1fr; } }
+  /* Naukri: antim tithi */
+  .nk-till { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 2px 0 6px; padding: 4px 10px; border-radius: 10px; background: #fff4e5; color: #b45309; border: 1px solid #fdba74; font-size: 13.5px; font-weight: 700; }
+  .nk-till.soon { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+  .nk-left { padding: 1px 8px; border-radius: 999px; background: #dc2626; color: #fff; font-size: 12px; font-weight: 800; }
+
+  /* ===== appoint ===== */
+  /* appoint: request status card */
+  .book form.sent > :not(.result) { display: none; }
+  .book form .appt-change { grid-column: 1 / -1; font-size: 13px; }
+  .book form .appt-change a { font-weight: 700; color: var(--brand); }
+  .rq-card { font-weight: 400; }
+  .rq-head { margin: 0 0 6px; font-size: 18px; font-weight: 800; line-height: 1.3; }
+  .rq-sub { margin: 8px 0 0; font-size: 14px; line-height: 1.45; }
+  .rq-label { margin: 12px 0 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .rq-list { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
+  .rq-list dt { color: var(--muted); font-size: 13px; padding-top: 2px; }
+  .rq-list dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; white-space: pre-line; }
+  .rq-new { margin-top: 14px; border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
+
+  /* ===== tools ===== */
+  /* tools: Photo/PDF tools ko kaam ke hisaab se chunna */
+  .tg { padding: 14px 18px 6px; border-bottom: 1px solid var(--line); display: grid; gap: 12px; }
+  .tg-h { margin: 0 0 6px; font-size: 14px; font-weight: 800; color: var(--brand-deep); letter-spacing: .2px; }
+  .tg-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+  .tg-card { display: flex; align-items: flex-start; gap: 10px; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+  .tg-card:hover { border-color: var(--brand); }
+  .tg-card[aria-selected="true"] { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 8%, var(--surface)); box-shadow: inset 3px 0 0 var(--brand); }
+  .tg-ico { font-size: 22px; line-height: 1.2; flex: none; }
+  .tg-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .tg-txt b { font-size: 15px; line-height: 1.3; }
+  .tg-txt small { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+  .tg-txt small i { font-style: normal; font-weight: 700; color: var(--ink); }
+  @media (max-width: 640px) { .tg { padding: 12px 12px 4px; } .tg-list { grid-template-columns: 1fr; gap: 6px; } .tg-card { padding: 8px 10px; } }
+
+  /* tools: Videos page (topic chips, count, kaam ka link) */
+  .vd-count { display: inline-block; margin-left: 6px; padding: 2px 10px; border-radius: 999px; background: color-mix(in srgb, var(--brand) 10%, var(--surface)); color: var(--brand-deep); font-size: 14px; font-weight: 700; vertical-align: middle; }
+  .vd-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .vd-chips button { font: inherit; font-size: 14px; font-weight: 700; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); cursor: pointer; }
+  .vd-chips button small { color: var(--muted); font-weight: 600; }
+  .vd-chips button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .vd-chips button[aria-pressed="true"] small { color: rgba(255,255,255,.85); }
+  .vd-item { display: flex; flex-direction: column; gap: 6px; }
+  .vd-item[hidden] { display: none; }
+  .vd-item .vd-card { flex: 1; }
+  .vd-t { font-size: 15.5px; color: var(--ink); -webkit-line-clamp: 3; }
+  .vd-do { padding: 0 4px; font-size: 13px; color: var(--muted); }
+  .vd-do a { font-weight: 700; color: var(--brand); text-decoration: none; }
+  .vd-do a:hover { text-decoration: underline; }
+  .vd-one { margin: 14px 0 0; }
+  .vd-none { margin: 10px 0; color: var(--muted); font-weight: 600; }
+
+  /* ===== pata ===== */
+/* ---- pata: Pata & Samay + Sampark ---- */
+.place .pl-open { display: flex; flex-direction: column; gap: 2px; border-radius: 12px; padding: 10px 14px; border-left: 6px solid #9aa4b2; background: var(--bg, #f6f7fb); }
+.place .pl-open b { font-size: 17px; color: var(--brand-deep); }
+.place .pl-open span { font-size: 15px; color: var(--muted); font-weight: 600; }
+.place .po-khula { border-left-color: #16a34a; background: #f0fdf4; }
+.place .po-jald { border-left-color: #f59e0b; background: #fffbeb; }
+.place .po-band { border-left-color: #dc2626; background: #fef2f2; }
+.place .pl-work { margin: 2px 0 0; font-size: 15px; background: var(--accent-soft); border-radius: 10px; padding: 8px 12px; }
+.place .pl-work b { display: block; color: var(--brand-deep); font-size: 14px; }
+.place .pl-acts .btn { flex: 1 1 auto; }
+.place .pl-map { align-self: flex-start; font-size: 14px; font-weight: 600; color: var(--muted); }
+.place.pl-aadhaar h3 .num { background: #e8590c; }
+@media (prefers-color-scheme: dark) {
+  .place .po-khula { background: #0f2a1a; } .place .po-jald { background: #2a220c; } .place .po-band { background: #2a1212; }
+  .place .pl-open span { color: #cbd5e1; }
+}
+@media (max-width: 420px) { .places { grid-template-columns: 1fr; } .place .pl-acts .btn { flex: 1 1 40%; min-height: 46px; } .place .pl-acts .btn:first-child { flex-basis: 100%; } }
+
+.contact .sp-seva { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 12px; margin: 0 0 14px; font-weight: 700; }
+.contact .sp-seva select { font: inherit; font-weight: 600; padding: 10px 12px; border-radius: 10px; border: 0; max-width: 100%; min-width: 220px; color: #0f1d3d; background: #fff; }
+.contact .sp-main .btn { min-height: 52px; font-size: 18px; min-width: 200px; }
+.contact .sp-hint { margin: 10px 0 0; font-size: 14px; opacity: .85; }
+.sp-places { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 22px; text-align: left; }
+.sp-pl { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.sp-pl b { font-size: 18px; }
+.sp-pl span { font-size: 15px; opacity: .92; }
+.sp-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.sp-acts a { flex: 1 1 auto; text-align: center; text-decoration: none; font-weight: 700; font-size: 15px; background: rgba(255,255,255,.16); border-radius: 10px; padding: 8px 10px; color: #fff; }
+.sp-soc-h { margin-top: 24px; font-weight: 700; opacity: .9; }
+.contact .sp-soc-h + .social { margin-top: 10px; }
+.social a span { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+.social a small { font-weight: 500; font-size: 12px; opacity: .8; }
+@media (max-width: 520px) {
+  .contact { padding: 26px 16px; }
+  .contact .sp-main { flex-direction: column; }
+  .contact .sp-main .btn { width: 100%; }
+  .contact .sp-seva select { width: 100%; }
+}
+
+  /* ===== home ===== */
+/* ---- home (agent: home): hero CTA, trust strip, popular tiles, WhatsApp command buttons ---- */
+.hero .hero-main { gap: 12px; }
+.hero .btn-seva { background: #ff9933; color: #1a1300; font-size: 18px; padding: 14px 24px; box-shadow: 0 6px 18px rgba(0,0,0,.22); }
+.hero .hero-main .btn-call { font-size: 18px; padding: 14px 24px; }
+.hero-sub { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 15px; font-weight: 600; }
+.hero-sub a { color: #fff; opacity: .9; text-decoration: underline; text-underline-offset: 3px; }
+.hero-sub a:hover { opacity: 1; }
+.hero-trust { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; font-weight: 600; }
+.hero-trust li { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 4px 12px; }
+@media (max-width: 480px) { .hero .hero-main .btn { flex: 1 1 100%; } .hero-trust { font-size: 13px; } }
+
+.pop-sec { padding: 18px 0 0; }
+.pop { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.pop-t { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 14px 6px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); transition: transform .15s ease, border-color .15s ease; }
+.pop-t:hover { transform: translateY(-2px); border-color: var(--brand); }
+.pop-ic { font-size: 30px; line-height: 1.1; }
+.pop-t b { color: var(--brand-deep); font-size: 16px; line-height: 1.2; }
+.pop-t small { color: var(--muted); font-size: 13px; }
+@media (max-width: 760px) { .pop { grid-template-columns: repeat(3, 1fr); } }
+
+.wa-cmds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 16px 0 18px; }
+.wa-cmd { display: flex; align-items: stretch; background: var(--surface); border: 1.5px solid color-mix(in srgb, var(--wa) 45%, var(--line)); border-radius: 14px; overflow: hidden; }
+.wa-go { flex: 1; min-width: 0; display: flex; gap: 10px; align-items: center; padding: 10px 12px; text-decoration: none; color: var(--ink); }
+.wa-go:hover { background: color-mix(in srgb, var(--wa) 10%, transparent); }
+.wa-ic { font-size: 24px; flex: none; }
+.wa-go b { display: block; color: var(--wa); font-size: 17px; line-height: 1.2; }
+.wa-go small { display: block; color: var(--muted); font-size: 13px; line-height: 1.3; }
+.wa-copy { flex: none; font: inherit; font-size: 13px; font-weight: 700; border: 0; border-left: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0 12px; cursor: pointer; }
+.wa-copy:hover, .wa-copy.ok { color: var(--wa); }
+@media (max-width: 420px) { .wa-cmds { grid-template-columns: 1fr; } }
+.wa-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-bottom: 18px; }
+.wa-top span { color: var(--muted); font-weight: 700; }
+.wa-bottom { justify-content: center; margin: 22px 0 0; }
+.wa-info { display: grid; gap: 14px; margin-top: 18px; }
+.wa-can { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; }
+.wa-can h3 { margin: 0 0 6px; color: var(--brand-deep); font-size: 20px; }
+.wa-can ul { margin: 0; padding-left: 20px; }
+.wa-diff { margin: 0; background: var(--accent-soft); border-radius: 14px; padding: 12px 16px; font-size: 15px; }
+
+  /* ===== sevayein ===== */
+  /* Sevayein: khoj, lokpriya kaam, seva card */
+  .svx-search { margin: 0 0 14px; }
+  .svx-search input { width: 100%; box-sizing: border-box; font: inherit; font-size: 17px; padding: 13px 16px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+  .svx-search input:focus { outline: none; border-color: var(--brand); }
+  .svx-pop { margin: 0 0 18px; }
+  .svx-pop-h { display: block; font-size: 15px; color: var(--brand-deep); margin-bottom: 8px; }
+  .svx-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .svx-chip { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 14.5px; text-decoration: none; border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+  .svx-chip:hover { border-color: var(--accent); }
+  .group ul.svx-list { padding: 6px 12px 12px; }
+  .svx-card { border-top: 1px solid var(--line); padding: 12px 4px; display: flex; flex-direction: column; gap: 8px; scroll-margin-top: 90px; border-radius: 10px; }
+  .svx-card:first-child { border-top: 0; }
+  .svx-top { display: flex; align-items: baseline; gap: 10px; justify-content: space-between; }
+  .svx-name { color: var(--ink); font-size: 16.5px; line-height: 1.3; }
+  .svx-rate { flex: none; color: var(--accent); font-weight: 800; font-size: 15px; white-space: nowrap; }
+  .svx-docs { color: var(--muted); font-size: 14.5px; }
+  .svx-lbl { color: var(--ink); font-weight: 700; font-size: 13.5px; }
+  .svx-docs ul { list-style: disc; margin: 2px 0 0; padding: 0 0 0 20px; }
+  .svx-rest { border: 0; }
+  .svx-rest summary { display: inline-block; padding: 2px 0; font-weight: 700; font-size: 14px; color: var(--brand); }
+  .svx-rest summary::after { content: none; }
+  .svx-rest[open] summary { display: none; }
+  .svx-wa { align-self: flex-start; padding: 6px 12px; font-size: 14px; }
+  .svx-off { display: none !important; }
+  .svx-hl { animation: svx-hl 1.8s ease; }
+  @keyframes svx-hl { 0%, 40% { background: var(--accent-soft); box-shadow: 0 0 0 2px var(--accent); } 100% { background: transparent; box-shadow: none; } }
+  .svx-none { margin: 12px 0 0; padding: 14px 18px; border-radius: 14px; background: var(--surface); border: 1px dashed var(--line); font-weight: 700; color: var(--ink); }
+  .svx-none[hidden], .svx-all[hidden] { display: none; }
+  .svx-none a { color: var(--wa); }
+  .svx-allw { text-align: center; margin-top: 16px; }
+  .svx-all { cursor: pointer; font-family: inherit; }
+  .svx-tools { grid-column: 1 / -1; }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="tick" role="marquee" aria-label="Taaza khabar"><span class="tick-lbl">🔔 Taaza</span><div class="tick-vp"><div class="tick-run" style="--tick-dur:162s"><div class="tick-row"><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 आधारसेवा केंद्र PHC रतनपुर</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 1.  नया राशन कार्ड बनवाने, नाम जोड़ने-काटने एवं राशन कार्ड ट्रांसफर की सुविधा उपलब्ध</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (087) LL.M.-II Sem. (089) LL.M.-IV Sem. (102) B.A.LL.B.-II Sem. (106) B.A.LL.</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Regarding the issuance of a revised selection list and a waiting list for recruitment to v</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Merit list and selection list following the written examination and interview conducted fo</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (934) B.Com.LL.B.-IV Sem. (938) B.Com.LL.B.-VIII Sem. (9011) LL.B.-I (II Sem.</a><i aria-hidden="true">✦</i><a href="videos.html">🎥 Naye videos dekhiye (12)</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div><div class="tick-row" aria-hidden="true"><a href="suchna.html">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 आधारसेवा केंद्र PHC रतनपुर</a><i aria-hidden="true">✦</i><a href="suchna.html">📢 1.  नया राशन कार्ड बनवाने, नाम जोड़ने-काटने एवं राशन कार्ड ट्रांसफर की सुविधा उपलब्ध</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (087) LL.M.-II Sem. (089) LL.M.-IV Sem. (102) B.A.LL.B.-II Sem. (106) B.A.LL.</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Regarding the issuance of a revised selection list and a waiting list for recruitment to v</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Merit list and selection list following the written examination and interview conducted fo</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (934) B.Com.LL.B.-IV Sem. (938) B.Com.LL.B.-VIII Sem. (9011) LL.B.-I (II Sem.</a><i aria-hidden="true">✦</i><a href="videos.html">🎥 Naye videos dekhiye (12)</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div></div></div></div>
+  <div class="tick" role="marquee" aria-label="Taaza khabar"><span class="tick-lbl">🔔 Taaza</span><div class="tick-vp"><div class="tick-run" style="--tick-dur:162s"><div class="tick-row"><a href="suchna.html" data-until="2026-12-21">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html" data-until="2026-12-18">📢 1.  नया राशन कार्ड बनवाने, नाम जोड़ने-काटने एवं राशन कार्ड ट्रांसफर की सुविधा उपलब्ध</a><i aria-hidden="true">✦</i><a href="suchna.html" data-until="2026-12-16">📢 SHRAM CARD PANJIYAN</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (087) LL.M.-II Sem. (089) LL.M.-IV Sem. (102) B.A.LL.B.-II Sem. (106) B.A.LL.</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Regarding the issuance of a revised selection list and a waiting list for recruitment to v</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Merit list and selection list following the written examination and interview conducted fo</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (934) B.Com.LL.B.-IV Sem. (938) B.Com.LL.B.-VIII Sem. (9011) LL.B.-I (II Sem.</a><i aria-hidden="true">✦</i><a href="videos.html">🎥 Naye videos dekhiye (12)</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div><div class="tick-row" aria-hidden="true"><a href="suchna.html" data-until="2026-12-21">📢 Savdhan: Farzi (Fake) SMS, Challan aur Anjaan Links Se Bachein!</a><i aria-hidden="true">✦</i><a href="suchna.html" data-until="2026-12-18">📢 1.  नया राशन कार्ड बनवाने, नाम जोड़ने-काटने एवं राशन कार्ड ट्रांसफर की सुविधा उपलब्ध</a><i aria-hidden="true">✦</i><a href="suchna.html" data-until="2026-12-16">📢 SHRAM CARD PANJIYAN</a><i aria-hidden="true">✦</i><a href="./#meraprint">🖨️ Naya FREE tool: MeraPrint, CSC ke sab computer se ek printer par print</a><i aria-hidden="true">✦</i><a href="sevayein.html">🪪 Aadhaar Card Services: Aadhaar Mobile Number Update, Aadhaar Name Update, Aadhaar Date of Birth Update…</a><i aria-hidden="true">✦</i><a href="sevayein.html">💳 PAN Card Services: PAN Card, PAN Card Correction, PAN Card Reprint…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏦 Banking Services: Aadhaar Seeding in Bank Account, AEPS Cash Withdrawal, AEPS Balance Enquiry…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🚗 Driving Licence &amp; RTO Services: Learner License, Driving License, DL Renewal…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🗳️ Voter ID Services: New Voter ID Registration, Voter ID Correction, Voter ID Address Change…</a><i aria-hidden="true">✦</i><a href="sevayein.html">📜 Income, Caste &amp; Domicile Certificate Services: Income Certificate, Caste Certificate, Domicile Certificate…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🏛️ e-Shram &amp; Government Scheme Services: New e-Shram Card Registration, Ayushman Bharat Card, PM Kisan Registration…</a><i aria-hidden="true">✦</i><a href="sevayein.html">🛡️ Insurance Services: Two Wheeler Insurance, Four Wheeler Insurance, Life Insurance…</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (087) LL.M.-II Sem. (089) LL.M.-IV Sem. (102) B.A.LL.B.-II Sem. (106) B.A.LL.</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Regarding the issuance of a revised selection list and a waiting list for recruitment to v</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 Merit list and selection list following the written examination and interview conducted fo</a><i aria-hidden="true">✦</i><a href="naukri.html">🆕 12/11/2026 · (934) B.Com.LL.B.-IV Sem. (938) B.Com.LL.B.-VIII Sem. (9011) LL.B.-I (II Sem.</a><i aria-hidden="true">✦</i><a href="videos.html">🎥 Naye videos dekhiye (12)</a><i aria-hidden="true">✦</i><a href="tel:+918770882942">📞 Call / WhatsApp: 8770882942</a><i aria-hidden="true">✦</i></div></div></div></div>
   <div class="wrap">
     <a class="logo" href="./" aria-label="Home" style="text-decoration:none">PC</a>
     <a class="brand" href="./" style="text-decoration:none">PANKAJ CHOICE CENTER<small>पंकज चॉइस सेंटर</small></a>
@@ -863,131 +1067,391 @@
       <div class="crumb"><a href="./">Home</a> <span>›</span> Sevayein</div>
       <h1>🗂️ Hamari Sevayein</h1>
       <div class="hi">हमारी सेवाएँ</div>
-      <p>Har seva ke zaroori documents. Seva par dabaiye, list khul jayegi.</p>
+      <p>Apna kaam khojiye: har seva ke saath zaroori documents aur WhatsApp par seedha sawaal.</p>
     </div>
   </div>
 
   <section id="sevayein">
     <div class="wrap">
-      <div class="groups">
+      <div class="groups" id="svx-groups">
+        <div class="svx-tools">
+          <div class="svx-search"><input type="search" id="svx-q" placeholder="🔍 Kaam khojein (aadhaar, pan…)" aria-label="Kaam khojein" autocomplete="off" enterkeyhint="search"></div>
+          <div class="svx-pop">
+        <b class="svx-pop-h">⭐ Sabse zyada karwaye jaane wale kaam</b>
+        <div class="svx-chips"><a class="svx-chip" href="#svc-1" data-go="svc-1">Aadhaar Mobile Number Update (मोबाइल नंबर अपडेट)</a><a class="svx-chip" href="#svc-3" data-go="svc-3">PAN Card</a><a class="svx-chip" href="#svc-35" data-go="svc-35">Ayushman Bharat Card (आयुष्मान कार्ड)</a><a class="svx-chip" href="#svc-22" data-go="svc-22">New Voter ID Registration (नया वोटर आईडी आवेदन)</a><a class="svx-chip" href="#svc-29" data-go="svc-29">Income Certificate (आय प्रमाण पत्र)</a><a class="svx-chip" href="#svc-11" data-go="svc-11">Aadhaar Seeding in Bank Account (DBT / NPCI)</a></div>
+      </div>
+        </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/7567551/pexels-photo-7567551.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>PAN Card Services<small>पैन कार्ड सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>PAN Card</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Birth Certificate</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>PAN Card Correction (पैन कार्ड में सुधार)</summary><div class="docs"><b>Documents:</b><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Name / Date of Birth Proof</li><li>Supporting Document for Correction</li><li>Mobile Number</li><li>Email ID</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>PAN Card Reprint (पैन कार्ड पुनः प्रिंट)</summary><div class="docs"><b>Documents:</b><ul><li>PAN Number</li><li>Aadhaar Card</li><li>Registered Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>PAN Card Name Change (पैन कार्ड में नाम परिवर्तन)</summary><div class="docs"><b>Documents:</b><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Name Change Supporting Document</li><li>Marriage Certificate (यदि लागू हो)</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>PAN Card Date of Birth Correction (पैन कार्ड में जन्मतिथि सुधार)</summary><div class="docs"><b>Documents:</b><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Birth Certificate / 10th Marksheet / Valid DOB Proof</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>New PAN Card Application (नया पैन कार्ड आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Aadhaar Linked Mobile Number</li><li>Passport Size Photograph (यदि आवश्यक हो)</li><li>Email ID</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card" id="svc-3" data-s="pan card services पैन कार्ड सेवाएं pancard पेनकार्ड पेन">
+              <div class="svx-top"><b class="svx-name">PAN Card</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Birth Certificate</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PAN%20Card%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-18" data-s="pan card correction पैन कार्ड में सुधार services सेवाएं pancard पेनकार्ड पेन update sudhar badlav">
+              <div class="svx-top"><b class="svx-name">PAN Card Correction (पैन कार्ड में सुधार)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Name / Date of Birth Proof</li></ul><details class="svx-rest"><summary>+3 aur</summary><ul><li>Supporting Document for Correction</li><li>Mobile Number</li><li>Email ID</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PAN%20Card%20Correction%20(%E0%A4%AA%E0%A5%88%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%B8%E0%A5%81%E0%A4%A7%E0%A4%BE%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-19" data-s="pan card reprint पैन कार्ड पुनः प्रिंट services सेवाएं pancard पेनकार्ड पेन">
+              <div class="svx-top"><b class="svx-name">PAN Card Reprint (पैन कार्ड पुनः प्रिंट)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>PAN Number</li><li>Aadhaar Card</li><li>Registered Mobile Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PAN%20Card%20Reprint%20(%E0%A4%AA%E0%A5%88%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AA%E0%A5%81%E0%A4%A8%E0%A4%83%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BF%E0%A4%82%E0%A4%9F)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-20" data-s="pan card name change पैन कार्ड में नाम परिवर्तन services सेवाएं pancard पेनकार्ड पेन nam namechange nambadlna badlna nambadalna badalna namecorrection correction">
+              <div class="svx-top"><b class="svx-name">PAN Card Name Change (पैन कार्ड में नाम परिवर्तन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Name Change Supporting Document</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Marriage Certificate (यदि लागू हो)</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PAN%20Card%20Name%20Change%20(%E0%A4%AA%E0%A5%88%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%A8%E0%A4%BE%E0%A4%AE%20%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A4%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-21" data-s="pan card date of birth correction पैन कार्ड में जन्मतिथि सुधार services सेवाएं pancard पेनकार्ड पेन janm janam janma dob जन्म update sudhar badlav">
+              <div class="svx-top"><b class="svx-name">PAN Card Date of Birth Correction (पैन कार्ड में जन्मतिथि सुधार)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Existing PAN Card</li><li>Aadhaar Card</li><li>Birth Certificate / 10th Marksheet / Valid DOB Proof</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PAN%20Card%20Date%20of%20Birth%20Correction%20(%E0%A4%AA%E0%A5%88%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%9C%E0%A4%A8%E0%A5%8D%E0%A4%AE%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%E0%A4%B8%E0%A5%81%E0%A4%A7%E0%A4%BE%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-24" data-s="nev pan card application नया पैन कार्ड आवेदन services सेवाएं pancard पेनकार्ड पेन">
+              <div class="svx-top"><b class="svx-name">New PAN Card Application (नया पैन कार्ड आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Aadhaar Linked Mobile Number</li><li>Passport Size Photograph (यदि आवश्यक हो)</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Email ID</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20New%20PAN%20Card%20Application%20(%E0%A4%A8%E0%A4%AF%E0%A4%BE%20%E0%A4%AA%E0%A5%88%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/7479537/pexels-photo-7479537.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>Aadhaar Card Services<small>आधार कार्ड सेवाएं · Aadhaar Center</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Aadhaar Mobile Number Update (मोबाइल नंबर अपडेट)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Biometric Verification</li><li>Mobile Number</li><li>Aadhaar Holder&#39;s Physical Presence</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Name Update (आधार कार्ड में नाम सुधार)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Proof of Identity (POI)</li><li>Marksheet</li><li>Marriage Certificate</li><li>Birth Certificate</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Date of Birth Update (जन्मतिथि सुधार)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Valid Date of Birth Proof</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Biometric Update</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Aadhaar Holder&#39;s Physical Presence</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>New Aadhaar Enrollment (नया आधार कार्ड बनवाना)</summary><div class="docs"><b>Documents:</b><ul><li>Proof of Identity (POI)</li><li>Proof of Address (POA)</li><li>Proof of Date of Birth (जहां आवश्यक हो)</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Address Update (पता परिवर्तन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Valid Proof of Address (POA)</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Verify (आधार सत्यापन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number (12 ank)</li><li>Aadhaar se juda mobile (OTP ke liye</li><li>agar zaroori ho)</li><li>Khud bhi dekh sakte hain: https://myaadhaar.uidai.gov.in/verifyAadhaar</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Aadhaar Download / e-Aadhaar (आधार डाउनलोड)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number ya Enrolment ID (EID)</li><li>Aadhaar se juda mobile (OTP aayega)</li><li>Khud bhi kar sakte hain: https://myaadhaar.uidai.gov.in/genricDownloadAadhaar</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card" id="svc-1" data-s="adhar mobile number update मोबाइल नंबर अपडेट card services आधार कार्ड सेवाएं uid uidai mobail mobilenumber phone फोन correction sudhar badlav सुधार">
+              <div class="svx-top"><b class="svx-name">Aadhaar Mobile Number Update (मोबाइल नंबर अपडेट)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Biometric Verification</li><li>Mobile Number</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Aadhaar Holder&#39;s Physical Presence</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Mobile%20Number%20Update%20(%E0%A4%AE%E0%A5%8B%E0%A4%AC%E0%A4%BE%E0%A4%87%E0%A4%B2%20%E0%A4%A8%E0%A4%82%E0%A4%AC%E0%A4%B0%20%E0%A4%85%E0%A4%AA%E0%A4%A1%E0%A5%87%E0%A4%9F)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-2" data-s="adhar name update आधार कार्ड में नाम सुधार card services सेवाएं uid uidai nam namechange change nambadlna badlna nambadalna badalna namecorrection correction sudhar badlav">
+              <div class="svx-top"><b class="svx-name">Aadhaar Name Update (आधार कार्ड में नाम सुधार)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Proof of Identity (POI)</li><li>Marksheet</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Marriage Certificate</li><li>Birth Certificate</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Name%20Update%20(%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%A8%E0%A4%BE%E0%A4%AE%20%E0%A4%B8%E0%A5%81%E0%A4%A7%E0%A4%BE%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-4" data-s="adhar date of birth update जन्मतिथि सुधार card services आधार कार्ड सेवाएं uid uidai janm janam janma dob जन्म correction sudhar badlav">
+              <div class="svx-top"><b class="svx-name">Aadhaar Date of Birth Update (जन्मतिथि सुधार)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Valid Date of Birth Proof</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Date%20of%20Birth%20Update%20(%E0%A4%9C%E0%A4%A8%E0%A5%8D%E0%A4%AE%E0%A4%A4%E0%A4%BF%E0%A4%A5%E0%A4%BF%20%E0%A4%B8%E0%A5%81%E0%A4%A7%E0%A4%BE%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-5" data-s="adhar biometric update card services आधार कार्ड सेवाएं uid uidai correction sudhar badlav सुधार">
+              <div class="svx-top"><b class="svx-name">Aadhaar Biometric Update</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Aadhaar Holder&#39;s Physical Presence</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Biometric%20Update%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-25" data-s="nev adhar enrollment नया आधार कार्ड बनवाना card services सेवाएं uid uidai">
+              <div class="svx-top"><b class="svx-name">New Aadhaar Enrollment (नया आधार कार्ड बनवाना)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Proof of Identity (POI)</li><li>Proof of Address (POA)</li><li>Proof of Date of Birth (जहां आवश्यक हो)</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20New%20Aadhaar%20Enrollment%20(%E0%A4%A8%E0%A4%AF%E0%A4%BE%20%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A4%BE%E0%A4%A8%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card" id="svc-26" data-s="adhar address update पता परिवर्तन card services आधार कार्ड सेवाएं uid uidai pata correction sudhar badlav सुधार">
+              <div class="svx-top"><b class="svx-name">Aadhaar Address Update (पता परिवर्तन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Valid Proof of Address (POA)</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Address%20Update%20(%E0%A4%AA%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A4%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-60" data-s="adhar verify आधार सत्यापन card services कार्ड सेवाएं uid uidai">
+              <div class="svx-top"><b class="svx-name">Aadhaar Verify (आधार सत्यापन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number (12 ank)</li><li>Aadhaar se juda mobile (OTP ke liye</li><li>agar zaroori ho)</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Khud bhi dekh sakte hain: https://myaadhaar.uidai.gov.in/verifyAadhaar</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Verify%20(%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%20%E0%A4%B8%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AA%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-61" data-s="adhar dovnload e आधार डाउनलोड card services कार्ड सेवाएं uid uidai">
+              <div class="svx-top"><b class="svx-name">Aadhaar Download / e-Aadhaar (आधार डाउनलोड)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number ya Enrolment ID (EID)</li><li>Aadhaar se juda mobile (OTP aayega)</li><li>Khud bhi kar sakte hain: https://myaadhaar.uidai.gov.in/genricDownloadAadhaar</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Download%20%2F%20e-Aadhaar%20(%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%20%E0%A4%A1%E0%A4%BE%E0%A4%89%E0%A4%A8%E0%A4%B2%E0%A5%8B%E0%A4%A1)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/8846624/pexels-photo-8846624.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>Voter ID Services<small>मतदाता पहचान पत्र सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>New Voter ID Registration (नया वोटर आईडी आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Age Proof</li><li>Address Proof</li><li>Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Voter ID Correction (वोटर आईडी में सुधार)</summary><div class="docs"><b>Documents:</b><ul><li>Existing Voter ID / EPIC Number</li><li>Aadhaar Card</li><li>Relevant Supporting Document</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Voter ID Address Change (वोटर आईडी में पता परिवर्तन)</summary><div class="docs"><b>Documents:</b><ul><li>Existing Voter ID</li><li>New Address Proof</li><li>Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Voter ID Download (वोटर आईडी डाउनलोड)</summary><div class="docs"><b>Documents:</b><ul><li>EPIC Number</li><li>Registered Mobile Number (यदि आवश्यक हो)</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-22" data-s="nev voter id registration नया वोटर आईडी आवेदन services मतदाता पहचान पत्र सेवाएं matdata epic">
+              <div class="svx-top"><b class="svx-name">New Voter ID Registration (नया वोटर आईडी आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Age Proof</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Address Proof</li><li>Mobile Number</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20New%20Voter%20ID%20Registration%20(%E0%A4%A8%E0%A4%AF%E0%A4%BE%20%E0%A4%B5%E0%A5%8B%E0%A4%9F%E0%A4%B0%20%E0%A4%86%E0%A4%88%E0%A4%A1%E0%A5%80%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-23" data-s="voter id correction वोटर आईडी में सुधार services मतदाता पहचान पत्र सेवाएं matdata epic update sudhar badlav">
+              <div class="svx-top"><b class="svx-name">Voter ID Correction (वोटर आईडी में सुधार)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Existing Voter ID / EPIC Number</li><li>Aadhaar Card</li><li>Relevant Supporting Document</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Voter%20ID%20Correction%20(%E0%A4%B5%E0%A5%8B%E0%A4%9F%E0%A4%B0%20%E0%A4%86%E0%A4%88%E0%A4%A1%E0%A5%80%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%B8%E0%A5%81%E0%A4%A7%E0%A4%BE%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-27" data-s="voter id address change वोटर आईडी में पता परिवर्तन services मतदाता पहचान पत्र सेवाएं matdata epic pata">
+              <div class="svx-top"><b class="svx-name">Voter ID Address Change (वोटर आईडी में पता परिवर्तन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Existing Voter ID</li><li>New Address Proof</li><li>Mobile Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Voter%20ID%20Address%20Change%20(%E0%A4%B5%E0%A5%8B%E0%A4%9F%E0%A4%B0%20%E0%A4%86%E0%A4%88%E0%A4%A1%E0%A5%80%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%AA%E0%A4%A4%E0%A4%BE%20%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B5%E0%A4%B0%E0%A5%8D%E0%A4%A4%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-28" data-s="voter id dovnload वोटर आईडी डाउनलोड services मतदाता पहचान पत्र सेवाएं matdata epic">
+              <div class="svx-top"><b class="svx-name">Voter ID Download (वोटर आईडी डाउनलोड)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>EPIC Number</li><li>Registered Mobile Number (यदि आवश्यक हो)</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Voter%20ID%20Download%20(%E0%A4%B5%E0%A5%8B%E0%A4%9F%E0%A4%B0%20%E0%A4%86%E0%A4%88%E0%A4%A1%E0%A5%80%20%E0%A4%A1%E0%A4%BE%E0%A4%89%E0%A4%A8%E0%A4%B2%E0%A5%8B%E0%A4%A1)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/9858904/pexels-photo-9858904.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>Income, Caste &amp; Domicile Certificate Services<small>प्रमाण पत्र सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Income Certificate (आय प्रमाण पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Ration Card</li><li>Income Declaration / Income Proof</li><li>Passport Size Photograph</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Caste Certificate (जाति प्रमाण पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Father&#39;s Caste Certificate (यदि उपलब्ध हो)</li><li>Family Caste Certificate (यदि उपलब्ध हो)</li><li>Residence Proof</li><li>Passport Size Photograph</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Domicile Certificate (मूल निवासी प्रमाण पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Birth Certificate / 10th Marksheet</li><li>Residence Proof</li><li>Passport Size Photograph</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Birth Certificate (जन्म प्रमाण पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Hospital Birth Record</li><li>Parents&#39; Aadhaar Card</li><li>Birth Discharge Slip</li><li>Address Proof</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Death Certificate (मृत्यु प्रमाण पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Medical Death Certificate / Hospital Record</li><li>Deceased Person&#39;s Details</li><li>Applicant&#39;s Aadhaar Card</li><li>Address Details</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-29" data-s="income certificate आय प्रमाण पत्र caste domicile services सेवाएं jati जाति ay nivas residence निवास praman pramanpatra patra">
+              <div class="svx-top"><b class="svx-name">Income Certificate (आय प्रमाण पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Ration Card</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Income Declaration / Income Proof</li><li>Passport Size Photograph</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Income%20Certificate%20(%E0%A4%86%E0%A4%AF%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-30" data-s="caste certificate जाति प्रमाण पत्र income domicile services सेवाएं jati ay आय nivas residence निवास praman pramanpatra patra">
+              <div class="svx-top"><b class="svx-name">Caste Certificate (जाति प्रमाण पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Father&#39;s Caste Certificate (यदि उपलब्ध हो)</li></ul><details class="svx-rest"><summary>+3 aur</summary><ul><li>Family Caste Certificate (यदि उपलब्ध हो)</li><li>Residence Proof</li><li>Passport Size Photograph</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Caste%20Certificate%20(%E0%A4%9C%E0%A4%BE%E0%A4%A4%E0%A4%BF%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-31" data-s="domicile certificate मूल निवासी प्रमाण पत्र income caste services सेवाएं jati जाति ay आय nivas residence निवास praman pramanpatra patra">
+              <div class="svx-top"><b class="svx-name">Domicile Certificate (मूल निवासी प्रमाण पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Birth Certificate / 10th Marksheet</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Residence Proof</li><li>Passport Size Photograph</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Domicile%20Certificate%20(%E0%A4%AE%E0%A5%82%E0%A4%B2%20%E0%A4%A8%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%80%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-32" data-s="birth certificate जन्म प्रमाण पत्र income caste domicile services सेवाएं janm janam janma dob jati जाति ay आय nivas residence निवास praman pramanpatra patra">
+              <div class="svx-top"><b class="svx-name">Birth Certificate (जन्म प्रमाण पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Hospital Birth Record</li><li>Parents&#39; Aadhaar Card</li><li>Birth Discharge Slip</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Address Proof</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Birth%20Certificate%20(%E0%A4%9C%E0%A4%A8%E0%A5%8D%E0%A4%AE%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-33" data-s="death certificate मृत्यु प्रमाण पत्र income caste domicile services सेवाएं jati जाति ay आय nivas residence निवास praman pramanpatra patra">
+              <div class="svx-top"><b class="svx-name">Death Certificate (मृत्यु प्रमाण पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Medical Death Certificate / Hospital Record</li><li>Deceased Person&#39;s Details</li><li>Applicant&#39;s Aadhaar Card</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Address Details</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Death%20Certificate%20(%E0%A4%AE%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%AF%E0%A5%81%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%BE%E0%A4%A3%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/20445169/pexels-photo-20445169.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200');background-position:center 35%"><h3>e-Shram &amp; Government Scheme Services<small>सरकारी योजना सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>New e-Shram Card Registration (नया ई-श्रम कार्ड)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Aadhaar Linked Mobile Number</li><li>Bank Passbook</li><li>Bank Account Number</li><li>IFSC Code</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Ayushman Bharat Card (आयुष्मान कार्ड)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Ration Card / Family ID</li><li>Samagra ID (जहां लागू हो)</li><li>Registered Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>PM Kisan Registration (पीएम किसान पंजीयन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Bank Passbook</li><li>Land Records (Khasra / Khatauni)</li><li>Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Pension Scheme Registration (पेंशन योजना पंजीयन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Bank Passbook</li><li>Age Proof</li><li>Relevant Eligibility Documents</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>UDID Card Registration (दिव्यांग पहचान पत्र)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Disability Certificate / Medical Records</li><li>Mobile Number</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-34" data-s="nev e shram card registration नया ई श्रम कार्ड government scheme services सरकारी योजना सेवाएं">
+              <div class="svx-top"><b class="svx-name">New e-Shram Card Registration (नया ई-श्रम कार्ड)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Aadhaar Linked Mobile Number</li><li>Bank Passbook</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Bank Account Number</li><li>IFSC Code</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20New%20e-Shram%20Card%20Registration%20(%E0%A4%A8%E0%A4%AF%E0%A4%BE%20%E0%A4%88-%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A4%AE%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-35" data-s="ayushman bharat card आयुष्मान कार्ड e shram government scheme services सरकारी योजना सेवाएं pmjay goldencard golden">
+              <div class="svx-top"><b class="svx-name">Ayushman Bharat Card (आयुष्मान कार्ड)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Ration Card / Family ID</li><li>Samagra ID (जहां लागू हो)</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Registered Mobile Number</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Ayushman%20Bharat%20Card%20(%E0%A4%86%E0%A4%AF%E0%A5%81%E0%A4%B7%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A8%20%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A1)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-36" data-s="pm kisan registration पीएम किसान पंजीयन e shram government scheme services सरकारी योजना सेवाएं">
+              <div class="svx-top"><b class="svx-name">PM Kisan Registration (पीएम किसान पंजीयन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Bank Passbook</li><li>Land Records (Khasra / Khatauni)</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Mobile Number</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20PM%20Kisan%20Registration%20(%E0%A4%AA%E0%A5%80%E0%A4%8F%E0%A4%AE%20%E0%A4%95%E0%A4%BF%E0%A4%B8%E0%A4%BE%E0%A4%A8%20%E0%A4%AA%E0%A4%82%E0%A4%9C%E0%A5%80%E0%A4%AF%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-37" data-s="pension scheme registration पेंशन योजना पंजीयन e shram government services सरकारी सेवाएं">
+              <div class="svx-top"><b class="svx-name">Pension Scheme Registration (पेंशन योजना पंजीयन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Bank Passbook</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Age Proof</li><li>Relevant Eligibility Documents</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Pension%20Scheme%20Registration%20(%E0%A4%AA%E0%A5%87%E0%A4%82%E0%A4%B6%E0%A4%A8%20%E0%A4%AF%E0%A5%8B%E0%A4%9C%E0%A4%A8%E0%A4%BE%20%E0%A4%AA%E0%A4%82%E0%A4%9C%E0%A5%80%E0%A4%AF%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-38" data-s="udid card registration दिव्यांग पहचान पत्र e shram government scheme services सरकारी योजना सेवाएं">
+              <div class="svx-top"><b class="svx-name">UDID Card Registration (दिव्यांग पहचान पत्र)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Disability Certificate / Medical Records</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Mobile Number</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20UDID%20Card%20Registration%20(%E0%A4%A6%E0%A4%BF%E0%A4%B5%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%82%E0%A4%97%20%E0%A4%AA%E0%A4%B9%E0%A4%9A%E0%A4%BE%E0%A4%A8%20%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/6484708/pexels-photo-6484708.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>Banking Services<small>बैंकिंग सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Aadhaar Seeding in Bank Account (DBT / NPCI)</summary><div class="docs"><b>Documents:</b><ul><li>Bank Passbook</li><li>Aadhaar Card</li><li>Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>AEPS Cash Withdrawal (आधार से पैसे निकालना)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Aadhaar Linked Bank Account</li><li>Biometric Authentication</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>AEPS Balance Enquiry (बैंक बैलेंस चेक)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Biometric Authentication</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>AEPS Mini Statement (मिनी स्टेटमेंट)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Number</li><li>Biometric Authentication</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Bank Account Opening (बैंक खाता खोलना)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>PAN Card / Form 60</li><li>Passport Size Photograph</li><li>Mobile Number</li><li>Bank KYC Documents</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Money Transfer (मनी ट्रांसफर)</summary><div class="docs"><b>Documents:</b><ul><li>Sender&#39;s KYC Details</li><li>Receiver&#39;s Name</li><li>Bank Account Number</li><li>IFSC Code</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-11" data-s="adhar siding in bank account dbt npci banking services बैंकिंग सेवाएं uid uidai आधार khata aeps passbuk बैंक खाता">
+              <div class="svx-top"><b class="svx-name">Aadhaar Seeding in Bank Account (DBT / NPCI)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Bank Passbook</li><li>Aadhaar Card</li><li>Mobile Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Aadhaar%20Seeding%20in%20Bank%20Account%20(DBT%20%2F%20NPCI)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-39" data-s="aeps cash vithdraval आधार से पैसे निकालना bank banking services बैंकिंग सेवाएं adhar uid uidai khata account passbuk बैंक खाता">
+              <div class="svx-top"><b class="svx-name">AEPS Cash Withdrawal (आधार से पैसे निकालना)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Aadhaar Linked Bank Account</li><li>Biometric Authentication</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20AEPS%20Cash%20Withdrawal%20(%E0%A4%86%E0%A4%A7%E0%A4%BE%E0%A4%B0%20%E0%A4%B8%E0%A5%87%20%E0%A4%AA%E0%A5%88%E0%A4%B8%E0%A5%87%20%E0%A4%A8%E0%A4%BF%E0%A4%95%E0%A4%BE%E0%A4%B2%E0%A4%A8%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-40" data-s="aeps balance enquiry बैंक बैलेंस चेक bank banking services बैंकिंग सेवाएं khata account passbuk खाता">
+              <div class="svx-top"><b class="svx-name">AEPS Balance Enquiry (बैंक बैलेंस चेक)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Biometric Authentication</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20AEPS%20Balance%20Enquiry%20(%E0%A4%AC%E0%A5%88%E0%A4%82%E0%A4%95%20%E0%A4%AC%E0%A5%88%E0%A4%B2%E0%A5%87%E0%A4%82%E0%A4%B8%20%E0%A4%9A%E0%A5%87%E0%A4%95)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-41" data-s="aeps mini statement मिनी स्टेटमेंट bank banking services बैंकिंग सेवाएं khata account passbuk बैंक खाता">
+              <div class="svx-top"><b class="svx-name">AEPS Mini Statement (मिनी स्टेटमेंट)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Number</li><li>Biometric Authentication</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20AEPS%20Mini%20Statement%20(%E0%A4%AE%E0%A4%BF%E0%A4%A8%E0%A5%80%20%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%87%E0%A4%9F%E0%A4%AE%E0%A5%87%E0%A4%82%E0%A4%9F)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-42" data-s="bank account opening बैंक खाता खोलना banking services बैंकिंग सेवाएं khata aeps passbuk">
+              <div class="svx-top"><b class="svx-name">Bank Account Opening (बैंक खाता खोलना)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>PAN Card / Form 60</li><li>Passport Size Photograph</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Mobile Number</li><li>Bank KYC Documents</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Bank%20Account%20Opening%20(%E0%A4%AC%E0%A5%88%E0%A4%82%E0%A4%95%20%E0%A4%96%E0%A4%BE%E0%A4%A4%E0%A4%BE%20%E0%A4%96%E0%A5%8B%E0%A4%B2%E0%A4%A8%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-43" data-s="money transfer मनी ट्रांसफर bank banking services बैंकिंग सेवाएं khata account aeps passbuk बैंक खाता">
+              <div class="svx-top"><b class="svx-name">Money Transfer (मनी ट्रांसफर)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Sender&#39;s KYC Details</li><li>Receiver&#39;s Name</li><li>Bank Account Number</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>IFSC Code</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Money%20Transfer%20(%E0%A4%AE%E0%A4%A8%E0%A5%80%20%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A4%BE%E0%A4%82%E0%A4%B8%E0%A4%AB%E0%A4%B0)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/6862165/pexels-photo-6862165.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200');background-position:center 72%"><h3>Driving Licence &amp; RTO Services<small>ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Learner License (LL)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card (with linked mobile number)</li><li>Passport Size Photo</li><li>Signature</li><li>Age Proof (10th Marksheet) if full date of birth is not on Aadhaar</li><li>Above 40 years: Medical Form 1A</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Driving License (DL)</summary><div class="docs"><b>Documents:</b><ul><li>Learner License (at least 30 days old</li><li>within 6 months)</li><li>Aadhaar Card</li><li>Vehicle for Driving Test</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>DL Renewal</summary><div class="docs"><b>Documents:</b><ul><li>Old DL</li><li>Aadhaar Card</li><li>Passport Size Photo</li><li>Signature</li><li>Above 40 years: Medical Form 1A</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Duplicate DL / DL Address Change</summary><div class="docs"><b>Documents:</b><ul><li>DL Copy or DL Number</li><li>Aadhaar Card</li><li>If lost: FIR / Police Report</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>RC Transfer (Vehicle Ownership Change)</summary><div class="docs"><b>Documents:</b><ul><li>RC</li><li>Insurance</li><li>PUC</li><li>Form 29 and 30 (signed by both)</li><li>Aadhaar of Buyer and Seller</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Check / Pay Challan</summary><div class="docs"><b>Documents:</b><ul><li>Vehicle Number or DL Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Vehicle RC Download (वाहन आरसी डाउनलोड)</summary><div class="docs"><b>Documents:</b><ul><li>Vehicle Registration Number</li><li>Chassis Number (यदि आवश्यक हो)</li><li>Registered Mobile Number</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-12" data-s="learner license ll rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं lisens learning dl लायसेंस">
+              <div class="svx-top"><b class="svx-name">Learner License (LL)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card (with linked mobile number)</li><li>Passport Size Photo</li><li>Signature</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Age Proof (10th Marksheet) if full date of birth is not on Aadhaar</li><li>Above 40 years: Medical Form 1A</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Learner%20License%20(LL)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-13" data-s="driving license dl rto licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं lisens learning ll लायसेंस">
+              <div class="svx-top"><b class="svx-name">Driving License (DL)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Learner License (at least 30 days old</li><li>within 6 months)</li><li>Aadhaar Card</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Vehicle for Driving Test</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Driving%20License%20(DL)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-14" data-s="dl reneval rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं license lisens learning ll लायसेंस">
+              <div class="svx-top"><b class="svx-name">DL Renewal</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Old DL</li><li>Aadhaar Card</li><li>Passport Size Photo</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Signature</li><li>Above 40 years: Medical Form 1A</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20DL%20Renewal%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-15" data-s="duplicate dl address change rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं license lisens learning ll लायसेंस pata पता">
+              <div class="svx-top"><b class="svx-name">Duplicate DL / DL Address Change</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>DL Copy or DL Number</li><li>Aadhaar Card</li><li>If lost: FIR / Police Report</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Duplicate%20DL%20%2F%20DL%20Address%20Change%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-16" data-s="rc transfer vehicle ovnership change rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं license lisens learning ll dl लायसेंस">
+              <div class="svx-top"><b class="svx-name">RC Transfer (Vehicle Ownership Change)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>RC</li><li>Insurance</li><li>PUC</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Form 29 and 30 (signed by both)</li><li>Aadhaar of Buyer and Seller</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20RC%20Transfer%20(Vehicle%20Ownership%20Change)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-17" data-s="check pay challan rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं license lisens learning ll dl लायसेंस">
+              <div class="svx-top"><b class="svx-name">Check / Pay Challan</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Vehicle Number or DL Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Check%20%2F%20Pay%20Challan%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-44" data-s="vehicle rc dovnload वाहन आरसी डाउनलोड rto driving licence services ड्राइविंग लाइसेंस एवं आरटीओ सेवाएं license lisens learning ll dl लायसेंस">
+              <div class="svx-top"><b class="svx-name">Vehicle RC Download (वाहन आरसी डाउनलोड)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Vehicle Registration Number</li><li>Chassis Number (यदि आवश्यक हो)</li><li>Registered Mobile Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Vehicle%20RC%20Download%20(%E0%A4%B5%E0%A4%BE%E0%A4%B9%E0%A4%A8%20%E0%A4%86%E0%A4%B0%E0%A4%B8%E0%A5%80%20%E0%A4%A1%E0%A4%BE%E0%A4%89%E0%A4%A8%E0%A4%B2%E0%A5%8B%E0%A4%A1)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/5849552/pexels-photo-5849552.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200')"><h3>Insurance Services<small>बीमा सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Two Wheeler Insurance (दो पहिया वाहन बीमा)</summary><div class="docs"><b>Documents:</b><ul><li>Vehicle RC</li><li>Existing Insurance Policy (यदि उपलब्ध हो)</li><li>Vehicle Registration Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Four Wheeler Insurance (चार पहिया वाहन बीमा)</summary><div class="docs"><b>Documents:</b><ul><li>Vehicle RC</li><li>Existing Insurance Policy</li><li>Vehicle Details</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Life Insurance (जीवन बीमा)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Passport Size Photograph</li><li>Bank Details</li><li>Medical Details (यदि आवश्यक हो)</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Health Insurance (स्वास्थ्य बीमा)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Age Proof</li><li>Medical History (यदि आवश्यक हो)</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-45" data-s="tvo vhiler insurance दो पहिया वाहन बीमा services सेवाएं">
+              <div class="svx-top"><b class="svx-name">Two Wheeler Insurance (दो पहिया वाहन बीमा)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Vehicle RC</li><li>Existing Insurance Policy (यदि उपलब्ध हो)</li><li>Vehicle Registration Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Two%20Wheeler%20Insurance%20(%E0%A4%A6%E0%A5%8B%20%E0%A4%AA%E0%A4%B9%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%B5%E0%A4%BE%E0%A4%B9%E0%A4%A8%20%E0%A4%AC%E0%A5%80%E0%A4%AE%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-46" data-s="four vhiler insurance चार पहिया वाहन बीमा services सेवाएं">
+              <div class="svx-top"><b class="svx-name">Four Wheeler Insurance (चार पहिया वाहन बीमा)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Vehicle RC</li><li>Existing Insurance Policy</li><li>Vehicle Details</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Four%20Wheeler%20Insurance%20(%E0%A4%9A%E0%A4%BE%E0%A4%B0%20%E0%A4%AA%E0%A4%B9%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%B5%E0%A4%BE%E0%A4%B9%E0%A4%A8%20%E0%A4%AC%E0%A5%80%E0%A4%AE%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-47" data-s="life insurance जीवन बीमा services सेवाएं">
+              <div class="svx-top"><b class="svx-name">Life Insurance (जीवन बीमा)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Passport Size Photograph</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Bank Details</li><li>Medical Details (यदि आवश्यक हो)</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Life%20Insurance%20(%E0%A4%9C%E0%A5%80%E0%A4%B5%E0%A4%A8%20%E0%A4%AC%E0%A5%80%E0%A4%AE%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-48" data-s="health insurance स्वास्थ्य बीमा services सेवाएं">
+              <div class="svx-top"><b class="svx-name">Health Insurance (स्वास्थ्य बीमा)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Age Proof</li></ul><details class="svx-rest"><summary>+1 aur</summary><ul><li>Medical History (यदि आवश्यक हो)</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Health%20Insurance%20(%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%8D%E0%A4%AF%20%E0%A4%AC%E0%A5%80%E0%A4%AE%E0%A4%BE)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/16504588/pexels-photo-16504588.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200');background-position:center 30%"><h3>Education &amp; Online Application Services<small>शिक्षा एवं ऑनलाइन आवेदन · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Scholarship Application (छात्रवृत्ति आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Caste Certificate</li><li>Income Certificate</li><li>Domicile Certificate</li><li>Previous Marksheet</li><li>Bank Passbook</li><li>Passport Size Photograph</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Government Job Application (सरकारी नौकरी आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>10th Marksheet</li><li>12th Marksheet</li><li>Graduation Marksheet (यदि आवश्यक हो)</li><li>Caste Certificate (यदि लागू हो)</li><li>Passport Size Photograph</li><li>Signature</li><li>Mobile Number</li><li>Email ID</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>College Admission Form (कॉलेज प्रवेश आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>10th Marksheet</li><li>12th Marksheet</li><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Transfer Certificate (यदि आवश्यक हो)</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>ITI Admission Form (आईटीआई प्रवेश आवेदन)</summary><div class="docs"><b>Documents:</b><ul><li>10th Marksheet</li><li>Aadhaar Card</li><li>Passport Size Photograph</li><li>Caste Certificate (यदि लागू हो)</li><li>Domicile Certificate (यदि मांगा जाए)</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-49" data-s="scholarship application छात्रवृत्ति आवेदन education online services शिक्षा एवं ऑनलाइन">
+              <div class="svx-top"><b class="svx-name">Scholarship Application (छात्रवृत्ति आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>Samagra ID</li><li>Caste Certificate</li></ul><details class="svx-rest"><summary>+5 aur</summary><ul><li>Income Certificate</li><li>Domicile Certificate</li><li>Previous Marksheet</li><li>Bank Passbook</li><li>Passport Size Photograph</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Scholarship%20Application%20(%E0%A4%9B%E0%A4%BE%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%83%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%BF%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-50" data-s="government job application सरकारी नौकरी आवेदन education online services शिक्षा एवं ऑनलाइन">
+              <div class="svx-top"><b class="svx-name">Government Job Application (सरकारी नौकरी आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>10th Marksheet</li><li>12th Marksheet</li></ul><details class="svx-rest"><summary>+6 aur</summary><ul><li>Graduation Marksheet (यदि आवश्यक हो)</li><li>Caste Certificate (यदि लागू हो)</li><li>Passport Size Photograph</li><li>Signature</li><li>Mobile Number</li><li>Email ID</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Government%20Job%20Application%20(%E0%A4%B8%E0%A4%B0%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%A8%E0%A5%8C%E0%A4%95%E0%A4%B0%E0%A5%80%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-51" data-s="college admission form कॉलेज प्रवेश आवेदन education online application services शिक्षा एवं ऑनलाइन">
+              <div class="svx-top"><b class="svx-name">College Admission Form (कॉलेज प्रवेश आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>10th Marksheet</li><li>12th Marksheet</li><li>Aadhaar Card</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Passport Size Photograph</li><li>Transfer Certificate (यदि आवश्यक हो)</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20College%20Admission%20Form%20(%E0%A4%95%E0%A5%89%E0%A4%B2%E0%A5%87%E0%A4%9C%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%87%E0%A4%B6%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-52" data-s="iti admission form आईटीआई प्रवेश आवेदन education online application services शिक्षा एवं ऑनलाइन">
+              <div class="svx-top"><b class="svx-name">ITI Admission Form (आईटीआई प्रवेश आवेदन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>10th Marksheet</li><li>Aadhaar Card</li><li>Passport Size Photograph</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Caste Certificate (यदि लागू हो)</li><li>Domicile Certificate (यदि मांगा जाए)</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20ITI%20Admission%20Form%20(%E0%A4%86%E0%A4%88%E0%A4%9F%E0%A5%80%E0%A4%86%E0%A4%88%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%B5%E0%A5%87%E0%A4%B6%20%E0%A4%86%E0%A4%B5%E0%A5%87%E0%A4%A6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/672082/pexels-photo-672082.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200');background-position:center 60%"><h3>Utility &amp; Recharge Services<small>बिल भुगतान एवं रिचार्ज सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Electricity Bill Payment (बिजली बिल भुगतान)</summary><div class="docs"><b>Documents:</b><ul><li>Consumer Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>Mobile Recharge (मोबाइल रिचार्ज)</summary><div class="docs"><b>Documents:</b><ul><li>Mobile Number</li><li>Operator Name</li><li>Recharge Plan</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>DTH Recharge (डीटीएच रिचार्ज)</summary><div class="docs"><b>Documents:</b><ul><li>Customer ID</li><li>DTH Operator Name</li><li>Recharge Plan</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>FASTag Recharge (फास्टैग रिचार्ज)</summary><div class="docs"><b>Documents:</b><ul><li>Vehicle Number / FASTag ID</li><li>Registered Mobile Number (यदि आवश्यक हो)</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-53" data-s="electricity bill payment बिजली बिल भुगतान utility recharge services एवं रिचार्ज सेवाएं bijli">
+              <div class="svx-top"><b class="svx-name">Electricity Bill Payment (बिजली बिल भुगतान)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Consumer Number</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Electricity%20Bill%20Payment%20(%E0%A4%AC%E0%A4%BF%E0%A4%9C%E0%A4%B2%E0%A5%80%20%E0%A4%AC%E0%A4%BF%E0%A4%B2%20%E0%A4%AD%E0%A5%81%E0%A4%97%E0%A4%A4%E0%A4%BE%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-54" data-s="mobile recharge मोबाइल रिचार्ज utility services बिल भुगतान एवं सेवाएं mobail mobilenumber number phone फोन bill bijli बिजली">
+              <div class="svx-top"><b class="svx-name">Mobile Recharge (मोबाइल रिचार्ज)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Mobile Number</li><li>Operator Name</li><li>Recharge Plan</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Mobile%20Recharge%20(%E0%A4%AE%E0%A5%8B%E0%A4%AC%E0%A4%BE%E0%A4%87%E0%A4%B2%20%E0%A4%B0%E0%A4%BF%E0%A4%9A%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9C)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-55" data-s="dth recharge डीटीएच रिचार्ज utility services बिल भुगतान एवं सेवाएं bill bijli बिजली">
+              <div class="svx-top"><b class="svx-name">DTH Recharge (डीटीएच रिचार्ज)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Customer ID</li><li>DTH Operator Name</li><li>Recharge Plan</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20DTH%20Recharge%20(%E0%A4%A1%E0%A5%80%E0%A4%9F%E0%A5%80%E0%A4%8F%E0%A4%9A%20%E0%A4%B0%E0%A4%BF%E0%A4%9A%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9C)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-56" data-s="fastag recharge फास्टैग रिचार्ज utility services बिल भुगतान एवं सेवाएं bill bijli बिजली">
+              <div class="svx-top"><b class="svx-name">FASTag Recharge (फास्टैग रिचार्ज)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Vehicle Number / FASTag ID</li><li>Registered Mobile Number (यदि आवश्यक हो)</li></ul></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20FASTag%20Recharge%20(%E0%A4%AB%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%88%E0%A4%97%20%E0%A4%B0%E0%A4%BF%E0%A4%9A%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%9C)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
         <div class="group">
           <div class="pic" style="background-image:url('https://images.pexels.com/photos/35704478/pexels-photo-35704478.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200');background-position:center 30%"><h3>Business &amp; Registration Services<small>व्यवसाय एवं पंजीयन सेवाएं · CSC &amp; Banking</small></h3></div>
-          <ul>
-            <li><details><summary><span class="dot"></span>Udyam Registration (उद्यम रजिस्ट्रेशन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Business Name</li><li>Business Address</li><li>Bank Details</li><li>Mobile Number</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>GST Registration (जीएसटी रजिस्ट्रेशन)</summary><div class="docs"><b>Documents:</b><ul><li>PAN Card</li><li>Aadhaar Card</li><li>Business Address Proof</li><li>Bank Details</li><li>Photograph</li><li>Business Details</li></ul></div></details></li>
-            <li><details><summary><span class="dot"></span>FSSAI Registration (खाद्य लाइसेंस पंजीयन)</summary><div class="docs"><b>Documents:</b><ul><li>Aadhaar Card / PAN Card</li><li>Business Address Proof</li><li>Passport Size Photograph</li><li>Business Details</li><li>Food Business Details</li></ul></div></details></li>
+          <ul class="svx-list">
+            <li class="svx-card svx-x" id="svc-57" data-s="udyam registration उद्यम रजिस्ट्रेशन business services व्यवसाय एवं पंजीयन सेवाएं">
+              <div class="svx-top"><b class="svx-name">Udyam Registration (उद्यम रजिस्ट्रेशन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card</li><li>PAN Card</li><li>Business Name</li></ul><details class="svx-rest"><summary>+3 aur</summary><ul><li>Business Address</li><li>Bank Details</li><li>Mobile Number</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20Udyam%20Registration%20(%E0%A4%89%E0%A4%A6%E0%A5%8D%E0%A4%AF%E0%A4%AE%20%E0%A4%B0%E0%A4%9C%E0%A4%BF%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%B6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-58" data-s="gst registration जीएसटी रजिस्ट्रेशन business services व्यवसाय एवं पंजीयन सेवाएं">
+              <div class="svx-top"><b class="svx-name">GST Registration (जीएसटी रजिस्ट्रेशन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>PAN Card</li><li>Aadhaar Card</li><li>Business Address Proof</li></ul><details class="svx-rest"><summary>+3 aur</summary><ul><li>Bank Details</li><li>Photograph</li><li>Business Details</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20GST%20Registration%20(%E0%A4%9C%E0%A5%80%E0%A4%8F%E0%A4%B8%E0%A4%9F%E0%A5%80%20%E0%A4%B0%E0%A4%9C%E0%A4%BF%E0%A4%B8%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%B6%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
+            <li class="svx-card svx-x" id="svc-59" data-s="fssai registration खाद्य लाइसेंस पंजीयन business services व्यवसाय एवं सेवाएं licence license lisens driving learning ll dl लायसेंस ड्राइविंग">
+              <div class="svx-top"><b class="svx-name">FSSAI Registration (खाद्य लाइसेंस पंजीयन)</b></div>
+              <div class="svx-docs"><span class="svx-lbl">Mukhya documents:</span><ul><li>Aadhaar Card / PAN Card</li><li>Business Address Proof</li><li>Passport Size Photograph</li></ul><details class="svx-rest"><summary>+2 aur</summary><ul><li>Business Details</li><li>Food Business Details</li></ul></details></div>
+              <a class="btn btn-wa btn-sm svx-wa" href="https://wa.me/918770882942?text=Namaste%2C%20mujhe%20FSSAI%20Registration%20(%E0%A4%96%E0%A4%BE%E0%A4%A6%E0%A5%8D%E0%A4%AF%20%E0%A4%B2%E0%A4%BE%E0%A4%87%E0%A4%B8%E0%A5%87%E0%A4%82%E0%A4%B8%20%E0%A4%AA%E0%A4%82%E0%A4%9C%E0%A5%80%E0%A4%AF%E0%A4%A8)%20karwana%20hai" target="_blank" rel="noopener noreferrer">💬 WhatsApp par puchhiye</a>
+            </li>
           </ul>
         </div>
       </div>
+      <p class="svx-none" id="svx-none" hidden>Koi kaam nahi mila — <a href="https://wa.me/918770882942?text=Namaste%2C%20kya%20yeh%20kaam%20ho%20jayega%3A%20" data-wa="https://wa.me/918770882942" target="_blank" rel="noopener noreferrer">WhatsApp par poochhiye</a></p>
+      <div class="svx-allw"><button type="button" class="btn btn-ghost btn-sm svx-all" id="svx-all" hidden>Sab sevayein dekhein (56)</button></div>
       <div class="more">
         <p>Koi aur online kaam hai? Ek baar puchh lijiye, ho sakta hai hum kar dein.</p>
         <a class="btn btn-wa btn-sm" href="https://wa.me/918770882942?text=Namaste%2C%20kya%20yeh%20kaam%20ho%20jayega%3A%20" target="_blank" rel="noopener noreferrer">WhatsApp par puchhiye</a>
       </div>
     </div>
   </section>
+<script>(function(){
+  function svxCompact(s) { return String(s == null ? '' : s).toLowerCase().replace(/[\u200c\u200d]/g, '').replace(/[^a-z0-9\u0900-\u097f]+/g, '').replace(/aa+/g, 'a').replace(/ee+/g, 'i').replace(/ii+/g, 'i').replace(/oo+/g, 'u').replace(/uu+/g, 'u').replace(/w/g, 'v'); }
+  function svxTokens(s) { return String(s == null ? '' : s).toLowerCase().split(/[^a-z0-9\u0900-\u097f\u200c\u200d]+/).map(svxCompact).filter(Boolean); }
+  var root=document.getElementById('svx-groups'), q=document.getElementById('svx-q'), none=document.getElementById('svx-none'), all=document.getElementById('svx-all'), pop=root.querySelector('.svx-pop');
+  if(!root||!q) return;
+  var cards=[].slice.call(root.querySelectorAll('.svx-card')), groups=[].slice.call(root.querySelectorAll('.group'));
+  var open=!all; // 12 se kam: sab dikhte hain
+  if(all){ all.hidden=false; all.addEventListener('click',function(){ open=true; run(); }); }
+  function hit(c,ws){ var t=(c.getAttribute('data-s')||'').split(' '); // har shabd kisi shabd ki shuruaat se mile
+    return ws.every(function(w){ return t.some(function(x){ return x.indexOf(w)===0; }); }); }
+  function run(){
+    var ws=svxTokens(q.value), shown=0;
+    cards.forEach(function(c){ var ok=ws.length ? hit(c,ws) : (open || !c.classList.contains('svx-x')); c.classList.toggle('svx-off',!ok); if(ok) shown++; });
+    groups.forEach(function(g){ g.classList.toggle('svx-off',!g.querySelector('.svx-card:not(.svx-off)')); });
+    none.hidden=!(ws.length && !shown);
+    if(!none.hidden){ var a=none.querySelector('a'); a.href=a.getAttribute('data-wa')+'?text='+encodeURIComponent('Namaste, kya yeh kaam ho jayega: '+q.value.trim()); }
+    if(all) all.hidden=open || ws.length>0;
+    if(pop) pop.classList.toggle('svx-off',ws.length>0);
+  }
+  q.addEventListener('input',run);
+  [].forEach.call(document.querySelectorAll('.svx-chip'),function(a){ a.addEventListener('click',function(e){
+    var c=document.getElementById(a.getAttribute('data-go')); if(!c) return; e.preventDefault();
+    q.value=''; if(c.classList.contains('svx-x')) open=true; run();
+    c.scrollIntoView({behavior:'smooth',block:'center'}); c.classList.remove('svx-hl'); void c.offsetWidth; c.classList.add('svx-hl');
+  }); });
+  run();
+})();</script>
 </main>
 
 <footer>
@@ -1080,6 +1544,35 @@
     var ago = el.querySelector('.upd-ago'), nw = el.querySelector('.upd-new');
     if (ago) ago.textContent = days === 0 ? 'Aaj' : days === 1 ? 'Kal' : days > 1 && days < 31 ? days + ' din pehle' : days === -1 ? 'Kal se' : days < -1 ? days * -1 + ' din baad' : '';
     if (nw && days >= 0 && days <= 7) nw.hidden = false;
+  });
+})();
+// Purani suchna: data-until (aakhri din) nikal gaya to home / bulletin se hatao; suchna page par neeche "Purani suchna" me.
+// (Website kuch ghante pehle bani ho to bhi dekhne wale ke din se sahi rahe)
+(function () {
+  var n = new Date(), p2 = function (x) { return (x < 10 ? '0' : '') + x; };
+  var today = n.getFullYear() + '-' + p2(n.getMonth() + 1) + '-' + p2(n.getDate());
+  var oldBox = document.querySelector('.upd-olds');
+  document.querySelectorAll('.tick a[data-until]').forEach(function (a) {
+    if (a.getAttribute('data-until') >= today) return;
+    a.hidden = true; var i = a.nextElementSibling; if (i && i.tagName === 'I') i.hidden = true;
+  });
+  document.querySelectorAll('.upds:not(.upd-olds) > .upd[data-until]').forEach(function (el) {
+    if (el.getAttribute('data-until') >= today) return;
+    el.classList.add('old'); var x = el.querySelector('.upd-exp'); if (x) x.hidden = false;
+    if (oldBox) { oldBox.insertBefore(el, oldBox.firstChild); oldBox.parentNode.hidden = false; } else el.hidden = true;
+  });
+  document.querySelectorAll('.upds:not(.upd-olds)').forEach(function (box) {
+    if (box.querySelector('.upd:not([hidden])')) return;
+    if (oldBox) { var e = box.querySelector('.upd-empty'); if (e) e.hidden = false; }
+    else { var sec = box.closest('section'); if (sec) sec.hidden = true; }
+  });
+  // Prakar ke chip: Sab / Band-Chhutti / Yojana / Nayi seva / Jaankari
+  var chips = document.querySelector('.upd-chips');
+  if (chips) chips.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var k = b.getAttribute('data-k');
+    chips.querySelectorAll('button').forEach(function (c) { var on = c === b; c.classList.toggle('on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    document.querySelectorAll('.upd[data-kind]').forEach(function (el) { el.classList.toggle('upd-off', Boolean(k) && el.getAttribute('data-kind') !== k); });
   });
 })();
 // Design: scroll par upar ki patti par chhaya, sections dheere se dikhein
